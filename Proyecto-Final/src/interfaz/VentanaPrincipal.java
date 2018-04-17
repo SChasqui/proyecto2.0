@@ -125,7 +125,7 @@ public class VentanaPrincipal extends JFrame implements MouseListener{
 			sobreBoton2 = true;
 		}
 		//****************************************
-		// Area de opcion de selecion jugador 2
+		// Area de opcion de selecion jugador 3
 		//****************************************
 		else if (posX > 20 && posX < 380 && posY > 260 && posY < 295) {
 			sobreBoton3 = true;
