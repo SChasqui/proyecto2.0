@@ -1,5 +1,7 @@
 package modelo;
 
+import java.util.ArrayList;
+
 public class Personaje {
 
 
@@ -37,6 +39,12 @@ public class Personaje {
 	 * Es la salud del personaje
 	 */
 	private int salud;
+	
+	/*
+	 * Lista de ataque es de un personaje
+	 */
+	private ArrayList<Ataque> ataques;
+
 	
 	//--------------------------------------
 	// Constructor
@@ -86,5 +94,14 @@ public class Personaje {
 
 		return posX< x && x < posX+30 && posY< x && x < posY+50;
 	}
+	
+	/*
+	 * 
+	 */
+//	public int[] atacar(Ataque tipoAtaque) {
+//		int alcanceX = posX + tipoAtaque.darAlcanceX();
+//		int alcanceY = posY;
+//		
+//	}
 
 }
