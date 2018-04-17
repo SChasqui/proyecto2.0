@@ -52,14 +52,18 @@ public class Juego {
 	//--------------------------------------
 	
 	public void iniciarBatalla(String fondo) throws JugadorNoSeleccionadoException {
-		
+		//**************************************
+		// Comprobar la existencia de Jugadores
+		//**************************************
 		if (jugador1 == null) {
 			throw new JugadorNoSeleccionadoException("No ha selecionado al jugador 1");
 		}else if(jugador2 == null) {
 			throw new JugadorNoSeleccionadoException("No ha selecionado al jugador 2");
 		}
 		
+		// Inicializa la Batalla
 		battle = new Batalla(jugador1,jugador2, fondo);
 	}
+	
 
 }
