@@ -60,7 +60,7 @@ public class Batalla {
 
 		// Se inicializa el contador de tiempo de la batalla
 		tiempoRestante = TIEMPO_INICIAL;
-//Lola
+
 		// Se inicializa el jugador uno
 		jugador1 = playerOne;
 
