@@ -80,7 +80,7 @@ public class Batalla {
 	 * <b> Pre: </b> tiempoRestante != 0 <br>
 	 * <b> Post: </b> tiempo restante ha disminuido en 1 <br>
 	 */
-	public void restarUnSegunso() {
+	public void restarUnSegundo() {
 		tiempoRestante--;
 	}
 
