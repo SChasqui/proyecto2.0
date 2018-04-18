@@ -38,7 +38,6 @@ public class VentanaPrincipal extends JFrame{
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		
 		
-		
 		menuPrincipal = new PanelMenuPrincipal(this);
 		add(menuPrincipal,BorderLayout.CENTER);
 		

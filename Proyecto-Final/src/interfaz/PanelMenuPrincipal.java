@@ -25,11 +25,11 @@ public class PanelMenuPrincipal extends JPanel implements MouseListener{
 	//--------------------------------------
 	// Atributos
 	//--------------------------------------
-	
+
 	boolean[] botones;	
 
 	public PanelMenuPrincipal(VentanaPrincipal v) {
-		botones = new boolean[3];
+		botones = new boolean[4];
 		addMouseListener(this);
 		ventana = v;
 	}
@@ -73,6 +73,15 @@ public class PanelMenuPrincipal extends JPanel implements MouseListener{
 			g.fillRect(20, 260, 360, 35);
 		}
 
+		//*********************//
+		// Condicional Cuadro 4
+		//*********************//
+		if (!botones[3]) {
+			g.drawRect(20, 330, 360, 35);
+		}else {
+			g.fillRect(20, 330, 360, 35);
+		}
+
 
 
 		// Selecciono una fuente para las opciones
@@ -83,6 +92,7 @@ public class PanelMenuPrincipal extends JPanel implements MouseListener{
 		g.drawString("Seleccionar Jugador Uno", 20, 150);
 		g.drawString("Seleccionar Jugador Dos", 20, 220);
 		g.drawString("Iniciar Batalla", 20, 290);
+		g.drawString("Ver Puntajes Guardados", 20, 360);
 
 	}
 
@@ -129,6 +139,13 @@ public class PanelMenuPrincipal extends JPanel implements MouseListener{
 		}
 		//****************************************
 		// Area de opcion de selecion jugador 
+		//****************************************
+		else if (posX > 20 && posX < 380 && posY > 260 && posY < 295) {
+			botones[2] = true;
+		}
+
+		//****************************************
+		// Area de opcion de puntajes 
 		//****************************************
 		else if (posX > 20 && posX < 380 && posY > 260 && posY < 295) {
 			botones[2] = true;
