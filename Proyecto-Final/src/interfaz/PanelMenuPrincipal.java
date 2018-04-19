@@ -29,7 +29,7 @@ public class PanelMenuPrincipal extends JPanel implements MouseListener{
 	boolean[] botones;	
 
 	public PanelMenuPrincipal(VentanaPrincipal v) {
-		botones = new boolean[4];
+		botones = new boolean[5];
 		addMouseListener(this);
 		ventana = v;
 	}
@@ -77,9 +77,19 @@ public class PanelMenuPrincipal extends JPanel implements MouseListener{
 		// Condicional Cuadro 4
 		//*********************//
 		if (!botones[3]) {
-			g.drawRect(20, 330, 360, 35);
+			g.drawRect(20, 330, 430, 35);
 		}else {
-			g.fillRect(20, 330, 360, 35);
+			g.fillRect(20, 330, 430, 35);
+		}
+		
+		//*********************//
+		// Condicional Cuadro 5 (Just Chasqui testing software
+		//*********************//
+		if (!botones[4]) {
+			g.drawRect(20, 400, 300, 35);
+			System.out.println("entre");
+		}else {
+			g.fillRect(20, 400, 300, 35);
 		}
 
 
@@ -93,6 +103,7 @@ public class PanelMenuPrincipal extends JPanel implements MouseListener{
 		g.drawString("Seleccionar Jugador Dos", 20, 220);
 		g.drawString("Iniciar Batalla", 20, 290);
 		g.drawString("Ver Puntajes Guardados", 20, 360);
+		g.drawString("No tocar", 20, 430);
 
 	}
 
@@ -122,6 +133,8 @@ public class PanelMenuPrincipal extends JPanel implements MouseListener{
 		botones[0] = false;
 		botones[1] = false;
 		botones[2] = false;
+		botones[3] = false;
+		botones[4] = false;
 
 		System.out.println("PosX:  " + posX + "  PosY:    " + posY);
 
@@ -147,8 +160,12 @@ public class PanelMenuPrincipal extends JPanel implements MouseListener{
 		//****************************************
 		// Area de opcion de puntajes 
 		//****************************************
-		else if (posX > 20 && posX < 380 && posY > 260 && posY < 295) {
-			botones[2] = true;
+		else if (posX > 20 && posX < 380 && posY > 330 && posY < 365) {
+			botones[3] = true;
+		}
+		
+		else if(posX > 20 && posX < 380 && posY > 400 && posY < 435) {
+			botones[4] = true;
 		}
 
 

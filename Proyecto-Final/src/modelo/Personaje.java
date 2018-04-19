@@ -56,7 +56,14 @@ public class Personaje {
 	 */
 	private Personaje adversario;
 	
+	/*
+	 * Ancho del sprite del personaje 
+	 */
 	private int tamanhoX;
+	
+	/*
+	 * Alto del sprite del personaje 
+	 */
 	private int tamanhoY;
 
 	
@@ -130,6 +137,14 @@ public class Personaje {
 		}
 		
 		return efectoAtaque;
+	}
+	
+	public void moverX() {
+		posX++;
+	}
+	
+	public void moverY() {
+		posY++;
 	}
 
 
