@@ -25,7 +25,6 @@ public class PanelMenuPrincipal extends JPanel implements MouseListener{
 	//--------------------------------------
 	// Atributos
 	//--------------------------------------
-
 	boolean[] botones;	
 
 	public PanelMenuPrincipal(VentanaPrincipal v) {
@@ -83,7 +82,7 @@ public class PanelMenuPrincipal extends JPanel implements MouseListener{
 		}
 		
 		//*********************//
-		// Condicional Cuadro 5 (Just Chasqui testing software
+		// Condicional Cuadro 5 (Just Chasqui testing software)
 		//*********************//
 		if (!botones[4]) {
 			g.drawRect(20, 400, 300, 35);
@@ -103,7 +102,7 @@ public class PanelMenuPrincipal extends JPanel implements MouseListener{
 		g.drawString("Seleccionar Jugador Dos", 20, 220);
 		g.drawString("Iniciar Batalla", 20, 290);
 		g.drawString("Ver Puntajes Guardados", 20, 360);
-		g.drawString("No tocar", 20, 430);
+		g.drawString("Pruebas de personaje", 20, 430);
 
 	}
 
@@ -164,8 +163,13 @@ public class PanelMenuPrincipal extends JPanel implements MouseListener{
 			botones[3] = true;
 		}
 		
+		//****************************************
+		// Área de pruebas varias
+		//****************************************
 		else if(posX > 20 && posX < 380 && posY > 400 && posY < 435) {
 			botones[4] = true;
+			ventana.crearPanelPruebas();
+			ventana.darPanelPruenas().setVisible(true);
 		}
 
 

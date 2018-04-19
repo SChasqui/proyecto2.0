@@ -44,7 +44,7 @@ public class Juego {
 	 * Construlle un objeto de tipo Juego
 	 */
 	public Juego() {
-		
+		jugador1 = new Jugador("Beta tester");
 	}
 	
 	//--------------------------------------
@@ -63,6 +63,14 @@ public class Juego {
 		
 		// Inicializa la Batalla
 		battle = new Batalla(jugador1,jugador2, fondo);
+	}
+	
+	public Jugador darJugador1() {
+		return jugador1;
+	}
+	
+	public Jugador darJugador2() {
+		return jugador2;
 	}
 	
 

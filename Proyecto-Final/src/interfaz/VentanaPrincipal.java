@@ -29,6 +29,8 @@ public class VentanaPrincipal extends JFrame{
 	 * Relacion con el Menu principal
 	 */
 	private PanelMenuPrincipal menuPrincipal;
+	
+	private PanelPruebas pPruebas;
 
 	public VentanaPrincipal() {
 
@@ -42,6 +44,7 @@ public class VentanaPrincipal extends JFrame{
 		add(menuPrincipal,BorderLayout.CENTER);
 		
 		
+//		pPruebas = new PanelPruebas(this);
 		
 		
 		juego = new Juego();
@@ -53,6 +56,18 @@ public class VentanaPrincipal extends JFrame{
 
 		VentanaPrincipal v = new VentanaPrincipal();
 
+	}
+	
+	public void crearPanelPruebas() {
+		pPruebas = new PanelPruebas(this);
+	}
+	
+	public PanelPruebas darPanelPruenas() {
+		return pPruebas;
+	}
+	
+	public Juego darJuego() {
+		return juego;
 	}
 	
 }

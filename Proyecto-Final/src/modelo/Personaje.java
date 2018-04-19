@@ -73,7 +73,7 @@ public class Personaje {
 	public Personaje(String[] pSprite, int precio) {
 
 		/*
-		 * se inicializa el arreglo de imagenes de las posibles pociciones del personaje
+		 * se inicializa el arreglo de imagenes de las posibles posiciones del personaje
 		 */
 		sprites = pSprite;
 
@@ -139,12 +139,12 @@ public class Personaje {
 		return efectoAtaque;
 	}
 	
-	public void moverX() {
-		posX++;
+	public void moverX(int mover) {
+		posX+=mover;
 	}
 	
-	public void moverY() {
-		posY++;
+	public void moverY(int mover) {
+		posY+=mover;
 	}
 
 
