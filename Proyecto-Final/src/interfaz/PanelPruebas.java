@@ -1,0 +1,85 @@
+package interfaz;
+
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import javax.swing.ImageIcon;
+import javax.swing.JDialog;
+import javax.swing.JPanel;
+
+/*
+ * Clase que sirve para probar los métodos del modelo del mundo
+ */
+public class PanelPruebas extends JDialog implements KeyListener{
+	
+	//--------------------------------------
+	// Constantes
+	//--------------------------------------
+	public final static int FLECHA_ARRIBA = 40;
+	public final static int	FLECHA_DERECHA = 39;
+	public final static int	FLECHA_ABAJO = 38;
+	public final static int FLECHA_IZQUIERDA = 37;
+	
+	//--------------------------------------
+	// Relaciones
+	//--------------------------------------
+	/*
+	 * Relación con la ventana principal
+	 */
+	private VentanaPrincipal ventana;
+	
+	
+	//--------------------------------------
+	// Constructor
+	//--------------------------------------
+	public PanelPruebas(VentanaPrincipal v) {
+		
+		ventana = v;
+		addKeyListener(this);
+		setVisible(true);
+		setLocationRelativeTo(null);
+		setSize(300, 400);
+		
+	}
+	
+	@Override
+	public void paint(Graphics g) {
+		g.setColor(Color.BLUE);
+		g.fillRect(0, 0, 700, 400);	
+		
+		ImageIcon sprite = new ImageIcon("data/Sprites/gohan/mirando a la derecha/walkFor1.png");
+		g.drawImage(sprite.getImage(), ventana.darJuego().darJugador1().darPersonaje().darPosX(), ventana.darJuego().darJugador1().darPersonaje().darPosY(), null);
+		
+	}
+	
+	
+	@Override
+	public void keyTyped(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		 System.out.println("Codigo de tecla : " + e.getKeyCode());
+		 if(e.getKeyCode() == FLECHA_IZQUIERDA) {
+			 ventana.darJuego().darJugador1().darPersonaje().moverX(-4);
+		 }else if(e.getKeyCode() == FLECHA_ABAJO) {
+			 ventana.darJuego().darJugador1().darPersonaje().moverY(-4);
+		 }else if(e.getKeyCode() == FLECHA_DERECHA) {
+			 ventana.darJuego().darJugador1().darPersonaje().moverX(4);
+		 }else if(e.getKeyCode() == FLECHA_ARRIBA) {
+			 ventana.darJuego().darJugador1().darPersonaje().moverY(4);
+		 }
+		 
+		 repaint();
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+}
