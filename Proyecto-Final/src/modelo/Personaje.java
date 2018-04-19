@@ -1,5 +1,6 @@
 package modelo;
 
+import java.awt.Rectangle;
 import java.util.ArrayList;
 
 public class Personaje {
@@ -44,6 +45,19 @@ public class Personaje {
 	 * Lista de ataque es de un personaje
 	 */
 	private ArrayList<Ataque> ataques;
+	
+	/*
+	 * Es un rectangulo que representa el área donde se encuentra el personaje
+	 */
+	private Rectangle rectangulo;
+	
+	/*
+	 * Adversario del personaje 
+	 */
+	private Personaje adversario;
+	
+	private int tamanhoX;
+	private int tamanhoY;
 
 	
 	//--------------------------------------
@@ -60,7 +74,8 @@ public class Personaje {
 		 * se fija el precio que tendra el personaje
 		 */
 		this.precio = precio;
-
+		
+		rectangulo = new Rectangle (posX, posY, tamanhoX, tamanhoY);
 	}
 
 	//--------------------------------------
@@ -92,16 +107,28 @@ public class Personaje {
 	 */
 	public boolean fueGolpeado(int x, int y) {
 
-		return posX< x && x < posX+30 && posY< x && x < posY+50;
+		return posX< x && x < posX+30 && posY< y && y < posY+50;
+	}
+	
+	private Rectangle darRectangulo() {
+		// TODO Auto-generated method stub
+		return rectangulo;
 	}
 	
 	/*
 	 * 
 	 */
-//	public int[] atacar(Ataque tipoAtaque) {
-//		int alcanceX = posX + tipoAtaque.darAlcanceX();
-//		int alcanceY = posY;
-//		
-//	}
+	public int atacar(int tecla) {
+		
+		int efectoAtaque = 0;
+		
+		if(this.rectangulo.intersects(adversario.darRectangulo())) {
+			Ataque temp = new Ataque (tecla);
+			efectoAtaque = temp.darDanho();
+		}
+		
+		return efectoAtaque;
+	}
+
 
 }

@@ -29,7 +29,7 @@ public class Ataque {
 	//--------------------------------------
 	// Constructor
 	//--------------------------------------
-	public Ataque() {
+	public Ataque(int pAtaque) {
 		
 	}
 
@@ -47,5 +47,9 @@ public class Ataque {
 
 	public void cambiarAlcanceY(int alcanceY) {
 		this.alcanceY = alcanceY;
+	}
+	
+	public int darDanho() {
+		return danho;
 	}
 }

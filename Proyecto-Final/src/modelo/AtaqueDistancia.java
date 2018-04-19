@@ -17,8 +17,8 @@ public class AtaqueDistancia extends Ataque{
 	 */
 	private int ancho;
 	
-	public AtaqueDistancia ( ) {
-		
+	public AtaqueDistancia (int tipoAtaque ) {
+		super(tipoAtaque);
 	}
 
 	public int darPosx() {
