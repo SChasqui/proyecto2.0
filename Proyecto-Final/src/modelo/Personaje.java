@@ -100,6 +100,11 @@ public class Personaje {
 		posX = newPosY;
 	}
 	
+	private Rectangle darRectangulo() {
+		// TODO Auto-generated method stub
+		return rectangulo;
+	}
+	
 	/*
 	 * Método que informa si el ataque que recibe como parámetro lo afectó
 	 * @param x - La posición en el eje X del ataque
@@ -110,13 +115,10 @@ public class Personaje {
 		return posX< x && x < posX+30 && posY< y && y < posY+50;
 	}
 	
-	private Rectangle darRectangulo() {
-		// TODO Auto-generated method stub
-		return rectangulo;
-	}
 	
 	/*
-	 * 
+	 * Método encargado de atacar
+	 * @param tecla - Corresponde a la representación Unicode de la tecla pulsada
 	 */
 	public int atacar(int tecla) {
 		
