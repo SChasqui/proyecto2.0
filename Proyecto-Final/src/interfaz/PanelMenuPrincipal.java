@@ -1,5 +1,6 @@
 package interfaz;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -44,7 +45,7 @@ public class PanelMenuPrincipal extends JPanel implements MouseListener{
 		g.setColor(Color.RED);
 
 		// Dibujo los recuadros
-
+		
 		//*********************//
 		// Condicional Cuadro 1
 		//*********************//
@@ -77,6 +78,7 @@ public class PanelMenuPrincipal extends JPanel implements MouseListener{
 		//*********************//
 		if (!botones[3]) {
 			g.drawRect(20, 330, 430, 35);
+			
 		}else {
 			g.fillRect(20, 330, 430, 35);
 		}
@@ -154,6 +156,8 @@ public class PanelMenuPrincipal extends JPanel implements MouseListener{
 		//****************************************
 		else if (posX > 20 && posX < 380 && posY > 260 && posY < 295) {
 			botones[2] = true;
+			ventana.agregarPamelEcenario();
+			
 		}
 
 		//****************************************
@@ -161,6 +165,8 @@ public class PanelMenuPrincipal extends JPanel implements MouseListener{
 		//****************************************
 		else if (posX > 20 && posX < 380 && posY > 330 && posY < 365) {
 			botones[3] = true;
+			
+			
 		}
 		
 		//****************************************

@@ -59,29 +59,6 @@ public class PanelPruebas extends JDialog implements KeyListener{
 		
 	}
 	
-	
-//	@Override
-//	public void keyTyped(KeyEvent e) {
-//		// TODO Auto-generated method stub
-//		
-//	}
-//
-//	@Override
-//	public void keyPressed(KeyEvent e) {
-//		 System.out.println("Codigo de tecla : " + e.getKeyCode());
-//		 if(e.getKeyCode() == FLECHA_IZQUIERDA) {
-//			 ventana.darJuego().darJugador1().darPersonaje().moverX(-4);
-//		 }else if(e.getKeyCode() == FLECHA_ABAJO) {
-//			 ventana.darJuego().darJugador1().darPersonaje().moverY(-4);
-//		 }else if(e.getKeyCode() == FLECHA_DERECHA) {
-//			 ventana.darJuego().darJugador1().darPersonaje().moverX(4);
-//		 }else if(e.getKeyCode() == FLECHA_ARRIBA) {
-//			 ventana.darJuego().darJugador1().darPersonaje().moverY(4);
-//		 }
-//		 
-//		 repaint();
-//	}
-	
 	@Override
     public synchronized void keyPressed(KeyEvent e) {
         pressed.add(e.getKeyCode());
@@ -114,10 +91,5 @@ public class PanelPruebas extends JDialog implements KeyListener{
     @Override
     public void keyTyped(KeyEvent e) {/* Not used */ }
 
-//	@Override
-//	public void keyReleased(KeyEvent e) {
-//		// TODO Auto-generated method stub
-//		
-//	}
 	
 }
