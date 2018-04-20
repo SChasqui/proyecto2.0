@@ -48,7 +48,7 @@ public class Juego {
 	}
 	
 	//--------------------------------------
-	// Metodos.
+	// Metodos...
 	//--------------------------------------
 	
 	public void iniciarBatalla(String fondo) throws JugadorNoSeleccionadoException {
