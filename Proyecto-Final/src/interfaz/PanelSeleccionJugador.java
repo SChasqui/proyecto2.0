@@ -23,6 +23,8 @@ public class PanelSeleccionJugador extends JPanel {
 		// Cargo la imagen que sera usada como banner para el juego
 		Image fondo = new ImageIcon("data/fondo/escenarioJugador.jpg").getImage();
 		g.drawImage(fondo, 0, 0,null);
+		Image personaje = new ImageIcon("data/vistaPreviaPersonajes/Gohan.jpg").getImage();
+		g.drawImage(personaje, 390, 110,null);
 	}
 
 }

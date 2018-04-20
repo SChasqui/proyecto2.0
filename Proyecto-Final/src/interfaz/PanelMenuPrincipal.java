@@ -26,10 +26,8 @@ public class PanelMenuPrincipal extends JPanel implements MouseListener{
 	//--------------------------------------
 	// Atributos
 	//--------------------------------------
-	boolean[] botones;	
 
 	public PanelMenuPrincipal(VentanaPrincipal v) {
-		botones = new boolean[5];
 		addMouseListener(this);
 		ventana = v;
 	}
@@ -40,59 +38,6 @@ public class PanelMenuPrincipal extends JPanel implements MouseListener{
 		// Cargo la imagen que sera usada como banner para el juego
 		Image fondo = new ImageIcon("data/fondo/Banner.png").getImage();
 		g.drawImage(fondo, 0, 0,null);
-
-		// Selecciono un color para los recuadros
-		g.setColor(Color.RED);
-
-		// Dibujo los recuadros
-
-		//*********************//
-		// Condicional Cuadro 1
-		//*********************//
-		if (!botones[0]) {
-			g.drawRect(42, 120, 580, 50);
-		}else {
-			g.fillRect(42, 120, 580, 50);
-		}
-
-		//*********************//
-		// Condicional Cuadro 2
-		//*********************//
-		if (!botones[1]) {
-			g.drawRect(42, 190, 580, 50);
-		}else {
-			g.fillRect(42, 190, 580, 50);
-		}
-
-		//*********************//
-		// Condicional Cuadro 3
-		//*********************//
-		if (!botones[2]) {
-			g.drawRect(42, 260, 580, 50);
-		}else {
-			g.fillRect(42, 260, 580, 50);
-		}
-
-		
-		//*********************//
-		// Condicional Cuadro 4
-		//*********************//
-		if (!botones[3]) {
-			g.drawRect(42, 330, 580, 50);
-
-		}else {
-			g.fillRect(42, 330, 580, 50);
-		}
-
-		//*********************//
-		// Condicional Cuadro 5 (Just Chasqui testing software)
-		//*********************//
-		if (!botones[4]) {
-			g.drawRect(42, 400, 580, 50);
-			System.out.println("entre");
-		}else {
-			g.fillRect(42, 400, 580, 50);
-		}
 
 
 		// Selecciono una fuente para las opciones
@@ -131,33 +76,24 @@ public class PanelMenuPrincipal extends JPanel implements MouseListener{
 		int posX = e.getX();
 		int posY = e.getY();
 
-		botones[0] = false;
-		botones[1] = false;
-		botones[2] = false;
-		botones[3] = false;
-		botones[4] = false;
-
 		System.out.println("PosX:  " + posX + "  PosY:    " + posY);
 
 		//****************************************//
 		// Area de opcion de selecion jugador 1
 		//****************************************//
-		if (posX > 20 && posX < 600 && posY > 120 && posY < 155) {
-			botones[0] = true;
+		if (posX > 45 && posX < 625 && posY > 110 && posY < 190) {
 			ventana.agregarPanelJugador();
 		}
 		//****************************************//
 		// Area de opcion de selecion jugador 2
 		//****************************************//
-		else if (posX > 20 && posX < 600 && posY > 190 && posY < 225) {
-			botones[1] = true;
+		else if (posX > 45 && posX < 625 && posY > 195 && posY < 290) {
 			ventana.agregarPanelJugador();
 		}
 		//****************************************
 		// Area de opcion de selecion jugador 
 		//****************************************
-		else if (posX > 20 && posX < 380 && posY > 260 && posY < 295) {
-			botones[2] = true;
+		else if (posX > 45 && posX < 625 && posY > 295 && posY < 390) {
 			ventana.agregarPamelEcenario();
 
 		}
@@ -165,17 +101,14 @@ public class PanelMenuPrincipal extends JPanel implements MouseListener{
 		//****************************************
 		// Area de opcion de puntajes 
 		//****************************************
-		else if (posX > 20 && posX < 380 && posY > 330 && posY < 365) {
-			botones[3] = true;
-
+		else if (posX > 45 && posX < 625 && posY > 395 && posY < 490) {
 
 		}
 
 		//****************************************
 		// Área de pruebas varias
 		//****************************************
-		else if(posX > 20 && posX < 380 && posY > 400 && posY < 435) {
-			botones[4] = true;
+		else if(posX > 45 && posX < 625 && posY > 495 && posY < 590) {
 			ventana.crearPanelPruebas();
 			ventana.darPanelPruenas().setVisible(true);
 		}
