@@ -108,7 +108,6 @@ public class Personaje {
 	}
 	
 	private Rectangle darRectangulo() {
-		// TODO Auto-generated method stub
 		return rectangulo;
 	}
 	
