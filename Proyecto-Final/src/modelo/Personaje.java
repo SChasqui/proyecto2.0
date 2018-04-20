@@ -14,8 +14,6 @@ public class Personaje {
 
 	public static final int DERECHA = 1;
 
-	public static final int PARADO = 0;
-
 	//--------------------------------------
 	// Atributos
 	//--------------------------------------
@@ -156,6 +154,7 @@ public class Personaje {
 
 	public void moverX(int mover) {
 		posX+=mover;
+		direccion = mover>0? DERECHA:IZQUIERDA;
 	}
 
 	public void moverY(int mover) {
@@ -172,7 +171,7 @@ public class Personaje {
 			i = -4;
 		}
 
-		return "data/Sprites/Bardock/paradoIzquierda/"+(i > 0? i : -i)+ ".png";
+		return "data/Sprites/Bardock/"+ (direccion == IZQUIERDA? "paradoIzquierda": "paradoDerecha") +"/"+(i > 0? i : -i)+ ".png";
 	}
 
 
