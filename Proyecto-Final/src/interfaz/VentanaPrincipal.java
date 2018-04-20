@@ -9,7 +9,9 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 import modelo.Juego;
 
@@ -22,6 +24,8 @@ public class VentanaPrincipal extends JFrame{
 	private PanelSeleccionEscenario pSeleccionEscenario;
 	
 	private PanelSeleccionJugador pSeleccionJugador;
+	
+	private JPanel panelAuxiliar;
 	/*
 	 * Relacion con el Menu principal
 	 */
@@ -40,9 +44,12 @@ public class VentanaPrincipal extends JFrame{
 		setSize(1280, 720);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		
-		
+		panelAuxiliar = new JPanel();
 		menuPrincipal = new PanelMenuPrincipal(this);
-		add(menuPrincipal,BorderLayout.CENTER);
+		panelAuxiliar.setLayout(new BorderLayout());
+		panelAuxiliar.add(menuPrincipal);
+		
+		add(panelAuxiliar,BorderLayout.CENTER);
 		
 		pSeleccionEscenario = new PanelSeleccionEscenario(this);
 		
@@ -111,5 +118,15 @@ public class VentanaPrincipal extends JFrame{
 
 	public void setpPruebas(PanelPruebas pPruebas) {
 		this.pPruebas = pPruebas;
+	}
+
+	public void agregarPamelEcenario() {
+		System.out.println("Pase");
+		panelAuxiliar.removeAll();
+		panelAuxiliar.add(pSeleccionEscenario);
+		pSeleccionEscenario.updateUI();
+		pSeleccionEscenario.repaint();
+		repaint();
+		
 	}
 }

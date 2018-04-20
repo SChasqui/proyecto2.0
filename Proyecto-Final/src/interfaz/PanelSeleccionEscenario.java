@@ -1,18 +1,20 @@
 package interfaz;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.Image;
 
-import javax.swing.JDialog;
+import javax.swing.JPanel;
 import javax.swing.ImageIcon;
 
-public class PanelSeleccionEscenario extends JDialog implements MouseListener{
+public class PanelSeleccionEscenario extends JPanel implements MouseListener{
 	//Relaciones
 	private VentanaPrincipal ventana;
 	public PanelSeleccionEscenario(VentanaPrincipal ventana) {
 		
+		setVisible(true);
 		this.ventana = ventana;
 		
 	}
@@ -23,7 +25,6 @@ public class PanelSeleccionEscenario extends JDialog implements MouseListener{
 		// Cargo la imagen que sera usada como banner para el juego
 		Image fondo = new ImageIcon("data/fondo/escenarioEscenario.jpg").getImage();
 		g.drawImage(fondo, 0, 0,null);
-		ventana.getpSeleccionEscenario();
 	}
 
 
@@ -36,7 +37,8 @@ public class PanelSeleccionEscenario extends JDialog implements MouseListener{
 
 	@Override
 	public void mouseEntered(MouseEvent arg0) {
-		// TODO Auto-generated method stub
+		repaint();
+		System.out.println("Pase");
 		
 	}
 

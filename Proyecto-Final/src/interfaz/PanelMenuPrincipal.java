@@ -69,8 +69,6 @@ public class PanelMenuPrincipal extends JPanel implements MouseListener{
 		//*********************//
 		if (!botones[2]) {
 			g.drawRect(20, 260, 360, 35);
-			ventana.removeAll();
-			add(ventana.getpSeleccionEscenario(),BorderLayout.CENTER);
 		}else {
 			g.fillRect(20, 260, 360, 35);
 		}
@@ -158,6 +156,7 @@ public class PanelMenuPrincipal extends JPanel implements MouseListener{
 		//****************************************
 		else if (posX > 20 && posX < 380 && posY > 260 && posY < 295) {
 			botones[2] = true;
+			ventana.agregarPamelEcenario();
 			
 		}
 
@@ -166,6 +165,8 @@ public class PanelMenuPrincipal extends JPanel implements MouseListener{
 		//****************************************
 		else if (posX > 20 && posX < 380 && posY > 330 && posY < 365) {
 			botones[3] = true;
+			
+			
 		}
 		
 		//****************************************
