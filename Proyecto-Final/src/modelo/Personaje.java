@@ -126,7 +126,7 @@ public class Personaje {
 	}
 
 	/*
-	 * Método que informa si el ataque que recibe como parámetro lo afectó
+	 * Método que informa si el ataque que recibe como parámetro lo afecto
 	 * @param x - La posición en el eje X del ataque
 	 * @param y - La posición en el eje Y del ataque
 	 */
