@@ -45,7 +45,7 @@ public class PanelMenuPrincipal extends JPanel implements MouseListener{
 		g.setColor(Color.RED);
 
 		// Dibujo los recuadros
-		
+
 		//*********************//
 		// Condicional Cuadro 1
 		//*********************//
@@ -78,11 +78,11 @@ public class PanelMenuPrincipal extends JPanel implements MouseListener{
 		//*********************//
 		if (!botones[3]) {
 			g.drawRect(20, 330, 430, 35);
-			
+
 		}else {
 			g.fillRect(20, 330, 430, 35);
 		}
-		
+
 		//*********************//
 		// Condicional Cuadro 5 (Just Chasqui testing software)
 		//*********************//
@@ -94,17 +94,16 @@ public class PanelMenuPrincipal extends JPanel implements MouseListener{
 		}
 
 
-
 		// Selecciono una fuente para las opciones
-		g.setFont(new Font("Algerian", Font.BOLD, 40));
+		g.setFont(new Font("Helvetica", Font.BOLD, 35));
 		// Selecciono un color para las opciones
-		g.setColor(Color.BLUE);
+		g.setColor(Color.WHITE);
 		// Dibujo las opciones
-		g.drawString("Seleccionar Jugador Uno", 20, 150);
-		g.drawString("Seleccionar Jugador Dos", 20, 220);
-		g.drawString("Iniciar Batalla", 20, 290);
-		g.drawString("Ver Puntajes Guardados", 20, 360);
-		g.drawString("Pruebas de personaje", 20, 430);
+		g.drawString("Seleccionar Jugador Uno", 110, 166);
+		g.drawString("Seleccionar Jugador Dos", 110, 260);
+		g.drawString("Iniciar Batalla", 110, 360);
+		g.drawString("Ver Puntajes Guardados", 110, 454);
+		g.drawString("Pruebas de personaje", 110, 548);
 
 	}
 
@@ -157,7 +156,7 @@ public class PanelMenuPrincipal extends JPanel implements MouseListener{
 		else if (posX > 20 && posX < 380 && posY > 260 && posY < 295) {
 			botones[2] = true;
 			ventana.agregarPamelEcenario();
-			
+
 		}
 
 		//****************************************
@@ -165,10 +164,10 @@ public class PanelMenuPrincipal extends JPanel implements MouseListener{
 		//****************************************
 		else if (posX > 20 && posX < 380 && posY > 330 && posY < 365) {
 			botones[3] = true;
-			
-			
+
+
 		}
-		
+
 		//****************************************
 		// Área de pruebas varias
 		//****************************************
