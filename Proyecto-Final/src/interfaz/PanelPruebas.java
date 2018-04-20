@@ -11,6 +11,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 
+import hilos.HiloPruebas;
+
 /*
  * Clase que sirve para probar los métodos del modelo del mundo
  */
@@ -47,6 +49,10 @@ public class PanelPruebas extends JDialog implements KeyListener{
 		setLocationRelativeTo(null);
 		setSize(300, 400);
 		
+		
+		HiloPruebas h = new HiloPruebas(this);
+		h.start();
+		
 	}
 	
 	@Override
@@ -54,7 +60,7 @@ public class PanelPruebas extends JDialog implements KeyListener{
 		g.setColor(Color.BLUE);
 		g.fillRect(0, 0, 700, 400);	
 		
-		ImageIcon sprite = new ImageIcon("data/Sprites/Frieza/26.png");
+		ImageIcon sprite = new ImageIcon(ventana.darJuego().darJugador1().darPersonaje().darSprite());
 		g.drawImage(sprite.getImage(), ventana.darJuego().darJugador1().darPersonaje().darPosX(), ventana.darJuego().darJugador1().darPersonaje().darPosY(), null);
 		
 	}
@@ -75,8 +81,6 @@ public class PanelPruebas extends JDialog implements KeyListener{
      		 }else if(c == FLECHA_ARRIBA) {
      			 ventana.darJuego().darJugador1().darPersonaje().moverY(4);
      		 }
-     		 
-     		 repaint();
         	  
         	  
           }
