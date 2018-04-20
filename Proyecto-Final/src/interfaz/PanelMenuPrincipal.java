@@ -73,6 +73,7 @@ public class PanelMenuPrincipal extends JPanel implements MouseListener{
 			g.fillRect(20, 260, 360, 35);
 		}
 
+		
 		//*********************//
 		// Condicional Cuadro 4
 		//*********************//
