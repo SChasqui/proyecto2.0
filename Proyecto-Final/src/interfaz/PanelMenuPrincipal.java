@@ -50,27 +50,27 @@ public class PanelMenuPrincipal extends JPanel implements MouseListener{
 		// Condicional Cuadro 1
 		//*********************//
 		if (!botones[0]) {
-			g.drawRect(20, 120, 580, 35);
+			g.drawRect(42, 120, 580, 50);
 		}else {
-			g.fillRect(20, 120, 580, 35);
+			g.fillRect(42, 120, 580, 50);
 		}
 
 		//*********************//
 		// Condicional Cuadro 2
 		//*********************//
 		if (!botones[1]) {
-			g.drawRect(20, 190, 580, 35);
+			g.drawRect(42, 190, 580, 50);
 		}else {
-			g.fillRect(20, 190, 580, 35);
+			g.fillRect(42, 190, 580, 50);
 		}
 
 		//*********************//
 		// Condicional Cuadro 3
 		//*********************//
 		if (!botones[2]) {
-			g.drawRect(20, 260, 360, 35);
+			g.drawRect(42, 260, 580, 50);
 		}else {
-			g.fillRect(20, 260, 360, 35);
+			g.fillRect(42, 260, 580, 50);
 		}
 
 		
@@ -78,20 +78,20 @@ public class PanelMenuPrincipal extends JPanel implements MouseListener{
 		// Condicional Cuadro 4
 		//*********************//
 		if (!botones[3]) {
-			g.drawRect(20, 330, 430, 35);
+			g.drawRect(42, 330, 580, 50);
 
 		}else {
-			g.fillRect(20, 330, 430, 35);
+			g.fillRect(42, 330, 580, 50);
 		}
 
 		//*********************//
 		// Condicional Cuadro 5 (Just Chasqui testing software)
 		//*********************//
 		if (!botones[4]) {
-			g.drawRect(20, 400, 300, 35);
+			g.drawRect(42, 400, 580, 50);
 			System.out.println("entre");
 		}else {
-			g.fillRect(20, 400, 300, 35);
+			g.fillRect(42, 400, 580, 50);
 		}
 
 
@@ -144,12 +144,14 @@ public class PanelMenuPrincipal extends JPanel implements MouseListener{
 		//****************************************//
 		if (posX > 20 && posX < 600 && posY > 120 && posY < 155) {
 			botones[0] = true;
+			ventana.agregarPanelJugador();
 		}
 		//****************************************//
 		// Area de opcion de selecion jugador 2
 		//****************************************//
 		else if (posX > 20 && posX < 600 && posY > 190 && posY < 225) {
 			botones[1] = true;
+			ventana.agregarPanelJugador();
 		}
 		//****************************************
 		// Area de opcion de selecion jugador 

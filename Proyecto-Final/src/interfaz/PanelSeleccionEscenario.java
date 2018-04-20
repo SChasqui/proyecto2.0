@@ -12,6 +12,8 @@ import javax.swing.ImageIcon;
 public class PanelSeleccionEscenario extends JPanel implements MouseListener{
 	//Relaciones
 	private VentanaPrincipal ventana;
+	
+	
 	public PanelSeleccionEscenario(VentanaPrincipal ventana) {
 		
 		setVisible(true);
@@ -23,7 +25,7 @@ public class PanelSeleccionEscenario extends JPanel implements MouseListener{
 	public void paint(Graphics g) {
 
 		// Cargo la imagen que sera usada como banner para el juego
-		Image fondo = new ImageIcon("data/fondo/escenarioEscenario.jpg").getImage();
+		Image fondo = new ImageIcon("data/fondo/escenarioEscenario1.jpg").getImage();
 		g.drawImage(fondo, 0, 0,null);
 	}
 

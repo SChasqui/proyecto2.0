@@ -127,6 +127,14 @@ public class VentanaPrincipal extends JFrame{
 		pSeleccionEscenario.updateUI();
 		pSeleccionEscenario.repaint();
 		repaint();
+	}
+	
+	public void agregarPanelJugador() {
 		
+		panelAuxiliar.removeAll();
+		panelAuxiliar.add(pSeleccionJugador);
+		pSeleccionJugador.updateUI();
+		pSeleccionJugador.repaint();
+		repaint();
 	}
 }
