@@ -54,7 +54,7 @@ public class PanelPruebas extends JDialog implements KeyListener{
 		g.setColor(Color.BLUE);
 		g.fillRect(0, 0, 700, 400);	
 		
-		ImageIcon sprite = new ImageIcon("data/Sprites/gohan/mirando a la derecha/walkFor1.png");
+		ImageIcon sprite = new ImageIcon("data/Sprites/Frieza/26.png");
 		g.drawImage(sprite.getImage(), ventana.darJuego().darJugador1().darPersonaje().darPosX(), ventana.darJuego().darJugador1().darPersonaje().darPosY(), null);
 		
 	}
