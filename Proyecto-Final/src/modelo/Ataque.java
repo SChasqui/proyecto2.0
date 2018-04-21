@@ -43,7 +43,7 @@ public class Ataque {
 	
 	
 	//--------------------------------------
-	// Constructor..
+	// Constructor.
 	//--------------------------------------
 	public Ataque(String pj, int pAtaque, int pDireccion, int pX, int pY) {
 		personaje = pj;
