@@ -19,7 +19,7 @@ import modelo.Juego;
 public class VentanaPrincipal extends JFrame{
 
 	//--------------------------------------
-	// Relaciones
+	// Relaciones.
 	//--------------------------------------
 	private PanelSeleccionEscenario pSeleccionEscenario;
 	
