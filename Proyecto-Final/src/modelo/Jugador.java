@@ -45,9 +45,7 @@ public class Jugador {
 	public Jugador(String nombre) {
 		nickName = nombre;
 		puntos = 0;
-		
-		String[] borrar = {"probando"};
-		personajeActual = new Personaje(borrar, 10);
+		personajeActual = new Personaje("Bardock", 10);
 	}
 
 	//--------------------------------------

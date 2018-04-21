@@ -25,6 +25,7 @@ public class PanelPruebas extends JDialog implements KeyListener{
 	public final static int	FLECHA_DERECHA = 39;
 	public final static int	FLECHA_ABAJO = 38;
 	public final static int FLECHA_IZQUIERDA = 37;
+	public static final int NUMERO_UNO= 97;
 	
 	
 	private final Set<Integer> pressed = new HashSet<Integer>();
@@ -68,7 +69,6 @@ public class PanelPruebas extends JDialog implements KeyListener{
 	@Override
     public synchronized void keyPressed(KeyEvent e) {
         pressed.add(e.getKeyCode());
-        System.out.println((int)e.getKeyChar()+" ");
         if (pressed.size() > 0) {
           for (int c : pressed){
         	  
@@ -80,6 +80,8 @@ public class PanelPruebas extends JDialog implements KeyListener{
      			 ventana.darJuego().darJugador1().darPersonaje().moverX(4);
      		 }else if(c == FLECHA_ARRIBA) {
      			 ventana.darJuego().darJugador1().darPersonaje().moverY(4);
+     		 }else if(c == NUMERO_UNO) {
+     			 ventana.darJuego().darJugador1().darPersonaje().atacar(c);
      		 }
         	  
         	  
@@ -90,6 +92,16 @@ public class PanelPruebas extends JDialog implements KeyListener{
     @Override
     public synchronized void keyReleased(KeyEvent e) {
         pressed.remove(e.getKeyCode());
+        
+        int c = e.getKeyCode();
+        
+        if(c == FLECHA_IZQUIERDA) {
+			 ventana.darJuego().darJugador1().darPersonaje().quietotrue();
+		 }else if(c == FLECHA_DERECHA) {
+			 ventana.darJuego().darJugador1().darPersonaje().quietotrue();
+		 }
+        
+        
     }
 
     @Override

@@ -21,7 +21,7 @@ public class Personaje {
 	/*
 	 * arreglo de las imagenes que puede tener un personaje
 	 */
-	private String[] sprites;
+	private String sprite;
 
 	/*
 	 * precio en puntos de un personaje
@@ -39,7 +39,7 @@ public class Personaje {
 	private int posY;
 
 	/*
-	 * Es el ki del personaje
+	 * Es el kposSprite[0] del personaje
 	 */
 	private int ki;
 
@@ -78,18 +78,25 @@ public class Personaje {
 	 */
 	private int direccion;
 
+	/*
+	 * arreglo de frames del sprite
+	 */
+	private int[] posSprite = new int[5];
 
-	int i = 1;
+	/*
+	 * boolean que denota el estado en el que se encuentra el personaje; true para quieto y false para cualquier otro movimiento
+	 */
+	private boolean quieto;
 
 	//--------------------------------------
 	// Constructor
 	//--------------------------------------
-	public Personaje(String[] pSprite, int precio) {
+	public Personaje(String pSprite, int precio) {
 
 		/*
 		 * se inicializa el arreglo de imagenes de las posibles posiciones del personaje
 		 */
-		sprites = pSprite;
+		sprite = pSprite;
 
 		/*
 		 * se fija el precio que tendra el personaje
@@ -97,6 +104,8 @@ public class Personaje {
 		this.precio = precio;
 
 		rectangulo = new Rectangle (posX, posY, tamanhoX, tamanhoY);
+
+		quieto = true;
 	}
 
 	//--------------------------------------
@@ -126,7 +135,7 @@ public class Personaje {
 	}
 
 	/*
-	 * Método que informa si el ataque que recibe como parámetro lo afecto
+	 * Método que informa sposSprite[0] el ataque que recibe como parámetro lo afecto
 	 * @param x - La posición en el eje X del ataque
 	 * @param y - La posición en el eje Y del ataque
 	 */
@@ -144,10 +153,13 @@ public class Personaje {
 
 		int efectoAtaque = 0;
 
-		if(this.rectangulo.intersects(adversario.darRectangulo())) {
-			Ataque temp = new Ataque (tecla);
-			efectoAtaque = temp.darDanho();
-		}
+//		if(this.rectangulo.intersects(adversario.darRectangulo())) {
+//			Ataque temp = new Ataque (tecla);
+//			efectoAtaque = temp.darDanho();
+//		}
+		
+		posSprite[1] = 1;
+		quieto = false;
 
 		return efectoAtaque;
 	}
@@ -155,25 +167,90 @@ public class Personaje {
 	public void moverX(int mover) {
 		posX+=mover;
 		direccion = mover>0? DERECHA:IZQUIERDA;
+		
+		
+		posSprite[2] = posSprite[2] !=0? posSprite[2]:1;
+		System.out.println(posSprite[2]);
+		quieto = false;
 	}
 
 	public void moverY(int mover) {
 		posY+=mover;
 	}
 
+
+	//--------------------------------------
+	// Metodos Graficos
+	//--------------------------------------
+
 	public String darSprite() {
-		if(i == -1) {
-			i = 1;
-		}
-		else if(i < 4) {
-			i++;
-		}else {
-			i = -4;
+
+		String aMostrar = "";
+
+		if(quieto) {
+			// Se retorna un frame de la animacion del personaje parado
+			aMostrar = spriteQuieto();
+			
+			if (posSprite[2] == 2) {
+				posSprite[2] = 3;
+				aMostrar = "data/Sprites/" + sprite + (direccion == IZQUIERDA? "/moverIzquierda": "/moverDerecha")+"/"+(posSprite[2])+ ".png";
+			}
+
+			//**************************************************************
+			// Se reinician los frames de cada uno de los otros movimientos
+			//**************************************************************
+			for (int i = 1; i < posSprite.length; i++) {
+				posSprite[i]=0;
+			}
+		}else if(posSprite[1] != 0) {
+			aMostrar = spritePuño();
+		}else if(posSprite[2] != 0) {
+			aMostrar = spriteMovimiento();
 		}
 
-//		return "data/Sprites/Bardock/ataque"+"/"+(i > 0? i : -i)+ ".png";
+		return aMostrar;
+	}
+
+	public String spriteQuieto() {
+		if(posSprite[0] == -1) {
+			posSprite[0] = 1;
+		}
+		else if(posSprite[0] < 4) {
+			posSprite[0]++;
+		}else {
+			posSprite[0] = -4;
+		}
+
+		return "data/Sprites/" + sprite + "/"+ (direccion == IZQUIERDA? "paradoIzquierda": "paradoDerecha") +"/"+(posSprite[0] > 0? posSprite[0] : -posSprite[0] )+ ".png";
+	}
+
+	public String spritePuño() {
+
+		String frame = "data/Sprites/" + sprite + (direccion == IZQUIERDA? "/puñoIzquierda": "/puñoDerecha")+"/"+(posSprite[1])+ ".png";
 		
-		return "data/Sprites/Bardock/"+ (direccion == IZQUIERDA? "paradoIzquierda": "paradoDerecha") +"/"+(i > 0? i : -i)+ ".png";
+		posSprite[1]++;
+		quieto = false;
+		if (posSprite[1] > 6) {
+			posSprite[1] = 0;
+			quieto = true;
+		}
+
+		return frame;
+	}
+	
+	public String spriteMovimiento() {
+		
+		String frame = "data/Sprites/" + sprite + (direccion == IZQUIERDA? "/moverIzquierda": "/moverDerecha")+"/"+(posSprite[2])+ ".png";
+	
+		posSprite[2] = 2;
+		quieto = false;
+		
+		return frame;
+	
+	}
+	
+	public void quietotrue() {
+		quieto = true;
 	}
 
 
