@@ -19,7 +19,7 @@ import hilos.HiloPruebas;
 public class PanelPruebas extends JDialog implements KeyListener{
 	
 	//--------------------------------------
-	// Constantes
+	// Constantes.
 	//--------------------------------------
 	public final static int FLECHA_ARRIBA = 40;
 	public final static int	FLECHA_DERECHA = 39;
