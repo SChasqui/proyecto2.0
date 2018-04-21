@@ -173,7 +173,7 @@ public class Personaje {
 		posSprite[3] = 1;
 		quieto = false;
 		
-		ataqueDistancia = new AtaqueDistancia(sprite, 1, direccion, posX, posY);
+		
 		
 		return efectoAtaque;
 		
@@ -268,13 +268,13 @@ public class Personaje {
 	
 	public String spriteAtaqueMedDistancia() {
 		
-		String frame = "data/Sprites/" + sprite + (direccion == IZQUIERDA? "/ataqueMedIzquierda": "/ataqueMedDerecha")+"/"+(posSprite[1])+ ".png";
+		String frame = "data/Sprites/" + sprite + (direccion == IZQUIERDA? "/ataqueMedIzquierda": "/ataqueMedDerecha")+"/"+(posSprite[3])+ ".png";
 		
 		posSprite[3]++;
 		quieto = false;
 		
 		if(posSprite[3] == 6) {
-			
+			ataqueDistancia = new AtaqueDistancia(sprite, 1, direccion, posX, posY);
 		}
 		if (posSprite[3] > 6) {
 			posSprite[3] = 0;
