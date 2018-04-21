@@ -2,40 +2,20 @@ package modelo;
 
 public class AtaqueDistancia extends Ataque{
 	
-	/*
-	 * Es la posicion en la que va el ataque en el eje X
-	 */
-	private int posX;
-	
-	/*
-	 * Es la posicion en la que va el ataque en el eje Y
-	 */
-	private int posY;
+
 	
 	/*
 	 * Hace referencia al "ancho" del ataque
 	 */
 	private int ancho;
 	
-	public AtaqueDistancia (int tipoAtaque ) {
-		super(tipoAtaque);
+	int i = 1;
+	
+	public AtaqueDistancia (String personaje, int direccion,  int tipoAtaque, int posX, int posY ) {
+		super(personaje, direccion, tipoAtaque, posX, posY);
+
 	}
 
-	public int darPosx() {
-		return posX;
-	}
-
-	public void cambiarPosX(int posX) {
-		this.posX = posX;
-	}
-
-	public int darPosY() {
-		return posY;
-	}
-
-	public void cambiarPosY(int posY) {
-		this.posY = posY;
-	}
 
 	public int darAncho() {
 		return ancho;
@@ -45,5 +25,26 @@ public class AtaqueDistancia extends Ataque{
 		this.ancho = ancho;
 	}
 	
+	public void moverX() {
+		System.out.println(super.darDireccion());
+		posX += (super.darDireccion()  == 1) ? 10: -10; 
+	}
+	
+	public String darSprite() {
+		
+		if(i!= 4 && i!=-4) {
+			
+			if(i == -1) {
+				i = 1;
+			}
+			else if(i < 4) {
+				i++;
+			}else {
+				i = -4;
+			}
+		}
+		
+		return "data/Sprites/" + super.darPersonaje() + "/"+ (darDireccion() == Personaje.IZQUIERDA? "ataqueMedianoIzquierda": "ataqueMedianoDerecha") +"/"+(i > 0? i : -i)+".png";
+	}
 	
 }	

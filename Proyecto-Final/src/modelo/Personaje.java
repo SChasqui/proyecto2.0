@@ -87,6 +87,8 @@ public class Personaje {
 	 * boolean que denota el estado en el que se encuentra el personaje; true para quieto y false para cualquier otro movimiento
 	 */
 	private boolean quieto;
+	
+	private AtaqueDistancia ataqueDistancia;
 
 	//--------------------------------------
 	// Constructor
@@ -163,6 +165,19 @@ public class Personaje {
 
 		return efectoAtaque;
 	}
+	
+	public int lanzarAtaqueDistante() {
+		
+		int efectoAtaque = 0;
+		
+		posSprite[3] = 1;
+		quieto = false;
+		
+		ataqueDistancia = new AtaqueDistancia(sprite, 1, direccion, posX, posY);
+		
+		return efectoAtaque;
+		
+	}
 
 	public void moverX(int mover) {
 		posX+=mover;
@@ -206,6 +221,8 @@ public class Personaje {
 			aMostrar = spritePuño();
 		}else if(posSprite[2] != 0) {
 			aMostrar = spriteMovimiento();
+		}else if(posSprite[3] != 0) {
+			aMostrar = spriteAtaqueMedDistancia();
 		}
 
 		return aMostrar;
@@ -249,8 +266,31 @@ public class Personaje {
 	
 	}
 	
+	public String spriteAtaqueMedDistancia() {
+		
+		String frame = "data/Sprites/" + sprite + (direccion == IZQUIERDA? "/ataqueMedIzquierda": "/ataqueMedDerecha")+"/"+(posSprite[1])+ ".png";
+		
+		posSprite[3]++;
+		quieto = false;
+		
+		if(posSprite[3] == 6) {
+			
+		}
+		if (posSprite[3] > 6) {
+			posSprite[3] = 0;
+			quieto = true;
+		}
+
+		return frame;
+	
+	}
+	
 	public void quietotrue() {
 		quieto = true;
+	}
+	
+	public AtaqueDistancia darAtaqueDistancia() {
+		return ataqueDistancia;
 	}
 
 
