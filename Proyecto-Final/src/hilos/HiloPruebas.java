@@ -16,7 +16,7 @@ public class HiloPruebas extends Thread{
 
 			panel.repaint();
 			try {
-				sleep(170);
+				sleep(150);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

@@ -171,6 +171,8 @@ public class Personaje {
 			i = -4;
 		}
 
+//		return "data/Sprites/Bardock/ataque"+"/"+(i > 0? i : -i)+ ".png";
+		
 		return "data/Sprites/Bardock/"+ (direccion == IZQUIERDA? "paradoIzquierda": "paradoDerecha") +"/"+(i > 0? i : -i)+ ".png";
 	}
 
