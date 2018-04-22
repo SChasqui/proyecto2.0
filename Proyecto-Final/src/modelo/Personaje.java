@@ -88,7 +88,7 @@ public class Personaje {
 	 */
 	private boolean quieto;
 	
-	private AtaqueDistancia ataqueDistancia;
+	private AtaqueDistancia[] ataqueDistancia;
 
 	//--------------------------------------
 	// Constructor
@@ -108,6 +108,8 @@ public class Personaje {
 		rectangulo = new Rectangle (posX, posY, tamanhoX, tamanhoY);
 
 		quieto = true;
+		
+		ataqueDistancia = new AtaqueDistancia[8];
 	}
 
 	//--------------------------------------
@@ -273,8 +275,13 @@ public class Personaje {
 		posSprite[3]++;
 		quieto = false;
 		
-		if(posSprite[3] == 6) {
-			ataqueDistancia = new AtaqueDistancia(sprite, 1, direccion,posX + (15 * direccion) , posY);
+		if(posSprite[3] == 5) {
+			for (int i = 0; i < ataqueDistancia.length; i++) {
+				if (ataqueDistancia[i] == null) {
+					ataqueDistancia[i] = new AtaqueDistancia(sprite, 1, direccion, posX + (100 * direccion) , posY);
+					i = ataqueDistancia.length;
+				}
+			}
 		}
 		if (posSprite[3] > 6) {
 			posSprite[3] = 0;
@@ -289,7 +296,7 @@ public class Personaje {
 		quieto = true;
 	}
 	
-	public AtaqueDistancia darAtaqueDistancia() {
+	public AtaqueDistancia[] darAtaqueDistancia() {
 		return ataqueDistancia;
 	}
 

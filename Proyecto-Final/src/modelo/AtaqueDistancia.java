@@ -11,9 +11,14 @@ public class AtaqueDistancia extends Ataque{
 	
 	int i = 1;
 	
+	/*
+	 * Vida del ataque
+	 */
+	private int vida = 50;
+	
 	public AtaqueDistancia (String personaje, int direccion,  int tipoAtaque, int posX, int posY ) {
 		super(personaje, direccion, tipoAtaque, posX, posY);
-
+		
 	}
 
 
@@ -28,6 +33,11 @@ public class AtaqueDistancia extends Ataque{
 	public void moverX() {
 		System.out.println(super.darDireccion());
 		posX += (super.darDireccion()  == 1) ? 15: -15; 
+		vida--;
+	}
+	
+	public int darVida() {
+		return vida;
 	}
 	
 	public String darSprite() {

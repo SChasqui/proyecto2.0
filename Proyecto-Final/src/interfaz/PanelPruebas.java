@@ -13,12 +13,13 @@ import javax.swing.JPanel;
 
 import hilos.HiloAtaqueDistancia;
 import hilos.HiloPruebas;
+import modelo.AtaqueDistancia;
 
 /*
  * Clase que sirve para probar los métodos del modelo del mundo
  */
 public class PanelPruebas extends JDialog implements KeyListener{
-	
+
 	//--------------------------------------
 	// Constantes.
 	//--------------------------------------
@@ -28,11 +29,11 @@ public class PanelPruebas extends JDialog implements KeyListener{
 	public final static int FLECHA_IZQUIERDA = 37;
 	public static final int NUMERO_UNO= 97;
 	public static final int NUMERO_DOS= 98;
-	
+
 	private boolean ataqueActivo;
-	
+
 	private final Set<Integer> pressed = new HashSet<Integer>();
-	
+
 	//--------------------------------------
 	// Relaciones
 	//--------------------------------------
@@ -40,27 +41,27 @@ public class PanelPruebas extends JDialog implements KeyListener{
 	 * Relación con la ventana principal
 	 */
 	private VentanaPrincipal ventana;
-	
-	
+
+
 	//--------------------------------------
 	// Constructor
 	//--------------------------------------
 	public PanelPruebas(VentanaPrincipal v) {
-		
+
 		ventana = v;
 		addKeyListener(this);
 		setVisible(true);
 		setLocationRelativeTo(null);
 		setSize(1280, 720);
-		
-		
+
+
 		HiloPruebas h = new HiloPruebas(this);
 		h.start();
-		
+
 		HiloAtaqueDistancia hD = new HiloAtaqueDistancia(this, ventana.darJuego());
 		hD.start();
 	}
-	
+
 	@Override
 	public void paint(Graphics g) {
 		g.setColor(Color.BLUE);
@@ -69,62 +70,68 @@ public class PanelPruebas extends JDialog implements KeyListener{
 
 		ImageIcon sprite = new ImageIcon(ventana.darJuego().darJugador1().darPersonaje().darSprite());
 		g.drawImage(sprite.getImage(), ventana.darJuego().darJugador1().darPersonaje().darPosX(), ventana.darJuego().darJugador1().darPersonaje().darPosY(), null);
-		
-		if(ataqueActivo) {
-			System.out.println(ventana.darJuego().darJugador1().darPersonaje().darAtaqueDistancia());
-			ImageIcon spriteAtaque = new ImageIcon(ventana.darJuego().darJugador1().darPersonaje().darAtaqueDistancia().darSprite());
-			g.drawImage(spriteAtaque.getImage(), ventana.darJuego().darJugador1().darPersonaje().darAtaqueDistancia().darPosx(), ventana.darJuego().darJugador1().darPersonaje().darAtaqueDistancia().darPosY(), null);
-			System.out.println("Pos x: " + ventana.darJuego().darJugador1().darPersonaje().darAtaqueDistancia().darPosx());
+
+		AtaqueDistancia[] a = ventana.darJuego().darJugador1().darPersonaje().darAtaqueDistancia();
+		for (int i = 0; i < a.length; i++) {
+			if (a[i] != null) {
+				System.out.println(ventana.darJuego().darJugador1().darPersonaje().darAtaqueDistancia());
+				ImageIcon spriteAtaque = new ImageIcon(a[i].darSprite());
+				g.drawImage(spriteAtaque.getImage(),a[i].darPosx(),a[i].darPosY(), null);
+				System.out.println("Pos x: " + a[i].darPosx());
+			}
 		}
-		
+
+
+
+
 	}
-	
+
 	@Override
-    public synchronized void keyPressed(KeyEvent e) {
-        pressed.add(e.getKeyCode());
-        if (pressed.size() > 0) {
-          for (int c : pressed){
-        	  
-        	  if(c == FLECHA_IZQUIERDA) {
-     			 ventana.darJuego().darJugador1().darPersonaje().moverX(-12);
-     		 }else if(c == FLECHA_ABAJO) {
-     			 ventana.darJuego().darJugador1().darPersonaje().moverY(-12);
-     		 }else if(c == FLECHA_DERECHA) {
-     			 ventana.darJuego().darJugador1().darPersonaje().moverX(12);
-     		 }else if(c == FLECHA_ARRIBA) {
-     			 ventana.darJuego().darJugador1().darPersonaje().moverY(12);
-     		 }else if(c == NUMERO_UNO) {
-     			 ventana.darJuego().darJugador1().darPersonaje().atacar(c);
-     		 }else if(c == NUMERO_DOS) {
-     			ventana.darJuego().darJugador1().darPersonaje().lanzarAtaqueDistante();
-     			if(ventana.darJuego().darJugador1().darPersonaje().darAtaqueDistancia() != null) {
-     				ataqueActivo = true;
-     				
-     			}
-     		 }
-        	  
-        	  
-          }
-        }
-    }
+	public synchronized void keyPressed(KeyEvent e) {
+		pressed.add(e.getKeyCode());
+		if (pressed.size() > 0) {
+			for (int c : pressed){
 
-    @Override
-    public synchronized void keyReleased(KeyEvent e) {
-        pressed.remove(e.getKeyCode());
-        
-        int c = e.getKeyCode();
-        
-        if(c == FLECHA_IZQUIERDA) {
-			 ventana.darJuego().darJugador1().darPersonaje().quietotrue();
-		 }else if(c == FLECHA_DERECHA) {
-			 ventana.darJuego().darJugador1().darPersonaje().quietotrue();
-		 }
-        
-        
-    }
+				if(c == FLECHA_IZQUIERDA) {
+					ventana.darJuego().darJugador1().darPersonaje().moverX(-12);
+				}else if(c == FLECHA_ABAJO) {
+					ventana.darJuego().darJugador1().darPersonaje().moverY(-12);
+				}else if(c == FLECHA_DERECHA) {
+					ventana.darJuego().darJugador1().darPersonaje().moverX(12);
+				}else if(c == FLECHA_ARRIBA) {
+					ventana.darJuego().darJugador1().darPersonaje().moverY(12);
+				}else if(c == NUMERO_UNO) {
+					ventana.darJuego().darJugador1().darPersonaje().atacar(c);
+				}else if(c == NUMERO_DOS) {
+					ventana.darJuego().darJugador1().darPersonaje().lanzarAtaqueDistante();
+					if(ventana.darJuego().darJugador1().darPersonaje().darAtaqueDistancia() != null) {
+						ataqueActivo = true;
 
-    @Override
-    public void keyTyped(KeyEvent e) {/* Not used */ }
+					}
+				}
 
-	
+
+			}
+		}
+	}
+
+	@Override
+	public synchronized void keyReleased(KeyEvent e) {
+		pressed.remove(e.getKeyCode());
+
+		int c = e.getKeyCode();
+
+		if(c == FLECHA_IZQUIERDA) {
+			ventana.darJuego().darJugador1().darPersonaje().quietotrue();
+		}else if(c == FLECHA_DERECHA) {
+			ventana.darJuego().darJugador1().darPersonaje().quietotrue();
+		}
+
+
+	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {/* Not used */ }
+
+
 }
