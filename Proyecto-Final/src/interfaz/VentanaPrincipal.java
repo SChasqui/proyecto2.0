@@ -42,7 +42,7 @@ public class VentanaPrincipal extends JFrame{
 		setLayout(new BorderLayout());
 		setVisible(true);
 		setSize(1280, 720);
-		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
 		panelAuxiliar = new JPanel();
 		menuPrincipal = new PanelMenuPrincipal(this);

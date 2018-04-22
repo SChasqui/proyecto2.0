@@ -71,7 +71,7 @@ public class PanelPruebas extends JDialog implements KeyListener{
 		
 
 		Image sprite =ventana.darJuego().darJugador1().darPersonaje().darSprite();
-		g.drawImage(sprite, ventana.darJuego().darJugador1().darPersonaje().darPosX() - (sprite.getWidth(null) - 98), ventana.darJuego().darJugador1().darPersonaje().darPosY(), null);
+		g.drawImage(sprite, ventana.darJuego().darJugador1().darPersonaje().darPosX(), ventana.darJuego().darJugador1().darPersonaje().darPosY(), null);
 
 		AtaqueDistancia[] a = ventana.darJuego().darJugador1().darPersonaje().darAtaqueDistancia();
 		for (int i = 0; i < a.length; i++) {
