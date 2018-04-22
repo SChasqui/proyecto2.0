@@ -1,7 +1,11 @@
 package modelo;
 
+import java.awt.Image;
 import java.awt.Rectangle;
+import java.io.File;
 import java.util.ArrayList;
+
+import javax.swing.ImageIcon;
 
 public class Personaje {
 
@@ -187,7 +191,6 @@ public class Personaje {
 		
 		
 		posSprite[2] = posSprite[2] !=0? posSprite[2]:1;
-		System.out.println(posSprite[2]);
 		quieto = false;
 	}
 
@@ -200,7 +203,7 @@ public class Personaje {
 	// Metodos Graficos
 	//--------------------------------------
 
-	public String darSprite() {
+	public Image darSprite() {
 
 		String aMostrar = "";
 
@@ -227,29 +230,37 @@ public class Personaje {
 			aMostrar = spriteAtaqueMedDistancia();
 		}
 
-		return aMostrar;
+		return new ImageIcon(aMostrar).getImage();
 	}
 
 	public String spriteQuieto() {
+		
+		File f = new File("data/Sprites/" + sprite + "/paradoDerecha");
+		String[] array = f.list();
+		System.out.println(array.length);
+		
 		if(posSprite[0] == -1) {
 			posSprite[0] = 1;
 		}
-		else if(posSprite[0] < 4) {
+		else if(posSprite[0] < array.length) {
 			posSprite[0]++;
 		}else {
-			posSprite[0] = -4;
+			posSprite[0] = -array.length;
 		}
 
 		return "data/Sprites/" + sprite + "/"+ (direccion == IZQUIERDA? "paradoIzquierda": "paradoDerecha") +"/"+(posSprite[0] > 0? posSprite[0] : -posSprite[0] )+ ".png";
 	}
 
 	public String spritePuño() {
+		
+		File f = new File("data/Sprites/" + sprite + "/puñoIzquierda");
+		String[] array = f.list();
 
 		String frame = "data/Sprites/" + sprite + (direccion == IZQUIERDA? "/puñoIzquierda": "/puñoDerecha")+"/"+(posSprite[1])+ ".png";
 		
 		posSprite[1]++;
 		quieto = false;
-		if (posSprite[1] > 6) {
+		if (posSprite[1] > array.length) {
 			posSprite[1] = 0;
 			quieto = true;
 		}

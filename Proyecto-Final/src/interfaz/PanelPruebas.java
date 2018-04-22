@@ -2,6 +2,7 @@ package interfaz;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.HashSet;
@@ -67,9 +68,10 @@ public class PanelPruebas extends JDialog implements KeyListener{
 		g.setColor(Color.BLUE);
 		ImageIcon fondo = new ImageIcon("data/fondoEcenario/F03.png");
 		g.drawImage(fondo.getImage(), 0, 0, null);
+		
 
-		ImageIcon sprite = new ImageIcon(ventana.darJuego().darJugador1().darPersonaje().darSprite());
-		g.drawImage(sprite.getImage(), ventana.darJuego().darJugador1().darPersonaje().darPosX(), ventana.darJuego().darJugador1().darPersonaje().darPosY(), null);
+		Image sprite =ventana.darJuego().darJugador1().darPersonaje().darSprite();
+		g.drawImage(sprite, ventana.darJuego().darJugador1().darPersonaje().darPosX() - (sprite.getWidth(null) - 98), ventana.darJuego().darJugador1().darPersonaje().darPosY(), null);
 
 		AtaqueDistancia[] a = ventana.darJuego().darJugador1().darPersonaje().darAtaqueDistancia();
 		for (int i = 0; i < a.length; i++) {
