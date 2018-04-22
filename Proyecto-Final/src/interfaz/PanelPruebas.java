@@ -51,7 +51,7 @@ public class PanelPruebas extends JDialog implements KeyListener{
 		addKeyListener(this);
 		setVisible(true);
 		setLocationRelativeTo(null);
-		setSize(300, 400);
+		setSize(1280, 720);
 		
 		
 		HiloPruebas h = new HiloPruebas(this);
@@ -64,8 +64,9 @@ public class PanelPruebas extends JDialog implements KeyListener{
 	@Override
 	public void paint(Graphics g) {
 		g.setColor(Color.BLUE);
-		g.fillRect(0, 0, 700, 400);	
-		
+		ImageIcon fondo = new ImageIcon("data/fondoEcenario/F03.png");
+		g.drawImage(fondo.getImage(), 0, 0, null);
+
 		ImageIcon sprite = new ImageIcon(ventana.darJuego().darJugador1().darPersonaje().darSprite());
 		g.drawImage(sprite.getImage(), ventana.darJuego().darJugador1().darPersonaje().darPosX(), ventana.darJuego().darJugador1().darPersonaje().darPosY(), null);
 		
@@ -85,13 +86,13 @@ public class PanelPruebas extends JDialog implements KeyListener{
           for (int c : pressed){
         	  
         	  if(c == FLECHA_IZQUIERDA) {
-     			 ventana.darJuego().darJugador1().darPersonaje().moverX(-4);
+     			 ventana.darJuego().darJugador1().darPersonaje().moverX(-12);
      		 }else if(c == FLECHA_ABAJO) {
-     			 ventana.darJuego().darJugador1().darPersonaje().moverY(-4);
+     			 ventana.darJuego().darJugador1().darPersonaje().moverY(-12);
      		 }else if(c == FLECHA_DERECHA) {
-     			 ventana.darJuego().darJugador1().darPersonaje().moverX(4);
+     			 ventana.darJuego().darJugador1().darPersonaje().moverX(12);
      		 }else if(c == FLECHA_ARRIBA) {
-     			 ventana.darJuego().darJugador1().darPersonaje().moverY(4);
+     			 ventana.darJuego().darJugador1().darPersonaje().moverY(12);
      		 }else if(c == NUMERO_UNO) {
      			 ventana.darJuego().darJugador1().darPersonaje().atacar(c);
      		 }else if(c == NUMERO_DOS) {

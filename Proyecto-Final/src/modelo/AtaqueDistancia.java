@@ -27,7 +27,7 @@ public class AtaqueDistancia extends Ataque{
 	
 	public void moverX() {
 		System.out.println(super.darDireccion());
-		posX += (super.darDireccion()  == 1) ? 10: -10; 
+		posX += (super.darDireccion()  == 1) ? 15: -15; 
 	}
 	
 	public String darSprite() {

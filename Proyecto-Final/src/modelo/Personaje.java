@@ -274,7 +274,7 @@ public class Personaje {
 		quieto = false;
 		
 		if(posSprite[3] == 6) {
-			ataqueDistancia = new AtaqueDistancia(sprite, 1, direccion, posX, posY);
+			ataqueDistancia = new AtaqueDistancia(sprite, 1, direccion,posX + (15 * direccion) , posY);
 		}
 		if (posSprite[3] > 6) {
 			posSprite[3] = 0;

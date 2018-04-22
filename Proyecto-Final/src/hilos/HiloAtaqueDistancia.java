@@ -20,7 +20,7 @@ public class HiloAtaqueDistancia extends Thread{
 				
 				miJuego.darJugador1().darPersonaje().darAtaqueDistancia().moverX();
 				try {
-					sleep(170);
+					sleep(83);
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
