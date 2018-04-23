@@ -92,6 +92,16 @@ public class PanelPruebas extends JDialog implements KeyListener {
 				// System.out.println("Pos x: " + a[i].darPosx());
 			}
 		}
+		
+		AtaqueDistancia[] b = ventana.darJuego().darJugador2().darPersonaje().darAtaqueDistancia();
+		for (int i = 0; i < b.length; i++) {
+			if (b[i] != null) {
+				System.out.println(ventana.darJuego().darJugador1().darPersonaje().darAtaqueDistancia());
+				ImageIcon spriteAtaque = new ImageIcon(b[i].darSprite());
+				g.drawImage(spriteAtaque.getImage(), b[i].darPosx(), b[i].darPosY(), null);
+				// System.out.println("Pos x: " + a[i].darPosx());
+			}
+		}
 
 	}
 
