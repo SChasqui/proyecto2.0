@@ -45,10 +45,11 @@ public class Juego {
 	 */
 	public Juego() {
 		jugador1 = new Jugador("Beta tester");
+		jugador2 = new Jugador("Beta tester 2");
 	}
 	
 	//--------------------------------------
-	// Metodos...
+	// Metodos
 	//--------------------------------------
 	
 	public void iniciarBatalla(String fondo) throws JugadorNoSeleccionadoException {

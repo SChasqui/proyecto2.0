@@ -237,7 +237,7 @@ public class Personaje {
 		
 		File f = new File("data/Sprites/" + sprite + "/paradoDerecha");
 		String[] array = f.list();
-		System.out.println(array.length);
+//		System.out.println(array.length);
 		
 		if(posSprite[0] == -1) {
 			posSprite[0] = 1;
