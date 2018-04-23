@@ -32,9 +32,9 @@ public class PanelPruebas extends JDialog implements KeyListener {
 	public static final int NUMERO_DOS = 98;
 
 	// Jugador 2
-	public final static int W = 87;
+	public final static int W = 83;
 	public final static int D = 68;
-	public static final int S = 83;
+	public static final int S = 87;
 	public static final int A = 65;
 	public static final int J = 74;
 	public static final int K = 75;
