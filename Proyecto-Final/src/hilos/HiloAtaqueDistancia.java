@@ -18,12 +18,24 @@ public class HiloAtaqueDistancia extends Thread{
 		while(true) {
 			
 			AtaqueDistancia[] a = miJuego.darJugador1().darPersonaje().darAtaqueDistancia();
+			AtaqueDistancia[] b = miJuego.darJugador2().darPersonaje().darAtaqueDistancia();
+			
 
 			for (int i = 0; i < a.length; i++) {
 				if(a[i] != null) {
 					a[i].moverX();
 					if (a[i].darVida() == 0) {
 						a[i] = null;
+					}
+				}
+				
+			}
+			
+			for (int i = 0; i < b.length; i++) {
+				if(b[i] != null) {
+					b[i].moverX();
+					if (b[i].darVida() == 0) {
+						b[i] = null;
 					}
 				}
 				
