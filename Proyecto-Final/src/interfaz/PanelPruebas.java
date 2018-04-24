@@ -106,7 +106,6 @@ public class PanelPruebas extends JDialog implements KeyListener {
 	@Override
 	public synchronized void keyPressed(KeyEvent e) {
 		pressed.add(e.getKeyCode());
-			
 	}
 
 	public void mover() {
