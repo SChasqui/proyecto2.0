@@ -102,20 +102,11 @@ public class PanelPruebas extends JDialog implements KeyListener {
 		}
 
 	}
-	
-	public void verSet() {
-		Iterator itr    =   pressed.iterator();
-		while(itr.hasNext()){
-		        System.out.print(itr.next()+",");
-		    }
-		System.out.println();
-	}
 
 	@Override
 	public synchronized void keyPressed(KeyEvent e) {
 		pressed.add(e.getKeyCode());
-		verSet();
-		
+			
 	}
 
 	public void mover() {
@@ -166,8 +157,6 @@ public class PanelPruebas extends JDialog implements KeyListener {
 	@Override
 	public synchronized void keyReleased(KeyEvent e) {
 		pressed.remove(e.getKeyCode());
-		System.out.println("Esto es de borrar:");
-		verSet();
 
 		int c = e.getKeyCode();
 
