@@ -21,6 +21,11 @@ public class Personaje {
 	//--------------------------------------
 	// Atributos
 	//--------------------------------------
+	
+	/*
+	 * Sprite que pintara el panel
+	 */
+	private Image frame;
 
 	/*
 	 * arreglo de las imagenes que puede tener un personaje
@@ -202,8 +207,12 @@ public class Personaje {
 	//--------------------------------------
 	// Metodos Graficos
 	//--------------------------------------
-
+	
 	public Image darSprite() {
+		return frame;
+	}
+
+	public void actualizar() {
 
 		String aMostrar = "";
 
@@ -229,8 +238,8 @@ public class Personaje {
 		}else if(posSprite[3] != 0) {
 			aMostrar = spriteAtaqueMedDistancia();
 		}
-
-		return new ImageIcon(aMostrar).getImage();
+		
+		frame = new ImageIcon(aMostrar).getImage();
 	}
 
 	public String spriteQuieto() {

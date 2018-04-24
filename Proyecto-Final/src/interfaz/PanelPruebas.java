@@ -12,6 +12,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 
+import hilos.HiloAnimaciones;
 import hilos.HiloAtaqueDistancia;
 import hilos.HiloPruebas;
 import modelo.AtaqueDistancia;
@@ -67,6 +68,8 @@ public class PanelPruebas extends JDialog implements KeyListener {
 
 		HiloAtaqueDistancia hD = new HiloAtaqueDistancia(this, ventana.darJuego());
 		hD.start();
+		HiloAnimaciones hA = new HiloAnimaciones(ventana.darJuego());
+		hA.start();
 	}
 
 	@Override
@@ -86,7 +89,6 @@ public class PanelPruebas extends JDialog implements KeyListener {
 		AtaqueDistancia[] a = ventana.darJuego().darJugador1().darPersonaje().darAtaqueDistancia();
 		for (int i = 0; i < a.length; i++) {
 			if (a[i] != null) {
-				System.out.println(ventana.darJuego().darJugador1().darPersonaje().darAtaqueDistancia());
 				ImageIcon spriteAtaque = new ImageIcon(a[i].darSprite());
 				g.drawImage(spriteAtaque.getImage(), a[i].darPosx(), a[i].darPosY(), null);
 				// System.out.println("Pos x: " + a[i].darPosx());
@@ -96,7 +98,6 @@ public class PanelPruebas extends JDialog implements KeyListener {
 		AtaqueDistancia[] b = ventana.darJuego().darJugador2().darPersonaje().darAtaqueDistancia();
 		for (int i = 0; i < b.length; i++) {
 			if (b[i] != null) {
-				System.out.println(ventana.darJuego().darJugador1().darPersonaje().darAtaqueDistancia());
 				ImageIcon spriteAtaque = new ImageIcon(b[i].darSprite());
 				g.drawImage(spriteAtaque.getImage(), b[i].darPosx(), b[i].darPosY(), null);
 				// System.out.println("Pos x: " + a[i].darPosx());
