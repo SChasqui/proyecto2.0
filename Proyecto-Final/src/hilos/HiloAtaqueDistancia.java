@@ -17,6 +17,9 @@ public class HiloAtaqueDistancia extends Thread{
 	public void run() {
 		while(true) {
 			
+			
+			pPruebas.mover();
+			
 			AtaqueDistancia actualUno = miJuego.darJugador1().darPersonaje().darAtaqueDistancia();
 			AtaqueDistancia actualDos = miJuego.darJugador2().darPersonaje().darAtaqueDistancia();
 			
@@ -42,7 +45,7 @@ public class HiloAtaqueDistancia extends Thread{
 			miJuego.darJugador2().darPersonaje().limpiarAtaques();
 
 			try {
-				sleep(83);
+				sleep(33);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

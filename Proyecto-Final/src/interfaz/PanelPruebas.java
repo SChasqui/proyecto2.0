@@ -1,16 +1,16 @@
 package interfaz;
 
-import java.awt.Color;
+
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
 
 import javax.swing.ImageIcon;
 import javax.swing.JDialog;
-import javax.swing.JPanel;
 
 import hilos.HiloAnimaciones;
 import hilos.HiloAtaqueDistancia;
@@ -42,7 +42,7 @@ public class PanelPruebas extends JDialog implements KeyListener {
 
 	private boolean ataqueActivo;
 
-	private final Set<Integer> pressed = new HashSet<Integer>();
+	public final Set<Integer> pressed = new HashSet<Integer>();
 
 	// --------------------------------------
 	// Relaciones
@@ -102,12 +102,23 @@ public class PanelPruebas extends JDialog implements KeyListener {
 		}
 
 	}
+	
+	public void verSet() {
+		Iterator itr    =   pressed.iterator();
+		while(itr.hasNext()){
+		        System.out.print(itr.next()+",");
+		    }
+		System.out.println();
+	}
 
 	@Override
 	public synchronized void keyPressed(KeyEvent e) {
 		pressed.add(e.getKeyCode());
+		verSet();
 		
-//		System.out.println("Flecha presionada: " + e.getKeyCode());
+	}
+
+	public void mover() {
 		
 		if (pressed.size() > 0) {
 			for (int c : pressed) {
@@ -149,11 +160,14 @@ public class PanelPruebas extends JDialog implements KeyListener {
 
 			}
 		}
+		
 	}
-
+	
 	@Override
 	public synchronized void keyReleased(KeyEvent e) {
 		pressed.remove(e.getKeyCode());
+		System.out.println("Esto es de borrar:");
+		verSet();
 
 		int c = e.getKeyCode();
 

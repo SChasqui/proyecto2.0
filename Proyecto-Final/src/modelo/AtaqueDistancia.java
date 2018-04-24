@@ -43,9 +43,8 @@ public class AtaqueDistancia extends Ataque{
 	}
 	
 	public void moverX() {
-		posX += (super.darDireccion()  == 1) ? 15: -15; 
+		posX += (super.darDireccion()  == 1) ? 20: -20; 
 		vida--;
-		System.out.println(vida);
 	}
 	
 	public int darVida() {
@@ -53,18 +52,18 @@ public class AtaqueDistancia extends Ataque{
 	}
 	
 	public String darSprite() {
-		
-		if(i!= 4 && i!=-4) {
-			
-			if(i == -1) {
-				i = 1;
-			}
-			else if(i < 4) {
-				i++;
-			}else {
-				i = -4;
-			}
-		}
+		i=4;
+//		if(i!= 4 && i!=-4) {
+//			
+//			if(i == -1) {
+//				i = 1;
+//			}
+//			else if(i < 4) {
+//				i++;
+//			}else {
+//				i = -4;
+//			}
+//		}
 		
 		return "data/Sprites/" + super.darPersonaje() + "/"+ (darDireccion() == Personaje.IZQUIERDA? "ataqueMedianoIzquierda": "ataqueMedianoDerecha") +"/"+(i > 0? i : -i)+".png";
 	}
