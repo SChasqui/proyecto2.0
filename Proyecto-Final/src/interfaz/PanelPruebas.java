@@ -74,7 +74,7 @@ public class PanelPruebas extends JDialog implements KeyListener {
 
 	@Override
 	public void paint(Graphics g) {
-		g.setColor(Color.BLUE);
+
 		ImageIcon fondo = new ImageIcon("data/fondoEcenario/F03.png");
 		g.drawImage(fondo.getImage(), 0, 0, null);
 
@@ -91,7 +91,6 @@ public class PanelPruebas extends JDialog implements KeyListener {
 			if (a[i] != null) {
 				ImageIcon spriteAtaque = new ImageIcon(a[i].darSprite());
 				g.drawImage(spriteAtaque.getImage(), a[i].darPosx(), a[i].darPosY(), null);
-				// System.out.println("Pos x: " + a[i].darPosx());
 			}
 		}
 		
@@ -100,7 +99,6 @@ public class PanelPruebas extends JDialog implements KeyListener {
 			if (b[i] != null) {
 				ImageIcon spriteAtaque = new ImageIcon(b[i].darSprite());
 				g.drawImage(spriteAtaque.getImage(), b[i].darPosx(), b[i].darPosY(), null);
-				// System.out.println("Pos x: " + a[i].darPosx());
 			}
 		}
 
