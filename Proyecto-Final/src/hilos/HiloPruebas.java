@@ -21,6 +21,7 @@ public class HiloPruebas extends Thread{
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			panel.repaint();
 			
 		}
 	}
