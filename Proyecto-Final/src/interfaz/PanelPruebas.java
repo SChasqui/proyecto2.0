@@ -92,7 +92,7 @@ public class PanelPruebas extends JDialog implements KeyListener {
 				// System.out.println("Pos x: " + a[i].darPosx());
 			}
 		}
-
+		
 		AtaqueDistancia[] b = ventana.darJuego().darJugador2().darPersonaje().darAtaqueDistancia();
 		for (int i = 0; i < b.length; i++) {
 			if (b[i] != null) {
@@ -124,20 +124,28 @@ public class PanelPruebas extends JDialog implements KeyListener {
 					ventana.darJuego().darJugador1().darPersonaje().atacar(c);
 				} else if (c == NUMERO_DOS) {
 					ventana.darJuego().darJugador1().darPersonaje().lanzarAtaqueDistante();
+					if (ventana.darJuego().darJugador1().darPersonaje().darAtaqueDistancia() != null) {
+						ataqueActivo = true;
+
+					}
 				}
-				else if(c == A) {
-					ventana.darJuego().darJugador2().darPersonaje().moverX(-12);
-				}else if(c == S) {
-					ventana.darJuego().darJugador2().darPersonaje().moverY(-12);
-				}else if(c == D) {
-					ventana.darJuego().darJugador2().darPersonaje().moverX(12);
-				}else if(c == W) {
-					ventana.darJuego().darJugador2().darPersonaje().moverY(12);
-				}else if(c == J) {
-					ventana.darJuego().darJugador2().darPersonaje().atacar(c);
-				}else if(c == K) {
-					ventana.darJuego().darJugador2().darPersonaje().lanzarAtaqueDistante();
-				}
+				 else if(c == A) {
+				 ventana.darJuego().darJugador2().darPersonaje().moverX(-12);
+				 }else if(c == S) {
+				 ventana.darJuego().darJugador2().darPersonaje().moverY(-12);
+				 }else if(c == D) {
+				 ventana.darJuego().darJugador2().darPersonaje().moverX(12);
+				 }else if(c == W) {
+				 ventana.darJuego().darJugador2().darPersonaje().moverY(12);
+				 }else if(c == J) {
+				 ventana.darJuego().darJugador2().darPersonaje().atacar(c);
+				 }else if(c == K) {
+					 ventana.darJuego().darJugador2().darPersonaje().lanzarAtaqueDistante();
+					 if(ventana.darJuego().darJugador2().darPersonaje().darAtaqueDistancia() != null) {
+						 ataqueActivo = true;
+					
+					 }
+				 }
 
 			}
 		}
@@ -163,6 +171,6 @@ public class PanelPruebas extends JDialog implements KeyListener {
 
 	@Override
 	public void keyTyped(KeyEvent e) {
-	/* Not used */ }
+		/* Not used */ }
 
 }
