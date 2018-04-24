@@ -16,11 +16,23 @@ public class AtaqueDistancia extends Ataque{
 	 */
 	private int vida = 50;
 	
+	/*
+	 * siguiente ataque en la lista
+	 */
+	private AtaqueDistancia siguiente;
+	
 	public AtaqueDistancia (String personaje, int direccion,  int tipoAtaque, int posX, int posY ) {
 		super(personaje, direccion, tipoAtaque, posX, posY);
 		
 	}
-
+	
+	public AtaqueDistancia darSiguiente() {
+		return siguiente;
+	}
+	
+	public void seleccionarSiguiente(AtaqueDistancia s) {
+		siguiente = s;
+	}
 
 	public int darAncho() {
 		return ancho;
@@ -31,9 +43,9 @@ public class AtaqueDistancia extends Ataque{
 	}
 	
 	public void moverX() {
-		System.out.println(super.darDireccion());
 		posX += (super.darDireccion()  == 1) ? 15: -15; 
 		vida--;
+		System.out.println(vida);
 	}
 	
 	public int darVida() {

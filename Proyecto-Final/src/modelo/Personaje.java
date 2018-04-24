@@ -97,7 +97,7 @@ public class Personaje {
 	 */
 	private boolean quieto;
 	
-	private AtaqueDistancia[] ataqueDistancia;
+	private AtaqueDistancia ataqueDistancia;
 
 	//--------------------------------------
 	// Constructor
@@ -118,7 +118,6 @@ public class Personaje {
 
 		quieto = true;
 		
-		ataqueDistancia = new AtaqueDistancia[8];
 	}
 
 	//--------------------------------------
@@ -296,10 +295,19 @@ public class Personaje {
 		quieto = false;
 		
 		if(posSprite[3] == 5) {
-			for (int i = 0; i < ataqueDistancia.length; i++) {
-				if (ataqueDistancia[i] == null) {
-					ataqueDistancia[i] = new AtaqueDistancia(sprite, 1, direccion, posX + (100 * direccion) , posY);
-					i = ataqueDistancia.length;
+			
+			AtaqueDistancia actual = ataqueDistancia;
+			
+			if (ataqueDistancia == null) {
+				ataqueDistancia = new AtaqueDistancia(sprite, 1, direccion, posX + (100 * direccion) , posY);
+			}
+			
+			while(actual != null) {
+				if (actual.darSiguiente() == null) {
+					actual.seleccionarSiguiente( new AtaqueDistancia(sprite, 1, direccion, posX + (100 * direccion) , posY)  );
+					actual = null;
+				}else {
+					actual = actual.darSiguiente();
 				}
 			}
 		}
@@ -312,11 +320,36 @@ public class Personaje {
 	
 	}
 	
+	public void limpiarAtaques() {
+		
+		if(ataqueDistancia != null) {
+			
+			while (ataqueDistancia != null && ataqueDistancia.darVida() == 0) {
+				ataqueDistancia = ataqueDistancia.darSiguiente();
+			}		
+			
+			AtaqueDistancia actual = ataqueDistancia;
+			
+			while(actual != null) {
+				
+				if (actual.darSiguiente() != null && actual.darSiguiente().darVida() == 0) {
+					actual.seleccionarSiguiente(actual.darSiguiente().darSiguiente());
+				}else{
+					actual = actual.darSiguiente();
+				}
+				
+			}
+			
+		}
+		
+	}
+	
+	
 	public void quietotrue() {
 		quieto = true;
 	}
 	
-	public AtaqueDistancia[] darAtaqueDistancia() {
+	public AtaqueDistancia darAtaqueDistancia() {
 		return ataqueDistancia;
 	}
 
