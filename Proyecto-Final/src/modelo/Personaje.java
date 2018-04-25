@@ -286,7 +286,7 @@ public class Personaje {
 		return frame;
 	
 	}
-	
+	//
 	public String spriteAtaqueMedDistancia() {
 		
 		String frame = "data/Sprites/" + sprite + (direccion == IZQUIERDA? "/ataqueMedIzquierda": "/ataqueMedDerecha")+"/"+(posSprite[3])+ ".png";
