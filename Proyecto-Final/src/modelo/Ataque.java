@@ -1,5 +1,7 @@
 package modelo;
 
+import java.awt.Rectangle;
+
 public class Ataque {
 	
 	//--------------------------------------
@@ -41,15 +43,20 @@ public class Ataque {
 	
 	private String personaje;
 	
+
+	
+	private Rectangle kickBox;
+	
 	
 	//--------------------------------------
-	// Constructor..
+	// Constructor
 	//--------------------------------------
 	public Ataque(String pj, int pAtaque, int pDireccion, int pX, int pY) {
 		personaje = pj;
 		direccion = pDireccion;
 		posX = pX;
 		posY = pY;
+
 	}
 
 	public int darAlcanceX() {
@@ -72,7 +79,7 @@ public class Ataque {
 		return danho;
 	}
 	
-	public int darPosx() {
+	public int darPosX() {
 		return posX;
 	}
 
@@ -94,6 +101,10 @@ public class Ataque {
 	
 	public int darDireccion() {
 		return direccion;
+	}
+	
+	public Rectangle darKickBox() {
+		return kickBox;
 	}
 	
 

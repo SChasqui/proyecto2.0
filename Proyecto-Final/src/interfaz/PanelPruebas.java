@@ -3,6 +3,7 @@ package interfaz;
 
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.HashSet;
@@ -40,7 +41,6 @@ public class PanelPruebas extends JDialog implements KeyListener {
 	public static final int J = 74;
 	public static final int K = 75;
 
-	private boolean ataqueActivo;
 
 	public final Set<Integer> pressed = new HashSet<Integer>();
 
@@ -51,6 +51,8 @@ public class PanelPruebas extends JDialog implements KeyListener {
 	 * Relación con la ventana principal
 	 */
 	private VentanaPrincipal ventana;
+	
+	private Rectangle verKickBox;
 
 	// --------------------------------------
 	// Constructor
@@ -87,17 +89,27 @@ public class PanelPruebas extends JDialog implements KeyListener {
 				ventana.darJuego().darJugador2().darPersonaje().darPosY(), null);
 
 		AtaqueDistancia a = ventana.darJuego().darJugador1().darPersonaje().darAtaqueDistancia();
-
+		
+		
 		while (a != null) {
 			ImageIcon spriteAtaque = new ImageIcon(a.darSprite());
-			g.drawImage(spriteAtaque.getImage(), a.darPosx(), a.darPosY(), null);
+			g.drawImage(spriteAtaque.getImage(), a.darPosX(), a.darPosY(), null);
+			
+			verKickBox =  a.darKickBox();
+			g.drawRect(verKickBox.x, verKickBox.y, verKickBox.width, verKickBox.height);
+			
 			a = a.darSiguiente();
+			
 		}
 
 		a = ventana.darJuego().darJugador2().darPersonaje().darAtaqueDistancia();
 		while (a != null) {
 			ImageIcon spriteAtaque = new ImageIcon(a.darSprite());
-			g.drawImage(spriteAtaque.getImage(), a.darPosx(), a.darPosY(), null);
+			g.drawImage(spriteAtaque.getImage(), a.darPosX(), a.darPosY(), null);
+			
+			verKickBox =  a.darKickBox();
+			g.drawRect(verKickBox.x, verKickBox.y, verKickBox.width, verKickBox.height);
+			
 			a = a.darSiguiente();
 		}
 
@@ -125,10 +137,7 @@ public class PanelPruebas extends JDialog implements KeyListener {
 					ventana.darJuego().darJugador1().darPersonaje().atacar(c);
 				} else if (c == NUMERO_DOS) {
 					ventana.darJuego().darJugador1().darPersonaje().lanzarAtaqueDistante();
-					if (ventana.darJuego().darJugador1().darPersonaje().darAtaqueDistancia() != null) {
-						ataqueActivo = true;
 
-					}
 				}
 				else if(c == A) {
 					ventana.darJuego().darJugador2().darPersonaje().moverX(-12);
@@ -142,10 +151,7 @@ public class PanelPruebas extends JDialog implements KeyListener {
 					ventana.darJuego().darJugador2().darPersonaje().atacar(c);
 				}else if(c == K) {
 					ventana.darJuego().darJugador2().darPersonaje().lanzarAtaqueDistante();
-					if(ventana.darJuego().darJugador2().darPersonaje().darAtaqueDistancia() != null) {
-						ataqueActivo = true;
 
-					}
 				}
 
 			}

@@ -297,14 +297,13 @@ public class Personaje {
 		if(posSprite[3] == 5) {
 			
 			AtaqueDistancia actual = ataqueDistancia;
-			
 			if (ataqueDistancia == null) {
 				ataqueDistancia = new AtaqueDistancia(sprite, 1, direccion, posX + (100 * direccion) , posY);
 			}
 			
 			while(actual != null) {
 				if (actual.darSiguiente() == null) {
-					actual.seleccionarSiguiente( new AtaqueDistancia(sprite, 1, direccion, posX + (100 * direccion) , posY)  );
+					actual.seleccionarSiguiente( new AtaqueDistancia(sprite, 1, direccion, posX + (100 * direccion) , posY));
 					actual = null;
 				}else {
 					actual = actual.darSiguiente();

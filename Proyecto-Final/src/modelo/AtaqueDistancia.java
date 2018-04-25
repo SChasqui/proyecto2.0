@@ -1,5 +1,8 @@
 package modelo;
 
+import java.awt.Rectangle;
+import javax.swing.ImageIcon;
+
 public class AtaqueDistancia extends Ataque{
 	
 
@@ -21,9 +24,13 @@ public class AtaqueDistancia extends Ataque{
 	 */
 	private AtaqueDistancia siguiente;
 	
-	public AtaqueDistancia (String personaje, int direccion,  int tipoAtaque, int posX, int posY ) {
-		super(personaje, direccion, tipoAtaque, posX, posY);
+	private Rectangle kickBox;
+	
+	public AtaqueDistancia (String personaje, int tipoAtaque,  int direccion, int posX, int posY) {
+		super(personaje, tipoAtaque, direccion, posX, posY);
 		
+		ImageIcon img = new ImageIcon(this.darSprite());
+		kickBox = new Rectangle(posX, posY, img.getIconWidth(), img.getIconHeight() );
 	}
 	
 	public AtaqueDistancia darSiguiente() {
@@ -43,7 +50,9 @@ public class AtaqueDistancia extends Ataque{
 	}
 	
 	public void moverX() {
-		posX += (super.darDireccion()  == 1) ? 20: -20; 
+		posX += (super.darDireccion()  == 1) ? 20: -20;
+		kickBox.setLocation(super.darPosX(), super.darPosY());
+//		System.out.println("Pos X: " +super.darPosX() + " - PosY: " + super.darPosY());
 		vida--;
 	}
 	
@@ -66,6 +75,12 @@ public class AtaqueDistancia extends Ataque{
 //		}
 		
 		return "data/Sprites/" + super.darPersonaje() + "/"+ (darDireccion() == Personaje.IZQUIERDA? "ataqueMedianoIzquierda": "ataqueMedianoDerecha") +"/"+(i > 0? i : -i)+".png";
+	}
+	
+	@Override
+	public Rectangle darKickBox() {
+//		System.out.println("Pos X: " +super.darPosX() + " - PosY: " + super.darPosY() + " Ancho imagen: " + Math.abs(super.anchoSprite) +  " Alto Sprite: " + Math.abs(super.altoSprite) );
+		return kickBox;
 	}
 	
 }	
