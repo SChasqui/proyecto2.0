@@ -7,7 +7,7 @@ public class HiloPruebas extends Thread{
 	PanelPruebas panel;
 	
 	/*
-	 * 
+	 * Holamundosa
 	 */
 	public HiloPruebas(PanelPruebas p) {
 		panel = p;
