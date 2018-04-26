@@ -6,9 +6,13 @@ public class HiloPruebas extends Thread{
 	
 	PanelPruebas panel;
 	
+	/*
+	 * 
+	 */
 	public HiloPruebas(PanelPruebas p) {
 		panel = p;
 	}
+	
 	
 	@Override
 	public void run() {
@@ -18,7 +22,6 @@ public class HiloPruebas extends Thread{
 			try {
 				sleep(83);
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			
