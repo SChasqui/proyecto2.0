@@ -72,10 +72,6 @@ public class Personaje {
 	 */
 	private Personaje adversario;
 
-	/*
-	 * Ancho del sprite del personaje 
-	 */
-	private int tamanhoX;
 
 	/*
 	 * Alto del sprite del personaje 
@@ -114,7 +110,7 @@ public class Personaje {
 		 */
 		this.precio = precio;
 
-		rectangulo = new Rectangle (posX, posY, tamanhoX, tamanhoY);
+		rectangulo = new Rectangle (posX, posY, new ImageIcon(spriteQuieto()).getIconWidth(), new ImageIcon(spriteQuieto()).getIconHeight());
 
 		quieto = true;
 		
@@ -142,7 +138,7 @@ public class Personaje {
 		posX = newPosY;
 	}
 
-	private Rectangle darRectangulo() {
+	public Rectangle darRectangulo() {
 		return rectangulo;
 	}
 
@@ -192,7 +188,7 @@ public class Personaje {
 	public void moverX(int mover) {
 		posX+=mover;
 		direccion = mover>0? DERECHA:IZQUIERDA;
-		
+		rectangulo.setLocation(posX, posY);
 		
 		posSprite[2] = posSprite[2] !=0? posSprite[2]:1;
 		quieto = false;
@@ -200,6 +196,7 @@ public class Personaje {
 
 	public void moverY(int mover) {
 		posY+=mover;
+		rectangulo.setLocation(posX, posY);
 	}
 
 
@@ -222,6 +219,7 @@ public class Personaje {
 			if (posSprite[2] == 2) {
 				posSprite[2] = 3;
 				aMostrar = "data/Sprites/" + sprite + (direccion == IZQUIERDA? "/moverIzquierda": "/moverDerecha")+"/"+(posSprite[2])+ ".png";
+				rectangulo.setSize(new ImageIcon(aMostrar).getIconWidth(), new ImageIcon(aMostrar).getIconHeight());
 			}
 
 			//**************************************************************
@@ -244,6 +242,7 @@ public class Personaje {
 	public String spriteQuieto() {
 		
 		File f = new File("data/Sprites/" + sprite + "/paradoDerecha");
+		
 		String[] array = f.list();
 //		System.out.println(array.length);
 		
@@ -266,6 +265,8 @@ public class Personaje {
 
 		String frame = "data/Sprites/" + sprite + (direccion == IZQUIERDA? "/puñoIzquierda": "/puñoDerecha")+"/"+(posSprite[1])+ ".png";
 		
+		rectangulo.setSize(new ImageIcon(frame).getIconWidth(), new ImageIcon(frame).getIconHeight());
+		
 		posSprite[1]++;
 		quieto = false;
 		if (posSprite[1] > array.length) {
@@ -279,7 +280,9 @@ public class Personaje {
 	public String spriteMovimiento() {
 		
 		String frame = "data/Sprites/" + sprite + (direccion == IZQUIERDA? "/moverIzquierda": "/moverDerecha")+"/"+(posSprite[2])+ ".png";
-	
+		
+		rectangulo.setSize(new ImageIcon(frame).getIconWidth(), new ImageIcon(frame).getIconHeight());
+		
 		posSprite[2] = 2;
 		quieto = false;
 		

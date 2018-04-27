@@ -52,7 +52,9 @@ public class PanelPruebas extends JDialog implements KeyListener {
 	 */
 	private VentanaPrincipal ventana;
 	
-	private Rectangle verKickBox;
+	private Rectangle kickBoxAtaque;
+	private Rectangle kickBoxPj1;
+	private Rectangle kickBoxPj2;
 
 	// --------------------------------------
 	// Constructor
@@ -95,8 +97,8 @@ public class PanelPruebas extends JDialog implements KeyListener {
 			ImageIcon spriteAtaque = new ImageIcon(a.darSprite());
 			g.drawImage(spriteAtaque.getImage(), a.darPosX(), a.darPosY(), null);
 			
-			verKickBox =  a.darKickBox();
-			g.drawRect(verKickBox.x, verKickBox.y, verKickBox.width, verKickBox.height);
+			kickBoxAtaque =  a.darKickBox();
+			g.drawRect(kickBoxAtaque.x, kickBoxAtaque.y, kickBoxAtaque.width, kickBoxAtaque.height);
 			
 			a = a.darSiguiente();
 			
@@ -107,11 +109,18 @@ public class PanelPruebas extends JDialog implements KeyListener {
 			ImageIcon spriteAtaque = new ImageIcon(a.darSprite());
 			g.drawImage(spriteAtaque.getImage(), a.darPosX(), a.darPosY(), null);
 			
-			verKickBox =  a.darKickBox();
-			g.drawRect(verKickBox.x, verKickBox.y, verKickBox.width, verKickBox.height);
+			kickBoxAtaque =  a.darKickBox();
+			g.drawRect(kickBoxAtaque.x, kickBoxAtaque.y, kickBoxAtaque.width, kickBoxAtaque.height);
 			
 			a = a.darSiguiente();
 		}
+		
+		kickBoxPj1 = ventana.darJuego().darJugador1().darPersonaje().darRectangulo();
+		g.drawRect(kickBoxPj1.x, kickBoxPj1.y, kickBoxPj1.width, kickBoxPj1.height);
+		
+		kickBoxPj2 = ventana.darJuego().darJugador2().darPersonaje().darRectangulo();
+		g.drawRect(kickBoxPj2.x, kickBoxPj2.y, kickBoxPj2.width, kickBoxPj2.height);
+		
 
 	}
 
