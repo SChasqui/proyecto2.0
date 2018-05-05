@@ -296,7 +296,15 @@ public class Personaje {
 		return frame;
 
 	}
-	//
+
+	public void agregarAtaqueDistancia(AtaqueDistancia actual) {
+		if (actual.darSiguiente() == null) {
+			actual.seleccionarSiguiente( new AtaqueDistancia(sprite, 1, direccion, posX + (100 * direccion) , posY));
+		}else {
+			agregarAtaqueDistancia(actual.darSiguiente());
+		}
+	}
+	
 	public String spriteAtaqueMedDistancia() {
 
 		String frame = "data/Sprites/" + sprite + (direccion == IZQUIERDA? "/ataqueMedIzquierda": "/ataqueMedDerecha")+"/"+(posSprite[3])+ ".png";
@@ -305,19 +313,11 @@ public class Personaje {
 		quieto = false;
 
 		if(posSprite[3] == 5) {
-
 			AtaqueDistancia actual = ataqueDistancia;
 			if (ataqueDistancia == null) {
 				ataqueDistancia = new AtaqueDistancia(sprite, 1, direccion, posX + (100 * direccion) , posY);
-			}
-
-			while(actual != null) {
-				if (actual.darSiguiente() == null) {
-					actual.seleccionarSiguiente( new AtaqueDistancia(sprite, 1, direccion, posX + (100 * direccion) , posY));
-					actual = null;
-				}else {
-					actual = actual.darSiguiente();
-				}
+			}else {
+				agregarAtaqueDistancia(actual);
 			}
 		}
 		if (posSprite[3] > 6) {
