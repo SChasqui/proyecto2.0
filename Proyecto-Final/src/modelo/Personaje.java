@@ -21,7 +21,7 @@ public class Personaje {
 	//--------------------------------------
 	// Atributos
 	//--------------------------------------
-	
+
 	/*
 	 * Sprite que pintara el panel
 	 */
@@ -92,7 +92,7 @@ public class Personaje {
 	 * boolean que denota el estado en el que se encuentra el personaje; true para quieto y false para cualquier otro movimiento
 	 */
 	private boolean quieto;
-	
+
 	private AtaqueDistancia ataqueDistancia;
 
 	//--------------------------------------
@@ -113,7 +113,7 @@ public class Personaje {
 		rectangulo = new Rectangle (posX, posY, new ImageIcon(spriteQuieto()).getIconWidth(), new ImageIcon(spriteQuieto()).getIconHeight());
 
 		quieto = true;
-		
+
 	}
 
 	//--------------------------------------
@@ -161,35 +161,35 @@ public class Personaje {
 
 		int efectoAtaque = 0;
 
-//		if(this.rectangulo.intersects(adversario.darRectangulo())) {
-//			Ataque temp = new Ataque (tecla);
-//			efectoAtaque = temp.darDanho();
-//		}
-		
+		//		if(this.rectangulo.intersects(adversario.darRectangulo())) {
+		//			Ataque temp = new Ataque (tecla);
+		//			efectoAtaque = temp.darDanho();
+		//		}
+
 		posSprite[1] = 1;
 		quieto = false;
 
 		return efectoAtaque;
 	}
-	
+
 	public int lanzarAtaqueDistante() {
-		
+
 		int efectoAtaque = 0;
-		
+
 		posSprite[3] = 1;
 		quieto = false;
-		
-		
-		
+
+
+
 		return efectoAtaque;
-		
+
 	}
 
 	public void moverX(int mover) {
 		posX+=mover;
 		direccion = mover>0? DERECHA:IZQUIERDA;
 		rectangulo.setLocation(posX, posY);
-		
+
 		posSprite[2] = posSprite[2] !=0? posSprite[2]:1;
 		quieto = false;
 	}
@@ -203,7 +203,7 @@ public class Personaje {
 	//--------------------------------------
 	// Metodos Graficos
 	//--------------------------------------
-	
+
 	public Image darSprite() {
 		return frame;
 	}
@@ -215,7 +215,7 @@ public class Personaje {
 		if(quieto) {
 			// Se retorna un frame de la animacion del personaje parado
 			aMostrar = spriteQuieto();
-			
+
 			if (posSprite[2] == 2) {
 				posSprite[2] = 3;
 				aMostrar = "data/Sprites/" + sprite + (direccion == IZQUIERDA? "/moverIzquierda": "/moverDerecha")+"/"+(posSprite[2])+ ".png";
@@ -235,17 +235,17 @@ public class Personaje {
 		}else if(posSprite[3] != 0) {
 			aMostrar = spriteAtaqueMedDistancia();
 		}
-		
+
 		frame = new ImageIcon(aMostrar).getImage();
 	}
 
 	public String spriteQuieto() {
-		
+
 		File f = new File("data/Sprites/" + sprite + "/paradoDerecha");
-		
+
 		String[] array = f.list();
-//		System.out.println(array.length);
-		
+		//		System.out.println(array.length);
+
 		if(posSprite[0] == -1) {
 			posSprite[0] = 1;
 		}
@@ -259,14 +259,14 @@ public class Personaje {
 	}
 
 	public String spritePuño() {
-		
+
 		File f = new File("data/Sprites/" + sprite + "/puñoIzquierda");
 		String[] array = f.list();
 
 		String frame = "data/Sprites/" + sprite + (direccion == IZQUIERDA? "/puñoIzquierda": "/puñoDerecha")+"/"+(posSprite[1])+ ".png";
-		
+
 		rectangulo.setSize(new ImageIcon(frame).getIconWidth(), new ImageIcon(frame).getIconHeight());
-		
+
 		posSprite[1]++;
 		quieto = false;
 		if (posSprite[1] > array.length) {
@@ -276,34 +276,34 @@ public class Personaje {
 
 		return frame;
 	}
-	
+
 	public String spriteMovimiento() {
-		
+
 		String frame = "data/Sprites/" + sprite + (direccion == IZQUIERDA? "/moverIzquierda": "/moverDerecha")+"/"+(posSprite[2])+ ".png";
-		
+
 		rectangulo.setSize(new ImageIcon(frame).getIconWidth(), new ImageIcon(frame).getIconHeight());
-		
+
 		posSprite[2] = 2;
 		quieto = false;
-		
+
 		return frame;
-	
+
 	}
 	//
 	public String spriteAtaqueMedDistancia() {
-		
+
 		String frame = "data/Sprites/" + sprite + (direccion == IZQUIERDA? "/ataqueMedIzquierda": "/ataqueMedDerecha")+"/"+(posSprite[3])+ ".png";
-		
+
 		posSprite[3]++;
 		quieto = false;
-		
+
 		if(posSprite[3] == 5) {
-			
+
 			AtaqueDistancia actual = ataqueDistancia;
 			if (ataqueDistancia == null) {
 				ataqueDistancia = new AtaqueDistancia(sprite, 1, direccion, posX + (100 * direccion) , posY);
 			}
-			
+
 			while(actual != null) {
 				if (actual.darSiguiente() == null) {
 					actual.seleccionarSiguiente( new AtaqueDistancia(sprite, 1, direccion, posX + (100 * direccion) , posY));
@@ -319,38 +319,40 @@ public class Personaje {
 		}
 
 		return frame;
-	
+
 	}
-	
-	public void limpiarAtaques() {
-		
-		if(ataqueDistancia != null) {
-			
-			while (ataqueDistancia != null && ataqueDistancia.darVida() == 0) {
+
+	public void eliminarAtaque(AtaqueDistancia actual) {
+
+		if (actual == null) {
+
+		}else {
+			if (ataqueDistancia.darVida() == 0) {
 				ataqueDistancia = ataqueDistancia.darSiguiente();
-			}		
-			
-			AtaqueDistancia actual = ataqueDistancia;
-			
-			while(actual != null) {
-				
+				actual = ataqueDistancia;
+			}else {
 				if (actual.darSiguiente() != null && actual.darSiguiente().darVida() == 0) {
 					actual.seleccionarSiguiente(actual.darSiguiente().darSiguiente());
 				}else{
 					actual = actual.darSiguiente();
 				}
-				
 			}
-			
+			eliminarAtaque(actual);
+
 		}
-		
+
 	}
-	
-	
+
+	public void limpiarAtaques() {
+
+		eliminarAtaque(ataqueDistancia);
+
+	}
+
 	public void quietotrue() {
 		quieto = true;
 	}
-	
+
 	public AtaqueDistancia darAtaqueDistancia() {
 		return ataqueDistancia;
 	}
