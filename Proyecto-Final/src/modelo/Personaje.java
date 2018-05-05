@@ -186,17 +186,24 @@ public class Personaje {
 	}
 
 	public void moverX(int mover) {
-		posX+=mover;
-		direccion = mover>0? DERECHA:IZQUIERDA;
-		rectangulo.setLocation(posX, posY);
-
-		posSprite[2] = posSprite[2] !=0? posSprite[2]:1;
-		quieto = false;
+		
+		if(posX+mover >= 0 && posX+mover <=1200) {
+			
+			posX+=mover;
+			direccion = mover>0? DERECHA:IZQUIERDA;
+			rectangulo.setLocation(posX, posY);
+			
+			posSprite[2] = posSprite[2] !=0? posSprite[2]:1;
+			quieto = false;
+		}
 	}
 
 	public void moverY(int mover) {
-		posY+=mover;
-		rectangulo.setLocation(posX, posY);
+		if(posY+mover >=0 && posY+mover <= 600) {
+			
+			posY+=mover;
+			rectangulo.setLocation(posX, posY);
+		}
 	}
 
 
