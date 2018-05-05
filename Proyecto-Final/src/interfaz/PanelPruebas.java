@@ -64,7 +64,7 @@ public class PanelPruebas extends JDialog implements KeyListener {
 		ventana = v;
 		addKeyListener(this);
 		setVisible(true);
-		setLocationRelativeTo(null);
+		setLocationRelativeTo(v);
 		setSize(1280, 720);
 
 		HiloPruebas h = new HiloPruebas(this);
