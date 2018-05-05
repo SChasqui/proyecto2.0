@@ -21,6 +21,11 @@ public class Personaje {
 	//--------------------------------------
 	// Atributos
 	//--------------------------------------
+	
+	/*
+	 * boolean que representa si esta atacando o no
+	 */
+	private boolean atacando;
 
 	/*
 	 * Sprite que pintara el panel
@@ -266,6 +271,8 @@ public class Personaje {
 	}
 
 	public String spritePuño() {
+		
+		atacando = true;
 
 		File f = new File("data/Sprites/" + sprite + "/puñoIzquierda");
 		String[] array = f.list();
@@ -285,6 +292,8 @@ public class Personaje {
 	}
 
 	public String spriteMovimiento() {
+		
+		atacando = false;
 
 		String frame = "data/Sprites/" + sprite + (direccion == IZQUIERDA? "/moverIzquierda": "/moverDerecha")+"/"+(posSprite[2])+ ".png";
 
@@ -306,6 +315,8 @@ public class Personaje {
 	}
 	
 	public String spriteAtaqueMedDistancia() {
+		
+		atacando = true;
 
 		String frame = "data/Sprites/" + sprite + (direccion == IZQUIERDA? "/ataqueMedIzquierda": "/ataqueMedDerecha")+"/"+(posSprite[3])+ ".png";
 
@@ -351,9 +362,7 @@ public class Personaje {
 	}
 
 	public void limpiarAtaques() {
-
 		eliminarAtaque(ataqueDistancia);
-
 	}
 
 	public void quietotrue() {
@@ -364,5 +373,8 @@ public class Personaje {
 		return ataqueDistancia;
 	}
 
+	public boolean atacando() {
+		return atacando;
+	}
 
 }

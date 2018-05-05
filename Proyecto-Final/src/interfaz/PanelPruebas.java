@@ -131,6 +131,13 @@ public class PanelPruebas extends JDialog implements KeyListener {
 
 	public void mover() {
 		
+		if(!ventana.darJuego().darJugador1().darPersonaje().atacando()) {
+			ventana.darJuego().darJugador1().darPersonaje().quietotrue();
+		}
+		if(!ventana.darJuego().darJugador2().darPersonaje().atacando()) {
+			ventana.darJuego().darJugador2().darPersonaje().quietotrue();
+		}
+		
 		if (pressed.size() > 0) {
 			for (int c : pressed) {
 
