@@ -153,7 +153,6 @@ public class Personaje {
 	 * @param y - La posición en el eje Y del ataque
 	 */
 	public boolean fueGolpeado(int x, int y) {
-
 		return posX< x && x < posX+30 && posY< y && y < posY+50;
 	}
 
@@ -162,19 +161,11 @@ public class Personaje {
 	 * Método encargado de atacar
 	 * @param tecla - Corresponde a la representación Unicode de la tecla pulsada
 	 */
-	public int atacar(int tecla) {
-
-		int efectoAtaque = 0;
-
-		//		if(this.rectangulo.intersects(adversario.darRectangulo())) {
-		//			Ataque temp = new Ataque (tecla);
-		//			efectoAtaque = temp.darDanho();
-		//		}
+	public void atacar(int tecla) {
 
 		posSprite[1] = 1;
 		quieto = false;
 
-		return efectoAtaque;
 	}
 
 	public int lanzarAtaqueDistante() {
