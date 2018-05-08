@@ -175,7 +175,7 @@ public class Personaje {
 
 	public void moverX(int mover) {
 		
-		if(posX+mover >= 0 && posX+mover <=1200 && !colisionaron()) {
+		if(posX+mover >= 0 && posX+mover <=1200 && !colisionaron(mover)) {
 			
 			posX+=mover;
 			direccion = mover>0? DERECHA:IZQUIERDA;
@@ -360,11 +360,11 @@ public class Personaje {
 		return atacando;
 	}
 	
-	public boolean colisionaron() {
+	public boolean colisionaron(int m) {
 		
 		boolean buleano	= false;
 		try {
-			rectangulo = new Rectangle(posX + 10 * direccion, posY, frame.getHeight(null), frame.getHeight(null));
+			rectangulo = new Rectangle(posX + m, posY, frame.getHeight(null), frame.getHeight(null));
 			buleano = rectangulo.intersects(adversario.darRectangulo());
 		} catch (NullPointerException e) {
 			System.out.println("chasqui es tonto");
