@@ -21,7 +21,7 @@ public class Personaje {
 	//--------------------------------------
 	// Atributos
 	//--------------------------------------
-	
+
 	/*
 	 * boolean que representa si esta atacando o no
 	 */
@@ -35,7 +35,7 @@ public class Personaje {
 	/*
 	 * arreglo de las imagenes que puede tener un personaje
 	 */
-	private String sprite;
+	private String personaje;
 
 	/*
 	 * precio en puntos de un personaje
@@ -99,6 +99,8 @@ public class Personaje {
 	private boolean quieto;
 
 	private AtaqueDistancia ataqueDistancia;
+	
+	private Sprite sprite;
 
 	//--------------------------------------
 	// Constructor
@@ -108,14 +110,16 @@ public class Personaje {
 		/*
 		 * se inicializa el arreglo de imagenes de las posibles posiciones del personaje
 		 */
-		sprite = pSprite;
+		personaje = pSprite;
+		
+		sprite = new Sprite(pSprite);
 
 		/*
 		 * se fija el precio que tendra el personaje
 		 */
 		this.precio = precio;
-		
-		posX +=  100;
+
+		posX += 100;
 
 		rectangulo = new Rectangle (posX, posY, new ImageIcon(spriteQuieto()).getIconWidth(), new ImageIcon(spriteQuieto()).getIconHeight());
 
@@ -174,13 +178,13 @@ public class Personaje {
 	}
 
 	public void moverX(int mover) {
-		
+
 		if(posX+mover >= 0 && posX+mover <=1200 && !colisionaron(mover)) {
-			
+
 			posX+=mover;
 			direccion = mover>0? DERECHA:IZQUIERDA;
 			rectangulo.setLocation(posX, posY);
-			
+
 			posSprite[2] = posSprite[2] !=0? posSprite[2]:1;
 			quieto = false;
 		}
@@ -188,7 +192,7 @@ public class Personaje {
 
 	public void moverY(int mover) {
 		if(posY+mover >=0 && posY+mover <= 600) {
-			
+
 			posY+=mover;
 			rectangulo.setLocation(posX, posY);
 		}
@@ -205,7 +209,7 @@ public class Personaje {
 
 	public void actualizar() {
 
-		String aMostrar = "";
+		Image aMostrar = null;
 
 		if(quieto) {
 			// Se retorna un frame de la animacion del personaje parado
@@ -213,7 +217,7 @@ public class Personaje {
 
 			if (posSprite[2] == 2) {
 				posSprite[2] = 3;
-				aMostrar = "data/Sprites/" + sprite + (direccion == IZQUIERDA? "/moverIzquierda": "/moverDerecha")+"/"+(posSprite[2])+ ".png";
+//				aMostrar = "data/Sprites/" + sprite + (direccion == IZQUIERDA? "/moverIzquierda": "/moverDerecha")+"/"+(posSprite[2])+ ".png";
 				rectangulo.setSize(new ImageIcon(aMostrar).getIconWidth(), new ImageIcon(aMostrar).getIconHeight());
 			}
 
@@ -224,49 +228,41 @@ public class Personaje {
 				posSprite[i]=0;
 			}
 		}else if(posSprite[1] != 0) {
-			aMostrar = spritePuño();
-		}else if(posSprite[2] != 0) {
-			aMostrar = spriteMovimiento();
-		}else if(posSprite[3] != 0) {
-			aMostrar = spriteAtaqueMedDistancia();
-		}
+			aMostrar = spritePuño();}
+//		}else if(posSprite[2] != 0) {
+//			aMostrar = spriteMovimiento();
+//		}else if(posSprite[3] != 0) {
+//			aMostrar = spriteAtaqueMedDistancia();
+//		}
 
-		frame = new ImageIcon(aMostrar).getImage();
+		frame = aMostrar;
 	}
 
-	public String spriteQuieto() {
-
-		File f = new File("data/Sprites/" + sprite + "/paradoDerecha");
-
-		String[] array = f.list();
-		//		System.out.println(array.length);
+	public Image spriteQuieto() {
 
 		if(posSprite[0] == -1) {
 			posSprite[0] = 1;
 		}
-		else if(posSprite[0] < array.length) {
+		else if(posSprite[0] < sprite.darTamanhos()[Sprite.PARADO]) {
 			posSprite[0]++;
 		}else {
-			posSprite[0] = -array.length;
+			posSprite[0] = -sprite.darTamanhos()[Sprite.PARADO];
 		}
 
-		return "data/Sprites/" + sprite + "/"+ (direccion == IZQUIERDA? "paradoIzquierda": "paradoDerecha") +"/"+(posSprite[0] > 0? posSprite[0] : -posSprite[0] )+ ".png";
+		return sprite.spriteQuieto(posSprite[0], direccion);
 	}
 
-	public String spritePuño() {
-		
+	public Image spritePuño() {
+
 		atacando = true;
 
-		File f = new File("data/Sprites/" + sprite + "/puñoIzquierda");
-		String[] array = f.list();
+		Image frame = sprite.spritePuño(posSprite[1], direccion);
 
-		String frame = "data/Sprites/" + sprite + (direccion == IZQUIERDA? "/puñoIzquierda": "/puñoDerecha")+"/"+(posSprite[1])+ ".png";
-
-		rectangulo.setSize(new ImageIcon(frame).getIconWidth(), new ImageIcon(frame).getIconHeight());
+		rectangulo.setSize(frame.getWidth(null), frame.getHeight(null));
 
 		posSprite[1]++;
 		quieto = false;
-		if (posSprite[1] > array.length) {
+		if (posSprite[1] > sprite.darTamanhos()[Sprite.PUNHO]) {
 			posSprite[1] = 0;
 			quieto = true;
 		}
@@ -275,7 +271,7 @@ public class Personaje {
 	}
 
 	public String spriteMovimiento() {
-		
+
 		atacando = false;
 
 		String frame = "data/Sprites/" + sprite + (direccion == IZQUIERDA? "/moverIzquierda": "/moverDerecha")+"/"+(posSprite[2])+ ".png";
@@ -291,14 +287,14 @@ public class Personaje {
 
 	public void agregarAtaqueDistancia(AtaqueDistancia actual) {
 		if (actual.darSiguiente() == null) {
-			actual.seleccionarSiguiente( new AtaqueDistancia(sprite, 1, direccion, posX + (100 * direccion) , posY));
+			actual.seleccionarSiguiente( new AtaqueDistancia(personaje, 1, direccion, posX + (100 * direccion) , posY));
 		}else {
 			agregarAtaqueDistancia(actual.darSiguiente());
 		}
 	}
-	
+
 	public String spriteAtaqueMedDistancia() {
-		
+
 		atacando = true;
 
 		String frame = "data/Sprites/" + sprite + (direccion == IZQUIERDA? "/ataqueMedIzquierda": "/ataqueMedDerecha")+"/"+(posSprite[3])+ ".png";
@@ -309,7 +305,7 @@ public class Personaje {
 		if(posSprite[3] == 5) {
 			AtaqueDistancia actual = ataqueDistancia;
 			if (ataqueDistancia == null) {
-				ataqueDistancia = new AtaqueDistancia(sprite, 1, direccion, posX + (100 * direccion) , posY);
+				ataqueDistancia = new AtaqueDistancia(personaje, 1, direccion, posX + (100 * direccion) , posY);
 			}else {
 				agregarAtaqueDistancia(actual);
 			}
@@ -359,17 +355,13 @@ public class Personaje {
 	public boolean atacando() {
 		return atacando;
 	}
-	
+
 	public boolean colisionaron(int m) {
-		
+
 		boolean buleano	= false;
-		try {
-			rectangulo = new Rectangle(posX + m, posY, frame.getHeight(null), frame.getHeight(null));
-			buleano = rectangulo.intersects(adversario.darRectangulo());
-		} catch (NullPointerException e) {
-			System.out.println("chasqui es tonto");
-		}
-		
+		rectangulo = new Rectangle(posX + m, posY, frame.getHeight(null), frame.getHeight(null));
+		buleano = rectangulo.intersects(adversario.darRectangulo());
+
 		return buleano;
 	}
 
