@@ -173,10 +173,7 @@ public class Personaje {
 		posSprite[3] = 1;
 		quieto = false;
 
-
-
 		return efectoAtaque;
-
 	}
 
 	public void moverX(int mover) {
