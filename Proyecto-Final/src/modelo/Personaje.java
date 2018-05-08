@@ -162,10 +162,8 @@ public class Personaje {
 	 * @param tecla - Corresponde a la representación Unicode de la tecla pulsada
 	 */
 	public void atacar(int tecla) {
-
 		posSprite[1] = 1;
 		quieto = false;
-
 	}
 
 	public int lanzarAtaqueDistante() {
