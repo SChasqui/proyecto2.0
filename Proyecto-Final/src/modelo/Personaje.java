@@ -115,7 +115,7 @@ public class Personaje {
 		 */
 		this.precio = precio;
 		
-		posX += (int) (Math.random() * 1000);
+		posX +=  100;
 
 		rectangulo = new Rectangle (posX, posY, new ImageIcon(spriteQuieto()).getIconWidth(), new ImageIcon(spriteQuieto()).getIconHeight());
 
