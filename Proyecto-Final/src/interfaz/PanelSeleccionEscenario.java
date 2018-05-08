@@ -25,7 +25,7 @@ public class PanelSeleccionEscenario extends JPanel implements MouseListener{
 	public void paint(Graphics g) {
 
 		// Cargo la imagen que sera usada como banner para el juego
-		Image fondo = new ImageIcon("data/fondo/escenarioEscenario1.jpg").getImage();
+		Image fondo = new ImageIcon("data/fondo/escenarioEscenarios.jpg").getImage();
 		g.drawImage(fondo, 0, 0,null);
 		
 		Image escenario1 = new ImageIcon("data/fondo/posibleEscenario1.png").getImage();

@@ -18,6 +18,7 @@ public class PanelSeleccionJugador extends JPanel implements MouseListener {
 		
 		setVisible(true);
 		this.ventana = ventana;
+		addMouseListener(this);
 		
 		
 	}
@@ -71,11 +72,15 @@ public class PanelSeleccionJugador extends JPanel implements MouseListener {
 		
 		int posX = e.getX();
 		int posY = e.getY();
+		
+		System.out.println("posX = " +posX + "   PosY = " + posY );
+		
 		//Cuando oprima sobre la imagen
 		
 		if(posX > 340 && posX < 625 && posY > 110 && posY < 1000) {
 			
 			System.out.println("Lol");
+			
 		}
 		
 		/*
