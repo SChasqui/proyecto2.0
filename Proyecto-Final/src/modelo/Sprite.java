@@ -37,7 +37,7 @@ public class Sprite {
 	/*
 	 * Arreglo que contiene la cantidad de frames de cada una de las animaciones
 	 */
-	int[] tamanhos;
+	private int[] tamanhos;
 
 	public Sprite(String nombre) {
 		// Inicializo el nombre
@@ -81,6 +81,11 @@ public class Sprite {
 		array = f.list();
 		tamanhos[DEFENSA] = array.length -1;
 
+		// Cantidad de frames para Defenza
+		f = new File("data/Sprites/" + nombre + "/moverDerecha");
+		array = f.list();
+		tamanhos[MOVERCE] = array.length -1;
+
 		// Cantidad de frames para Recarga ki
 		f = new File("data/Sprites/" + nombre + "/recargarKiDerecha");
 		array = f.list();
@@ -115,6 +120,10 @@ public class Sprite {
 		for (int i = 0; i < tamanhos[RECARGA_KI]; i++) {
 			spritesDerecha[RECARGA_KI][i] = (new ImageIcon("data/Sprites/" + nombre + "/recargarKiDerecha/" + (i + 1)+".png")).getImage();
 		}
+		for (int i = 0; i < tamanhos[MOVERCE]; i++) {
+			spritesDerecha[MOVERCE][i] = (new ImageIcon("data/Sprites/" + nombre + "/moverDerecha/" + (i + 1)+".png")).getImage();
+		}
+
 
 		//***************************************
 		// Creacion de la matriz izquierda
@@ -145,21 +154,24 @@ public class Sprite {
 		for (int i = 0; i < tamanhos[RECARGA_KI]; i++) {
 			spritesIzquierda[RECARGA_KI][i] = (new ImageIcon("data/Sprites/" + nombre + "/recargarKiIzquierda/" + (i + 1)+".png")).getImage();
 		}
+		for (int i = 0; i < tamanhos[MOVERCE]; i++) {
+			spritesDerecha[MOVERCE][i] = (new ImageIcon("data/Sprites/" + nombre + "/moverIzquierda/" + (i + 1)+".png")).getImage();
+		}
 	}
-	
+
 	public Image spriteQuieto(int i, int direccion) {
 		i = i > 0? i : -i;
 		return direccion == Personaje.DERECHA? spritesDerecha[PARADO][i] : spritesIzquierda[PARADO][i];
 	}
-	
+
 	public Image spritePuño(int i, int direccion) {
 		return direccion == Personaje.DERECHA? spritesDerecha[PUNHO][i] : spritesIzquierda[PUNHO][i];
 	}
-	
+
 	public Image spriteMovimiento(int i, int direccion) {
-		return direccion == Personaje.DERECHA? spritesDerecha[PUNHO][i] : spritesIzquierda[PUNHO][i];
+		return direccion == Personaje.DERECHA? spritesDerecha[MOVERCE][i] : spritesIzquierda[MOVERCE][i];
 	}
-	
+
 	public int[] darTamanhos() {
 		return tamanhos;
 	}

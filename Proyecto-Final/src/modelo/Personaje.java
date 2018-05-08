@@ -228,9 +228,9 @@ public class Personaje {
 				posSprite[i]=0;
 			}
 		}else if(posSprite[1] != 0) {
-			aMostrar = spritePuño();}
-//		}else if(posSprite[2] != 0) {
-//			aMostrar = spriteMovimiento();
+			aMostrar = spritePuño();
+		}else if(posSprite[2] != 0) {
+			aMostrar = spriteMovimiento();}
 //		}else if(posSprite[3] != 0) {
 //			aMostrar = spriteAtaqueMedDistancia();
 //		}
@@ -274,11 +274,14 @@ public class Personaje {
 
 		atacando = false;
 
-		String frame = "data/Sprites/" + sprite + (direccion == IZQUIERDA? "/moverIzquierda": "/moverDerecha")+"/"+(posSprite[2])+ ".png";
+		Image frame = sprite.spriteMovimiento(posSprite[2], direccion);
 
-		rectangulo.setSize(new ImageIcon(frame).getIconWidth(), new ImageIcon(frame).getIconHeight());
+		rectangulo.setSize(frame.getWidth(null), frame.getHeight(null));
 
-		posSprite[2] = 2;
+		if (posSprite[2] == sprite.darTamanhos()[Sprite.MOVERCE] - 1) {
+			posSprite[2] = sprite.darTamanhos()[Sprite.MOVERCE] - 2;
+		}
+		posSprite[2]++;
 		quieto = false;
 
 		return frame;
