@@ -49,47 +49,47 @@ public class Sprite {
 		// Cantidad de frames para Parado
 		File f = new File("data/Sprites/" + nombre + "/paradoDerecha");
 		String[] array = f.list();
-		tamanhos[PARADO] = array.length -1;
+		tamanhos[PARADO] = array.length - 1;
 
 		// Cantidad de frames para Puños
 		f = new File("data/Sprites/" + nombre + "/puñoDerecha");
 		array = f.list();
-		tamanhos[PUNHO] = array.length -1;
+		tamanhos[PUNHO] = array.length - 1;
 
 		// Cantidad de frames para Patadas
 		f = new File("data/Sprites/" + nombre + "/patadaDerecha");
 		array = f.list();
-		tamanhos[PATADA] = array.length -1;
+		tamanhos[PATADA] = array.length - 1;
 
 		// Cantidad de frames para Ataque grande
 		f = new File("data/Sprites/" + nombre + "/ataqueGrandeDerecha");
 		array = f.list();
-		tamanhos[ATAQUE_GRANDE] = array.length -1;
+		tamanhos[ATAQUE_GRANDE] = array.length - 1;
 
 		// Cantidad de frames para Ataque Mediano
 		f = new File("data/Sprites/" + nombre + "/ataqueMedianoDerecha");
 		array = f.list();
-		tamanhos[ATAQUE_MEDIANO] = array.length -1;
+		tamanhos[ATAQUE_MEDIANO] = array.length - 1;
 
 		// Cantidad de frames para Ataque Pequeño
 		f = new File("data/Sprites/" + nombre + "/ataquePequeñoDerecha");
 		array = f.list();
-		tamanhos[ATAQUE_PEQUENHO] = array.length -1;
+		tamanhos[ATAQUE_PEQUENHO] = array.length - 1;
 
 		// Cantidad de frames para Defenza
 		f = new File("data/Sprites/" + nombre + "/defensaDerecha");
 		array = f.list();
-		tamanhos[DEFENSA] = array.length -1;
+		tamanhos[DEFENSA] = array.length - 1;
 
 		// Cantidad de frames para Defenza
 		f = new File("data/Sprites/" + nombre + "/moverDerecha");
 		array = f.list();
-		tamanhos[MOVERCE] = array.length -1;
+		tamanhos[MOVERCE] = array.length - 1;
 
 		// Cantidad de frames para Recarga ki
 		f = new File("data/Sprites/" + nombre + "/recargarKiDerecha");
 		array = f.list();
-		tamanhos[RECARGA_KI] = array.length -1;
+		tamanhos[RECARGA_KI] = array.length - 1;
 
 		//***************************************
 		// Creacion de la matriz derecha
@@ -155,7 +155,7 @@ public class Sprite {
 			spritesIzquierda[RECARGA_KI][i] = (new ImageIcon("data/Sprites/" + nombre + "/recargarKiIzquierda/" + (i + 1)+".png")).getImage();
 		}
 		for (int i = 0; i < tamanhos[MOVERCE]; i++) {
-			spritesDerecha[MOVERCE][i] = (new ImageIcon("data/Sprites/" + nombre + "/moverIzquierda/" + (i + 1)+".png")).getImage();
+			spritesIzquierda[MOVERCE][i] = (new ImageIcon("data/Sprites/" + nombre + "/moverIzquierda/" + (i + 1)+".png")).getImage();
 		}
 	}
 

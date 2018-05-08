@@ -262,7 +262,7 @@ public class Personaje {
 
 		posSprite[1]++;
 		quieto = false;
-		if (posSprite[1] > sprite.darTamanhos()[Sprite.PUNHO]) {
+		if (posSprite[1] > sprite.darTamanhos()[Sprite.PUNHO]-1) {
 			posSprite[1] = 0;
 			quieto = true;
 		}
