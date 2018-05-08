@@ -209,7 +209,7 @@ public class Personaje {
 
 	public void actualizar() {
 
-		Image aMostrar = null;
+		Image aMostrar = new ImageIcon("data/Sprites/" + sprite + (direccion == IZQUIERDA? "/moverIzquierda": "/moverDerecha")+"/"+(posSprite[2])+".png").getImage();
 
 		if(quieto) {
 			// Se retorna un frame de la animacion del personaje parado
@@ -243,10 +243,10 @@ public class Personaje {
 		if(posSprite[0] == -1) {
 			posSprite[0] = 1;
 		}
-		else if(posSprite[0] < sprite.darTamanhos()[Sprite.PARADO]) {
+		else if(posSprite[0] < sprite.darTamanhos()[Sprite.PARADO] - 1) {
 			posSprite[0]++;
 		}else {
-			posSprite[0] = -sprite.darTamanhos()[Sprite.PARADO];
+			posSprite[0] = -sprite.darTamanhos()[Sprite.PARADO] + 1;
 		}
 
 		return sprite.spriteQuieto(posSprite[0], direccion);
@@ -270,7 +270,7 @@ public class Personaje {
 		return frame;
 	}
 
-	public String spriteMovimiento() {
+	public Image spriteMovimiento() {
 
 		atacando = false;
 

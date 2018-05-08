@@ -34,6 +34,11 @@ public class Juego {
 	 * Jugador Dos Actual
 	 */
 	private Jugador jugador2;
+	
+	/*
+	 * Arreglo de fondos
+	 */
+	private String[] fondos;
 
 
 	//--------------------------------------
@@ -74,6 +79,10 @@ public class Juego {
 	
 	public Jugador darJugador2() {
 		return jugador2;
+	}
+	
+	public String[] darFondos() {
+		return fondos;
 	}
 	
 
