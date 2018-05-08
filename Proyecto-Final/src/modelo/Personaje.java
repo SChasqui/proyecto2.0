@@ -11,7 +11,7 @@ public class Personaje {
 
 
 	//--------------------------------------
-	// Constantes
+	// Constantes---
 	//--------------------------------------
 
 	public static final int IZQUIERDA = -1;
