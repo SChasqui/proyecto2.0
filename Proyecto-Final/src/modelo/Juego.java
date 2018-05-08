@@ -46,6 +46,8 @@ public class Juego {
 	public Juego() {
 		jugador1 = new Jugador("Beta tester");
 		jugador2 = new Jugador("Beta tester 2");
+		jugador1.darPersonaje().setAdversario(jugador2.darPersonaje());
+		jugador2.darPersonaje().setAdversario(jugador1.darPersonaje());
 	}
 	
 	//--------------------------------------
