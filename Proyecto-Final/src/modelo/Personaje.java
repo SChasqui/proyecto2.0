@@ -166,14 +166,9 @@ public class Personaje {
 		quieto = false;
 	}
 
-	public int lanzarAtaqueDistante() {
-
-		int efectoAtaque = 0;
-
+	public void lanzarAtaqueDistante() {
 		posSprite[3] = 1;
 		quieto = false;
-
-		return efectoAtaque;
 	}
 
 	public void moverX(int mover) {
