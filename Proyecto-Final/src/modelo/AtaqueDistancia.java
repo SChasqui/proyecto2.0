@@ -61,20 +61,7 @@ public class AtaqueDistancia extends Ataque{
 	}
 	
 	public String darSprite() {
-		i=4;
-//		if(i!= 4 && i!=-4) {
-//			
-//			if(i == -1) {
-//				i = 1;
-//			}
-//			else if(i < 4) {
-//				i++;
-//			}else {
-//				i = -4;
-//			}
-//		}
-		
-		return "data/Sprites/" + super.darPersonaje() + "/"+ (darDireccion() == Personaje.IZQUIERDA? "ataqueMedianoIzquierda": "ataqueMedianoDerecha") +"/"+(i > 0? i : -i)+".png";
+		return "data/Sprites/"  + "AtaqueMed/"+ (darDireccion() == Personaje.IZQUIERDA? "Izquierda": "Derecha") +".png";
 	}
 	
 	@Override
