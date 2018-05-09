@@ -171,6 +171,10 @@ public class Sprite {
 	public Image spriteMovimiento(int i, int direccion) {
 		return direccion == Personaje.DERECHA? spritesDerecha[MOVERCE][i] : spritesIzquierda[MOVERCE][i];
 	}
+	
+	public Image spriteAtaqueMedDistancia(int i, int direccion) {
+		return direccion == Personaje.DERECHA? spritesDerecha[ATAQUE_MEDIANO][i] : spritesIzquierda[ATAQUE_MEDIANO][i];
+	}
 
 	public int[] darTamanhos() {
 		return tamanhos;
