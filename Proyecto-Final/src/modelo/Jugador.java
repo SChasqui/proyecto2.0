@@ -47,6 +47,7 @@ public class Jugador {
 		puntos = 0;
 		personajeActual = new Personaje("Beerus", 10);
 //		personajeActual = new Personaje("Bardock", 10);
+//		personajeActual = new Personaje("Broly", 10);
 	}
 
 	//--------------------------------------
