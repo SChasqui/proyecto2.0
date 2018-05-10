@@ -113,6 +113,7 @@ public class PanelPruebas extends JDialog implements KeyListener {
 			g.drawRect(kickBoxAtaque.x, kickBoxAtaque.y, kickBoxAtaque.width, kickBoxAtaque.height);
 			
 			a = a.darSiguiente();
+			
 		}
 		
 		kickBoxPj1 = ventana.darJuego().darJugador1().darPersonaje().darRectangulo();

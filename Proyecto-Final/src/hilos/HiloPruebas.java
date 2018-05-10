@@ -20,6 +20,7 @@ public class HiloPruebas extends Thread{
 
 			panel.repaint();
 			try {
+				//83
 				sleep(83);
 			} catch (InterruptedException e) {
 				e.printStackTrace();

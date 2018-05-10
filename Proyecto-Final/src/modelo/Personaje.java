@@ -8,7 +8,8 @@ import java.util.ArrayList;
 import javax.swing.ImageIcon;
 
 public class Personaje {
-
+	
+	
 
 	//--------------------------------------
 	// Constantes---
@@ -97,6 +98,18 @@ public class Personaje {
 	 * boolean que denota el estado en el que se encuentra el personaje; true para quieto y false para cualquier otro movimiento
 	 */
 	private boolean quieto;
+	
+	//--------------------------------------
+	// Información
+	//--------------------------------------
+	/*	- posSprite[0] ---> Corresponde al sprite parado.
+	 * 	- posSprite[1] ---> Corresponde al sprite moverse.
+	 * 	- posSprite[2] ---> Corresponde al sprite del puño.
+	 * 	- posSprite[3] ---> Corresponde al sprite del ataque mediano.
+	 * 	- posSprite[4] ---> Corresponde al sprite parado.
+	 *  - posSprite[5] ---> Corresponde al sprite parado.
+	 *
+	 */
 
 	private AtaqueDistancia ataqueDistancia;
 	
@@ -214,8 +227,8 @@ public class Personaje {
 		if(quieto) {
 			// Se retorna un frame de la animacion del personaje parado
 			aMostrar = spriteQuieto();
-
 			if (posSprite[2] == 2) {
+				
 				posSprite[2] = 3;
 //				aMostrar = "data/Sprites/" + sprite + (direccion == IZQUIERDA? "/moverIzquierda": "/moverDerecha")+"/"+(posSprite[2])+ ".png";
 				rectangulo.setSize(new ImageIcon(aMostrar).getIconWidth(), new ImageIcon(aMostrar).getIconHeight());
@@ -362,8 +375,8 @@ public class Personaje {
 	public boolean colisionaron(int m) {
 
 		boolean buleano	= false;
-		rectangulo = new Rectangle(posX + m, posY, frame.getHeight(null), frame.getHeight(null));
-		buleano = rectangulo.intersects(adversario.darRectangulo());
+		Rectangle futuro = new Rectangle(posX + m, posY, frame.getHeight(null), frame.getHeight(null));
+		buleano = futuro.intersects(adversario.darRectangulo());
 
 		return buleano;
 	}
