@@ -318,7 +318,7 @@ public class Personaje {
 		posSprite[3]++;
 		quieto = false;
 
-		if(posSprite[3] == sprite.darTamanhos()[Sprite.MOVERCE] - 2) {
+		if(posSprite[3] == sprite.darTamanhos()[Sprite.ATAQUE_MEDIANO] - 1) {
 			AtaqueDistancia actual = ataqueDistancia;
 			if (ataqueDistancia == null) {
 				ataqueDistancia = new AtaqueDistancia(personaje, 1, direccion, posX + (100 * direccion) , posY);
@@ -326,7 +326,7 @@ public class Personaje {
 				agregarAtaqueDistancia(actual);
 			}
 		}
-		if (posSprite[3] > sprite.darTamanhos()[Sprite.MOVERCE] - 1) {
+		if (posSprite[3] > sprite.darTamanhos()[Sprite.ATAQUE_MEDIANO] - 1) {
 			posSprite[3] = 0;
 			quieto = true;
 		}
