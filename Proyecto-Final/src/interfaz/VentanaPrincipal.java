@@ -53,7 +53,7 @@ public class VentanaPrincipal extends JFrame{
 		
 		pSeleccionEscenario = new PanelSeleccionEscenario(this);
 		
-		pSeleccionJugador = new PanelSeleccionJugador();
+		pSeleccionJugador = new PanelSeleccionJugador(this,0);
 		
 //		pPruebas = new PanelPruebas(this);
 		
@@ -129,7 +129,7 @@ public class VentanaPrincipal extends JFrame{
 		repaint();
 	}
 	
-	public void agregarPanelJugador() {
+	public void agregarPanelJugador(int i) {
 		
 		panelAuxiliar.removeAll();
 		panelAuxiliar.add(pSeleccionJugador);

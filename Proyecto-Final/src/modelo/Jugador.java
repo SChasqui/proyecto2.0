@@ -52,12 +52,10 @@ public class Jugador {
 	//--------------------------------------
 	// Constructor
 	//--------------------------------------
-	public Jugador(String nombre) {
+	public Jugador(String nombre, String personaje) {
 		nickName = nombre;
 		puntos = 0;
-//		personajeActual = new Personaje("Beerus", 10);
-//		personajeActual = new Personaje("Bardock", 10);
-		personajeActual = new Personaje("Broly", 10);
+		personajeActual = new Personaje(personaje, 10);
 	}
 
 	//--------------------------------------

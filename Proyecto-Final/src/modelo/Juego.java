@@ -49,10 +49,6 @@ public class Juego {
 	 * Construlle un objeto de tipo Juego
 	 */
 	public Juego() {
-		jugador1 = new Jugador("Beta tester");
-		jugador2 = new Jugador("Beta tester 2");
-		jugador1.darPersonaje().setAdversario(jugador2.darPersonaje());
-		jugador2.darPersonaje().setAdversario(jugador1.darPersonaje());
 	}
 	
 	//--------------------------------------
@@ -82,7 +78,7 @@ public class Juego {
 	}
 	
 	public void agregarJugador(Jugador jugador) {
-		if (raiz != null) {
+		if (raiz == null) {
 			raiz = jugador;
 		}else {
 			agregarJugador(jugador, raiz);
@@ -104,6 +100,35 @@ public class Juego {
 			}
 		}
 	}
+	
+	public Jugador buscarJugador(String nickName, Jugador nodo) {
+		
+		if (nodo == null) {
+			return null;
+		}else if(nodo.darNickName().equals(nickName)) {
+			return nodo;
+		}else if(nodo.darNickName().compareTo(nickName) < 0){
+			return buscarJugador(nickName, nodo.darDerecha());
+		}else if(nodo.darNickName().compareTo(nickName) > 0) {
+			return buscarJugador(nickName, nodo.darIzquierda());
+		}
+		return null;
+	}
+	
+	public void agregarJugadores(String nickName, int jugador, String personaje) {
+		Jugador aux = buscarJugador(nickName, raiz);
+		if (aux == null) {
+			aux = new Jugador(nickName,personaje);
+			agregarJugador(aux);
+		}
+		if(jugador == 1){
+			jugador1 = aux;
+		}else if(jugador == 2){
+			jugador2 = aux;
+		}
+	}
+	
+	
 	
 	public String[] darFondos() {
 		return fondos;

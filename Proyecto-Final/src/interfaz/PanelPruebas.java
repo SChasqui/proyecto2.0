@@ -17,6 +17,8 @@ import hilos.HiloAnimaciones;
 import hilos.HiloAtaqueDistancia;
 import hilos.HiloPruebas;
 import modelo.AtaqueDistancia;
+import modelo.Jugador;
+import modelo.JugadorNoSeleccionadoException;
 
 /*
  * Clase que sirve para probar los métodos del modelo del mundo
@@ -62,6 +64,14 @@ public class PanelPruebas extends JDialog implements KeyListener {
 	public PanelPruebas(VentanaPrincipal v) {
 
 		ventana = v;
+		v.darJuego().agregarJugadores("Betta", 1 ,"Broly");
+		v.darJuego().agregarJugadores("Betta2", 2 ,"Bardock");
+		try {
+			v.darJuego().iniciarBatalla("nothing");
+		} catch (JugadorNoSeleccionadoException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		addKeyListener(this);
 		setVisible(true);
 		setLocationRelativeTo(v);

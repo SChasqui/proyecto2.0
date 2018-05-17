@@ -82,13 +82,13 @@ public class PanelMenuPrincipal extends JPanel implements MouseListener{
 		// Area de opcion de selecion jugador 1
 		//****************************************//
 		if (posX > 45 && posX < 625 && posY > 110 && posY < 190) {
-			ventana.agregarPanelJugador();
+			ventana.agregarPanelJugador(1);
 		}
 		//****************************************//
 		// Area de opcion de selecion jugador 2
 		//****************************************//
 		else if (posX > 45 && posX < 625 && posY > 195 && posY < 290) {
-			ventana.agregarPanelJugador();
+			ventana.agregarPanelJugador(2);
 		}
 		//****************************************
 		// Area de opcion de selecion jugador 
