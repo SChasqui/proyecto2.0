@@ -8,8 +8,8 @@ import java.util.ArrayList;
 import javax.swing.ImageIcon;
 
 public class Personaje {
-	
-	
+
+
 
 	//--------------------------------------
 	// Constantes---
@@ -98,7 +98,7 @@ public class Personaje {
 	 * boolean que denota el estado en el que se encuentra el personaje; true para quieto y false para cualquier otro movimiento
 	 */
 	private boolean quieto;
-	
+
 	//--------------------------------------
 	// Información
 	//--------------------------------------
@@ -112,7 +112,7 @@ public class Personaje {
 	 */
 
 	private AtaqueDistancia ataqueDistancia;
-	
+
 	private Sprite sprite;
 
 	//--------------------------------------
@@ -124,7 +124,7 @@ public class Personaje {
 		 * se inicializa el arreglo de imagenes de las posibles posiciones del personaje
 		 */
 		personaje = pSprite;
-		
+
 		sprite = new Sprite(pSprite);
 
 		/*
@@ -132,7 +132,7 @@ public class Personaje {
 		 */
 		this.precio = precio;
 
-		posX += 100;
+		posX += (int)(Math.random() * 1000);
 
 		rectangulo = new Rectangle (posX, posY, new ImageIcon(spriteQuieto()).getIconWidth(), new ImageIcon(spriteQuieto()).getIconHeight());
 
@@ -181,30 +181,31 @@ public class Personaje {
 	 * @param tecla - Corresponde a la representación Unicode de la tecla pulsada
 	 */
 	public void atacar(int tecla) {
-		posSprite[1] = 1;
+		posSprite[1] = 0;
 		quieto = false;
 	}
 
 	public void lanzarAtaqueDistante() {
-		posSprite[3] = 1;
+		posSprite[3] = 0;
 		quieto = false;
 	}
 
 	public void moverX(int mover) {
 
-		if(posX+mover >= 0 && posX+mover <=1200 && !colisionaron(mover)) {
+		direccion = mover>0? DERECHA:IZQUIERDA;
+
+		if(posX+mover >= 0 && posX+mover <=1200 && !colisionaronHorizontal(mover)) {
 
 			posX+=mover;
-			direccion = mover>0? DERECHA:IZQUIERDA;
 			rectangulo.setLocation(posX, posY);
 
-			posSprite[2] = posSprite[2] !=0? posSprite[2]:1;
+			posSprite[2] = posSprite[2] !=-1? posSprite[2]:0;
 			quieto = false;
 		}
 	}
 
 	public void moverY(int mover) {
-		if(posY+mover >=0 && posY+mover <= 600) {
+		if(posY+mover >=0 && posY+mover <= 600  && !colisionaronVertical(mover)) {
 
 			posY+=mover;
 			rectangulo.setLocation(posX, posY);
@@ -222,15 +223,15 @@ public class Personaje {
 
 	public void actualizar() {
 
-		Image aMostrar = new ImageIcon("data/Sprites/" + sprite + (direccion == IZQUIERDA? "/moverIzquierda": "/moverDerecha")+"/"+(posSprite[2])+".png").getImage();
+		Image aMostrar = frame;
 
 		if(quieto) {
 			// Se retorna un frame de la animacion del personaje parado
 			aMostrar = spriteQuieto();
 			if (posSprite[2] == 2) {
-				
+
 				posSprite[2] = 3;
-//				aMostrar = "data/Sprites/" + sprite + (direccion == IZQUIERDA? "/moverIzquierda": "/moverDerecha")+"/"+(posSprite[2])+ ".png";
+				//				aMostrar = "data/Sprites/" + sprite + (direccion == IZQUIERDA? "/moverIzquierda": "/moverDerecha")+"/"+(posSprite[2])+ ".png";
 				rectangulo.setSize(new ImageIcon(aMostrar).getIconWidth(), new ImageIcon(aMostrar).getIconHeight());
 			}
 
@@ -238,13 +239,13 @@ public class Personaje {
 			// Se reinician los frames de cada uno de los otros movimientos
 			//**************************************************************
 			for (int i = 1; i < posSprite.length; i++) {
-				posSprite[i]=0;
+				posSprite[i]=-1;
 			}
-		}else if(posSprite[1] != 0) {
+		}else if(posSprite[1] != -1) {
 			aMostrar = spritePuño();
-		}else if(posSprite[2] != 0) {
+		}else if(posSprite[2] != -1) {
 			aMostrar = spriteMovimiento();
-		}else if(posSprite[3] != 0) {
+		}else if(posSprite[3] != -1) {
 			aMostrar = spriteAtaqueMedDistancia();
 		}
 
@@ -254,7 +255,7 @@ public class Personaje {
 	public Image spriteQuieto() {
 
 		if(posSprite[0] == -1) {
-			posSprite[0] = 1;
+			posSprite[0] = 0;
 		}
 		else if(posSprite[0] < sprite.darTamanhos()[Sprite.PARADO] - 1) {
 			posSprite[0]++;
@@ -276,7 +277,7 @@ public class Personaje {
 		posSprite[1]++;
 		quieto = false;
 		if (posSprite[1] > sprite.darTamanhos()[Sprite.PUNHO]-1) {
-			posSprite[1] = 0;
+			posSprite[1] = -1;
 			quieto = true;
 		}
 
@@ -327,7 +328,7 @@ public class Personaje {
 			}
 		}
 		if (posSprite[3] > sprite.darTamanhos()[Sprite.ATAQUE_MEDIANO] - 1) {
-			posSprite[3] = 0;
+			posSprite[3] = -1;
 			quieto = true;
 		}
 
@@ -372,17 +373,52 @@ public class Personaje {
 		return atacando;
 	}
 
-	public boolean colisionaron(int m) {
+	public boolean colisionaronHorizontal(int movimiento) {
 
 		boolean buleano	= false;
-		Rectangle futuro = new Rectangle(posX + m, posY, frame.getHeight(null), frame.getHeight(null));
-		buleano = futuro.intersects(adversario.darRectangulo());
+
+		if (direccion == DERECHA && posX > adversario.darPosX()) {
+			buleano = false;
+		}
+		else if (direccion == IZQUIERDA && posX < adversario.darPosX()) {
+			buleano = false;
+		}else {
+
+			Image temp = sprite.spriteQuieto(posSprite[0], direccion);
+			Rectangle futuro = new Rectangle(posX + movimiento, posY, temp.getWidth(null), temp.getHeight(null));
+			temp = adversario.spriteQuieto();
+			Rectangle futuroAdversario = new Rectangle(adversario.darPosX(), adversario.darPosY(), temp.getWidth(null), temp.getHeight(null));
+			buleano = futuro.intersects(futuroAdversario);
+		}
 
 		return buleano;
+	}
+
+	private boolean colisionaronVertical(int movimiento) {
+
+		boolean buleano	= false;
+
+		if (movimiento > 0 && posY > adversario.darPosY()) {
+			buleano = false;
+		}
+		else if (movimiento < 0 && posY < adversario.darPosY()) {
+			buleano = false;
+		}else {
+
+			Image temp = sprite.spriteQuieto(posSprite[0], direccion);
+			Rectangle futuro = new Rectangle(posX, posY + movimiento, temp.getWidth(null), temp.getHeight(null));
+			temp = adversario.spriteQuieto();
+			Rectangle futuroAdversario = new Rectangle(adversario.darPosX(), adversario.darPosY(), temp.getWidth(null), temp.getHeight(null));
+			buleano = futuro.intersects(futuroAdversario);
+		}
+
+		return buleano;
+
 	}
 
 	public void setAdversario(Personaje adversario) {
 		this.adversario = adversario;
 	}
+
 
 }

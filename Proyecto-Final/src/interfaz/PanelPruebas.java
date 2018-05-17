@@ -57,6 +57,8 @@ public class PanelPruebas extends JDialog implements KeyListener {
 	private Rectangle kickBoxAtaque;
 	private Rectangle kickBoxPj1;
 	private Rectangle kickBoxPj2;
+	
+	private boolean modificando;
 
 	// --------------------------------------
 	// Constructor
@@ -137,7 +139,9 @@ public class PanelPruebas extends JDialog implements KeyListener {
 
 	@Override
 	public synchronized void keyPressed(KeyEvent e) {
+		modificando = true;
 		pressed.add(e.getKeyCode());
+		modificando = false;
 	}
 
 	public void mover() {
@@ -188,7 +192,9 @@ public class PanelPruebas extends JDialog implements KeyListener {
 	
 	@Override
 	public synchronized void keyReleased(KeyEvent e) {
+		modificando = true;
 		pressed.remove(e.getKeyCode());
+		modificando = false;
 
 		int c = e.getKeyCode();
 
@@ -207,5 +213,9 @@ public class PanelPruebas extends JDialog implements KeyListener {
 	@Override
 	public void keyTyped(KeyEvent e) {
 	/* Not used */ }
+	
+	public boolean modificando(){
+		return modificando;
+	}
 
 }
