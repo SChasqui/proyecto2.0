@@ -18,6 +18,16 @@ public class Jugador {
 	 */
 
 	private String nickName;
+	
+	/*
+	 * raiz derecha
+	 */
+	private Jugador derecha;
+	
+	/*
+	 * raiz izquierda
+	 */
+	private Jugador izquierda;
 
 	/*
 	 * Arreglo de personajes desbloqueados por el jugador
@@ -60,6 +70,22 @@ public class Jugador {
 	
 	public Personaje darPersonaje() {
 		return personajeActual;
+	}
+
+	public Jugador darDerecha() {
+		return derecha;
+	}
+
+	public Jugador darIzquierda() {
+		return izquierda;
+	}
+
+	public void cambiarDerecha(Jugador derecha) {
+		this.derecha = derecha;
+	}
+
+	public void cambiarIzquierda(Jugador izquierda) {
+		this.izquierda = izquierda;
 	}
 	
 }

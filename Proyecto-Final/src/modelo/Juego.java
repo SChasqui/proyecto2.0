@@ -18,7 +18,7 @@ public class Juego {
 	/*
 	 * Arraylist de los jugadores que han usado el juego
 	 */
-	private ArrayList<Jugador> jugadores = new ArrayList<Jugador>();
+	private Jugador raiz;
 
 	/*
 	 * Batalla que se esa efectuando en ejecucion
@@ -79,6 +79,30 @@ public class Juego {
 	
 	public Jugador darJugador2() {
 		return jugador2;
+	}
+	
+	public void agregarJugador(Jugador jugador) {
+		if (raiz != null) {
+			raiz = jugador;
+		}else {
+			agregarJugador(jugador, raiz);
+		}
+	}
+	
+	public void agregarJugador(Jugador jugador, Jugador nodo) {
+		if (nodo.darNickName().compareTo(jugador.darNickName()) < 0) {
+			if (nodo.darDerecha() == null) {
+				nodo.cambiarDerecha(jugador);
+			}else {
+				agregarJugador(jugador, nodo.darDerecha());
+			}
+		}else {
+			if (nodo.darIzquierda() == null) {
+				nodo.cambiarIzquierda(jugador);
+			}else {
+				agregarJugador(jugador, nodo.darIzquierda());
+			}
+		}
 	}
 	
 	public String[] darFondos() {
