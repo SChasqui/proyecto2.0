@@ -50,7 +50,7 @@ public class Jugador {
 	public Jugador(String nombre, String personaje, int num) {
 		nickName = nombre;
 		puntos = 0;
-		personajeActual = new Personaje(personaje, 10, num);
+		desBloqueados = new Personaje(personaje, Personaje.precios[num], num);
 	}
 
 	//--------------------------------------

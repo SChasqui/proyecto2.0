@@ -137,4 +137,12 @@ public class VentanaPrincipal extends JFrame{
 		pSeleccionJugador.repaint();
 		repaint();
 	}
+	
+	public void agregarPanelMenuPrincipal() {
+		panelAuxiliar.removeAll();
+		panelAuxiliar.add(menuPrincipal);
+		pSeleccionJugador.updateUI();
+		pSeleccionJugador.repaint();
+		repaint();
+	}
 }

@@ -6,7 +6,10 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+
+import modelo.NoDesbloqueadoException;
 
 public class PanelSeleccionJugador extends JPanel implements MouseListener {
 
@@ -35,7 +38,7 @@ public class PanelSeleccionJugador extends JPanel implements MouseListener {
 		g.drawImage(fondo, 0, 0,null);
 
 		Image personaje = new ImageIcon("data/vistaPreviaPersonajes/" +ventana.darJuego().daPersonajes()[index]+ ".png").getImage();
-		g.drawImage(personaje, 350, 110,null);
+		g.drawImage(personaje, 500, 250,null);
 
 		Image flecha = new ImageIcon("data/fondo/flechaDerecha.png").getImage();
 		g.drawImage(flecha, 890, 310, null);
@@ -65,10 +68,22 @@ public class PanelSeleccionJugador extends JPanel implements MouseListener {
 
 		//Cuando oprima sobre la imagen
 
-		if(posX > 340 && posX < 625 && posY > 110 && posY < 1000) {
-
-			System.out.println("Lol");
-
+		if(posX > 500 && posX < 755 && posY > 250 && posY < 505) {
+			
+			try {
+				String nombre = JOptionPane.showInputDialog("Incerte Su NickName");
+				String personaje = ventana.darJuego().daPersonajes()[index];
+				ventana.darJuego().agregarJugadores(nombre, numJugador, personaje, index);
+				if (numJugador == 1) {
+					ventana.darJuego().darJugador1().seleccionarPersonaje(personaje, index);
+				}else if (numJugador == 2) {
+					ventana.darJuego().darJugador2().seleccionarPersonaje(personaje, index);
+				}
+			}
+			catch(NoDesbloqueadoException e1) {
+				
+			}
+			
 		}
 
 		/*

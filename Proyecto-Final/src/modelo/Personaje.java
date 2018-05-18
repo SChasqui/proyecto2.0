@@ -68,7 +68,7 @@ public class Personaje {
 	 * [8] ----> Kid_Buu --> $1000P
 	 * [9] ----> Vegeta --> $900P 
 	 */
-	public static final double[] precios = {800,1000,1000,900,1000,800,900,1000,1000,900};
+	public static final int[] precios = {800,1000,1000,900,1000,800,900,1000,1000,900};
 
 	//--------------------------------------
 	// Atributos
