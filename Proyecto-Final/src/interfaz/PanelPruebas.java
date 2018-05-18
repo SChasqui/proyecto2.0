@@ -1,6 +1,7 @@
 package interfaz;
 
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Rectangle;
@@ -53,11 +54,11 @@ public class PanelPruebas extends JDialog implements KeyListener {
 	 * Relación con la ventana principal
 	 */
 	private VentanaPrincipal ventana;
-	
+
 	private Rectangle kickBoxAtaque;
 	private Rectangle kickBoxPj1;
 	private Rectangle kickBoxPj2;
-	
+
 	private boolean modificando;
 
 	// --------------------------------------
@@ -66,8 +67,8 @@ public class PanelPruebas extends JDialog implements KeyListener {
 	public PanelPruebas(VentanaPrincipal v) {
 
 		ventana = v;
-		v.darJuego().agregarJugadores("Betta", 1 ,"Frieza");
-		v.darJuego().agregarJugadores("Betta2", 2 ,"Beerus");
+		v.darJuego().agregarJugadores("Betta", 1 ,"Bardock",0);
+		v.darJuego().agregarJugadores("Betta2", 2 ,"Beerus",1);
 		try {
 			v.darJuego().iniciarBatalla("nothing");
 		} catch (JugadorNoSeleccionadoException e) {
@@ -84,15 +85,16 @@ public class PanelPruebas extends JDialog implements KeyListener {
 
 		HiloAtaqueDistancia hD = new HiloAtaqueDistancia(this, ventana.darJuego());
 		hD.start();
-		HiloAnimaciones hA = new HiloAnimaciones(ventana.darJuego());
-		hA.start();
+		HiloAnimaciones hA1 = new HiloAnimaciones(ventana.darJuego().darJugador1(),this,1);
+		hA1.start();
+		HiloAnimaciones hA2 = new HiloAnimaciones(ventana.darJuego().darJugador2(),this,2);
+		hA2.start();
 	}
 
 	@Override
 	public void paint(Graphics g) {
 
-		ImageIcon fondo = new ImageIcon("data/fondoEcenario/F03.png");
-		g.drawImage(fondo.getImage(), 0, 0, null);
+		pintarFondo(g);
 
 		Image sprite = ventana.darJuego().darJugador1().darPersonaje().darSprite();
 		g.drawImage(sprite, ventana.darJuego().darJugador1().darPersonaje().darPosX(),
@@ -103,37 +105,45 @@ public class PanelPruebas extends JDialog implements KeyListener {
 				ventana.darJuego().darJugador2().darPersonaje().darPosY(), null);
 
 		AtaqueDistancia a = ventana.darJuego().darJugador1().darPersonaje().darAtaqueDistancia();
-		
-		
+
+
 		while (a != null) {
 			ImageIcon spriteAtaque = new ImageIcon(a.darSprite());
 			g.drawImage(spriteAtaque.getImage(), a.darPosX(), a.darPosY(), null);
-			
-			kickBoxAtaque =  a.darKickBox();
-			g.drawRect(kickBoxAtaque.x, kickBoxAtaque.y, kickBoxAtaque.width, kickBoxAtaque.height);
-			
 			a = a.darSiguiente();
-			
 		}
 
 		a = ventana.darJuego().darJugador2().darPersonaje().darAtaqueDistancia();
 		while (a != null) {
 			ImageIcon spriteAtaque = new ImageIcon(a.darSprite());
 			g.drawImage(spriteAtaque.getImage(), a.darPosX(), a.darPosY(), null);
-			
-			kickBoxAtaque =  a.darKickBox();
-			g.drawRect(kickBoxAtaque.x, kickBoxAtaque.y, kickBoxAtaque.width, kickBoxAtaque.height);
-			
 			a = a.darSiguiente();
-			
 		}
+		pintarBarras(g);
+	}
+
+	public void pintarFondo(Graphics g) {
+		ImageIcon fondo = new ImageIcon("data/fondoEcenario/F03.png");
+		g.drawImage(fondo.getImage(), 0, 0, null);
+	}
+
+	public void pintarBarras(Graphics g) {
+
+		g.setColor(Color.red);
+		// Pintar vida de jugador 1
+		g.drawRect(30, 50, 500, 30);
+		g.fillRect(30, 50, ventana.darJuego().darJugador1().darSaludActual(), 30);
+		// Pintar vida Jugador 2
+		g.drawRect(700, 50, 500, 30);
+		g.fillRect(700, 50, ventana.darJuego().darJugador2().darSaludActual(), 30);
 		
-		kickBoxPj1 = ventana.darJuego().darJugador1().darPersonaje().darRectangulo();
-		g.drawRect(kickBoxPj1.x, kickBoxPj1.y, kickBoxPj1.width, kickBoxPj1.height);
-		
-		kickBoxPj2 = ventana.darJuego().darJugador2().darPersonaje().darRectangulo();
-		g.drawRect(kickBoxPj2.x, kickBoxPj2.y, kickBoxPj2.width, kickBoxPj2.height);
-		
+		g.setColor(Color.BLUE);
+		//Pintar Ki Jugador 1
+		g.drawRect(30, 80, 500, 30);
+		g.fillRect(30, 80, ventana.darJuego().darJugador1().darKiActual(), 30);
+		//Pintar Ki Jugador 2
+		g.drawRect(700, 80, 500, 30);
+		g.fillRect(700, 80, ventana.darJuego().darJugador2().darKiActual(), 30);
 
 	}
 
@@ -144,17 +154,16 @@ public class PanelPruebas extends JDialog implements KeyListener {
 		modificando = false;
 	}
 
-	public void mover() {
-		
+	public void moverPersonaje1() {
+
 		if(!ventana.darJuego().darJugador1().darPersonaje().atacando()) {
 			ventana.darJuego().darJugador1().darPersonaje().quietotrue();
 		}
-		if(!ventana.darJuego().darJugador2().darPersonaje().atacando()) {
-			ventana.darJuego().darJugador2().darPersonaje().quietotrue();
-		}
-		
-		if (pressed.size() > 0) {
-			for (int c : pressed) {
+
+		Set<Integer> temp = new HashSet<Integer>(pressed);
+
+		if (temp.size() > 0) {
+			for (int c : temp) {
 
 				if (c == FLECHA_IZQUIERDA) {
 					ventana.darJuego().darJugador1().darPersonaje().moverX(-12);
@@ -170,7 +179,24 @@ public class PanelPruebas extends JDialog implements KeyListener {
 					ventana.darJuego().darJugador1().darPersonaje().lanzarAtaqueDistante();
 
 				}
-				else if(c == A) {
+
+			}
+		}
+
+	}
+
+	public void moverPersonaje2() {
+
+		if(!ventana.darJuego().darJugador2().darPersonaje().atacando()) {
+			ventana.darJuego().darJugador2().darPersonaje().quietotrue();
+		}
+
+		Set<Integer> temp = new HashSet<Integer>(pressed);
+
+		if (temp.size() > 0) {
+			for (int c : temp) {
+
+				if(c == A) {
 					ventana.darJuego().darJugador2().darPersonaje().moverX(-12);
 				}else if(c == S) {
 					ventana.darJuego().darJugador2().darPersonaje().moverY(-12);
@@ -187,9 +213,9 @@ public class PanelPruebas extends JDialog implements KeyListener {
 
 			}
 		}
-		
+
 	}
-	
+
 	@Override
 	public synchronized void keyReleased(KeyEvent e) {
 		modificando = true;
@@ -213,7 +239,7 @@ public class PanelPruebas extends JDialog implements KeyListener {
 	@Override
 	public void keyTyped(KeyEvent e) {
 	/* Not used */ }
-	
+
 	public boolean modificando(){
 		return modificando;
 	}

@@ -12,16 +12,57 @@ public class Personaje {
 
 
 	//--------------------------------------
-	// Constantes---
+	// Constantes
 	//--------------------------------------
 
+	//****** Constantes de direccion*********//
 	public static final int IZQUIERDA = -1;
-
 	public static final int DERECHA = 1;
-
+	
+	//***** Constantes de Atributos *************//
+	public static final int VIDA_BASE = 300;
+	public static final int KI_BASE = 300;
+	public static final int VELOCIDAD_BASE = 160;
+	public static final int RESISTENCIA_BASE = 100;
+	public static final int FUERZA_BASE = 100;
+	
+	/*
+	 * Informacion
+	 * [0][j] ----> Bardock --> 10P
+	 * [1][j] ----> Beerus --> 12P
+	 * [2][j] ----> Broly --> 12P
+	 * [3][j] ----> Frieza --> 11P
+	 * [4][j] ----> GohanSSJ_Kid --> 12P
+	 * [5][j] ----> Goku --> 10P
+	 * [6][j] ----> Goku_Blue --> 11P
+	 * [7][j] ----> Goku_Red --> 12P
+	 * [8][j] ----> Kid_Buu --> 12P
+	 * [9][j] ----> Vegeta --> 11P 
+	 * 
+	 *===============================================================*
+	 *
+	 * [i][0] ----> multiplicador de Vida
+	 * [i][1] ----> multiplicador de Ki
+	 * [i][2] ----> multiplicador de Velocidad
+	 * [i][3] ----> multiplicador de Fuerza
+	 * [i][4] ----> multiplicador de Resistencia
+	 * La suma de los multiplicadores da entre 10 y 12 puntos de habilidad para cada personaje
+	 */
+	
+	public static final double[][] MATRIZ_DE_MULTIPLICADORES= {/*Bardock*/{2,2,2.4,1.8,1.8},
+			/*Beerus*/{2.3,2.5,2.7,2.4,2.1}, /*Broly*/{3,2.5,1.5,2.5,2.5}, /*Frieza*/{1.6,2.5,2.5,2.5,1.9},
+			/*GohanSSJ_Kid*/{1.6,2.5,2.5,2.5,2.9}, /*Goku*/{1.5,2,2.5,2,2}, 
+			/*Goku_Blue*/{1.7,2.1,2.7,2.3,2.2}, /*Goku_Red*/{2.1,2.6,2.7,2.6,2},
+			/*Kid_Buu*/{2.5,2,2.3,2.6,2.6}, /*Vegeta*/{2.5,2,2,2.5,2} };
+	
 	//--------------------------------------
 	// Atributos
 	//--------------------------------------
+	
+	/*
+	 * indice del Personaje en la matriz de multiplicadores
+	 */
+	private int indicePersonaje;
 
 	/*
 	 * boolean que representa si esta atacando o no
@@ -62,6 +103,21 @@ public class Personaje {
 	 * Es la salud del personaje
 	 */
 	private int salud;
+	
+	/*
+	 * Resistencia del personaje
+	 */
+	private int resistencia;
+	
+	/*
+	 * Velocidad del Persoaneje
+	 */
+	private int velocidad;
+	
+	/*
+	 * Fuerza del Personaje
+	 */
+	private int fuerza;
 
 	/*
 	 * Lista de ataque es de un personaje
@@ -118,7 +174,9 @@ public class Personaje {
 	//--------------------------------------
 	// Constructor
 	//--------------------------------------
-	public Personaje(String pSprite, int precio) {
+	public Personaje(String pSprite, int precio, int indice) {
+		
+		indicePersonaje = indice;
 
 		/*
 		 * se inicializa el arreglo de imagenes de las posibles posiciones del personaje
@@ -138,6 +196,16 @@ public class Personaje {
 
 		quieto = true;
 
+		salud = (int) (VIDA_BASE * MATRIZ_DE_MULTIPLICADORES[indicePersonaje][0]);
+		
+		ki = (int) (KI_BASE * MATRIZ_DE_MULTIPLICADORES[indicePersonaje][1]);
+		
+		velocidad = (int) (VELOCIDAD_BASE/ MATRIZ_DE_MULTIPLICADORES[indicePersonaje][2]);
+		
+		fuerza = (int) (FUERZA_BASE * MATRIZ_DE_MULTIPLICADORES[indicePersonaje][3]);
+		
+		resistencia = (int) (RESISTENCIA_BASE * MATRIZ_DE_MULTIPLICADORES[indicePersonaje][4]);
+		
 	}
 
 	//--------------------------------------
@@ -323,7 +391,8 @@ public class Personaje {
 			AtaqueDistancia actual = ataqueDistancia;
 			if (ataqueDistancia == null) {
 				ataqueDistancia = new AtaqueDistancia(personaje, 1, direccion, posX + (100 * direccion) , posY);
-			}else {
+			}else if(ki - 20 > 0){
+				ki -= 20;
 				agregarAtaqueDistancia(actual);
 			}
 		}
@@ -419,6 +488,25 @@ public class Personaje {
 	public void setAdversario(Personaje adversario) {
 		this.adversario = adversario;
 	}
+	
+	public int darSalud() {
+		return salud;
+	}
+	
+	public int darKI() {
+		return ki;
+	}
 
+	public int darVelocidad() {
+		return velocidad;
+	}
+	
+	public int darIndicePersonaje() {
+		return indicePersonaje;
+	}
+	
+	public void recuperarKi() {
+		ki++;
+	}
 
 }

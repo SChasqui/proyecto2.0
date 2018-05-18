@@ -52,10 +52,10 @@ public class Jugador {
 	//--------------------------------------
 	// Constructor
 	//--------------------------------------
-	public Jugador(String nombre, String personaje) {
+	public Jugador(String nombre, String personaje, int num) {
 		nickName = nombre;
 		puntos = 0;
-		personajeActual = new Personaje(personaje, 10);
+		personajeActual = new Personaje(personaje, 10, num);
 	}
 
 	//--------------------------------------
@@ -84,6 +84,22 @@ public class Jugador {
 
 	public void cambiarIzquierda(Jugador izquierda) {
 		this.izquierda = izquierda;
+	}
+	
+	public int darSaludMaxima() {
+		return (int) (Personaje.VIDA_BASE*Personaje.MATRIZ_DE_MULTIPLICADORES[personajeActual.darIndicePersonaje()][0]);
+	}
+	
+	public int darSaludActual() {
+		return (personajeActual.darSalud() / darSaludMaxima()) * 500;
+	}
+	
+	public int darKiMaximo() {
+		return (int) (Personaje.KI_BASE*Personaje.MATRIZ_DE_MULTIPLICADORES[personajeActual.darIndicePersonaje()][1]);
+	}
+	
+	public int darKiActual() {
+		return (int) (((double)personajeActual.darKI() / darKiMaximo()) * 500);
 	}
 	
 }

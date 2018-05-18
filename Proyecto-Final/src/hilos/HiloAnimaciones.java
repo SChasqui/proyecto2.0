@@ -1,15 +1,20 @@
 package hilos;
 
-import modelo.Juego;
+import interfaz.PanelPruebas;
+import modelo.Jugador;
 
 public class HiloAnimaciones extends Thread {
 	
-	Juego juego;
+	private Jugador jugador;
+	private PanelPruebas panel;
+	private int personaje;
 	
-	public HiloAnimaciones(Juego j) {
+	
+	public HiloAnimaciones(Jugador j, PanelPruebas p, int personaje) {
 
-		juego = j;
-		
+		jugador = j;
+		panel = p;
+		this.personaje = personaje;
 	}
 	
 	@Override
@@ -17,12 +22,18 @@ public class HiloAnimaciones extends Thread {
 
 		while (true) {
 
-			if (juego.darJugador2() != null && juego.darJugador2().darPersonaje() != null) {
-				juego.darJugador2().darPersonaje().actualizar();
-			}
-			if (juego.darJugador1() != null && juego.darJugador1().darPersonaje() != null) {
-				juego.darJugador1().darPersonaje().actualizar();
-			}
+				jugador.darPersonaje().actualizar();
+				if (!panel.modificando()) {
+					if (personaje == 1) {
+						panel.moverPersonaje1();
+					}else {
+						panel.moverPersonaje2();
+					}
+				}
+				if ((jugador.darKiActual() / 500) * jugador.darKiMaximo() != jugador.darKiMaximo()) {
+					jugador.darPersonaje().recuperarKi();
+				}
+			
 			
 			try {
 				sleep(83);

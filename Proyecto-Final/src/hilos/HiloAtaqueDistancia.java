@@ -18,10 +18,6 @@ public class HiloAtaqueDistancia extends Thread{
 		while(true) {
 			
 			
-			if (!pPruebas.modificando()) {
-				pPruebas.mover();
-			}
-			
 			AtaqueDistancia actualUno = miJuego.darJugador1().darPersonaje().darAtaqueDistancia();
 			AtaqueDistancia actualDos = miJuego.darJugador2().darPersonaje().darAtaqueDistancia();
 			

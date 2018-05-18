@@ -115,10 +115,10 @@ public class Juego {
 		return null;
 	}
 	
-	public void agregarJugadores(String nickName, int jugador, String personaje) {
+	public void agregarJugadores(String nickName, int jugador, String personaje, int num) {
 		Jugador aux = buscarJugador(nickName, raiz);
 		if (aux == null) {
-			aux = new Jugador(nickName,personaje);
+			aux = new Jugador(nickName,personaje, num);
 			agregarJugador(aux);
 		}
 		if(jugador == 1){
