@@ -128,7 +128,7 @@ public class PanelPruebas extends JDialog implements KeyListener {
 	}
 
 	public void pintarFondo(Graphics g) {
-		ImageIcon fondo = new ImageIcon("data/fondoEcenario/escenario1.jpg");
+		ImageIcon fondo = new ImageIcon("data/fondoEscenario/escenario1.png");
 		g.drawImage(fondo.getImage(), 0, 0, null);
 	}
 
