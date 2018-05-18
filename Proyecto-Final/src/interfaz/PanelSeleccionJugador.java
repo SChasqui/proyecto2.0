@@ -84,6 +84,8 @@ public class PanelSeleccionJugador extends JPanel implements MouseListener {
 				
 			}
 			
+			ventana.agregarPanelMenuPrincipal();
+			
 		}
 
 		/*
