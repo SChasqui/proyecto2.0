@@ -76,7 +76,6 @@ public class Juego {
 	 * Construlle un objeto de tipo Juego
 	 */
 	public Juego() {
-//		fondoActual = fondos[0];
 	}
 	
 	//--------------------------------------
@@ -109,8 +108,11 @@ public class Juego {
 		return darJugadorActual();
 	}
 	
+	public String darFondoActual() {
+		return fondoActual;
+	}
 	public void cambiarFondoActual(int nFondo) {
-		fondoActual = fondos[nFondo+1];
+		fondoActual = fondos[nFondo-1];
 	}
 //	public void avanzarFondoActual() {
 //		int index = -1;

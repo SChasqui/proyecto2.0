@@ -21,7 +21,7 @@ public class PanelSeleccionEscenario extends JPanel implements MouseListener{
 		
 		setVisible(true);
 		this.ventana = ventana;
-		escenarioActual = 0;
+		escenarioActual = 1;
 		fondos =  ventana.darJuego().darFondos();
 		addMouseListener(this);
 		
@@ -34,8 +34,8 @@ public class PanelSeleccionEscenario extends JPanel implements MouseListener{
 		Image fondo = new ImageIcon("data/fondo/fondoEscenarios.jpg").getImage();
 		g.drawImage(fondo, 0, 0,null);
 		
-		Image escenario = new ImageIcon("data/fondo/fondoEscenario/escenario" +escenarioActual + ".png").getImage();
-		g.drawImage(escenario, 0, 0,null);
+
+		pintarFondos(g);
 		
 		Image botonIzquierda = new ImageIcon("data/fondo/flechaIzquierda.png").getImage();
 		g.drawImage(botonIzquierda, 90, 420, null);
@@ -43,13 +43,16 @@ public class PanelSeleccionEscenario extends JPanel implements MouseListener{
 		Image botonDerecha = new ImageIcon("data/fondo/flechaDerecha.png").getImage();
 		g.drawImage(botonDerecha, 420, 420, null);
 		
-		pintarFondos(g);
 	
 	}
 	public void pintarFondos(Graphics g) {
 		
-		ImageIcon iconPatter = (new ImageIcon(fondos[escenarioActual]));
-		g.drawImage(iconPatter.getImage(),120,130,380,270,null);
+		Image escenario = new ImageIcon("data/fondoEscenario/escenario" +escenarioActual + ".png").getImage();
+		System.out.println("data/fondoEscenario/escenario" +escenarioActual + ".png");
+		g.drawImage(escenario, 0, 0,null);
+		
+//		ImageIcon iconPatter = (new ImageIcon(fondos[escenarioActual]));
+//		g.drawImage(iconPatter.getImage(),120,130,380,270,null);
 		
 	}
 
@@ -65,15 +68,21 @@ public class PanelSeleccionEscenario extends JPanel implements MouseListener{
 		System.out.println("PosX:  " + posX + "  PosY:    " + posY);
 		
 		if (posX > 93 && posX < 204 && posY > 430 && posY < 563) {
-			escenarioActual++;
-			if(escenarioActual == fondos.length) {
-				
-				escenarioActual = 0;
-			}
+			if((escenarioActual -1 > 0)) {escenarioActual--;}
+			else { escenarioActual = fondos.length;}
+			
 			repaint();
 		}else if(posX > 420 && posX < 540 && posY > 480 && posY < 564) {
-			System.out.println();
+			
+			escenarioActual++;
+			if(escenarioActual  > fondos.length) {escenarioActual = 1;}
+			
+			repaint();
+		}else {
+			ventana.darJuego().cambiarFondoActual(escenarioActual);
+			System.out.println(ventana.darJuego().darFondoActual());
 		}
+		
 	}
 
 
@@ -88,7 +97,6 @@ public class PanelSeleccionEscenario extends JPanel implements MouseListener{
 	@Override
 	public void mouseExited(MouseEvent arg0) {
 		// TODO Auto-generated method stub
-		
 	}
 
 
