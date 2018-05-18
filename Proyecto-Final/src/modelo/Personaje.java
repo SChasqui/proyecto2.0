@@ -20,7 +20,7 @@ public class Personaje {
 	public static final int DERECHA = 1;
 	
 	//***** Constantes de Atributos *************//
-	public static final int VIDA_BASE = 300;
+	public static final int VIDA_BASE = 1000;
 	public static final int KI_BASE = 300;
 	public static final int VELOCIDAD_BASE = 160;
 	public static final int RESISTENCIA_BASE = 100;
@@ -28,16 +28,16 @@ public class Personaje {
 	
 	/*
 	 * Informacion
-	 * [0][j] ----> Bardock --> 10P
-	 * [1][j] ----> Beerus --> 12P
-	 * [2][j] ----> Broly --> 12P
-	 * [3][j] ----> Frieza --> 11P
-	 * [4][j] ----> GohanSSJ_Kid --> 12P
-	 * [5][j] ----> Goku --> 10P
-	 * [6][j] ----> Goku_Blue --> 11P
-	 * [7][j] ----> Goku_Red --> 12P
-	 * [8][j] ----> Kid_Buu --> 12P
-	 * [9][j] ----> Vegeta --> 11P 
+	 * [0][j] ----> Bardock --> 800P
+	 * [1][j] ----> Beerus --> 1000P
+	 * [2][j] ----> Broly --> 1000P
+	 * [3][j] ----> Frieza --> 900P
+	 * [4][j] ----> GohanSSJ_Kid --> 1000P
+	 * [5][j] ----> Goku --> 800P
+	 * [6][j] ----> Goku_Blue --> 900P
+	 * [7][j] ----> Goku_Red --> 1000P
+	 * [8][j] ----> Kid_Buu --> 1000P
+	 * [9][j] ----> Vegeta --> 900P 
 	 * 
 	 *===============================================================*
 	 *
@@ -46,14 +46,15 @@ public class Personaje {
 	 * [i][2] ----> multiplicador de Velocidad
 	 * [i][3] ----> multiplicador de Fuerza
 	 * [i][4] ----> multiplicador de Resistencia
-	 * La suma de los multiplicadores da entre 10 y 12 puntos de habilidad para cada personaje
+	 * La suma de los multiplicadores por su respectivo
+	 * atributo base da entre 800 y 1000 puntos de habilidad para cada personaje
 	 */
 	
-	public static final double[][] MATRIZ_DE_MULTIPLICADORES= {/*Bardock*/{2,2,2.4,1.8,1.8},
-			/*Beerus*/{2.3,2.5,2.7,2.4,2.1}, /*Broly*/{3,2.5,1.5,2.5,2.5}, /*Frieza*/{1.6,2.5,2.5,2.5,1.9},
-			/*GohanSSJ_Kid*/{1.6,2.5,2.5,2.5,2.9}, /*Goku*/{1.5,2,2.5,2,2}, 
-			/*Goku_Blue*/{1.7,2.1,2.7,2.3,2.2}, /*Goku_Red*/{2.1,2.6,2.7,2.6,2},
-			/*Kid_Buu*/{2.5,2,2.3,2.6,2.6}, /*Vegeta*/{2.5,2,2,2.5,2} };
+	public static final double[][] MATRIZ_DE_MULTIPLICADORES= {/*Bardock*/{1,1,1.5,2,1.2},
+			/*Beerus*/{1,1.4,1.6,1.6,1.2}, /*Broly*/{1.6,1.1,0.6,2,1}, /*Frieza*/{1,1.3,1.3,1.2,1.09},
+			/*GohanSSJ_Kid*/{1.2,1.2,1.4,1.3,1.23}, /*Goku*/{1,1,1.3,1.2,0.99}, 
+			/*Goku_Blue*/{1.1,1.1,1.3,1.4,1.29}, /*Goku_Red*/{1.4,1.2,1.4,1.4,1.33},
+			/*Kid_Buu*/{1.4,1.2,1.4,1.5,1.23}, /*Vegeta*/{1.2,1.1,1.3,1.3,1.19} };
 	
 	//--------------------------------------
 	// Atributos
@@ -191,6 +192,7 @@ public class Personaje {
 		this.precio = precio;
 
 		posX += (int)(Math.random() * 1000);
+		posY += (int)(Math.random() * 500);
 
 		rectangulo = new Rectangle (posX, posY, new ImageIcon(spriteQuieto()).getIconWidth(), new ImageIcon(spriteQuieto()).getIconHeight());
 
@@ -259,6 +261,12 @@ public class Personaje {
 	}
 
 	public void moverX(int mover) {
+		
+		System.out.println(mover);
+		
+		mover *= 200/(double)velocidad;
+		
+		System.out.println(mover);
 
 		direccion = mover>0? DERECHA:IZQUIERDA;
 
@@ -273,6 +281,9 @@ public class Personaje {
 	}
 
 	public void moverY(int mover) {
+		
+		mover *= 120/(double)velocidad;
+		
 		if(posY+mover >=0 && posY+mover <= 600  && !colisionaronVertical(mover)) {
 
 			posY+=mover;
@@ -345,6 +356,11 @@ public class Personaje {
 		posSprite[1]++;
 		quieto = false;
 		if (posSprite[1] > sprite.darTamanhos()[Sprite.PUNHO]-1) {
+			if (colisionaronHorizontal(direccion * 12)) {
+				int daño = fuerza - adversario.darResistencia();
+				System.out.println(daño);
+				adversario.restarVida(daño > 0? daño : 10);
+			}
 			posSprite[1] = -1;
 			quieto = true;
 		}
@@ -507,6 +523,14 @@ public class Personaje {
 	
 	public void recuperarKi() {
 		ki++;
+	}
+	
+	public void restarVida(int vida) {
+		salud -= vida;
+	}
+	
+	public int darResistencia() {
+		return resistencia;
 	}
 
 }

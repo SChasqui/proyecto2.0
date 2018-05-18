@@ -67,8 +67,8 @@ public class PanelPruebas extends JDialog implements KeyListener {
 	public PanelPruebas(VentanaPrincipal v) {
 
 		ventana = v;
-		v.darJuego().agregarJugadores("Betta", 1 ,"Bardock",0);
-		v.darJuego().agregarJugadores("Betta2", 2 ,"Beerus",1);
+		v.darJuego().agregarJugadores("Betta", 1 ,"Beerus",1);
+		v.darJuego().agregarJugadores("Betta2", 2 ,"Broly",2);
 		try {
 			v.darJuego().iniciarBatalla("nothing");
 		} catch (JugadorNoSeleccionadoException e) {
@@ -96,13 +96,7 @@ public class PanelPruebas extends JDialog implements KeyListener {
 
 		pintarFondo(g);
 
-		Image sprite = ventana.darJuego().darJugador1().darPersonaje().darSprite();
-		g.drawImage(sprite, ventana.darJuego().darJugador1().darPersonaje().darPosX(),
-				ventana.darJuego().darJugador1().darPersonaje().darPosY(), null);
-
-		Image sprite2 = ventana.darJuego().darJugador2().darPersonaje().darSprite();
-		g.drawImage(sprite2, ventana.darJuego().darJugador2().darPersonaje().darPosX(),
-				ventana.darJuego().darJugador2().darPersonaje().darPosY(), null);
+		pintarPersonajes(g);
 
 		AtaqueDistancia a = ventana.darJuego().darJugador1().darPersonaje().darAtaqueDistancia();
 
@@ -122,6 +116,17 @@ public class PanelPruebas extends JDialog implements KeyListener {
 		pintarBarras(g);
 	}
 
+	private void pintarPersonajes(Graphics g) {
+		Image sprite = ventana.darJuego().darJugador1().darPersonaje().darSprite();
+		g.drawImage(sprite, ventana.darJuego().darJugador1().darPersonaje().darPosX(),
+				ventana.darJuego().darJugador1().darPersonaje().darPosY(), null);
+
+		Image sprite2 = ventana.darJuego().darJugador2().darPersonaje().darSprite();
+		g.drawImage(sprite2, ventana.darJuego().darJugador2().darPersonaje().darPosX(),
+				ventana.darJuego().darJugador2().darPersonaje().darPosY(), null);
+		
+	}
+
 	public void pintarFondo(Graphics g) {
 		ImageIcon fondo = new ImageIcon("data/fondoEcenario/F03.png");
 		g.drawImage(fondo.getImage(), 0, 0, null);
@@ -134,16 +139,16 @@ public class PanelPruebas extends JDialog implements KeyListener {
 		g.drawRect(30, 50, 500, 30);
 		g.fillRect(30, 50, ventana.darJuego().darJugador1().darSaludActual(), 30);
 		// Pintar vida Jugador 2
-		g.drawRect(700, 50, 500, 30);
-		g.fillRect(700, 50, ventana.darJuego().darJugador2().darSaludActual(), 30);
+		g.drawRect(730, 50, 500, 30);
+		g.fillRect(730, 50, ventana.darJuego().darJugador2().darSaludActual(), 30);
 		
 		g.setColor(Color.BLUE);
 		//Pintar Ki Jugador 1
 		g.drawRect(30, 80, 500, 30);
 		g.fillRect(30, 80, ventana.darJuego().darJugador1().darKiActual(), 30);
 		//Pintar Ki Jugador 2
-		g.drawRect(700, 80, 500, 30);
-		g.fillRect(700, 80, ventana.darJuego().darJugador2().darKiActual(), 30);
+		g.drawRect(730, 80, 500, 30);
+		g.fillRect(730, 80, ventana.darJuego().darJugador2().darKiActual(), 30);
 
 	}
 

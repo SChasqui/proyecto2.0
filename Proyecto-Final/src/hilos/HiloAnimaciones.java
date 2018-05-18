@@ -8,6 +8,7 @@ public class HiloAnimaciones extends Thread {
 	private Jugador jugador;
 	private PanelPruebas panel;
 	private int personaje;
+	int time;
 	
 	
 	public HiloAnimaciones(Jugador j, PanelPruebas p, int personaje) {
@@ -30,10 +31,11 @@ public class HiloAnimaciones extends Thread {
 						panel.moverPersonaje2();
 					}
 				}
-				if ((jugador.darKiActual() / 500) * jugador.darKiMaximo() != jugador.darKiMaximo()) {
+				time++;
+				if ((jugador.darKiActual() / 500) * jugador.darKiMaximo() != jugador.darKiMaximo() && time > 13) {
 					jugador.darPersonaje().recuperarKi();
+					time = 0;
 				}
-			
 			
 			try {
 				sleep(83);

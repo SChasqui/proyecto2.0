@@ -91,7 +91,7 @@ public class Jugador {
 	}
 	
 	public int darSaludActual() {
-		return (personajeActual.darSalud() / darSaludMaxima()) * 500;
+		return (int) (((double)personajeActual.darSalud() / darSaludMaxima()) * 500);
 	}
 	
 	public int darKiMaximo() {
