@@ -35,8 +35,18 @@ public class Juego {
 	
 	/*
 	 * Arreglo de fondos
+	 * 
+	 * Informacion
+	 * [0] ----> escenario1
+	 * [1] ----> escenario2
+	 * [2] ----> escenario3
+	 * [3] ----> escenario4
+	 * [4] ----> escenario5
+	 * [5] ----> escenario6
 	 */
-	private String[] fondos;
+	private String[] fondos = {"escenario1", "escenario2", "escenario3", "escenario4", "escenario5", "escenario6"};
+	
+	private String fondoActual;
 	
 	/*
 	 * Informacion
@@ -54,7 +64,7 @@ public class Juego {
 	 *
 	 * Arreglo de personajes
 	 */
-	private String[] personajes = {"Bardock","Beerus","Broly","Frieza","GohanSSJ_Kid","Goku","Goku_Blue","FGoku_Red","Vegeta"};
+	private String[] personajes = {"Bardock","Beerus","Broly","Frieza","GohanSSJ_Kid","Goku","Goku_Blue","Goku_Red","Vegeta"};
 
 
 
@@ -66,6 +76,7 @@ public class Juego {
 	 * Construlle un objeto de tipo Juego
 	 */
 	public Juego() {
+//		fondoActual = fondos[0];
 	}
 	
 	//--------------------------------------
@@ -93,6 +104,25 @@ public class Juego {
 	public Jugador darJugador2() {
 		return jugador2;
 	}
+	
+	public String darJugadorActual() {
+		return darJugadorActual();
+	}
+	
+	public void cambiarFondoActual(int nFondo) {
+		fondoActual = fondos[nFondo+1];
+	}
+//	public void avanzarFondoActual() {
+//		int index = -1;
+//		for (int i = 0; i < fondos.length; i++) {
+//			if(fondos[i].equals(fondoActual)) index =i;
+//		}
+//		
+//		if(index+1 <fondos.length)
+//		fondoActual = fondos[index+1];
+//		else index = 0;
+//		
+//	}
 	
 	public void agregarJugador(Jugador jugador) {
 		if (raiz == null) {
