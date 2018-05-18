@@ -38,6 +38,8 @@ public class VentanaPrincipal extends JFrame{
 	private Juego juego;
 
 	public VentanaPrincipal() {
+		
+		juego = new Juego();
 
 		setLayout(new BorderLayout());
 		setVisible(true);
@@ -51,14 +53,11 @@ public class VentanaPrincipal extends JFrame{
 		
 		add(panelAuxiliar,BorderLayout.CENTER);
 		
-		pSeleccionEscenario = new PanelSeleccionEscenario(this);
-		
 		pSeleccionJugador = new PanelSeleccionJugador(this,0);
 		
+		pSeleccionEscenario = new PanelSeleccionEscenario(this);
+		
 //		pPruebas = new PanelPruebas(this);
-		
-		
-		juego = new Juego();
 
 	}
 
