@@ -32,12 +32,7 @@ public class Jugador {
 	/*
 	 * Arreglo de personajes desbloqueados por el jugador
 	 */
-	private Personaje[] desbloqueados;
-
-	/*
-	 * Arreglo de personajes bloqueados para el jugador
-	 */
-	private Personaje [] bloqueados;
+	private Personaje desBloqueados;
 
 	/*
 	 * Puntos ganados por el jugador en las batallas
@@ -61,6 +56,33 @@ public class Jugador {
 	//--------------------------------------
 	// Metodos
 	//--------------------------------------
+	
+	public void seleccionarPersonaje(String personaje, int indice) throws NoDesbloqueadoException {
+		Personaje temp = buscarPorPersonaje(personaje, desBloqueados);
+		if (temp != null) {
+			personajeActual = temp;
+		}else {
+			throw new NoDesbloqueadoException("El personaje no ha sido Desbloqueado", personaje);
+		}
+	}
+	
+	public Personaje buscarPorPersonaje(String name, Personaje actual) {
+		if(actual == null) {
+			
+			return null;
+	
+		}else if(actual.darNombre().equals(name)) {
+			return actual;
+			
+		}else if(actual.darNombre().compareTo(name) < 0){
+			
+			return actual.getDerecha() == null ? null : buscarPorPersonaje(name,actual.getDerecha());
+			
+		}else{
+			
+			return actual.getIzquierda() == null? null : buscarPorPersonaje(name,actual.getIzquierda());
+		}
+	}
 	
 	public String darNickName() {
 		return nickName;

@@ -14,8 +14,8 @@ public class PanelSeleccionJugador extends JPanel implements MouseListener {
 
 	private int numJugador;
 
-	private String[] personajes = {"data/vistaPreviaPersonajes/Goku.png","data/vistaPreviaPersonajes/GokuRed.png","data/vistaPreviaPersonajes/GokuBlue.png","data/vistaPreviaPersonajes/Gohan.png","data/vistaPreviaPersonajes/Freezer.png","data/vistaPreviaPersonajes/Bardock.png","data/vistaPreviaPersonajes/Broly.png","data/vistaPreviaPersonajes/Beerus.png","data/vistaPreviaPersonajes/KidBuu.png"};
-
+	private int index;
+	
 	public PanelSeleccionJugador(VentanaPrincipal v, int numJugador) {
 
 		this.numJugador = numJugador;
@@ -34,7 +34,7 @@ public class PanelSeleccionJugador extends JPanel implements MouseListener {
 		Image fondo = new ImageIcon("data/fondo/escenarioJugador.jpg").getImage();
 		g.drawImage(fondo, 0, 0,null);
 
-		Image personaje = new ImageIcon("data/vistaPreviaPersonajes/Freezer.jpg").getImage();
+		Image personaje = new ImageIcon("data/vistaPreviaPersonajes/" +ventana.darJuego().daPersonajes()[index]+ ".png").getImage();
 		g.drawImage(personaje, 350, 110,null);
 
 		Image flecha = new ImageIcon("data/fondo/flechaDerecha.png").getImage();

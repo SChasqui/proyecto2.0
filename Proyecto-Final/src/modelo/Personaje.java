@@ -18,14 +18,14 @@ public class Personaje {
 	//****** Constantes de direccion*********//
 	public static final int IZQUIERDA = -1;
 	public static final int DERECHA = 1;
-	
+
 	//***** Constantes de Atributos *************//
 	public static final int VIDA_BASE = 1000;
 	public static final int KI_BASE = 300;
 	public static final int VELOCIDAD_BASE = 160;
 	public static final int RESISTENCIA_BASE = 100;
 	public static final int FUERZA_BASE = 100;
-	
+
 	/*
 	 * Informacion
 	 * [0][j] ----> Bardock --> 800P
@@ -49,54 +49,44 @@ public class Personaje {
 	 * La suma de los multiplicadores por su respectivo
 	 * atributo base da entre 800 y 1000 puntos de habilidad para cada personaje
 	 */
-	
 	public static final double[][] MATRIZ_DE_MULTIPLICADORES= {/*Bardock*/{1,1,1.5,2,1.2},
 			/*Beerus*/{1,1.4,1.6,1.6,1.2}, /*Broly*/{1.6,1.1,0.6,2,1}, /*Frieza*/{1,1.3,1.3,1.2,1.09},
 			/*GohanSSJ_Kid*/{1.2,1.2,1.4,1.3,1.23}, /*Goku*/{1,1,1.3,1.2,0.99}, 
 			/*Goku_Blue*/{1.1,1.1,1.3,1.4,1.29}, /*Goku_Red*/{1.4,1.2,1.4,1.4,1.33},
 			/*Kid_Buu*/{1.4,1.2,1.4,1.5,1.23}, /*Vegeta*/{1.2,1.1,1.3,1.3,1.19} };
 	
+	/*
+	 * Informacion
+	 * [0] ----> Bardock --> $800P
+	 * [1] ----> Beerus --> $1000P
+	 * [2] ----> Broly --> $1000P
+	 * [3] ----> Frieza --> $900P
+	 * [4] ----> GohanSSJ_Kid --> $1000P
+	 * [5] ----> Goku --> $800P
+	 * [6] ----> Goku_Blue --> $900P
+	 * [7] ----> Goku_Red --> $1000P
+	 * [8] ----> Kid_Buu --> $1000P
+	 * [9] ----> Vegeta --> $900P 
+	 */
+	public static final double[] precios = {800,1000,1000,900,1000,800,900,1000,1000,900};
+
 	//--------------------------------------
 	// Atributos
 	//--------------------------------------
-	
-	/*
-	 * indice del Personaje en la matriz de multiplicadores
-	 */
-	private int indicePersonaje;
+
+	//**************atributos de Poder del Personaje****************//
 
 	/*
-	 * boolean que representa si esta atacando o no
-	 */
-	private boolean atacando;
-
-	/*
-	 * Sprite que pintara el panel
-	 */
-	private Image frame;
-
-	/*
-	 * arreglo de las imagenes que puede tener un personaje
-	 */
-	private String personaje;
-
-	/*
-	 * precio en puntos de un personaje
-	 */
-	private int precio;
-
-	/*
-	 * posicion en el componente X del personaje
-	 */
-	private int posX;
-
-	/*
-	 * posicion en el componente Y del personaje
-	 */
-	private int posY;
-
-	/*
-	 * Es el kposSprite[0] del personaje
+	 * [0][j] ----> Bardock --> 800P
+	 * [1][j] ----> Beerus --> 1000P
+	 * [2][j] ----> Broly --> 1000P
+	 * [3][j] ----> Frieza --> 900P
+	 * [4][j] ----> GohanSSJ_Kid --> 1000P
+	 * [5][j] ----> Goku --> 800P
+	 * [6][j] ----> Goku_Blue --> 900P
+	 * [7][j] ----> Goku_Red --> 1000P
+	 * [8][j] ----> Kid_Buu --> 1000P
+	 * [9][j] ----> Vegeta --> 900P 
 	 */
 	private int ki;
 
@@ -104,57 +94,28 @@ public class Personaje {
 	 * Es la salud del personaje
 	 */
 	private int salud;
-	
+
 	/*
 	 * Resistencia del personaje
 	 */
 	private int resistencia;
-	
+
 	/*
 	 * Velocidad del Persoaneje
 	 */
 	private int velocidad;
-	
+
 	/*
 	 * Fuerza del Personaje
 	 */
 	private int fuerza;
 
 	/*
-	 * Lista de ataque es de un personaje
+	 * indice del Personaje en la matriz de multiplicadores
 	 */
-	private ArrayList<Ataque> ataques;
+	private int indicePersonaje;
 
-	/*
-	 * Es un rectangulo que representa el área donde se encuentra el personaje
-	 */
-	private Rectangle rectangulo;
-
-	/*
-	 * Adversario del personaje 
-	 */
-	private Personaje adversario;
-
-
-	/*
-	 * Alto del sprite del personaje 
-	 */
-	private int tamanhoY;
-
-	/*
-	 * Denota la direccion en la que se esta desplazando el personaje
-	 */
-	private int direccion;
-
-	/*
-	 * arreglo de frames del sprite
-	 */
-	private int[] posSprite = new int[5];
-
-	/*
-	 * boolean que denota el estado en el que se encuentra el personaje; true para quieto y false para cualquier otro movimiento
-	 */
-	private boolean quieto;
+	//**************atributos de Movimiento del Personaje****************//
 
 	//--------------------------------------
 	// Información
@@ -168,6 +129,70 @@ public class Personaje {
 	 *
 	 */
 
+	/*
+	 * arreglo de frames del sprite
+	 */
+	private int[] posSprite = new int[5];
+
+	/*
+	 * boolean que representa si esta atacando o no
+	 */
+	private boolean atacando;
+
+	/*
+	 * Denota la direccion en la que se esta desplazando el personaje (Usar Constantes)
+	 */
+	private int direccion;
+
+	/*
+	 * boolean que denota el estado en el que se encuentra el personaje; true para quieto y false para cualquier otro movimiento
+	 */
+	private boolean quieto;
+
+	/*
+	 * posicion en el componente X del personaje
+	 */
+	private int posX;
+
+	/*
+	 * posicion en el componente Y del personaje
+	 */
+	private int posY;
+
+	/*
+	 * Es un rectangulo que representa el área donde se encuentra el personaje
+	 */
+	private Rectangle rectangulo;
+
+	//**************atributos Graficos del Personaje****************//
+
+	/*
+	 * Sprite que pintara el panel
+	 */
+	private Image frame;
+
+	/*
+	 * nombre de la carpeta de la cual se cargara el personaje
+	 */
+	private String personaje;
+	
+	//*************** Atributos de Arbol *****************************//
+	
+	private Personaje derecha;
+	private Personaje Izquierda;
+
+	//**************atributos varios que no se calificar :v del Personaje****************//
+
+	/*
+	 * precio en puntos de un personaje (Usar Constantes)
+	 */
+	private int precio;
+
+	/*
+	 * Adversario del personaje 
+	 */
+	private Personaje adversario;
+
 	private AtaqueDistancia ataqueDistancia;
 
 	private Sprite sprite;
@@ -176,7 +201,7 @@ public class Personaje {
 	// Constructor
 	//--------------------------------------
 	public Personaje(String pSprite, int precio, int indice) {
-		
+
 		indicePersonaje = indice;
 
 		/*
@@ -199,15 +224,15 @@ public class Personaje {
 		quieto = true;
 
 		salud = (int) (VIDA_BASE * MATRIZ_DE_MULTIPLICADORES[indicePersonaje][0]);
-		
+
 		ki = (int) (KI_BASE * MATRIZ_DE_MULTIPLICADORES[indicePersonaje][1]);
-		
+
 		velocidad = (int) (VELOCIDAD_BASE/ MATRIZ_DE_MULTIPLICADORES[indicePersonaje][2]);
-		
+
 		fuerza = (int) (FUERZA_BASE * MATRIZ_DE_MULTIPLICADORES[indicePersonaje][3]);
-		
+
 		resistencia = (int) (RESISTENCIA_BASE * MATRIZ_DE_MULTIPLICADORES[indicePersonaje][4]);
-		
+
 	}
 
 	//--------------------------------------
@@ -215,6 +240,26 @@ public class Personaje {
 	//--------------------------------------
 	public int darPrecio() {
 		return precio;
+	}
+
+	public String darNombre() {
+		return personaje;
+	}
+	
+	public Personaje getDerecha() {
+		return derecha;
+	}
+
+	public Personaje getIzquierda() {
+		return Izquierda;
+	}
+
+	public void setDerecha(Personaje derecha) {
+		this.derecha = derecha;
+	}
+
+	public void setIzquierda(Personaje izquierda) {
+		Izquierda = izquierda;
 	}
 
 	public int darPosY() {
@@ -261,11 +306,11 @@ public class Personaje {
 	}
 
 	public void moverX(int mover) {
-		
+
 		System.out.println(mover);
-		
+
 		mover *= 200/(double)velocidad;
-		
+
 		System.out.println(mover);
 
 		direccion = mover>0? DERECHA:IZQUIERDA;
@@ -281,9 +326,9 @@ public class Personaje {
 	}
 
 	public void moverY(int mover) {
-		
+
 		mover *= 120/(double)velocidad;
-		
+
 		if(posY+mover >=0 && posY+mover <= 600  && !colisionaronVertical(mover)) {
 
 			posY+=mover;
@@ -504,11 +549,11 @@ public class Personaje {
 	public void setAdversario(Personaje adversario) {
 		this.adversario = adversario;
 	}
-	
+
 	public int darSalud() {
 		return salud;
 	}
-	
+
 	public int darKI() {
 		return ki;
 	}
@@ -516,19 +561,19 @@ public class Personaje {
 	public int darVelocidad() {
 		return velocidad;
 	}
-	
+
 	public int darIndicePersonaje() {
 		return indicePersonaje;
 	}
-	
+
 	public void recuperarKi() {
 		ki++;
 	}
-	
+
 	public void restarVida(int vida) {
 		salud -= vida;
 	}
-	
+
 	public int darResistencia() {
 		return resistencia;
 	}

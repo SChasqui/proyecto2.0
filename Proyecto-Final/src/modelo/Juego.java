@@ -7,8 +7,6 @@
  */
 package modelo;
 
-import java.util.ArrayList;
-
 public class Juego {
 
 	//--------------------------------------
@@ -39,6 +37,25 @@ public class Juego {
 	 * Arreglo de fondos
 	 */
 	private String[] fondos;
+	
+	/*
+	 * Informacion
+	 * [0] ----> Bardock
+	 * [1] ----> Beerus
+	 * [2] ----> Broly 
+	 * [3] ----> Frieza
+	 * [4] ----> GohanSSJ_Kid
+	 * [5] ----> Goku
+	 * [6] ----> Goku_Blue
+	 * [7] ----> Goku_Red
+	 * [8] ----> Kid_Buu 
+	 * [9] ----> Vegeta  
+	 *
+	 *
+	 * Arreglo de personajes
+	 */
+	private String[] personajes = {"Bardock","Beerus","Broly","Frieza","GohanSSJ_Kid","Goku","Goku_Blue","FGoku_Red","Vegeta"};
+
 
 
 	//--------------------------------------
@@ -132,6 +149,10 @@ public class Juego {
 	
 	public String[] darFondos() {
 		return fondos;
+	}
+	
+	public String[] daPersonajes() {
+		return personajes;
 	}
 	
 
