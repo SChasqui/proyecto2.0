@@ -66,8 +66,8 @@ public class PanelPruebas extends JDialog implements KeyListener {
 	public PanelPruebas(VentanaPrincipal v) {
 
 		ventana = v;
-		v.darJuego().agregarJugadores("Betta", 1 ,"Broly");
-		v.darJuego().agregarJugadores("Betta2", 2 ,"Bardock");
+		v.darJuego().agregarJugadores("Betta", 1 ,"Frieza");
+		v.darJuego().agregarJugadores("Betta2", 2 ,"Beerus");
 		try {
 			v.darJuego().iniciarBatalla("nothing");
 		} catch (JugadorNoSeleccionadoException e) {
