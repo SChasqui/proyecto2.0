@@ -13,7 +13,7 @@ public class PanelSeleccionEscenario extends JPanel implements MouseListener{
 	//Relaciones
 	private VentanaPrincipal ventana;
 	
-	private int personajeActual;
+	private int escenarioActual;
 	
 	private String[] fondos;
 	
@@ -21,7 +21,7 @@ public class PanelSeleccionEscenario extends JPanel implements MouseListener{
 		
 		setVisible(true);
 		this.ventana = ventana;
-		personajeActual = 0;
+		escenarioActual = 0;
 		fondos =  ventana.darJuego().darFondos();
 		addMouseListener(this);
 		
@@ -34,6 +34,9 @@ public class PanelSeleccionEscenario extends JPanel implements MouseListener{
 		Image fondo = new ImageIcon("data/fondo/fondoEscenarios.jpg").getImage();
 		g.drawImage(fondo, 0, 0,null);
 		
+		Image escenario = new ImageIcon("data/fondo/fondoEscenario/escenario" +escenarioActual + ".png").getImage();
+		g.drawImage(escenario, 0, 0,null);
+		
 		Image botonIzquierda = new ImageIcon("data/fondo/flechaIzquierda.png").getImage();
 		g.drawImage(botonIzquierda, 90, 420, null);
 		
@@ -45,7 +48,7 @@ public class PanelSeleccionEscenario extends JPanel implements MouseListener{
 	}
 	public void pintarFondos(Graphics g) {
 		
-		ImageIcon iconPatter = (new ImageIcon(fondos[personajeActual]));
+		ImageIcon iconPatter = (new ImageIcon(fondos[escenarioActual]));
 		g.drawImage(iconPatter.getImage(),120,130,380,270,null);
 		
 	}
@@ -62,12 +65,14 @@ public class PanelSeleccionEscenario extends JPanel implements MouseListener{
 		System.out.println("PosX:  " + posX + "  PosY:    " + posY);
 		
 		if (posX > 93 && posX < 204 && posY > 430 && posY < 563) {
-			personajeActual++;
-			if(personajeActual == fondos.length) {
+			escenarioActual++;
+			if(escenarioActual == fondos.length) {
 				
-				personajeActual = 0;
+				escenarioActual = 0;
 			}
 			repaint();
+		}else if(posX > 420 && posX < 540 && posY > 480 && posY < 564) {
+			System.out.println();
 		}
 	}
 
