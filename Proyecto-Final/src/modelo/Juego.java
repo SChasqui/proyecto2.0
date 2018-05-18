@@ -64,7 +64,7 @@ public class Juego {
 	 *
 	 * Arreglo de personajes
 	 */
-	private String[] personajes = {"Bardock","Beerus","Broly","Frieza","GohanSSJ_Kid","Goku","Goku_Blue","Goku_Red","Vegeta"};
+	private String[] personajes = {"Bardock","Beerus","Broly","Frieza","GohanSSJ_Kid","Goku","Goku_Blue","Goku_Red","Kid_Buu","Vegeta"};
 
 
 
