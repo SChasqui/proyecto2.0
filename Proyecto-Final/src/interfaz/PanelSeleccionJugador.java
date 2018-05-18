@@ -64,14 +64,14 @@ public class PanelSeleccionJugador extends JPanel implements MouseListener {
 		int posX = e.getX();
 		int posY = e.getY();
 
-		System.out.println("posX = " +posX + "   PosY = " + posY );
+//		System.out.println("posX = " +posX + "   PosY = " + posY );
 
 		//Cuando oprima sobre la imagen
 
 		if(posX > 500 && posX < 755 && posY > 250 && posY < 505) {
 			
 			try {
-				String nombre = JOptionPane.showInputDialog("Incerte Su NickName");
+				String nombre = JOptionPane.showInputDialog("Inserte Su NickName");
 				String personaje = ventana.darJuego().daPersonajes()[index];
 				ventana.darJuego().agregarJugadores(nombre, numJugador, personaje, index);
 				if (numJugador == 1) {
@@ -88,18 +88,18 @@ public class PanelSeleccionJugador extends JPanel implements MouseListener {
 			
 		}
 
-		/*
 		//Cuando oprima sobre la imagen siguiente
-		else if() {
-
+		else if(posX > 869 && posX < 1004 && posY > 319 && posY < 461) {
+			index = index == 9? 0: index + 1;
+			repaint();
 
 		}
 		//Cuando oprima sobre el imagen para regresar
-		else if() {
-
-
+		else if(posX > 287 && posX < 405 && posY > 323 && posY < 458) {
+			index = index == 0? 9: index - 1;
+			repaint();
 		}
-		 */
+		 
 
 	}
 
