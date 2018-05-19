@@ -46,9 +46,6 @@ public class PanelSeleccionJugador extends JPanel implements MouseListener {
 		Image flechaIzquierda = new ImageIcon("data/fondo/flechaIzquierda.png").getImage();
 		g.drawImage(flechaIzquierda, 290, 310, null);
 
-		Image flechaRetorno = new ImageIcon("data/fondo/flechaRetorno.png").getImage();
-		g.drawImage(flechaRetorno, 70, 560, null);
-
 		Image aceptar = new ImageIcon("data/fondo/aceptar.png").getImage();
 		g.drawImage(aceptar, 985, 583, null);
 
@@ -68,7 +65,7 @@ public class PanelSeleccionJugador extends JPanel implements MouseListener {
 
 		//Cuando oprima sobre la imagen
 
-		if(posX > 500 && posX < 755 && posY > 250 && posY < 505) {
+		if((posX > 500 && posX < 755 && posY > 250 && posY < 505) || (posX > 986 && posX < 1154 && posY > 582 && posY < 639)) {
 			
 			try {
 				String nombre = JOptionPane.showInputDialog("Inserte Su NickName");
@@ -99,6 +96,8 @@ public class PanelSeleccionJugador extends JPanel implements MouseListener {
 			index = index == 0? 9: index - 1;
 			repaint();
 		}
+		
+		
 		 
 
 	}
