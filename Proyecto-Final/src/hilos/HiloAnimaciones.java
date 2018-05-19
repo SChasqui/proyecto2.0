@@ -1,20 +1,20 @@
 package hilos;
 
-import interfaz.PanelPruebas;
+import interfaz.PanelJuego;
 import modelo.Jugador;
 
 public class HiloAnimaciones extends Thread {
 	
 	private Jugador jugador;
-	private PanelPruebas panel;
+	private PanelJuego pJuego;
 	private int personaje;
 	int time;
 	
 	
-	public HiloAnimaciones(Jugador j, PanelPruebas p, int personaje) {
+	public HiloAnimaciones(Jugador j, PanelJuego p, int personaje) {
 
 		jugador = j;
-		panel = p;
+		pJuego = p;
 		this.personaje = personaje;
 	}
 	
@@ -24,11 +24,11 @@ public class HiloAnimaciones extends Thread {
 		while (true) {
 
 				jugador.darPersonaje().actualizar();
-				if (!panel.modificando()) {
+				if (!pJuego.modificando()) {
 					if (personaje == 1) {
-						panel.moverPersonaje1();
+						pJuego.moverPersonaje1();
 					}else {
-						panel.moverPersonaje2();
+						pJuego.moverPersonaje2();
 					}
 				}
 				time++;

@@ -1,16 +1,16 @@
 package hilos;
 
-import interfaz.PanelPruebas;
+import interfaz.PanelJuego;
 
-public class HiloPruebas extends Thread{
+public class HiloJuego extends Thread{
 	
-	PanelPruebas panel;
+	PanelJuego pJuego;
 	
 	/*
 	 * Holamundosa
 	 */
-	public HiloPruebas(PanelPruebas p) {
-		panel = p;
+	public HiloJuego(PanelJuego p) {
+		pJuego = p;
 	}
 	
 	
@@ -18,7 +18,7 @@ public class HiloPruebas extends Thread{
 	public void run() {
 		while (true) {
 
-			panel.repaint();
+			pJuego.repaint();
 			try {
 				//83
 				sleep(83);

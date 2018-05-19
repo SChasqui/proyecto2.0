@@ -1,96 +1,75 @@
 package interfaz;
 
-
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
-import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.Set;
 
 import javax.swing.ImageIcon;
-import javax.swing.JDialog;
+import javax.swing.JPanel;
 
 import hilos.HiloAnimaciones;
 import hilos.HiloAtaqueDistancia;
-import hilos.HiloPruebas;
+import hilos.HiloJuego;
 import modelo.AtaqueDistancia;
-import modelo.Jugador;
 import modelo.JugadorNoSeleccionadoException;
 
-/*
- * Clase que sirve para probar los métodos del modelo del mundo
- */
-public class PanelPruebas extends JDialog implements KeyListener {
-
-	// --------------------------------------
-	// Constantes.
-	// --------------------------------------
+public class PanelJuego extends JPanel implements KeyListener{
+	
+	//Relaciones 
+	public VentanaPrincipal ventana;
+	
+	//Constantes
 	public final static int FLECHA_ARRIBA = 40;
 	public final static int FLECHA_DERECHA = 39;
 	public final static int FLECHA_ABAJO = 38;
 	public final static int FLECHA_IZQUIERDA = 37;
 	public static final int NUMERO_UNO = 97;
 	public static final int NUMERO_DOS = 98;
-
-	// Jugador 2
+	
+	//Teclas para el Jugador 2
 	public final static int W = 83;
 	public final static int D = 68;
 	public static final int S = 87;
 	public static final int A = 65;
 	public static final int J = 74;
 	public static final int K = 75;
-
-
+	
 	public final Set<Integer> pressed = new HashSet<Integer>();
-
-	// --------------------------------------
-	// Relaciones
-	// --------------------------------------
-	/*
-	 * Relación con la ventana principal
-	 */
-	private VentanaPrincipal ventana;
-
-	private Rectangle kickBoxAtaque;
-	private Rectangle kickBoxPj1;
-	private Rectangle kickBoxPj2;
-
+	
 	private boolean modificando;
-
-	// --------------------------------------
-	// Constructor
-	// --------------------------------------
-	public PanelPruebas(VentanaPrincipal v) {
-
-		ventana = v;
-//		v.darJuego().agregarJugadores("Betta", 1 ,"Beerus",1);
-//		v.darJuego().agregarJugadores("Betta2", 2 ,"Broly",2);
+	
+	public PanelJuego(VentanaPrincipal ventana) {
+		
+		this.ventana = ventana;
+		
 		try {
-			v.darJuego().iniciarBatalla("nothing");
+			ventana.darJuego().iniciarBatalla("nothing");
 		} catch (JugadorNoSeleccionadoException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		addKeyListener(this);
 		setVisible(true);
-		setLocationRelativeTo(v);
-		setSize(1280, 720);
 
-		HiloPruebas h = new HiloPruebas(this);
+		HiloJuego h = new HiloJuego(this);
 		h.start();
 
-		HiloAtaqueDistancia hD = new HiloAtaqueDistancia(this, ventana.darJuego());
+		HiloAtaqueDistancia hD = new HiloAtaqueDistancia(ventana.darJuego());
 		hD.start();
 		HiloAnimaciones hA1 = new HiloAnimaciones(ventana.darJuego().darJugador1(),this,1);
 		hA1.start();
 		HiloAnimaciones hA2 = new HiloAnimaciones(ventana.darJuego().darJugador2(),this,2);
 		hA2.start();
 	}
-
+	
+	public boolean modificando(){
+		return modificando;
+	}
+	
 	@Override
 	public void paint(Graphics g) {
 
@@ -114,9 +93,7 @@ public class PanelPruebas extends JDialog implements KeyListener {
 			a = a.darSiguiente();
 		}
 		pintarBarras(g);
-	}
-
-	private void pintarPersonajes(Graphics g) {
+	}private void pintarPersonajes(Graphics g) {
 		Image sprite = ventana.darJuego().darJugador1().darPersonaje().darSprite();
 		g.drawImage(sprite, ventana.darJuego().darJugador1().darPersonaje().darPosX(),
 				ventana.darJuego().darJugador1().darPersonaje().darPosY(), null);
@@ -128,7 +105,7 @@ public class PanelPruebas extends JDialog implements KeyListener {
 	}
 
 	public void pintarFondo(Graphics g) {
-		ImageIcon fondo = new ImageIcon("data/fondoEscenario/escenario1.png");
+		ImageIcon fondo = new ImageIcon("data/fondoEcenario/escenario1.jpg");
 		g.drawImage(fondo.getImage(), 0, 0, null);
 	}
 
@@ -243,10 +220,9 @@ public class PanelPruebas extends JDialog implements KeyListener {
 
 	@Override
 	public void keyTyped(KeyEvent e) {
-	/* Not used */ }
-
-	public boolean modificando(){
-		return modificando;
+		// TODO Auto-generated method stub
+		
 	}
 
 }
+

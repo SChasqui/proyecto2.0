@@ -1,16 +1,14 @@
 package hilos;
 
-import interfaz.PanelPruebas;
 import modelo.AtaqueDistancia;
 import modelo.Juego;
 
 public class HiloAtaqueDistancia extends Thread{
 
-	private PanelPruebas pPruebas;
 	private Juego miJuego;
 
-	public HiloAtaqueDistancia(PanelPruebas p, Juego game) {
-		pPruebas = p;
+	public HiloAtaqueDistancia(Juego game) {
+		
 		miJuego = game;
 	}
 

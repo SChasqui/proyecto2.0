@@ -49,7 +49,7 @@ public class PanelMenuPrincipal extends JPanel implements MouseListener{
 		g.drawString("Seleccionar Jugador Dos", 110, 260);
 		g.drawString("Iniciar Batalla", 110, 360);
 		g.drawString("Ver Puntajes Guardados", 110, 454);
-		g.drawString("Pruebas de personaje", 110, 548);
+		g.drawString("Créditos", 110, 548);
 
 	}
 
@@ -94,7 +94,8 @@ public class PanelMenuPrincipal extends JPanel implements MouseListener{
 		// Area de opcion de selecion jugador 
 		//****************************************
 		else if (posX > 45 && posX < 625 && posY > 295 && posY < 390) {
-			ventana.agregarPamelEcenario();
+			ventana.agregarPanelEscenario();
+			//Chasqui, aqui quede!!!!
 
 		}
 
@@ -109,8 +110,7 @@ public class PanelMenuPrincipal extends JPanel implements MouseListener{
 		// Área de pruebas varias
 		//****************************************
 		else if(posX > 45 && posX < 625 && posY > 495 && posY < 590) {
-			ventana.crearPanelPruebas();
-			ventana.darPanelPruenas().setVisible(true);
+			
 		}
 
 

@@ -31,7 +31,7 @@ public class VentanaPrincipal extends JFrame{
 	 */
 	private PanelMenuPrincipal menuPrincipal;
 	
-	private PanelPruebas pPruebas;
+	private PanelJuego pJuego;
 	/*
 	 * Relacion con la clase principal del modelo
 	 */
@@ -65,14 +65,6 @@ public class VentanaPrincipal extends JFrame{
 
 		VentanaPrincipal v = new VentanaPrincipal();
 
-	}
-	
-	public void crearPanelPruebas() {
-		pPruebas = new PanelPruebas(this);
-	}
-	
-	public PanelPruebas darPanelPruenas() {
-		return pPruebas;
 	}
 	
 	public Juego darJuego() {
@@ -111,15 +103,7 @@ public class VentanaPrincipal extends JFrame{
 		this.menuPrincipal = menuPrincipal;
 	}
 
-	public PanelPruebas getpPruebas() {
-		return pPruebas;
-	}
-
-	public void setpPruebas(PanelPruebas pPruebas) {
-		this.pPruebas = pPruebas;
-	}
-
-	public void agregarPamelEcenario() {
+	public void agregarPanelEscenario() {
 		System.out.println("Pase");
 		panelAuxiliar.removeAll();
 		panelAuxiliar.add(pSeleccionEscenario);
