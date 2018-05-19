@@ -56,7 +56,7 @@ public class Juego {
 	 * [3] ----> Frieza
 	 * [4] ----> GohanSSJ_Kid
 	 * [5] ----> Goku
-	 * [6] ----> Goku_Blue
+	 * [6] ----> 18
 	 * [7] ----> Goku_Red
 	 * [8] ----> Kid_Buu 
 	 * [9] ----> Vegeta  
@@ -64,7 +64,7 @@ public class Juego {
 	 *
 	 * Arreglo de personajes
 	 */
-	public static final String[] personajes = {"Bardock","Beerus","Broly","Frieza","GohanSSJ_Kid","Goku","Goku_Blue","Goku_Red","Kid_Buu","Vegeta"};
+	public static final String[] personajes = {"Bardock","Beerus","Broly","Frieza","GohanSSJ_Kid","Goku","18","Goku_Red","Kid_Buu","Vegeta"};
 
 
 

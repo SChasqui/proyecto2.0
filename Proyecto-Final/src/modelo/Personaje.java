@@ -34,7 +34,7 @@ public class Personaje {
 	 * [3][j] ----> Frieza --> 900P
 	 * [4][j] ----> GohanSSJ_Kid --> 1000P
 	 * [5][j] ----> Goku --> 800P
-	 * [6][j] ----> Goku_Blue --> 900P
+	 * [6][j] ----> 18 --> 900P
 	 * [7][j] ----> Goku_Red --> 1000P
 	 * [8][j] ----> Kid_Buu --> 1000P
 	 * [9][j] ----> Vegeta --> 900P 
@@ -52,7 +52,7 @@ public class Personaje {
 	public static final double[][] MATRIZ_DE_MULTIPLICADORES= {/*Bardock*/{1,1,1.5,2,1.2},
 			/*Beerus*/{1,1.4,1.6,1.6,1.2}, /*Broly*/{1.6,1.1,0.6,2,1}, /*Frieza*/{1,1.3,1.3,1.2,1.09},
 			/*GohanSSJ_Kid*/{1.2,1.2,1.4,1.3,1.23}, /*Goku*/{1,1,1.3,1.2,0.99}, 
-			/*Goku_Blue*/{1.1,1.1,1.3,1.4,1.29}, /*Goku_Red*/{1.4,1.2,1.4,1.4,1.33},
+			/*18*/{1.1,1.1,1.3,1.4,1.29}, /*Goku_Red*/{1.4,1.2,1.4,1.4,1.33},
 			/*Kid_Buu*/{1.4,1.2,1.4,1.5,1.23}, /*Vegeta*/{1.2,1.1,1.3,1.3,1.19} };
 	
 	/*
@@ -63,7 +63,7 @@ public class Personaje {
 	 * [3] ----> Frieza --> $900P
 	 * [4] ----> GohanSSJ_Kid --> $1000P
 	 * [5] ----> Goku --> $800P
-	 * [6] ----> Goku_Blue --> $900P
+	 * [6] ----> 18 --> $900P
 	 * [7] ----> Goku_Red --> $1000P
 	 * [8] ----> Kid_Buu --> $1000P
 	 * [9] ----> Vegeta --> $900P 
@@ -295,11 +295,7 @@ public class Personaje {
 
 	public void moverX(int mover) {
 
-		System.out.println(mover);
-
 		mover *= 200/(double)velocidad;
-
-		System.out.println(mover);
 
 		direccion = mover>0? DERECHA:IZQUIERDA;
 
