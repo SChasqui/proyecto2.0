@@ -148,26 +148,28 @@ public class PanelJuego extends JPanel implements KeyListener{
 			temporal.darPersonaje().quietotrue();
 		}
 
-		Set<Integer> temp = new HashSet<Integer>(pressed);
+		if (!modificando) {
+			Set<Integer> temp = new HashSet<Integer>(pressed);
 
-		if (temp.size() > 0) {
-			for (int c : temp) {
+			if (temp.size() > 0) {
+				for (int c : temp) {
 
-				if (c == FLECHA_IZQUIERDA) {
-					ventana.darJuego().darBatalla().darJugador1().darPersonaje().moverX(-12);
-				} else if (c == FLECHA_ABAJO) {
-					ventana.darJuego().darBatalla().darJugador1().darPersonaje().moverY(-12);
-				} else if (c == FLECHA_DERECHA) {
-					ventana.darJuego().darBatalla().darJugador1().darPersonaje().moverX(12);
-				} else if (c == FLECHA_ARRIBA) {
-					ventana.darJuego().darBatalla().darJugador1().darPersonaje().moverY(12);
-				} else if (c == NUMERO_UNO) {
-					ventana.darJuego().darBatalla().darJugador1().darPersonaje().atacar(c);
-				} else if (c == NUMERO_DOS) {
-					ventana.darJuego().darBatalla().darJugador1().darPersonaje().lanzarAtaqueDistante();
+					if (c == FLECHA_IZQUIERDA) {
+						ventana.darJuego().darBatalla().darJugador1().darPersonaje().moverX(-12);
+					} else if (c == FLECHA_ABAJO) {
+						ventana.darJuego().darBatalla().darJugador1().darPersonaje().moverY(-12);
+					} else if (c == FLECHA_DERECHA) {
+						ventana.darJuego().darBatalla().darJugador1().darPersonaje().moverX(12);
+					} else if (c == FLECHA_ARRIBA) {
+						ventana.darJuego().darBatalla().darJugador1().darPersonaje().moverY(12);
+					} else if (c == NUMERO_UNO) {
+						ventana.darJuego().darBatalla().darJugador1().darPersonaje().atacar(c);
+					} else if (c == NUMERO_DOS) {
+						ventana.darJuego().darBatalla().darJugador1().darPersonaje().lanzarAtaqueDistante();
+
+					}
 
 				}
-
 			}
 		}
 
@@ -181,26 +183,28 @@ public class PanelJuego extends JPanel implements KeyListener{
 			temporal.darPersonaje().quietotrue();
 		}
 
-		Set<Integer> temp = new HashSet<Integer>(pressed);
+		if (!modificando) {
+			Set<Integer> temp = new HashSet<Integer>(pressed);
 
-		if (temp.size() > 0) {
-			for (int c : temp) {
+			if (temp.size() > 0) {
+				for (int c : temp) {
 
-				if(c == A) {
-					temporal.darPersonaje().moverX(-12);
-				}else if(c == S) {
-					temporal.darPersonaje().moverY(-12);
-				}else if(c == D) {
-					temporal.darPersonaje().moverX(12);
-				}else if(c == W) {
-					temporal.darPersonaje().moverY(12);
-				}else if(c == J) {
-					temporal.darPersonaje().atacar(c);
-				}else if(c == K) {
-					temporal.darPersonaje().lanzarAtaqueDistante();
+					if(c == A) {
+						temporal.darPersonaje().moverX(-12);
+					}else if(c == S) {
+						temporal.darPersonaje().moverY(-12);
+					}else if(c == D) {
+						temporal.darPersonaje().moverX(12);
+					}else if(c == W) {
+						temporal.darPersonaje().moverY(12);
+					}else if(c == J) {
+						temporal.darPersonaje().atacar(c);
+					}else if(c == K) {
+						temporal.darPersonaje().lanzarAtaqueDistante();
+
+					}
 
 				}
-
 			}
 		}
 
