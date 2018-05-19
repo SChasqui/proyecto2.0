@@ -1,19 +1,24 @@
 package hilos;
 
+import interfaz.PanelJuego;
 import modelo.AtaqueDistancia;
 import modelo.Juego;
 
 public class HiloAtaqueDistancia extends Thread{
 
 	private Juego miJuego;
+	
+	private PanelJuego panel;
 
-	public HiloAtaqueDistancia(Juego game) {
+	public HiloAtaqueDistancia(Juego game, PanelJuego p) {
 		
 		miJuego = game;
+		
+		panel = p;
 	}
 
 	public void run() {
-		while(true) {
+		while(true && !panel.darAcabo()) {
 			
 			
 			AtaqueDistancia actualUno = miJuego.darJugador1().darPersonaje().darAtaqueDistancia();

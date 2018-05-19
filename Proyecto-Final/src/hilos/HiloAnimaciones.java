@@ -21,7 +21,7 @@ public class HiloAnimaciones extends Thread {
 	@Override
 	public void run() {
 
-		while (true) {
+		while (true && jugador.darSaludActual() > 0) {
 
 				jugador.darPersonaje().actualizar();
 				if (!pJuego.modificando()) {
@@ -45,6 +45,8 @@ public class HiloAnimaciones extends Thread {
 			}
 			
 		}
+		
+		pJuego.mostrarMensajeFianal(personaje);
 			
 	}
 

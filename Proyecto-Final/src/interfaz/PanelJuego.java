@@ -43,6 +43,8 @@ public class PanelJuego extends JPanel implements KeyListener{
 	
 	private boolean modificando;
 	
+	private boolean acabo;
+	
 	public PanelJuego(VentanaPrincipal ventana) {
 		
 		this.ventana = ventana;
@@ -52,10 +54,10 @@ public class PanelJuego extends JPanel implements KeyListener{
 	}
 	
 	public void iniciarHilos() {
-		HiloJuego h = new HiloJuego(this);
+		HiloJuego h = new HiloJuego(this, ventana.darJuego());
 		h.start();
 
-		HiloAtaqueDistancia hD = new HiloAtaqueDistancia(ventana.darJuego());
+		HiloAtaqueDistancia hD = new HiloAtaqueDistancia(ventana.darJuego(),this);
 		hD.start();
 		HiloAnimaciones hA1 = new HiloAnimaciones(ventana.darJuego().darBatalla().darJugador1(),this,1);
 		hA1.start();
@@ -222,9 +224,18 @@ public class PanelJuego extends JPanel implements KeyListener{
 		}
 
 	}
+	
+	public boolean darAcabo() {
+		return acabo;
+	}
 
 	@Override
 	public void keyTyped(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void mostrarMensajeFianal(int personaje) {
 		// TODO Auto-generated method stub
 		
 	}
