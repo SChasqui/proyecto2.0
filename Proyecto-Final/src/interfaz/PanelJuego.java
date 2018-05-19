@@ -148,6 +148,7 @@ public class PanelJuego extends JPanel implements KeyListener{
 			temporal.darPersonaje().quietotrue();
 		}
 
+		// Pinche chasqui >:v
 		if (!modificando) {
 			Set<Integer> temp = new HashSet<Integer>(pressed);
 
