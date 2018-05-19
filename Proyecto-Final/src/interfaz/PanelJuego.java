@@ -15,6 +15,7 @@ import hilos.HiloAnimaciones;
 import hilos.HiloAtaqueDistancia;
 import hilos.HiloJuego;
 import modelo.AtaqueDistancia;
+import modelo.Jugador;
 import modelo.JugadorNoSeleccionadoException;
 
 public class PanelJuego extends JPanel implements KeyListener{
@@ -44,6 +45,8 @@ public class PanelJuego extends JPanel implements KeyListener{
 	
 	public PanelJuego(VentanaPrincipal ventana, int escenario) {
 		
+		setFocusable(true);
+		addKeyListener(this);
 		this.ventana = ventana;
 		
 		try {
@@ -52,7 +55,7 @@ public class PanelJuego extends JPanel implements KeyListener{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		addKeyListener(this);
+		
 		setVisible(true);
 
 		HiloJuego h = new HiloJuego(this);
@@ -60,9 +63,9 @@ public class PanelJuego extends JPanel implements KeyListener{
 
 		HiloAtaqueDistancia hD = new HiloAtaqueDistancia(ventana.darJuego());
 		hD.start();
-		HiloAnimaciones hA1 = new HiloAnimaciones(ventana.darJuego().darJugador1(),this,1);
+		HiloAnimaciones hA1 = new HiloAnimaciones(ventana.darJuego().darBatalla().darJugador1(),this,1);
 		hA1.start();
-		HiloAnimaciones hA2 = new HiloAnimaciones(ventana.darJuego().darJugador2(),this,2);
+		HiloAnimaciones hA2 = new HiloAnimaciones(ventana.darJuego().darBatalla().darJugador2(),this,2);
 		hA2.start();
 	}
 	
@@ -77,7 +80,7 @@ public class PanelJuego extends JPanel implements KeyListener{
 
 		pintarPersonajes(g);
 
-		AtaqueDistancia a = ventana.darJuego().darJugador1().darPersonaje().darAtaqueDistancia();
+		AtaqueDistancia a = ventana.darJuego().darBatalla().darJugador1().darPersonaje().darAtaqueDistancia();
 
 
 		while (a != null) {
@@ -86,7 +89,7 @@ public class PanelJuego extends JPanel implements KeyListener{
 			a = a.darSiguiente();
 		}
 
-		a = ventana.darJuego().darJugador2().darPersonaje().darAtaqueDistancia();
+		a = ventana.darJuego().darBatalla().darJugador2().darPersonaje().darAtaqueDistancia();
 		while (a != null) {
 			ImageIcon spriteAtaque = new ImageIcon(a.darSprite());
 			g.drawImage(spriteAtaque.getImage(), a.darPosX(), a.darPosY(), null);
@@ -94,18 +97,21 @@ public class PanelJuego extends JPanel implements KeyListener{
 		}
 		pintarBarras(g);
 	}private void pintarPersonajes(Graphics g) {
-		Image sprite = ventana.darJuego().darJugador1().darPersonaje().darSprite();
-		g.drawImage(sprite, ventana.darJuego().darJugador1().darPersonaje().darPosX(),
-				ventana.darJuego().darJugador1().darPersonaje().darPosY(), null);
+		Jugador temp = ventana.darJuego().darBatalla().darJugador1();
+		
+		Image sprite = temp.darPersonaje().darSprite();
+		g.drawImage(sprite, temp.darPersonaje().darPosX(),
+				temp.darPersonaje().darPosY(), null);
 
-		Image sprite2 = ventana.darJuego().darJugador2().darPersonaje().darSprite();
-		g.drawImage(sprite2, ventana.darJuego().darJugador2().darPersonaje().darPosX(),
-				ventana.darJuego().darJugador2().darPersonaje().darPosY(), null);
+		temp = ventana.darJuego().darBatalla().darJugador2();
+		Image sprite2 = temp.darPersonaje().darSprite();
+		g.drawImage(sprite2, temp.darPersonaje().darPosX(),
+				temp.darPersonaje().darPosY(), null);
 		
 	}
 
 	public void pintarFondo(Graphics g) {
-		ImageIcon fondo = new ImageIcon("data/fondoEcenario/escenario1.jpg");
+		ImageIcon fondo = new ImageIcon("data/fondoEscenario/"+ventana.darJuego().darBatalla().darFondos()+".png");
 		g.drawImage(fondo.getImage(), 0, 0, null);
 	}
 
@@ -114,32 +120,35 @@ public class PanelJuego extends JPanel implements KeyListener{
 		g.setColor(Color.red);
 		// Pintar vida de jugador 1
 		g.drawRect(30, 50, 500, 30);
-		g.fillRect(30, 50, ventana.darJuego().darJugador1().darSaludActual(), 30);
+		g.fillRect(30, 50, ventana.darJuego().darBatalla().darJugador1().darSaludActual(), 30);
 		// Pintar vida Jugador 2
 		g.drawRect(730, 50, 500, 30);
-		g.fillRect(730, 50, ventana.darJuego().darJugador2().darSaludActual(), 30);
+		g.fillRect(730, 50, ventana.darJuego().darBatalla().darJugador2().darSaludActual(), 30);
 		
 		g.setColor(Color.BLUE);
 		//Pintar Ki Jugador 1
 		g.drawRect(30, 80, 500, 30);
-		g.fillRect(30, 80, ventana.darJuego().darJugador1().darKiActual(), 30);
+		g.fillRect(30, 80, ventana.darJuego().darBatalla().darJugador1().darKiActual(), 30);
 		//Pintar Ki Jugador 2
 		g.drawRect(730, 80, 500, 30);
-		g.fillRect(730, 80, ventana.darJuego().darJugador2().darKiActual(), 30);
+		g.fillRect(730, 80, ventana.darJuego().darBatalla().darJugador2().darKiActual(), 30);
 
 	}
 
 	@Override
 	public synchronized void keyPressed(KeyEvent e) {
+		System.out.println("Amarrillo");
 		modificando = true;
 		pressed.add(e.getKeyCode());
 		modificando = false;
 	}
 
 	public void moverPersonaje1() {
+		
+		Jugador temporal = ventana.darJuego().darBatalla().darJugador1();
 
-		if(!ventana.darJuego().darJugador1().darPersonaje().atacando()) {
-			ventana.darJuego().darJugador1().darPersonaje().quietotrue();
+		if(!temporal.darPersonaje().atacando()) {
+			temporal.darPersonaje().quietotrue();
 		}
 
 		Set<Integer> temp = new HashSet<Integer>(pressed);
@@ -148,17 +157,17 @@ public class PanelJuego extends JPanel implements KeyListener{
 			for (int c : temp) {
 
 				if (c == FLECHA_IZQUIERDA) {
-					ventana.darJuego().darJugador1().darPersonaje().moverX(-12);
+					ventana.darJuego().darBatalla().darJugador1().darPersonaje().moverX(-12);
 				} else if (c == FLECHA_ABAJO) {
-					ventana.darJuego().darJugador1().darPersonaje().moverY(-12);
+					ventana.darJuego().darBatalla().darJugador1().darPersonaje().moverY(-12);
 				} else if (c == FLECHA_DERECHA) {
-					ventana.darJuego().darJugador1().darPersonaje().moverX(12);
+					ventana.darJuego().darBatalla().darJugador1().darPersonaje().moverX(12);
 				} else if (c == FLECHA_ARRIBA) {
-					ventana.darJuego().darJugador1().darPersonaje().moverY(12);
+					ventana.darJuego().darBatalla().darJugador1().darPersonaje().moverY(12);
 				} else if (c == NUMERO_UNO) {
-					ventana.darJuego().darJugador1().darPersonaje().atacar(c);
+					ventana.darJuego().darBatalla().darJugador1().darPersonaje().atacar(c);
 				} else if (c == NUMERO_DOS) {
-					ventana.darJuego().darJugador1().darPersonaje().lanzarAtaqueDistante();
+					ventana.darJuego().darBatalla().darJugador1().darPersonaje().lanzarAtaqueDistante();
 
 				}
 
@@ -168,9 +177,11 @@ public class PanelJuego extends JPanel implements KeyListener{
 	}
 
 	public void moverPersonaje2() {
+		
+		Jugador temporal = ventana.darJuego().darBatalla().darJugador2();
 
-		if(!ventana.darJuego().darJugador2().darPersonaje().atacando()) {
-			ventana.darJuego().darJugador2().darPersonaje().quietotrue();
+		if(!temporal.darPersonaje().atacando()) {
+			temporal.darPersonaje().quietotrue();
 		}
 
 		Set<Integer> temp = new HashSet<Integer>(pressed);
@@ -179,17 +190,17 @@ public class PanelJuego extends JPanel implements KeyListener{
 			for (int c : temp) {
 
 				if(c == A) {
-					ventana.darJuego().darJugador2().darPersonaje().moverX(-12);
+					temporal.darPersonaje().moverX(-12);
 				}else if(c == S) {
-					ventana.darJuego().darJugador2().darPersonaje().moverY(-12);
+					temporal.darPersonaje().moverY(-12);
 				}else if(c == D) {
-					ventana.darJuego().darJugador2().darPersonaje().moverX(12);
+					temporal.darPersonaje().moverX(12);
 				}else if(c == W) {
-					ventana.darJuego().darJugador2().darPersonaje().moverY(12);
+					temporal.darPersonaje().moverY(12);
 				}else if(c == J) {
-					ventana.darJuego().darJugador2().darPersonaje().atacar(c);
+					temporal.darPersonaje().atacar(c);
 				}else if(c == K) {
-					ventana.darJuego().darJugador2().darPersonaje().lanzarAtaqueDistante();
+					temporal.darPersonaje().lanzarAtaqueDistante();
 
 				}
 
@@ -207,13 +218,13 @@ public class PanelJuego extends JPanel implements KeyListener{
 		int c = e.getKeyCode();
 
 		if (c == FLECHA_IZQUIERDA) {
-			ventana.darJuego().darJugador1().darPersonaje().quietotrue();
+			ventana.darJuego().darBatalla().darJugador1().darPersonaje().quietotrue();
 		} else if (c == FLECHA_DERECHA) {
-			ventana.darJuego().darJugador1().darPersonaje().quietotrue();
+			ventana.darJuego().darBatalla().darJugador1().darPersonaje().quietotrue();
 		} else if (c == A) {
-			ventana.darJuego().darJugador2().darPersonaje().quietotrue();
+			ventana.darJuego().darBatalla().darJugador2().darPersonaje().quietotrue();
 		} else if (c == D) {
-			ventana.darJuego().darJugador2().darPersonaje().quietotrue();
+			ventana.darJuego().darBatalla().darJugador2().darPersonaje().quietotrue();
 		}
 
 	}

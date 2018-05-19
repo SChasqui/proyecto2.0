@@ -83,8 +83,6 @@ public class PanelSeleccionEscenario extends JPanel implements MouseListener{
 			repaint();
 		}else {
 			pJuego = new PanelJuego(ventana, escenarioActual);
-//			ventana.darJuego().cambiarFondoActual(escenarioActual);
-			System.out.println(ventana.darJuego().darFondoActual());
 			ventana.getPanelAuxiliar().removeAll();
 			ventana.getPanelAuxiliar().add(pJuego);
 			pJuego.updateUI();

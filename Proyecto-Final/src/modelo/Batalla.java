@@ -98,8 +98,16 @@ public class Batalla {
 		return NUM_ESCENARIOS;
 	}
 	
-	public String[] darFondos() {
-		return fondos;
+	public String darFondos() {
+		return fondo;
+	}
+	
+	public Jugador darJugador1() {
+		return jugador1;
+	}
+	
+	public Jugador darJugador2() {
+		return jugador2;
 	}
 
 }

@@ -110,7 +110,6 @@ public class VentanaPrincipal extends JFrame{
 	}
 
 	public void agregarPanelEscenario() {
-		System.out.println("Pase");
 		panelAuxiliar.removeAll();
 		panelAuxiliar.add(pSeleccionEscenario);
 		pSeleccionEscenario.updateUI();
