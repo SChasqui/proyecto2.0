@@ -43,21 +43,15 @@ public class PanelJuego extends JPanel implements KeyListener{
 	
 	private boolean modificando;
 	
-	public PanelJuego(VentanaPrincipal ventana, int escenario) {
+	public PanelJuego(VentanaPrincipal ventana) {
 		
-		setFocusable(true);
-		addKeyListener(this);
 		this.ventana = ventana;
-		
-		try {
-			ventana.darJuego().iniciarBatalla(escenario);
-		} catch (JugadorNoSeleccionadoException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		
 		setVisible(true);
 
+	}
+	
+	public void iniciarHilos() {
 		HiloJuego h = new HiloJuego(this);
 		h.start();
 

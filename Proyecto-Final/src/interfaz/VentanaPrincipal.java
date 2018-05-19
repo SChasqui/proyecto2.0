@@ -11,9 +11,11 @@ import java.awt.event.MouseListener;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import modelo.Juego;
+import modelo.JugadorNoSeleccionadoException;
 
 
 public class VentanaPrincipal extends JFrame{
@@ -25,7 +27,7 @@ public class VentanaPrincipal extends JFrame{
 	
 	private PanelSeleccionJugador pSeleccionJugador;
 	
-	private JPanel panelAuxiliar;
+//	private JPanel panelAuxiliar;
 	/*
 	 * Relacion con el Menu principal
 	 */
@@ -46,19 +48,17 @@ public class VentanaPrincipal extends JFrame{
 		setSize(1280, 720);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
-		panelAuxiliar = new JPanel();
 		menuPrincipal = new PanelMenuPrincipal(this);
-		panelAuxiliar.setLayout(new BorderLayout());
-		panelAuxiliar.add(menuPrincipal);
 		
-		add(panelAuxiliar,BorderLayout.CENTER);
+		add(menuPrincipal,BorderLayout.CENTER);
 		
 		pSeleccionJugador = new PanelSeleccionJugador(this,0);
 		
 		pSeleccionEscenario = new PanelSeleccionEscenario(this);
 		
-//		pPruebas = new PanelPruebas(this);
-
+		pJuego = new PanelJuego(this);
+		addKeyListener(pJuego);
+		
 	}
 
 	public static void main(String args[]) {
@@ -104,34 +104,40 @@ public class VentanaPrincipal extends JFrame{
 	public void setMenuPrincipal(PanelMenuPrincipal menuPrincipal) {
 		this.menuPrincipal = menuPrincipal;
 	}
-	
-	public JPanel getPanelAuxiliar() {
-		return panelAuxiliar;
-	}
 
 	public void agregarPanelEscenario() {
-		panelAuxiliar.removeAll();
-		panelAuxiliar.add(pSeleccionEscenario);
+		remove(menuPrincipal);
+		add(pSeleccionEscenario);
 		pSeleccionEscenario.updateUI();
 		pSeleccionEscenario.repaint();
-		repaint();
 	}
 	
 	public void agregarPanelJugador(int i) {
-		
-		panelAuxiliar.removeAll();
+		remove(menuPrincipal);
+		setLayout(new BorderLayout());
 		pSeleccionJugador.cambiarJugador(i);
-		panelAuxiliar.add(pSeleccionJugador);
+		getContentPane().add(pSeleccionJugador,BorderLayout.CENTER);
 		pSeleccionJugador.updateUI();
 		pSeleccionJugador.repaint();
-		repaint();
 	}
 	
-	public void agregarPanelMenuPrincipal() {
-		panelAuxiliar.removeAll();
-		panelAuxiliar.add(menuPrincipal);
+	public void agregarPanelMenuPrincipal(JPanel a) {
+		remove(a);
+		add(menuPrincipal);
 		pSeleccionJugador.updateUI();
 		pSeleccionJugador.repaint();
-		repaint();
+	}
+
+	public void cambiarAPanelJuego(int escenario) {
+		remove(pSeleccionEscenario);
+		try {
+			juego.iniciarBatalla(escenario);
+		} catch (JugadorNoSeleccionadoException e) {
+			e.printStackTrace();
+		}
+		pJuego.iniciarHilos();
+		add(pJuego);
+		pJuego.updateUI();
+		pJuego.repaint();
 	}
 }

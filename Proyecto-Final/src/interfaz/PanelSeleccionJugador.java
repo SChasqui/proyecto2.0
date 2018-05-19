@@ -6,6 +6,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -26,6 +27,8 @@ public class PanelSeleccionJugador extends JPanel implements MouseListener {
 		setVisible(true);
 		this.ventana = v;
 		addMouseListener(this);
+		
+		add(new JLabel("Existo"));
 
 
 	}
@@ -81,7 +84,7 @@ public class PanelSeleccionJugador extends JPanel implements MouseListener {
 				
 			}
 			
-			ventana.agregarPanelMenuPrincipal();
+			ventana.agregarPanelMenuPrincipal(this);
 			
 		}
 

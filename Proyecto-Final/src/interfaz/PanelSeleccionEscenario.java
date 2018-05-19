@@ -82,12 +82,7 @@ public class PanelSeleccionEscenario extends JPanel implements MouseListener{
 			
 			repaint();
 		}else {
-			pJuego = new PanelJuego(ventana, escenarioActual);
-			ventana.getPanelAuxiliar().removeAll();
-			ventana.getPanelAuxiliar().add(pJuego);
-			pJuego.updateUI();
-			pJuego.repaint();
-			ventana.repaint();
+			ventana.cambiarAPanelJuego(escenarioActual);
 		}
 		
 	}
