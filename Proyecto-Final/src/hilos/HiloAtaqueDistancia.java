@@ -21,8 +21,8 @@ public class HiloAtaqueDistancia extends Thread{
 		while(true && !panel.darAcabo()) {
 			
 			
-			AtaqueDistancia actualUno = miJuego.darJugador1().darPersonaje().darAtaqueDistancia();
-			AtaqueDistancia actualDos = miJuego.darJugador2().darPersonaje().darAtaqueDistancia();
+			AtaqueDistancia actualUno = miJuego.darBatalla().darJugador1().darPersonaje().darAtaqueDistancia();
+			AtaqueDistancia actualDos = miJuego.darBatalla().darJugador2().darPersonaje().darAtaqueDistancia();
 			
 			int i =1;
 			while (actualUno != null) {
@@ -42,8 +42,8 @@ public class HiloAtaqueDistancia extends Thread{
 				
 			}
 			
-			miJuego.darJugador1().darPersonaje().limpiarAtaques();
-			miJuego.darJugador2().darPersonaje().limpiarAtaques();
+			miJuego.darBatalla().darJugador1().darPersonaje().limpiarAtaques();
+			miJuego.darBatalla().darJugador2().darPersonaje().limpiarAtaques();
 
 			try {
 				sleep(33);
