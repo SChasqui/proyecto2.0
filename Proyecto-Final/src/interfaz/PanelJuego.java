@@ -9,6 +9,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import hilos.HiloAnimaciones;
@@ -133,7 +134,6 @@ public class PanelJuego extends JPanel implements KeyListener{
 
 	@Override
 	public synchronized void keyPressed(KeyEvent e) {
-		System.out.println("Amarrillo");
 		modificando = true;
 		pressed.add(e.getKeyCode());
 		modificando = false;
@@ -236,7 +236,20 @@ public class PanelJuego extends JPanel implements KeyListener{
 	}
 
 	public void mostrarMensajeFianal(int personaje) {
-		// TODO Auto-generated method stub
+
+		acabo = true;
+		
+		personaje = personaje == 1? 2:1;
+		
+		String nombre = personaje == 1? ventana.darJuego().darBatalla().darJugador1().darNickName() : ventana.darJuego().darBatalla().darJugador2().darNickName();
+		
+		JOptionPane.showMessageDialog(this, "Felicidades " + nombre + " Has ganado 100 puntos", "Fin de la batalla", JOptionPane.DEFAULT_OPTION);
+		
+		if (personaje == 1) {
+		}else {
+		}
+		
+		ventana.agregarPanelMenuPrincipal(this);
 		
 	}
 
