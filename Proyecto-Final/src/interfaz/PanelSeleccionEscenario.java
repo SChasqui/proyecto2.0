@@ -17,9 +17,6 @@ public class PanelSeleccionEscenario extends JPanel implements MouseListener{
 	//Relaciones
 	private VentanaPrincipal ventana;
 	private int escenarioActual;
-	private PanelJuego pJuego;
-	
-	
 	
 	public PanelSeleccionEscenario(VentanaPrincipal ventana) {
 		
@@ -54,9 +51,6 @@ public class PanelSeleccionEscenario extends JPanel implements MouseListener{
 		System.out.println("data/fondoEscenario/escenario" +escenarioActual + ".png");
 		g.drawImage(escenario, 0, 0,null);
 		
-//		ImageIcon iconPatter = (new ImageIcon(fondos[escenarioActual]));
-//		g.drawImage(iconPatter.getImage(),120,130,380,270,null);
-		
 	}
 
 	@Override
@@ -67,9 +61,7 @@ public class PanelSeleccionEscenario extends JPanel implements MouseListener{
 		
 		//****************************************//
 		// Area de opcion de selecion jugador 1
-		//****************************************//
-		System.out.println("PosX:  " + posX + "  PosY:    " + posY);
-		
+		//****************************************//		
 		if (posX > 93 && posX < 204 && posY > 430 && posY < 563) {
 			if((escenarioActual -1 > 0)) {escenarioActual--;}
 			else { escenarioActual = NUM_ESCENARIOS;}
