@@ -84,6 +84,11 @@ public class Jugador {
 		}
 	}
 	
+	public void desbloquearPersonaje() {
+		
+		
+	}
+	
 	public String darNickName() {
 		return nickName;
 	}
