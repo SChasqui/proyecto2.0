@@ -76,18 +76,6 @@ public class Personaje {
 
 	//**************atributos de Poder del Personaje****************//
 
-	/*
-	 * [0][j] ----> Bardock --> 800P
-	 * [1][j] ----> Beerus --> 1000P
-	 * [2][j] ----> Broly --> 1000P
-	 * [3][j] ----> Frieza --> 900P
-	 * [4][j] ----> GohanSSJ_Kid --> 1000P
-	 * [5][j] ----> Goku --> 800P
-	 * [6][j] ----> Goku_Blue --> 900P
-	 * [7][j] ----> Goku_Red --> 1000P
-	 * [8][j] ----> Kid_Buu --> 1000P
-	 * [9][j] ----> Vegeta --> 900P 
-	 */
 	private int ki;
 
 	/*
