@@ -84,7 +84,7 @@ public class Jugador {
 		}
 	}
 	
-	public void desbloquearPersonaje() {
+	public void desbloquearPersonaje(int indice) {
 		
 		
 	}
