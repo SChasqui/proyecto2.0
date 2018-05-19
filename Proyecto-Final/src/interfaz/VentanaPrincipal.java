@@ -136,6 +136,7 @@ public class VentanaPrincipal extends JFrame{
 			e.printStackTrace();
 		}
 		pJuego.iniciarHilos();
+		pJuego.cambiarAcabo(true);
 		add(pJuego);
 		pJuego.updateUI();
 		pJuego.repaint();

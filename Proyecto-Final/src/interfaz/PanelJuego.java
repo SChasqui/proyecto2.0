@@ -55,6 +55,7 @@ public class PanelJuego extends JPanel implements KeyListener{
 	}
 	
 	public void iniciarHilos() {
+		
 		HiloJuego h = new HiloJuego(this, ventana.darJuego());
 		h.start();
 
@@ -227,6 +228,10 @@ public class PanelJuego extends JPanel implements KeyListener{
 	
 	public boolean darAcabo() {
 		return acabo;
+	}
+	
+	public void cambiarAcabo(boolean parametro) {
+		acabo = parametro;
 	}
 
 	@Override
