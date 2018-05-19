@@ -10,19 +10,22 @@ import javax.swing.JPanel;
 import javax.swing.ImageIcon;
 
 public class PanelSeleccionEscenario extends JPanel implements MouseListener{
+	
+	//Constantes
+	public final static int NUM_ESCENARIOS = 6;
+	
 	//Relaciones
 	private VentanaPrincipal ventana;
-	
 	private int escenarioActual;
+	private PanelJuego pJuego;
 	
-	private String[] fondos;
+	
 	
 	public PanelSeleccionEscenario(VentanaPrincipal ventana) {
 		
 		setVisible(true);
 		this.ventana = ventana;
 		escenarioActual = 1;
-		fondos =  ventana.darJuego().darFondos();
 		addMouseListener(this);
 		
 	}
@@ -69,18 +72,24 @@ public class PanelSeleccionEscenario extends JPanel implements MouseListener{
 		
 		if (posX > 93 && posX < 204 && posY > 430 && posY < 563) {
 			if((escenarioActual -1 > 0)) {escenarioActual--;}
-			else { escenarioActual = fondos.length;}
+			else { escenarioActual = NUM_ESCENARIOS;}
 			
 			repaint();
 		}else if(posX > 420 && posX < 540 && posY > 480 && posY < 564) {
 			
 			escenarioActual++;
-			if(escenarioActual  > fondos.length) {escenarioActual = 1;}
+			if(escenarioActual  > NUM_ESCENARIOS) {escenarioActual = 1;}
 			
 			repaint();
 		}else {
-			ventana.darJuego().cambiarFondoActual(escenarioActual);
+			pJuego = new PanelJuego(ventana, escenarioActual);
+//			ventana.darJuego().cambiarFondoActual(escenarioActual);
 			System.out.println(ventana.darJuego().darFondoActual());
+			ventana.getPanelAuxiliar().removeAll();
+			ventana.getPanelAuxiliar().add(pJuego);
+			pJuego.updateUI();
+			pJuego.repaint();
+			ventana.repaint();
 		}
 		
 	}

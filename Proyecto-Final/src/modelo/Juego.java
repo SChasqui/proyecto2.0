@@ -44,7 +44,7 @@ public class Juego {
 	 * [4] ----> escenario5
 	 * [5] ----> escenario6
 	 */
-	private String[] fondos = {"escenario1", "escenario2", "escenario3", "escenario4", "escenario5", "escenario6"};
+
 	
 	private String fondoActual;
 	
@@ -82,7 +82,7 @@ public class Juego {
 	// Metodos
 	//--------------------------------------
 	
-	public void iniciarBatalla(String fondo) throws JugadorNoSeleccionadoException {
+	public void iniciarBatalla(int numFondo) throws JugadorNoSeleccionadoException {
 		//**************************************
 		// Comprobar la existencia de Jugadores
 		//**************************************
@@ -93,7 +93,7 @@ public class Juego {
 		}
 		
 		// Inicializa la Batalla
-		battle = new Batalla(jugador1,jugador2, fondo);
+		battle = new Batalla(jugador1,jugador2, numFondo);
 	}
 	
 	public Jugador darJugador1() {
@@ -111,9 +111,7 @@ public class Juego {
 	public String darFondoActual() {
 		return fondoActual;
 	}
-	public void cambiarFondoActual(int nFondo) {
-		fondoActual = fondos[nFondo-1];
-	}
+	
 //	public void avanzarFondoActual() {
 //		int index = -1;
 //		for (int i = 0; i < fondos.length; i++) {
@@ -178,13 +176,12 @@ public class Juego {
 	}
 	
 	
-	
-	public String[] darFondos() {
-		return fondos;
-	}
-	
 	public String[] daPersonajes() {
 		return personajes;
+	}
+	
+	public Batalla darBatalla() {
+		return battle;
 	}
 	
 

@@ -42,12 +42,12 @@ public class PanelJuego extends JPanel implements KeyListener{
 	
 	private boolean modificando;
 	
-	public PanelJuego(VentanaPrincipal ventana) {
+	public PanelJuego(VentanaPrincipal ventana, int escenario) {
 		
 		this.ventana = ventana;
 		
 		try {
-			ventana.darJuego().iniciarBatalla("nothing");
+			ventana.darJuego().iniciarBatalla(escenario);
 		} catch (JugadorNoSeleccionadoException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

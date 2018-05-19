@@ -96,6 +96,7 @@ public class PanelMenuPrincipal extends JPanel implements MouseListener{
 		else if (posX > 45 && posX < 625 && posY > 295 && posY < 390) {
 			ventana.agregarPanelEscenario();
 			//Chasqui, aqui quede!
+			System.out.println("Chasqui, aqui quede");
 
 		}
 

@@ -94,6 +94,8 @@ public class VentanaPrincipal extends JFrame{
 	public void setJuego(Juego juego) {
 		this.juego = juego;
 	}
+	
+
 
 	public PanelMenuPrincipal getMenuPrincipal() {
 		return menuPrincipal;
@@ -101,6 +103,10 @@ public class VentanaPrincipal extends JFrame{
 
 	public void setMenuPrincipal(PanelMenuPrincipal menuPrincipal) {
 		this.menuPrincipal = menuPrincipal;
+	}
+	
+	public JPanel getPanelAuxiliar() {
+		return panelAuxiliar;
 	}
 
 	public void agregarPanelEscenario() {

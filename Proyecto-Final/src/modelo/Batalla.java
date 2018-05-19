@@ -20,7 +20,12 @@ public class Batalla {
 	 * Constante que determina el tiempo inicial de un combate
 	 */
 	public static final int TIEMPO_INICIAL = 60;
-
+	
+	/*
+	 * Constante que respresenta el número de escenarios
+	 */
+	public static final int NUM_ESCENARIOS = 60;
+	
 	//--------------------------------------
 	// Relaciones
 	//--------------------------------------
@@ -34,6 +39,8 @@ public class Batalla {
 	 * Jugador Dos
 	 */
 	private Jugador jugador2;
+	
+	private String[] fondos = {"escenario1", "escenario2", "escenario3", "escenario4", "escenario5", "escenario6"};
 	
 	/*
 	 * Fondo de la batalla
@@ -56,7 +63,7 @@ public class Batalla {
 	/*
 	 * Construlle un objeto de tipo Batalla
 	 */
-	public Batalla(Jugador playerOne, Jugador playertwo, String fondo) {
+	public Batalla(Jugador playerOne, Jugador playertwo, int fondo) {
 
 		// Se inicializa el contador de tiempo de la batalla
 		tiempoRestante = TIEMPO_INICIAL;
@@ -68,7 +75,7 @@ public class Batalla {
 		jugador2 = playertwo;
 		
 		// Se inicializa el fondo
-		this.fondo = fondo;
+		this.fondo = fondos[fondo-1];
 		
 		jugador1.darPersonaje().setAdversario(jugador2.darPersonaje());
 		jugador2.darPersonaje().setAdversario(jugador1.darPersonaje());
@@ -85,6 +92,14 @@ public class Batalla {
 	 */
 	public void restarUnSegundo() {
 		tiempoRestante--;
+	}
+	
+	public int darNumeroEscenarios() {
+		return NUM_ESCENARIOS;
+	}
+	
+	public String[] darFondos() {
+		return fondos;
 	}
 
 }
