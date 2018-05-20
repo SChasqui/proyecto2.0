@@ -34,16 +34,7 @@ public class Ataque {
 	 */
 	private int danho;
 	
-	/*
-	 * Tipo del ataque
-	 */
-	private String tipoAtaque;
-	
 	private int direccion;
-	
-	private String personaje;
-	
-
 	
 	private Rectangle kickBox;
 	
@@ -51,11 +42,12 @@ public class Ataque {
 	//--------------------------------------
 	// Constructor
 	//--------------------------------------
-	public Ataque(String pj, int pAtaque, int pDireccion, int pX, int pY) {
-		personaje = pj;
+	public Ataque(int poder, int pDireccion, int pX, int pY) {
+		
 		direccion = pDireccion;
 		posX = pX;
 		posY = pY;
+		danho = poder + 200;
 
 	}
 
@@ -93,10 +85,6 @@ public class Ataque {
 
 	public void cambiarPosY(int posY) {
 		this.posY = posY;
-	}
-	
-	public String darPersonaje() {
-		return personaje;
 	}
 	
 	public int darDireccion() {

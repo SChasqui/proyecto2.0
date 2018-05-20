@@ -414,7 +414,7 @@ public class Personaje implements Atacable{
 
 	public void agregarAtaqueDistancia(AtaqueDistancia actual) {
 		if (actual.darSiguiente() == null) {
-			actual.seleccionarSiguiente( new AtaqueDistancia(personaje, 1, direccion, posX + (100 * direccion) , posY));
+			actual.seleccionarSiguiente( new AtaqueDistancia(fuerza, direccion, posX + (100 * direccion) , posY));
 		}else {
 			agregarAtaqueDistancia(actual.darSiguiente());
 		}
@@ -432,7 +432,7 @@ public class Personaje implements Atacable{
 		if(posSprite[3] == sprite.darTamanhos()[Sprite.ATAQUE_MEDIANO] - 1) {
 			AtaqueDistancia actual = ataqueDistancia;
 			if (ataqueDistancia == null) {
-				ataqueDistancia = new AtaqueDistancia(personaje, 1, direccion, posX + (100 * direccion) , posY);
+				ataqueDistancia = new AtaqueDistancia(fuerza, direccion, posX + (100 * direccion) , posY);
 			}else if(ki - 20 > 0){
 				ki -= 20;
 				agregarAtaqueDistancia(actual);

@@ -26,9 +26,8 @@ public class AtaqueDistancia extends Ataque implements Destruible{
 	
 	private Rectangle kickBox;
 	
-	public AtaqueDistancia (String personaje, int tipoAtaque,  int direccion, int posX, int posY) {
-		super(personaje, tipoAtaque, direccion, posX, posY);
-		
+	public AtaqueDistancia (int poder,  int direccion, int posX, int posY) {
+		super(poder, direccion, posX, posY);
 		ImageIcon img = new ImageIcon(this.darSprite());
 		kickBox = new Rectangle(posX, posY, img.getIconWidth(), img.getIconHeight() );
 	}
@@ -52,7 +51,6 @@ public class AtaqueDistancia extends Ataque implements Destruible{
 	public void moverX() {
 		posX += (super.darDireccion()  == 1) ? 20: -20;
 		kickBox.setLocation(super.darPosX(), super.darPosY());
-//		System.out.println("Pos X: " +super.darPosX() + " - PosY: " + super.darPosY());
 		vida--;
 	}
 	
@@ -66,7 +64,6 @@ public class AtaqueDistancia extends Ataque implements Destruible{
 	
 	@Override
 	public Rectangle darKickBox() {
-//		System.out.println("Pos X: " +super.darPosX() + " - PosY: " + super.darPosY() + " Ancho imagen: " + Math.abs(super.anchoSprite) +  " Alto Sprite: " + Math.abs(super.altoSprite) );
 		return kickBox;
 	}
 	
