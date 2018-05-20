@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 
-public class Personaje {
+public class Personaje implements Atacable{
 
 
 
@@ -362,10 +362,6 @@ public class Personaje {
 
 	public Image spriteQuieto() {
 
-//		if(posSprite[0] == -1) {
-//			posSprite[0] = 0;
-//		}
-//		else 
 		if(posSprite[0] < sprite.darTamanhos()[Sprite.PARADO] - 1) {
 			posSprite[0]++;
 		}else {
@@ -389,7 +385,7 @@ public class Personaje {
 			if (colisionaronHorizontal(direccion * 12)) {
 				int daño = fuerza - adversario.darResistencia();
 				System.out.println(daño);
-				adversario.restarVida(daño > 0? daño : 10);
+				adversario.restarVida(daño);
 			}
 			posSprite[1] = -1;
 			quieto = true;
@@ -406,8 +402,8 @@ public class Personaje {
 
 		rectangulo.setSize(frame.getWidth(null), frame.getHeight(null));
 
-		if (posSprite[2] == sprite.darTamanhos()[Sprite.MOVERCE] - 1) {
-			posSprite[2] = sprite.darTamanhos()[Sprite.MOVERCE] - 2;
+		if (posSprite[2] == sprite.darTamanhos()[Sprite.MOVERCE] - 2) {
+			posSprite[2] = sprite.darTamanhos()[Sprite.MOVERCE] - 3;
 		}
 		posSprite[2]++;
 		quieto = false;
@@ -555,8 +551,8 @@ public class Personaje {
 		ki++;
 	}
 
-	public void restarVida(int vida) {
-		salud -= vida;
+	public void restarVida(int daño) {
+		salud -= daño > 0? daño : 10;
 	}
 
 	public int darResistencia() {

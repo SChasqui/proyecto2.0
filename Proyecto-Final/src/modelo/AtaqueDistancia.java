@@ -3,7 +3,7 @@ package modelo;
 import java.awt.Rectangle;
 import javax.swing.ImageIcon;
 
-public class AtaqueDistancia extends Ataque{
+public class AtaqueDistancia extends Ataque implements Destruible{
 	
 
 	
