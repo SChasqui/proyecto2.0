@@ -42,7 +42,7 @@ public class HiloAnimaciones extends Thread {
 			}
 
 			try {
-				sleep(83);
+				sleep(playerDelHilo.darPersonaje().darVelocidad());
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

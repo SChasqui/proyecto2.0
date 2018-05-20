@@ -49,7 +49,7 @@ public class AtaqueDistancia extends Ataque implements Destruible{
 	}
 	
 	public void moverX() {
-		posX += (super.darDireccion()  == 1) ? 20: -20;
+		posX += (super.darDireccion()  == 1) ? 20 * ((double)darDanho()/80): -20 * ((double)darDanho()/80);
 		kickBox.setLocation(super.darPosX(), super.darPosY());
 		vida--;
 	}

@@ -50,7 +50,7 @@ public class Personaje implements Atacable{
 	 * atributo base da entre 800 y 1000 puntos de habilidad para cada personaje
 	 */
 	public static final double[][] MATRIZ_DE_MULTIPLICADORES= {/*Bardock*/{1,1,1.5,2,1.2},
-			/*Beerus*/{1,1.4,1.6,1.6,1.2}, /*Broly*/{1.6,1.1,0.6,2,1}, /*Frieza*/{1,1.3,1.3,1.2,1.09},
+			/*Beerus*/{1,1.4,1.6,1.6,1.2}, /*Broly*/{1.6,1.1,1,2,1}, /*Frieza*/{1,1.3,1.3,1.2,1.09},
 			/*GohanSSJ_Kid*/{1.2,1.2,1.4,1.3,1.23}, /*Goku*/{1,1,1.3,1.2,0.99}, 
 			/*18*/{1.1,1.1,1.3,1.4,1.29}, /*Goku_Red*/{1.4,1.2,1.4,1.4,1.33},
 			/*Kid_Buu*/{1.4,1.2,1.4,1.5,1.23}, /*Vegeta*/{1.2,1.1,1.3,1.3,1.19} };
@@ -295,7 +295,7 @@ public class Personaje implements Atacable{
 
 	public void moverX(int mover) {
 
-		mover *= 150/(double)velocidad;
+//		mover *= 40/(double)velocidad;
 		
 		System.out.println(mover);
 
@@ -321,12 +321,12 @@ public class Personaje implements Atacable{
 
 	public void moverY(int mover) {
 
-		mover *= 120/(double)velocidad;
+//		mover *= 30/(double)velocidad;
 
 		if(posY+mover >=0 && posY+mover <= 600  && !colisionaronVertical(mover)) {
 			posY+=mover;
 			rectangulo.setLocation(posX, posY);
-		}else if(posX+mover >= 0 && posX+mover <=1200 && !colisionaronVertical(9)) {
+		}else if(posY+mover >=0 && posY+mover <= 600 && !colisionaronVertical(9)) {
 			posY += 9;
 			rectangulo.setLocation(posX, posY);
 		}
@@ -495,6 +495,7 @@ public class Personaje implements Atacable{
 	public boolean atacando() {
 		return atacando;
 	}
+	
 
 	public boolean colisionaronHorizontal(int movimiento) {
 
