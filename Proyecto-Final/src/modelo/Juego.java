@@ -33,19 +33,6 @@ public class Juego {
 	 */
 	private Jugador jugador2;
 	
-	/*
-	 * Arreglo de fondos
-	 * 
-	 * Informacion
-	 * [0] ----> escenario1
-	 * [1] ----> escenario2
-	 * [2] ----> escenario3
-	 * [3] ----> escenario4
-	 * [4] ----> escenario5
-	 * [5] ----> escenario6
-	 */
-
-	
 	private String fondoActual;
 	
 	/*
@@ -116,18 +103,6 @@ public class Juego {
 	public String darFondoActual() {
 		return fondoActual;
 	}
-	
-//	public void avanzarFondoActual() {
-//		int index = -1;
-//		for (int i = 0; i < fondos.length; i++) {
-//			if(fondos[i].equals(fondoActual)) index =i;
-//		}
-//		
-//		if(index+1 <fondos.length)
-//		fondoActual = fondos[index+1];
-//		else index = 0;
-//		
-//	}
 	
 	public void agregarJugador(Jugador jugador) {
 		if (raiz == null) {

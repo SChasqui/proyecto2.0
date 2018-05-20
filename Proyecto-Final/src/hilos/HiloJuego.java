@@ -11,7 +11,7 @@ public class HiloJuego extends Thread{
 	Juego miJuego;
 	
 	/*
-	 * Holamundosa
+	 * Modela el hilo encargado de el refresco visual en el transcurso de la batalla
 	 */
 	public HiloJuego(VentanaPrincipal ventana, Juego miJuego) {
 		interfaz = ventana;
@@ -29,7 +29,7 @@ public class HiloJuego extends Thread{
 			pJuego.repaint();
 			try {
 				//83
-				sleep(83);
+				sleep(33);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}

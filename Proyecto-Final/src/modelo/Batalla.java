@@ -19,12 +19,12 @@ public class Batalla {
 	/*
 	 * Constante que determina el tiempo inicial de un combate
 	 */
-	public static final int TIEMPO_INICIAL = 60;
+	public static final int TIEMPO_INICIAL = 120;
 	
 	/*
 	 * Constante que respresenta el número de escenarios
 	 */
-	public static final int NUM_ESCENARIOS = 60;
+	public static final int NUM_ESCENARIOS = 6;
 	
 	//--------------------------------------
 	// Relaciones
@@ -40,6 +40,17 @@ public class Batalla {
 	 */
 	private Jugador jugador2;
 	
+	/*
+	 * Arreglo de fondos
+	 * 
+	 * Informacion
+	 * [0] ----> escenario1
+	 * [1] ----> escenario2
+	 * [2] ----> escenario3
+	 * [3] ----> escenario4
+	 * [4] ----> escenario5
+	 * [5] ----> escenario6
+	 */
 	private String[] fondos = {"escenario1", "escenario2", "escenario3", "escenario4", "escenario5", "escenario6"};
 	
 	/*
@@ -92,6 +103,10 @@ public class Batalla {
 	 */
 	public void restarUnSegundo() {
 		tiempoRestante--;
+	}
+	
+	public int darTiempoActual() {
+		return tiempoRestante;
 	}
 	
 	public int darNumeroEscenarios() {

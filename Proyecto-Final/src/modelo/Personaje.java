@@ -22,7 +22,7 @@ public class Personaje {
 	//***** Constantes de Atributos *************//
 	public static final int VIDA_BASE = 1000;
 	public static final int KI_BASE = 300;
-	public static final int VELOCIDAD_BASE = 160;
+	public static final int VELOCIDAD_BASE = 40;
 	public static final int RESISTENCIA_BASE = 100;
 	public static final int FUERZA_BASE = 100;
 
@@ -362,13 +362,14 @@ public class Personaje {
 
 	public Image spriteQuieto() {
 
-		if(posSprite[0] == -1) {
-			posSprite[0] = 0;
-		}
-		else if(posSprite[0] < sprite.darTamanhos()[Sprite.PARADO] - 1) {
+//		if(posSprite[0] == -1) {
+//			posSprite[0] = 0;
+//		}
+//		else 
+		if(posSprite[0] < sprite.darTamanhos()[Sprite.PARADO] - 1) {
 			posSprite[0]++;
 		}else {
-			posSprite[0] = -sprite.darTamanhos()[Sprite.PARADO] + 1;
+			posSprite[0] = 0;
 		}
 
 		return sprite.spriteQuieto(posSprite[0], direccion);
