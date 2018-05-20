@@ -108,6 +108,11 @@ public class Juego {
 		return darJugadorActual();
 	}
 	
+	public Jugador[] darJugadoresEnBatalla() {
+		Jugador[] j = {battle.darJugador1(),battle.darJugador2()};
+		return j;
+	}
+	
 	public String darFondoActual() {
 		return fondoActual;
 	}

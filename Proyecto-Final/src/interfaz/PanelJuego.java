@@ -54,19 +54,6 @@ public class PanelJuego extends JPanel implements KeyListener{
 
 	}
 	
-	public void iniciarHilos() {
-		
-		HiloJuego h = new HiloJuego(this, ventana.darJuego());
-		h.start();
-
-		HiloAtaqueDistancia hD = new HiloAtaqueDistancia(ventana.darJuego(),this);
-		hD.start();
-		HiloAnimaciones hA1 = new HiloAnimaciones(ventana.darJuego().darBatalla().darJugador1(),this,1);
-		hA1.start();
-		HiloAnimaciones hA2 = new HiloAnimaciones(ventana.darJuego().darBatalla().darJugador2(),this,2);
-		hA2.start();
-	}
-	
 	public boolean modificando(){
 		return modificando;
 	}

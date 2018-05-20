@@ -21,7 +21,7 @@ public class PanelMenuPrincipal extends JPanel implements MouseListener{
 	/*
 	 * Relacion con la ventana principal
 	 */
-	VentanaPrincipal ventana;
+	private VentanaPrincipal ventana;
 
 	//--------------------------------------
 	// Atributos
@@ -76,8 +76,6 @@ public class PanelMenuPrincipal extends JPanel implements MouseListener{
 		int posX = e.getX();
 		int posY = e.getY();
 
-		System.out.println("PosX:  " + posX + "  PosY:    " + posY);
-
 		//****************************************//
 		// Area de opcion de selecion jugador 1
 		//****************************************//
@@ -95,9 +93,6 @@ public class PanelMenuPrincipal extends JPanel implements MouseListener{
 		//****************************************
 		else if (posX > 45 && posX < 625 && posY > 295 && posY < 390) {
 			ventana.agregarPanelEscenario();
-			//Chasqui, aqui quede!
-			System.out.println("Chasqui, aqui quede");
-
 		}
 
 		//****************************************

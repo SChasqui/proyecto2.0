@@ -1,25 +1,29 @@
 package hilos;
 
 import interfaz.PanelJuego;
+import interfaz.VentanaPrincipal;
 import modelo.Juego;
 
 public class HiloJuego extends Thread{
 	
-	PanelJuego pJuego;
+	VentanaPrincipal interfaz;
 	
 	Juego miJuego;
 	
 	/*
 	 * Holamundosa
 	 */
-	public HiloJuego(PanelJuego p, Juego miJuego) {
-		pJuego = p;
+	public HiloJuego(VentanaPrincipal ventana, Juego miJuego) {
+		interfaz = ventana;
 		this.miJuego = miJuego;
 	}
 	
 	
 	@Override
 	public void run() {
+		
+		PanelJuego pJuego = interfaz.darPanelJuego();
+		
 		while (true && !pJuego.darAcabo()) {
 
 			pJuego.repaint();

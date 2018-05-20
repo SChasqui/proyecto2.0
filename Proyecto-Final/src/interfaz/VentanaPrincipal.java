@@ -14,6 +14,9 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import hilos.HiloAnimaciones;
+import hilos.HiloAtaqueDistancia;
+import hilos.HiloJuego;
 import modelo.Juego;
 import modelo.JugadorNoSeleccionadoException;
 
@@ -24,15 +27,14 @@ public class VentanaPrincipal extends JFrame{
 	// Relaciones.
 	//--------------------------------------
 	private PanelSeleccionEscenario pSeleccionEscenario;
-	
+
 	private PanelSeleccionJugador pSeleccionJugador;
-	
-//	private JPanel panelAuxiliar;
+
 	/*
 	 * Relacion con el Menu principal
 	 */
 	private PanelMenuPrincipal menuPrincipal;
-	
+
 	private PanelJuego pJuego;
 	/*
 	 * Relacion con la clase principal del modelo
@@ -40,37 +42,48 @@ public class VentanaPrincipal extends JFrame{
 	private Juego juego;
 
 	public VentanaPrincipal() {
-		
+
 		juego = new Juego();
 
 		setLayout(new BorderLayout());
 		setVisible(true);
 		setSize(1280, 720);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		
+
 		menuPrincipal = new PanelMenuPrincipal(this);
-		
+
 		add(menuPrincipal,BorderLayout.CENTER);
-		
+
 		pSeleccionJugador = new PanelSeleccionJugador(this,0);
-		
+
 		pSeleccionEscenario = new PanelSeleccionEscenario(this);
-		
+
 		pJuego = new PanelJuego(this);
 		addKeyListener(pJuego);
-		
-	}
-
-	public static void main(String args[]) {
-
-		VentanaPrincipal v = new VentanaPrincipal();
 
 	}
-	
+
+	public void iniciarHilos() {
+		HiloJuego h = new HiloJuego(this, darJuego());
+		h.start();
+		HiloAtaqueDistancia hD = new HiloAtaqueDistancia(darJuego(),this);
+		hD.start();
+		HiloAnimaciones hA1 = new HiloAnimaciones(darJuego(),this,1);
+		hA1.start();
+		HiloAnimaciones hA2 = new HiloAnimaciones(darJuego(),this,2);
+		hA2.start();
+	}
+
+	public PanelJuego darPanelJuego() {
+		return pJuego;
+	}
+
+
+
 	public Juego darJuego() {
 		return juego;
 	}
-	
+
 	public PanelSeleccionEscenario getpSeleccionEscenario() {
 		return pSeleccionEscenario;
 	}
@@ -94,7 +107,7 @@ public class VentanaPrincipal extends JFrame{
 	public void setJuego(Juego juego) {
 		this.juego = juego;
 	}
-	
+
 
 
 	public PanelMenuPrincipal getMenuPrincipal() {
@@ -111,7 +124,7 @@ public class VentanaPrincipal extends JFrame{
 		pSeleccionEscenario.updateUI();
 		pSeleccionEscenario.repaint();
 	}
-	
+
 	public void agregarPanelJugador(int i) {
 		remove(menuPrincipal);
 		setLayout(new BorderLayout());
@@ -120,7 +133,7 @@ public class VentanaPrincipal extends JFrame{
 		pSeleccionJugador.updateUI();
 		pSeleccionJugador.repaint();
 	}
-	
+
 	public void agregarPanelMenuPrincipal(JPanel a) {
 		remove(a);
 		add(menuPrincipal);
@@ -135,10 +148,14 @@ public class VentanaPrincipal extends JFrame{
 		} catch (JugadorNoSeleccionadoException e) {
 			e.printStackTrace();
 		}
-		pJuego.iniciarHilos();
+		iniciarHilos();
 		pJuego.cambiarAcabo(false);
 		add(pJuego);
 		pJuego.updateUI();
 		pJuego.repaint();
+	}
+	
+	public static void main(String args[]) {
+		VentanaPrincipal v = new VentanaPrincipal();
 	}
 }
