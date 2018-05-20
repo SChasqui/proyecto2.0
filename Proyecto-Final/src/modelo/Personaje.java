@@ -295,13 +295,23 @@ public class Personaje implements Atacable{
 
 	public void moverX(int mover) {
 
-		mover *= 200/(double)velocidad;
+		mover *= 150/(double)velocidad;
+		
+		System.out.println(mover);
 
 		direccion = mover>0? DERECHA:IZQUIERDA;
 
 		if(posX+mover >= 0 && posX+mover <=1200 && !colisionaronHorizontal(mover)) {
 
-			posX+=mover;
+			posX += mover;
+			rectangulo.setLocation(posX, posY);
+
+			posSprite[2] = posSprite[2] !=-1? posSprite[2]:0;
+			quieto = false;
+			
+		}else if(posX+mover >= 0 && posX+mover <=1200 && !colisionaronHorizontal(9 * direccion)) {
+			
+			posX += 9*direccion;
 			rectangulo.setLocation(posX, posY);
 
 			posSprite[2] = posSprite[2] !=-1? posSprite[2]:0;
@@ -314,8 +324,10 @@ public class Personaje implements Atacable{
 		mover *= 120/(double)velocidad;
 
 		if(posY+mover >=0 && posY+mover <= 600  && !colisionaronVertical(mover)) {
-
 			posY+=mover;
+			rectangulo.setLocation(posX, posY);
+		}else if(posX+mover >= 0 && posX+mover <=1200 && !colisionaronVertical(9)) {
+			posY += 9;
 			rectangulo.setLocation(posX, posY);
 		}
 	}
