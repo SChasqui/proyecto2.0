@@ -488,13 +488,8 @@ public class Personaje implements Atacable{
 
 			Image temp = sprite.spriteQuieto(posSprite[0], direccion);
 			Rectangle futuro = new Rectangle(posX + movimiento, posY, temp.getWidth(null), temp.getHeight(null));
-			temp = adversario.imagenes().spriteQuieto(posSprite[0], direccion);
-			Rectangle futuroAdversario = futuro;
-			try {
-				futuroAdversario = new Rectangle(adversario.darPosX(), adversario.darPosY(), temp.getWidth(null), temp.getHeight(null));
-			}catch (Exception e) {
-				System.out.println("X");
-			}
+			temp = adversario.imagenes().spriteQuieto(0, direccion);
+			Rectangle futuroAdversario = new Rectangle(adversario.darPosX(), adversario.darPosY(), temp.getWidth(null), temp.getHeight(null));
 			buleano = futuro.intersects(futuroAdversario);
 		}
 
@@ -514,13 +509,9 @@ public class Personaje implements Atacable{
 
 			Image temp = sprite.spriteQuieto(posSprite[0], direccion);
 			Rectangle futuro = new Rectangle(posX, posY + movimiento, temp.getWidth(null), temp.getHeight(null));
-			temp = adversario.imagenes().spriteQuieto(posSprite[0], direccion);
-			Rectangle futuroAdversario = futuro;
-			try {
-				futuroAdversario = new Rectangle(adversario.darPosX(), adversario.darPosY(), temp.getWidth(null), temp.getHeight(null));
-			}catch (Exception e) {
-				System.out.println("Y");
-			}buleano = futuro.intersects(futuroAdversario);
+			temp = adversario.imagenes().spriteQuieto(0, direccion);
+			Rectangle futuroAdversario = new Rectangle(adversario.darPosX(), adversario.darPosY(), temp.getWidth(null), temp.getHeight(null));
+			buleano = futuro.intersects(futuroAdversario);
 		}
 
 		return buleano;
