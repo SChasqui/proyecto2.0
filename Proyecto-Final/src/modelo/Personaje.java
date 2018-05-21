@@ -15,11 +15,11 @@ public class Personaje implements Atacable{
 	// Constantes
 	//--------------------------------------
 
-	//****** Constantes de direccion*********//
+	//** Constantes de direccion*****//
 	public static final int IZQUIERDA = -1;
 	public static final int DERECHA = 1;
 
-	//***** Constantes de Atributos *************//
+	//** Constantes de Atributos ******//
 	public static final int VIDA_BASE = 1000;
 	public static final int KI_BASE = 300;
 	public static final int VELOCIDAD_BASE = 40;
@@ -39,7 +39,7 @@ public class Personaje implements Atacable{
 	 * [8][j] ----> Kid_Buu --> 1000P
 	 * [9][j] ----> Vegeta --> 900P 
 	 * 
-	 *===============================================================*
+	 ===============================================================
 	 *
 	 * [i][0] ----> multiplicador de Vida
 	 * [i][1] ----> multiplicador de Ki
@@ -74,7 +74,7 @@ public class Personaje implements Atacable{
 	// Atributos
 	//--------------------------------------
 
-	//**************atributos de Poder del Personaje****************//
+	//*****atributos de Poder del Personaje*****//
 
 	private int ki;
 
@@ -103,17 +103,17 @@ public class Personaje implements Atacable{
 	 */
 	private int indicePersonaje;
 
-	//**************atributos de Movimiento del Personaje****************//
+	//*****atributos de Movimiento del Personaje*****//
 
 	//--------------------------------------
 	// Información
 	//--------------------------------------
 	/*	- posSprite[0] ---> Corresponde al sprite parado.
-	 * 	- posSprite[1] ---> Corresponde al sprite moverse.
-	 * 	- posSprite[2] ---> Corresponde al sprite del puño.
+	 * 	- posSprite[1] ---> Corresponde al sprite punho.
+	 * 	- posSprite[2] ---> Corresponde al sprite movimiento.
 	 * 	- posSprite[3] ---> Corresponde al sprite del ataque mediano.
-	 * 	- posSprite[4] ---> Corresponde al sprite parado.
-	 *  - posSprite[5] ---> Corresponde al sprite parado.
+	 * 	- posSprite[4] ---> Corresponde al sprite del ataque pequeño.
+	 *  - posSprite[5] ---> Corresponde al sprite del ataque grande.
 	 *
 	 */
 
@@ -147,7 +147,7 @@ public class Personaje implements Atacable{
 	 */
 	private int posY;
 
-	//**************atributos Graficos del Personaje****************//
+	//*****atributos Graficos del Personaje*****//
 
 	/*
 	 * Sprite que pintara el panel
@@ -159,12 +159,12 @@ public class Personaje implements Atacable{
 	 */
 	private String personaje;
 	
-	//*************** Atributos de Arbol *****************************//
+	//***** Atributos de Arbol ***********//
 	
 	private Personaje derecha;
 	private Personaje Izquierda;
 
-	//**************atributos varios que no se calificar :v del Personaje****************//
+	//*****atributos varios que no se calificar :v del Personaje*****//
 
 	/*
 	 * precio en puntos de un personaje (Usar Constantes)
@@ -277,8 +277,13 @@ public class Personaje implements Atacable{
 		quieto = false;
 	}
 
-	public void lanzarAtaqueDistante() {
+	public void lanzarAtaqueDistanteMediano() {
 		posSprite[3] = 0;
+		quieto = false;
+	}
+	
+	public void lanzarAtaqueDistantePequeño() {
+		posSprite[4] = 0;
 		quieto = false;
 	}
 
@@ -334,9 +339,9 @@ public class Personaje implements Atacable{
 			// Se retorna un frame de la animacion del personaje parado
 			aMostrar = spriteQuieto();
 
-			//**************************************************************
+			//**********************
 			// Se reinician los frames de cada uno de los otros movimientos
-			//**************************************************************
+			//**********************
 			for (int i = 1; i < posSprite.length; i++) {
 				posSprite[i]=-1;
 			}
@@ -345,7 +350,9 @@ public class Personaje implements Atacable{
 		}else if(posSprite[2] != -1) {
 			aMostrar = spriteMovimiento();
 		}else if(posSprite[3] != -1) {
-			aMostrar = spriteAtaqueMedDistancia();
+			aMostrar = spriteAtaqueMedianoDistancia();
+		}else if(posSprite[4]!= -1) {
+			aMostrar = spriteAtaquePequeñoDistancia();
 		}
 
 		frame = aMostrar;
@@ -399,19 +406,35 @@ public class Personaje implements Atacable{
 
 	}
 
-	public void agregarAtaqueDistancia(AtaqueDistancia actual) {
+	public void agregarAtaqueDistanciaMediano(AtaqueDistancia actual) {
 		if (actual.darSiguiente() == null) {
-			actual.seleccionarSiguiente( new AtaqueDistancia(fuerza, direccion, posX + (100 * direccion) , posY));
+			actual.seleccionarSiguiente( new AtaqueMediano(fuerza, direccion, posX + (100 * direccion) , posY));
 		}else {
-			agregarAtaqueDistancia(actual.darSiguiente());
+			agregarAtaqueDistanciaMediano(actual.darSiguiente());
+		}
+	}
+	
+	public void agregarAtaqueDistanciaPequeño(AtaqueDistancia actual) {
+		if (actual.darSiguiente() == null) {
+			actual.seleccionarSiguiente( new AtaquePequeño(fuerza, direccion, posX + (100 * direccion) , posY));
+		}else {
+			agregarAtaqueDistanciaPequeño(actual.darSiguiente());
+		}
+	}
+	
+	public void agregarAtaqueDistanciaGrande(AtaqueDistancia actual) {
+		if (actual.darSiguiente() == null) {
+			actual.seleccionarSiguiente( new AtaqueGrande(fuerza, direccion, posX + (100 * direccion) , posY));
+		}else {
+			agregarAtaqueDistanciaGrande(actual.darSiguiente());
 		}
 	}
 
-	public Image spriteAtaqueMedDistancia() {
+	public Image spriteAtaqueMedianoDistancia() {
 
 		atacando = true;
 
-		Image frame = sprite.spriteAtaqueMedDistancia(posSprite[3], direccion);
+		Image frame = sprite.spriteAtaqueMedianoDistancia(posSprite[3], direccion);
 
 		posSprite[3]++;
 		quieto = false;
@@ -419,10 +442,10 @@ public class Personaje implements Atacable{
 		if(posSprite[3] == sprite.darTamanhos()[Sprite.ATAQUE_MEDIANO] - 1) {
 			AtaqueDistancia actual = ataqueDistancia;
 			if (ataqueDistancia == null) {
-				ataqueDistancia = new AtaqueDistancia(fuerza, direccion, posX + (100 * direccion) , posY);
+				ataqueDistancia = new AtaqueMediano(fuerza, direccion, posX + (100 * direccion) , posY);
 			}else if(ki - 20 > 0){
 				ki -= 20;
-				agregarAtaqueDistancia(actual);
+				agregarAtaqueDistanciaMediano(actual);
 			}
 		}
 		if (posSprite[3] > sprite.darTamanhos()[Sprite.ATAQUE_MEDIANO] - 1) {
@@ -433,6 +456,60 @@ public class Personaje implements Atacable{
 		return frame;
 
 	}
+	
+	public Image spriteAtaquePequeñoDistancia() {
+
+		atacando = true;
+
+		Image frame = sprite.spriteAtaquePequeñoDistancia(posSprite[4], direccion);
+
+		posSprite[4]++;
+		quieto = false;
+
+		if(posSprite[4] == sprite.darTamanhos()[Sprite.ATAQUE_PEQUENHO] - 1) {
+			AtaqueDistancia actual = ataqueDistancia;
+			if (ataqueDistancia == null) {
+				ataqueDistancia = new AtaquePequeño(fuerza, direccion, posX + (100 * direccion) , posY);
+			}else if(ki - 20 > 0){
+				ki -= 20;
+				agregarAtaqueDistanciaPequeño(actual);
+			}
+		}
+		if (posSprite[4] > sprite.darTamanhos()[Sprite.ATAQUE_PEQUENHO] - 1) {
+			posSprite[4] = -1;
+			quieto = true;
+		}
+
+		return frame;
+
+	}
+	
+//	public Image spriteAtaqueMedDistancia() {
+//
+//		atacando = true;
+//
+//		Image frame = sprite.spriteAtaqueMedDistancia(posSprite[3], direccion);
+//
+//		posSprite[3]++;
+//		quieto = false;
+//
+//		if(posSprite[3] == sprite.darTamanhos()[Sprite.ATAQUE_MEDIANO] - 1) {
+//			AtaqueDistancia actual = ataqueDistancia;
+//			if (ataqueDistancia == null) {
+//				ataqueDistancia = new AtaqueDistancia(fuerza, direccion, posX + (100 * direccion) , posY);
+//			}else if(ki - 20 > 0){
+//				ki -= 20;
+//				agregarAtaqueDistancia(actual);
+//			}
+//		}
+//		if (posSprite[3] > sprite.darTamanhos()[Sprite.ATAQUE_MEDIANO] - 1) {
+//			posSprite[3] = -1;
+//			quieto = true;
+//		}
+//
+//		return frame;
+//
+//	}
 
 	public void eliminarAtaque(AtaqueDistancia actual) {
 
@@ -488,8 +565,13 @@ public class Personaje implements Atacable{
 
 			Image temp = sprite.spriteQuieto(posSprite[0], direccion);
 			Rectangle futuro = new Rectangle(posX + movimiento, posY, temp.getWidth(null), temp.getHeight(null));
-			temp = adversario.imagenes().spriteQuieto(0, direccion);
-			Rectangle futuroAdversario = new Rectangle(adversario.darPosX(), adversario.darPosY(), temp.getWidth(null), temp.getHeight(null));
+			temp = adversario.imagenes().spriteQuieto(posSprite[0], direccion);
+			Rectangle futuroAdversario = futuro;
+			try {
+				futuroAdversario = new Rectangle(adversario.darPosX(), adversario.darPosY(), temp.getWidth(null), temp.getHeight(null));
+			}catch (Exception e) {
+				System.out.println("X");
+			}
 			buleano = futuro.intersects(futuroAdversario);
 		}
 
@@ -509,9 +591,13 @@ public class Personaje implements Atacable{
 
 			Image temp = sprite.spriteQuieto(posSprite[0], direccion);
 			Rectangle futuro = new Rectangle(posX, posY + movimiento, temp.getWidth(null), temp.getHeight(null));
-			temp = adversario.imagenes().spriteQuieto(0, direccion);
-			Rectangle futuroAdversario = new Rectangle(adversario.darPosX(), adversario.darPosY(), temp.getWidth(null), temp.getHeight(null));
-			buleano = futuro.intersects(futuroAdversario);
+			temp = adversario.imagenes().spriteQuieto(posSprite[0], direccion);
+			Rectangle futuroAdversario = futuro;
+			try {
+				futuroAdversario = new Rectangle(adversario.darPosX(), adversario.darPosY(), temp.getWidth(null), temp.getHeight(null));
+			}catch (Exception e) {
+				System.out.println("Y");
+			}buleano = futuro.intersects(futuroAdversario);
 		}
 
 		return buleano;

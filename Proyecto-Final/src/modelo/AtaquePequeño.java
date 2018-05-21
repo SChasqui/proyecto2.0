@@ -7,5 +7,7 @@ public class AtaquePequeño extends AtaqueDistancia {
 		// TODO Auto-generated constructor stub
 	}
 
-
+	public String darSprite() {
+		return "data/Sprites/"  + "AtaquePequeño/"+ (darDireccion() == Personaje.IZQUIERDA? "Izquierda": "Derecha") +".png";
+	}
 }

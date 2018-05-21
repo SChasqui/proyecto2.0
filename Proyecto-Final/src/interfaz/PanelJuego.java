@@ -32,6 +32,7 @@ public class PanelJuego extends JPanel implements KeyListener{
 	public final static int FLECHA_IZQUIERDA = 37;
 	public static final int NUMERO_UNO = 97;
 	public static final int NUMERO_DOS = 98;
+	public static final int NUMERO_TRES = 99;
 	
 	//Teclas para el Jugador 2
 	public final static int W = 83;
@@ -40,6 +41,7 @@ public class PanelJuego extends JPanel implements KeyListener{
 	public static final int A = 65;
 	public static final int J = 74;
 	public static final int K = 75;
+	public static final int L = 76;
 	
 	public final Set<Integer> pressed = new HashSet<Integer>();
 	
@@ -152,7 +154,6 @@ public class PanelJuego extends JPanel implements KeyListener{
 
 			if (temp.size() > 0) {
 				for (int c : temp) {
-
 					if (c == FLECHA_IZQUIERDA) {
 						ventana.darJuego().darBatalla().darJugador1().darPersonaje().moverX(-12);
 					} else if (c == FLECHA_ABAJO) {
@@ -164,8 +165,9 @@ public class PanelJuego extends JPanel implements KeyListener{
 					} else if (c == NUMERO_UNO) {
 						ventana.darJuego().darBatalla().darJugador1().darPersonaje().atacar(c);
 					} else if (c == NUMERO_DOS) {
-						ventana.darJuego().darBatalla().darJugador1().darPersonaje().lanzarAtaqueDistante();
-
+						ventana.darJuego().darBatalla().darJugador1().darPersonaje().lanzarAtaqueDistanteMediano();
+					} else if (c == NUMERO_TRES) {
+						ventana.darJuego().darBatalla().darJugador1().darPersonaje().lanzarAtaqueDistantePequeño();
 					}
 
 				}
@@ -199,8 +201,9 @@ public class PanelJuego extends JPanel implements KeyListener{
 					}else if(c == J) {
 						temporal.darPersonaje().atacar(c);
 					}else if(c == K) {
-						temporal.darPersonaje().lanzarAtaqueDistante();
-
+						temporal.darPersonaje().lanzarAtaqueDistanteMediano();
+					}else if(c == L) {
+						temporal.darPersonaje().lanzarAtaqueDistantePequeño();
 					}
 
 				}
