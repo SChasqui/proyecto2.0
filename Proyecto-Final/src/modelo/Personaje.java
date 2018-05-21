@@ -147,11 +147,6 @@ public class Personaje implements Atacable{
 	 */
 	private int posY;
 
-	/*
-	 * Es un rectangulo que representa el área donde se encuentra el personaje
-	 */
-	private Rectangle rectangulo;
-
 	//**************atributos Graficos del Personaje****************//
 
 	/*
@@ -206,8 +201,6 @@ public class Personaje implements Atacable{
 
 		posX += (int)(Math.random() * 1000);
 		posY += (int)(Math.random() * 500);
-
-		rectangulo = new Rectangle (posX, posY, new ImageIcon(spriteQuieto()).getIconWidth(), new ImageIcon(spriteQuieto()).getIconHeight());
 
 		quieto = true;
 
@@ -265,10 +258,6 @@ public class Personaje implements Atacable{
 		posX = newPosY;
 	}
 
-	public Rectangle darRectangulo() {
-		return rectangulo;
-	}
-
 	/*
 	 * Método que informa sposSprite[0] el ataque que recibe como parámetro lo afecto
 	 * @param x - La posición en el eje X del ataque
@@ -304,7 +293,6 @@ public class Personaje implements Atacable{
 		if(posX+mover >= 0 && posX+mover <=1200 && !colisionaronHorizontal(mover)) {
 
 			posX += mover;
-			rectangulo.setLocation(posX, posY);
 
 			posSprite[2] = posSprite[2] !=-1? posSprite[2]:0;
 			quieto = false;
@@ -312,7 +300,6 @@ public class Personaje implements Atacable{
 		}else if(posX+mover >= 0 && posX+mover <=1200 && !colisionaronHorizontal(9 * direccion)) {
 			
 			posX += 9*direccion;
-			rectangulo.setLocation(posX, posY);
 
 			posSprite[2] = posSprite[2] !=-1? posSprite[2]:0;
 			quieto = false;
@@ -323,12 +310,10 @@ public class Personaje implements Atacable{
 
 //		mover *= 30/(double)velocidad;
 
-		if(posY+mover >=0 && posY+mover <= 600  && !colisionaronVertical(mover)) {
-			posY+=mover;
-			rectangulo.setLocation(posX, posY);
-		}else if(posY+mover >=0 && posY+mover <= 600 && !colisionaronVertical(9)) {
+		if(posY + mover >=0 && posY + mover <= 600  && !colisionaronVertical(mover)) {
+			posY += mover;
+		}else if(posY + mover >=0 && posY + mover <= 600 && !colisionaronVertical(9)) {
 			posY += 9;
-			rectangulo.setLocation(posX, posY);
 		}
 	}
 
@@ -348,12 +333,6 @@ public class Personaje implements Atacable{
 		if(quieto) {
 			// Se retorna un frame de la animacion del personaje parado
 			aMostrar = spriteQuieto();
-			if (posSprite[2] == 2) {
-
-				posSprite[2] = 3;
-				//				aMostrar = "data/Sprites/" + sprite + (direccion == IZQUIERDA? "/moverIzquierda": "/moverDerecha")+"/"+(posSprite[2])+ ".png";
-				rectangulo.setSize(new ImageIcon(aMostrar).getIconWidth(), new ImageIcon(aMostrar).getIconHeight());
-			}
 
 			//**************************************************************
 			// Se reinician los frames de cada uno de los otros movimientos
@@ -389,8 +368,6 @@ public class Personaje implements Atacable{
 
 		Image frame = sprite.spritePuño(posSprite[1], direccion);
 
-		rectangulo.setSize(frame.getWidth(null), frame.getHeight(null));
-
 		posSprite[1]++;
 		quieto = false;
 		if (posSprite[1] > sprite.darTamanhos()[Sprite.PUNHO]-1) {
@@ -411,8 +388,6 @@ public class Personaje implements Atacable{
 		atacando = false;
 
 		Image frame = sprite.spriteMovimiento(posSprite[2], direccion);
-
-		rectangulo.setSize(frame.getWidth(null), frame.getHeight(null));
 
 		if (posSprite[2] == sprite.darTamanhos()[Sprite.MOVERCE] - 2) {
 			posSprite[2] = sprite.darTamanhos()[Sprite.MOVERCE] - 3;
@@ -496,6 +471,9 @@ public class Personaje implements Atacable{
 		return atacando;
 	}
 	
+	public Sprite imagenes() {
+		return sprite;
+	}
 
 	public boolean colisionaronHorizontal(int movimiento) {
 
@@ -510,7 +488,7 @@ public class Personaje implements Atacable{
 
 			Image temp = sprite.spriteQuieto(posSprite[0], direccion);
 			Rectangle futuro = new Rectangle(posX + movimiento, posY, temp.getWidth(null), temp.getHeight(null));
-			temp = adversario.spriteQuieto();
+			temp = adversario.imagenes().spriteQuieto(posSprite[0], direccion);
 			Rectangle futuroAdversario = new Rectangle(adversario.darPosX(), adversario.darPosY(), temp.getWidth(null), temp.getHeight(null));
 			buleano = futuro.intersects(futuroAdversario);
 		}
@@ -518,7 +496,7 @@ public class Personaje implements Atacable{
 		return buleano;
 	}
 
-	private boolean colisionaronVertical(int movimiento) {
+	public boolean colisionaronVertical(int movimiento) {
 
 		boolean buleano	= false;
 
@@ -531,7 +509,7 @@ public class Personaje implements Atacable{
 
 			Image temp = sprite.spriteQuieto(posSprite[0], direccion);
 			Rectangle futuro = new Rectangle(posX, posY + movimiento, temp.getWidth(null), temp.getHeight(null));
-			temp = adversario.spriteQuieto();
+			temp = adversario.imagenes().spriteQuieto(posSprite[0], direccion);
 			Rectangle futuroAdversario = new Rectangle(adversario.darPosX(), adversario.darPosY(), temp.getWidth(null), temp.getHeight(null));
 			buleano = futuro.intersects(futuroAdversario);
 		}
