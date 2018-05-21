@@ -10,7 +10,7 @@ public class AtaqueDistancia extends Ataque implements Destruible{
 	 *	
 	 *
 	 */
-
+//
 	
 	/*
 	 * Hace referencia al "ancho" del ataque
