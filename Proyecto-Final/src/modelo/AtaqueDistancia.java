@@ -5,6 +5,11 @@ import javax.swing.ImageIcon;
 
 public class AtaqueDistancia extends Ataque implements Destruible{
 	
+	/*
+	 *	INFORMACIÓN:
+	 *	
+	 *
+	 */
 
 	
 	/*
