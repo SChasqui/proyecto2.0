@@ -1,6 +1,7 @@
 package interfaz;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.KeyEvent;
@@ -80,8 +81,18 @@ public class PanelJuego extends JPanel implements KeyListener{
 			g.drawImage(spriteAtaque.getImage(), a.darPosX(), a.darPosY(), null);
 			a = a.darSiguiente();
 		}
+		
+		pintarReloj(g);
+		
 		pintarBarras(g);
-	}private void pintarPersonajes(Graphics g) {
+	
+	}
+	private void pintarReloj(Graphics g) {
+		g.setFont(new Font("Arial", Font.BOLD, 40));
+		g.drawString(ventana.darJuego().darBatalla().darTiempoActual() + "", 600, 80);
+	}
+
+	private void pintarPersonajes(Graphics g) {
 		Jugador temp = ventana.darJuego().darBatalla().darJugador1();
 		
 		Image sprite = temp.darPersonaje().darSprite();
