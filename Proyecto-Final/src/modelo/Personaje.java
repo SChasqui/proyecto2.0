@@ -470,8 +470,8 @@ public class Personaje implements Atacable{
 			AtaqueDistancia actual = ataqueDistancia;
 			if (ataqueDistancia == null) {
 				ataqueDistancia = new AtaquePequeño(fuerza, direccion, posX + (100 * direccion) , posY);
-			}else if(ki - 20 > 0){
-				ki -= 20;
+			}else if(ki - 10 > 0){
+				ki -= 10;
 				agregarAtaqueDistanciaPequeño(actual);
 			}
 		}
@@ -634,6 +634,22 @@ public class Personaje implements Atacable{
 
 	public int darResistencia() {
 		return resistencia;
+	}
+	
+	public void ponerAtaqueNull() {
+		ataqueDistancia = null;
+	}
+	
+	public Rectangle darKickBox() {
+		Image temp = frame;
+		Rectangle rect = new Rectangle();
+//		System.out.println(frame);
+		if(frame!=null) {
+			rect = new Rectangle(posX,posY, temp.getWidth(null), temp.getHeight(null));
+		}
+		ponerAtaqueNull();
+		System.out.println(ataqueDistancia);
+		return rect;
 	}
 
 }
