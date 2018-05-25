@@ -34,16 +34,19 @@ public class PanelJuego extends JPanel implements KeyListener{
 	public static final int NUMERO_DOS = 98;
 	public static final int NUMERO_TRES = 99;
 	public static final int NUMERO_CUATRO = 100;
+	public static final int NUMERO_CINCO = 101;
+	public static final int NUMERO_SEIS = 102;
 	
 	//Teclas para el Jugador 2
 	public final static int W = 83;
 	public final static int D = 68;
 	public static final int S = 87;
 	public static final int A = 65;
-	public static final int G = 72;
-	public static final int H = 73;
-	public static final int J = 74;
-	public static final int K = 75;
+	public static final int G = 71;
+	public static final int H = 72;
+	public static final int T = 84;
+	public static final int Y = 89;
+	public static final int U = 85;
 	
 	public final Set<Integer> pressed = new HashSet<Integer>();
 	
@@ -171,11 +174,11 @@ public class PanelJuego extends JPanel implements KeyListener{
 						ventana.darJuego().darBatalla().darJugador1().darPersonaje().moverY(12);
 					} else if (c == NUMERO_UNO) {
 						ventana.darJuego().darBatalla().darJugador1().darPersonaje().atacar(c);
-					} else if (c == NUMERO_DOS) {
-						ventana.darJuego().darBatalla().darJugador1().darPersonaje().lanzarAtaqueDistanteMediano();
-					} else if (c == NUMERO_TRES) {
-						ventana.darJuego().darBatalla().darJugador1().darPersonaje().lanzarAtaqueDistantePequeño();
 					} else if (c == NUMERO_CUATRO) {
+						ventana.darJuego().darBatalla().darJugador1().darPersonaje().lanzarAtaqueDistanteMediano();
+					} else if (c == NUMERO_CINCO) {
+						ventana.darJuego().darBatalla().darJugador1().darPersonaje().lanzarAtaqueDistantePequeño();
+					} else if (c == NUMERO_SEIS) {
 						ventana.darJuego().darBatalla().darJugador1().darPersonaje().lanzarAtaqueDistanteGrande();
 					}
 
@@ -209,11 +212,11 @@ public class PanelJuego extends JPanel implements KeyListener{
 						temporal.darPersonaje().moverY(12);
 					}else if(c == G) {
 						temporal.darPersonaje().atacar(c);
-					}else if(c == H) {
+					}else if(c == T) {
 						temporal.darPersonaje().lanzarAtaqueDistanteMediano();
-					}else if(c == J) {
+					}else if(c == Y) {
 						temporal.darPersonaje().lanzarAtaqueDistantePequeño();
-					}else if(c==K) {
+					}else if(c==U) {
 						temporal.darPersonaje().lanzarAtaqueDistanteGrande();
 					}
 
