@@ -130,6 +130,10 @@ public class PanelJuego extends JPanel implements KeyListener{
 		//Pintar Ki Jugador 2
 		g.drawRect(730, 80, 500, 30);
 		g.fillRect(730, 80, ventana.darJuego().darBatalla().darJugador2().darKiActual(), 30);
+		
+		
+		g.drawString(ventana.darJuego().darBatalla().darJugador1().darNickName(), 30, 150);
+		g.drawString(ventana.darJuego().darBatalla().darJugador2().darNickName(), 730, 150);
 
 	}
 
