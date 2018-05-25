@@ -29,24 +29,15 @@ public class HiloAtaqueDistancia extends Thread{
 			AtaqueDistancia actualUno = miJuego.darBatalla().darJugador1().darPersonaje().darAtaqueDistancia();
 			AtaqueDistancia actualDos = miJuego.darBatalla().darJugador2().darPersonaje().darAtaqueDistancia();
 			
-			if(actualUno!=null) {
-				if(actualUno.colisiono(miJuego.darBatalla().darJugador2().darPersonaje().darKickBox())) {
-					miJuego.darBatalla().darJugador1().darPersonaje().restarVida(10);
-					actualUno.vidaACero();
-				}
-			}
-			
-			if(actualDos!=null) {
-				if(actualDos.colisiono(miJuego.darBatalla().darJugador1().darPersonaje().darKickBox())) {
-					miJuego.darBatalla().darJugador2().darPersonaje().restarVida(10);
-					actualDos.vidaACero();
-				}
-			}
-			
 			
 			int i =1;
 			while (actualUno != null) {
-
+				
+				if(actualUno.colisiono(miJuego.darBatalla().darJugador2().darPersonaje().darKickBox())) {
+					miJuego.darBatalla().darJugador2().darPersonaje().restarVida(10);
+					actualUno.vidaACero();
+				}
+				
 				actualUno.moverX();
 				actualUno = actualUno.darSiguiente();
 
@@ -55,7 +46,12 @@ public class HiloAtaqueDistancia extends Thread{
 			}
 
 			while (actualDos != null) {
-
+				
+				if(actualDos.colisiono(miJuego.darBatalla().darJugador1().darPersonaje().darKickBox())) {
+					miJuego.darBatalla().darJugador1().darPersonaje().restarVida(10);
+					actualDos.vidaACero();
+				}
+				
 				actualDos.moverX();
 				actualDos = actualDos.darSiguiente();
 
