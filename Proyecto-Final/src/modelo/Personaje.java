@@ -294,10 +294,6 @@ public class Personaje implements Atacable{
 
 	public void moverX(int mover) {
 
-//		mover *= 40/(double)velocidad;
-		
-		System.out.println(mover);
-
 		direccion = mover>0? DERECHA:IZQUIERDA;
 
 		if(posX+mover >= 0 && posX+mover <=1200 && !colisionaronHorizontal(mover)) {
@@ -387,7 +383,6 @@ public class Personaje implements Atacable{
 		if (posSprite[1] > sprite.darTamanhos()[Sprite.PUNHO]-1) {
 			if (colisionaronHorizontal(direccion * 12)) {
 				int daño = fuerza - adversario.darResistencia();
-				System.out.println(daño);
 				adversario.restarVida(daño);
 			}
 			posSprite[1] = -1;
@@ -450,7 +445,7 @@ public class Personaje implements Atacable{
 			AtaqueDistancia actual = ataqueDistancia;
 			if (ataqueDistancia == null) {
 				ataqueDistancia = new AtaqueMediano(fuerza, direccion, posX + (100 * direccion) , posY);
-			}else if(ki - 20 > 0){
+			}else if(ki - 100 > 0){
 				ki -= 100;
 				agregarAtaqueDistanciaMediano(actual);
 			}
@@ -477,7 +472,7 @@ public class Personaje implements Atacable{
 			AtaqueDistancia actual = ataqueDistancia;
 			if (ataqueDistancia == null) {
 				ataqueDistancia = new AtaquePequeño(fuerza, direccion, posX + (100 * direccion) , posY);
-			}else if(ki - 10 > 0){
+			}else if(ki - 25 > 0){
 				ki -= 25;
 				agregarAtaqueDistanciaPequeño(actual);
 			}
@@ -504,7 +499,7 @@ public class Personaje implements Atacable{
 			AtaqueDistancia actual = ataqueDistancia;
 			if (ataqueDistancia == null) {
 				ataqueDistancia = new AtaqueGrande(fuerza, direccion, posX + (100 * direccion) , posY);
-			}else if(ki - 10 > 0){
+			}else if(ki - 200 > 0){
 				ki -= 200;
 				agregarAtaqueDistanciaGrande(actual);
 			}
@@ -604,7 +599,6 @@ public class Personaje implements Atacable{
 			try {
 				futuroAdversario = new Rectangle(adversario.darPosX(), adversario.darPosY(), temp.getWidth(null), temp.getHeight(null));
 			}catch (Exception e) {
-				System.out.println("X");
 			}
 			buleano = futuro.intersects(futuroAdversario);
 		}
@@ -630,7 +624,7 @@ public class Personaje implements Atacable{
 			try {
 				futuroAdversario = new Rectangle(adversario.darPosX(), adversario.darPosY(), temp.getWidth(null), temp.getHeight(null));
 			}catch (Exception e) {
-				System.out.println("Y");
+				
 			}buleano = futuro.intersects(futuroAdversario);
 		}
 
@@ -677,7 +671,6 @@ public class Personaje implements Atacable{
 	public Rectangle darKickBox() {
 		Image temp = frame;
 		Rectangle rect = new Rectangle();
-//		System.out.println(frame);
 		if(frame!=null) {
 			rect = new Rectangle(posX,posY, temp.getWidth(null), temp.getHeight(null));
 		}

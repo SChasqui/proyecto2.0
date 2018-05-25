@@ -33,7 +33,7 @@ public class AtaqueDistancia extends Ataque implements Destruible{
 	
 	public AtaqueDistancia (int poder,  int direccion, int posX, int posY) {
 		super(poder, direccion, posX, posY);
-		poder = 50;
+		this.poder = poder;
 		ImageIcon img = new ImageIcon(this.darSprite());
 		kickBox = new Rectangle(posX, posY, img.getIconWidth(), img.getIconHeight() );
 	}

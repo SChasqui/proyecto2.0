@@ -48,7 +48,6 @@ public class PanelSeleccionEscenario extends JPanel implements MouseListener{
 	public void pintarFondos(Graphics g) {
 		
 		Image escenario = new ImageIcon("data/fondoEscenario/escenario" +escenarioActual + ".png").getImage();
-		System.out.println("data/fondoEscenario/escenario" +escenarioActual + ".png");
 		g.drawImage(escenario, 0, 0,null);
 		
 	}

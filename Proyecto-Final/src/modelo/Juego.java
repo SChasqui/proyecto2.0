@@ -7,7 +7,9 @@
  */
 package modelo;
 
-public class Juego {
+import java.util.Comparator;
+
+public class Juego implements Comparator<Jugador>{
 
 	//--------------------------------------
 	// Relaciones
@@ -125,6 +127,12 @@ public class Juego {
 		return darJugadorActual();
 	}
 	
+	public Jugador buscarPorPuntos(Jugador j) {
+		int inicio = 0;
+		
+		return null;
+	}
+	
 	public void darPuntos() {
 		
 		jugador1.AñadirPuntos(
@@ -205,6 +213,11 @@ public class Juego {
 	
 	public Batalla darBatalla() {
 		return battle;
+	}
+
+	@Override
+	public int compare(Jugador o1, Jugador o2) {
+		return o1.darPuntos()-o2.darPuntos();
 	}
 	
 
