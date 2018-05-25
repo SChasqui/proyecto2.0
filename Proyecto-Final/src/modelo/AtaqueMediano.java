@@ -4,7 +4,7 @@ public class AtaqueMediano extends AtaqueDistancia {
 
 	public AtaqueMediano(int poder, int direccion, int posX, int posY) {
 		super(poder, direccion, posX, posY);
-		
+		cambiarPoder(poder+10);
 		// TODO Auto-generated constructor stub
 	}
 

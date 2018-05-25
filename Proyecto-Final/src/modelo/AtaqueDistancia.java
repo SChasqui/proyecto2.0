@@ -22,7 +22,7 @@ public class AtaqueDistancia extends Ataque implements Destruible{
 	/*
 	 * Vida del ataque
 	 */
-	private int vida;
+	private int poder;
 	
 	/*
 	 * siguiente ataque en la lista
@@ -33,7 +33,7 @@ public class AtaqueDistancia extends Ataque implements Destruible{
 	
 	public AtaqueDistancia (int poder,  int direccion, int posX, int posY) {
 		super(poder, direccion, posX, posY);
-		vida = 50;
+		poder = 50;
 		ImageIcon img = new ImageIcon(this.darSprite());
 		kickBox = new Rectangle(posX, posY, img.getIconWidth(), img.getIconHeight() );
 	}
@@ -55,17 +55,21 @@ public class AtaqueDistancia extends Ataque implements Destruible{
 	}
 	
 	public void moverX() {
-		posX += (super.darDireccion()  == 1) ? 20 * ((double)darDanho()/80): -20 * ((double)darDanho()/80);
+		posX += (super.darDireccion()  == 1) ? 20 * ((double)darDanho()/120): -20 * ((double)darDanho()/120);
 		kickBox.setLocation(super.darPosX(), super.darPosY());
-		vida--;
+		poder--;
 	}
 	
-	public int darVida() {
-		return vida;
+	public int darPoder() {
+		return poder;
 	}
 	
-	public void vidaACero() {
-		vida = 1;
+	public void cambiarPoder(int pod) {
+		poder = pod;
+	}
+	
+	public void restarVida() {
+		poder = 1;
 	}
 	
 	public String darSprite() {

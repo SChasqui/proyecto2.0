@@ -550,11 +550,11 @@ public class Personaje implements Atacable{
 		if (actual == null) {
 
 		}else {
-			if (ataqueDistancia.darVida() == 0) {
+			if (ataqueDistancia.darPoder() == 0) {
 				ataqueDistancia = ataqueDistancia.darSiguiente();
 				actual = ataqueDistancia;
 			}else {
-				if (actual.darSiguiente() != null && actual.darSiguiente().darVida() == 0) {
+				if (actual.darSiguiente() != null && actual.darSiguiente().darPoder() == 0) {
 					actual.seleccionarSiguiente(actual.darSiguiente().darSiguiente());
 				}else{
 					actual = actual.darSiguiente();

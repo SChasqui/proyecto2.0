@@ -47,7 +47,7 @@ public class Ataque {
 		direccion = pDireccion;
 		posX = pX;
 		posY = pY;
-		danho = poder + 200;
+		danho = poder;
 
 	}
 

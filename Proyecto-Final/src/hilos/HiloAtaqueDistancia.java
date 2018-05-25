@@ -33,8 +33,8 @@ public class HiloAtaqueDistancia extends Thread{
 			while (actualUno != null) {
 				
 				if(actualUno.comprobarAtaque(miJuego.darBatalla().darJugador2().darPersonaje().darKickBox())) {
-					miJuego.darBatalla().darJugador2().darPersonaje().restarVida(10);
-					actualUno.vidaACero();
+					miJuego.darBatalla().darJugador2().darPersonaje().restarVida(actualUno.darDanho());
+					actualUno.restarVida();
 				}
 				
 				actualUno.moverX();
@@ -47,8 +47,8 @@ public class HiloAtaqueDistancia extends Thread{
 			while (actualDos != null) {
 				
 				if(actualDos.comprobarAtaque(miJuego.darBatalla().darJugador1().darPersonaje().darKickBox())) {
-					miJuego.darBatalla().darJugador1().darPersonaje().restarVida(10);
-					actualDos.vidaACero();
+					miJuego.darBatalla().darJugador1().darPersonaje().restarVida(actualDos.darDanho());
+					actualDos.restarVida();
 				}
 				
 				actualDos.moverX();
