@@ -133,8 +133,8 @@ public class Jugador {
 		return (int) (((double)personajeActual.darKI() / darKiMaximo()) * 500);
 	}
 
-	public void darAñadirPuntos() {
-		puntos += 100;
+	public void AñadirPuntos(int puntos) {
+		puntos += puntos;
 	}
 
 	public int darPuntos() {
