@@ -6,6 +6,9 @@ public class AtaqueGrande extends AtaqueDistancia {
 		super(poder, direccion, posX, posY);
 		// TODO Auto-generated constructor stub
 	}
-
+	
+	public String darSprite() {
+		return "data/Sprites/"  + "AtaqueGrande/"+ (darDireccion() == Personaje.IZQUIERDA? "Izquierda": "Derecha") +".png";
+	}
 
 }

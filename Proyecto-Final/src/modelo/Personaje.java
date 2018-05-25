@@ -120,7 +120,7 @@ public class Personaje implements Atacable{
 	/*
 	 * arreglo de frames del sprite
 	 */
-	private int[] posSprite = new int[5];
+	private int[] posSprite = new int[6];
 
 	/*
 	 * boolean que representa si esta atacando o no
@@ -286,6 +286,11 @@ public class Personaje implements Atacable{
 		posSprite[4] = 0;
 		quieto = false;
 	}
+	
+	public void lanzarAtaqueDistanteGrande() {
+		posSprite[5] = 0;
+		quieto = false;
+	}
 
 	public void moverX(int mover) {
 
@@ -353,6 +358,8 @@ public class Personaje implements Atacable{
 			aMostrar = spriteAtaqueMedianoDistancia();
 		}else if(posSprite[4]!= -1) {
 			aMostrar = spriteAtaquePequeñoDistancia();
+		}else if(posSprite[5]!= -1) {
+			aMostrar = spriteAtaqueGrandeDistancia();
 		}
 
 		frame = aMostrar;
@@ -477,6 +484,33 @@ public class Personaje implements Atacable{
 		}
 		if (posSprite[4] > sprite.darTamanhos()[Sprite.ATAQUE_PEQUENHO] - 1) {
 			posSprite[4] = -1;
+			quieto = true;
+		}
+
+		return frame;
+
+	}
+	
+	public Image spriteAtaqueGrandeDistancia() {
+
+		atacando = true;
+
+		Image frame = sprite.spriteAtaqueGrandeDistancia(posSprite[5], direccion);
+
+		posSprite[5]++;
+		quieto = false;
+
+		if(posSprite[5] == sprite.darTamanhos()[Sprite.ATAQUE_GRANDE] - 1) {
+			AtaqueDistancia actual = ataqueDistancia;
+			if (ataqueDistancia == null) {
+				ataqueDistancia = new AtaqueGrande(fuerza, direccion, posX + (100 * direccion) , posY);
+			}else if(ki - 10 > 0){
+				ki -= 10;
+				agregarAtaqueDistanciaGrande(actual);
+			}
+		}
+		if (posSprite[5] > sprite.darTamanhos()[Sprite.ATAQUE_GRANDE] - 1) {
+			posSprite[5] = -1;
 			quieto = true;
 		}
 
@@ -647,8 +681,6 @@ public class Personaje implements Atacable{
 		if(frame!=null) {
 			rect = new Rectangle(posX,posY, temp.getWidth(null), temp.getHeight(null));
 		}
-		ponerAtaqueNull();
-		System.out.println(ataqueDistancia);
 		return rect;
 	}
 

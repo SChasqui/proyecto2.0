@@ -12,6 +12,11 @@ public class Juego {
 	//--------------------------------------
 	// Relaciones
 	//--------------------------------------
+	
+	/*
+	 * Top 10
+	 */
+	private Jugador[] topTen;
 
 	/*
 	 * Arraylist de los jugadores que han usado el juego
@@ -63,6 +68,28 @@ public class Juego {
 	 * Construlle un objeto de tipo Juego
 	 */
 	public Juego() {
+		topTen = new Jugador[10];
+		topTen[0] = new Jugador("Carlos-Sama");
+		topTen[0].AñadirPuntos(100);
+		topTen[1] = new Jugador("Paola-chan");
+		topTen[1].AñadirPuntos(99);
+		topTen[2] = new Jugador("Chasquido-Sun");
+		topTen[2].AñadirPuntos(98);
+		topTen[3] = new Jugador("Victor-Dono");
+		topTen[3].AñadirPuntos(97);
+		topTen[4] = new Jugador("Kyven-San");
+		topTen[4].AñadirPuntos(96);
+		topTen[5] = new Jugador("Barrios-kun");
+		topTen[5].AñadirPuntos(95);
+		topTen[6] = new Jugador("Eclipse-Sama");
+		topTen[6].AñadirPuntos(94);
+		topTen[7] = new Jugador("Deitel-tan");
+		topTen[7].AñadirPuntos(93);
+		topTen[8] = new Jugador("Cristovick is fake");
+		topTen[8].AñadirPuntos(92);
+		topTen[9] = new Jugador("the play boy :v");
+		topTen[9].AñadirPuntos(91);
+		
 	}
 	
 	//--------------------------------------
