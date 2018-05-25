@@ -72,7 +72,7 @@ public class AtaqueDistancia extends Ataque implements Destruible{
 		return "data/Sprites/"  + "AtaqueMed/"+ (darDireccion() == Personaje.IZQUIERDA? "Izquierda": "Derecha") +".png";
 	}
 	
-	public boolean colisiono(Rectangle rect) {
+	public boolean comprobarAtaque(Rectangle rect) {
 		
 		return kickBox.intersects(rect);
 	}
