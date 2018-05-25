@@ -8,7 +8,6 @@ import modelo.Juego;
 public class HiloAtaqueDistancia extends Thread{
 
 	private Juego miJuego;
-
 	private VentanaPrincipal interfaz;
 	private boolean colisionaron;
 
@@ -33,7 +32,7 @@ public class HiloAtaqueDistancia extends Thread{
 			int i =1;
 			while (actualUno != null) {
 				
-				if(actualUno.colisiono(miJuego.darBatalla().darJugador2().darPersonaje().darKickBox())) {
+				if(actualUno.comprobarAtaque(miJuego.darBatalla().darJugador2().darPersonaje().darKickBox())) {
 					miJuego.darBatalla().darJugador2().darPersonaje().restarVida(10);
 					actualUno.vidaACero();
 				}
@@ -47,7 +46,7 @@ public class HiloAtaqueDistancia extends Thread{
 
 			while (actualDos != null) {
 				
-				if(actualDos.colisiono(miJuego.darBatalla().darJugador1().darPersonaje().darKickBox())) {
+				if(actualDos.comprobarAtaque(miJuego.darBatalla().darJugador1().darPersonaje().darKickBox())) {
 					miJuego.darBatalla().darJugador1().darPersonaje().restarVida(10);
 					actualDos.vidaACero();
 				}
