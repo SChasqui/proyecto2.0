@@ -1,5 +1,7 @@
 package interfaz;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.MouseEvent;
@@ -19,7 +21,9 @@ public class PanelSeleccionJugador extends JPanel implements MouseListener {
 	private int numJugador;
 
 	private int index;
-	
+
+	private String nombreActual;
+
 	public PanelSeleccionJugador(VentanaPrincipal v, int numJugador) {
 
 		this.numJugador = numJugador;
@@ -27,8 +31,6 @@ public class PanelSeleccionJugador extends JPanel implements MouseListener {
 		setVisible(true);
 		this.ventana = v;
 		addMouseListener(this);
-		
-		add(new JLabel("Existo"));
 
 
 	}
@@ -52,8 +54,17 @@ public class PanelSeleccionJugador extends JPanel implements MouseListener {
 		Image aceptar = new ImageIcon("data/fondo/aceptar.png").getImage();
 		g.drawImage(aceptar, 985, 583, null);
 
+		pintarNombreyPuntos(g);
+
 	}
-	
+
+	public void pintarNombreyPuntos(Graphics g) {
+		g.setColor(Color.RED);
+		g.setFont(new Font("Arial", Font.ITALIC, 30));
+		g.drawString(nombreActual, 30, 60);
+		g.drawString("Puntos: " + ventana.darJuego().darJugador1().darPuntos(), 30, 90);
+	}
+
 	public void cambiarJugador(int num) {
 		numJugador = num;
 	}
@@ -64,28 +75,28 @@ public class PanelSeleccionJugador extends JPanel implements MouseListener {
 		int posX = e.getX();
 		int posY = e.getY();
 
-//		System.out.println("posX = " +posX + "   PosY = " + posY );
+		//		System.out.println("posX = " +posX + "   PosY = " + posY );
 
 		//Cuando oprima sobre la imagen
 
 		if((posX > 500 && posX < 755 && posY > 250 && posY < 505) || (posX > 986 && posX < 1154 && posY > 582 && posY < 639)) {
-			
+
 			try {
-				String nombre = JOptionPane.showInputDialog("Inserte Su NickName");
 				String personaje = ventana.darJuego().daPersonajes()[index];
-				ventana.darJuego().agregarJugadores(nombre, numJugador, personaje, index);
+				System.out.println(numJugador);
 				if (numJugador == 1) {
 					ventana.darJuego().darJugador1().seleccionarPersonaje(personaje, index);
 				}else if (numJugador == 2) {
 					ventana.darJuego().darJugador2().seleccionarPersonaje(personaje, index);
 				}
-			}
-			catch(NoDesbloqueadoException e1) {
 				
 			}
-			
+			catch(NoDesbloqueadoException e1) {
+
+			}
+
 			ventana.agregarPanelMenuPrincipal(this);
-			
+
 		}
 
 		//Cuando oprima sobre la imagen siguiente
@@ -99,10 +110,12 @@ public class PanelSeleccionJugador extends JPanel implements MouseListener {
 			index = index == 0? 9: index - 1;
 			repaint();
 		}
-		
-		
-		 
 
+	}
+
+	public void cambiarJugadorActual() {
+		nombreActual = JOptionPane.showInputDialog("Inserte Su NickName");
+		ventana.darJuego().agregarJugadores(nombreActual, numJugador);
 	}
 
 	@Override

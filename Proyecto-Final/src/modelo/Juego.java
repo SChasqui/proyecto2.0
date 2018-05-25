@@ -142,10 +142,10 @@ public class Juego {
 		return null;
 	}
 	
-	public void agregarJugadores(String nickName, int jugador, String personaje, int num) {
+	public void agregarJugadores(String nickName, int jugador) {
 		Jugador aux = buscarJugador(nickName, raiz);
 		if (aux == null) {
-			aux = new Jugador(nickName,personaje, num);
+			aux = new Jugador(nickName);
 			agregarJugador(aux);
 		}
 		if(jugador == 1){
