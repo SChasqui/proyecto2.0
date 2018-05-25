@@ -134,6 +134,8 @@ public class Juego {
 		jugador2.AñadirPuntos(
 				(jugador1.darSaludMaxima() - jugador1.darSaludActual())
 				/5);
+		
+		
 	}
 	
 	public Jugador[] darJugadoresEnBatalla() {
