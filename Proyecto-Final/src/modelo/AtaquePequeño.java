@@ -3,8 +3,8 @@ package modelo;
 public class AtaquePequeño extends AtaqueDistancia {
 
 	public AtaquePequeño(int poder, int direccion, int posX, int posY) {
-		super(poder, direccion, posX-30, posY);
-		cambiarPosX(poder+5);
+		super(poder, direccion, posX-(30 * direccion), posY);
+		cambiarPoder(poder+5);
 		// TODO Auto-generated constructor stub
 	}
 
