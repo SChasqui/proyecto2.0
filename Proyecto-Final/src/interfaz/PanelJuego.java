@@ -201,7 +201,6 @@ public class PanelJuego extends JPanel implements KeyListener{
 
 			if (temp.size() > 0) {
 				for (int c : temp) {
-					System.out.println(c);
 					if(c == A) {
 						temporal.darPersonaje().moverX(-12);
 					}else if(c == S) {
@@ -231,17 +230,22 @@ public class PanelJuego extends JPanel implements KeyListener{
 		modificando = true;
 		pressed.remove(e.getKeyCode());
 		modificando = false;
-
-		int c = e.getKeyCode();
-
-		if (c == FLECHA_IZQUIERDA) {
-			ventana.darJuego().darBatalla().darJugador1().darPersonaje().quietotrue();
-		} else if (c == FLECHA_DERECHA) {
-			ventana.darJuego().darBatalla().darJugador1().darPersonaje().quietotrue();
-		} else if (c == A) {
-			ventana.darJuego().darBatalla().darJugador2().darPersonaje().quietotrue();
-		} else if (c == D) {
-			ventana.darJuego().darBatalla().darJugador2().darPersonaje().quietotrue();
+		
+		try {
+			
+			int c = e.getKeyCode();
+			
+			if (c == FLECHA_IZQUIERDA) {
+				ventana.darJuego().darBatalla().darJugador1().darPersonaje().quietotrue();
+			} else if (c == FLECHA_DERECHA) {
+				ventana.darJuego().darBatalla().darJugador1().darPersonaje().quietotrue();
+			} else if (c == A) {
+				ventana.darJuego().darBatalla().darJugador2().darPersonaje().quietotrue();
+			} else if (c == D) {
+				ventana.darJuego().darBatalla().darJugador2().darPersonaje().quietotrue();
+			}
+		}catch(NullPointerException exception) {
+			JOptionPane.showMessageDialog(null, "Guarde sus ataques para el juego", "Tecla presionado antes de empezar", JOptionPane.INFORMATION_MESSAGE);
 		}
 
 	}

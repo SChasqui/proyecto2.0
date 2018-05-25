@@ -451,7 +451,7 @@ public class Personaje implements Atacable{
 			if (ataqueDistancia == null) {
 				ataqueDistancia = new AtaqueMediano(fuerza, direccion, posX + (100 * direccion) , posY);
 			}else if(ki - 20 > 0){
-				ki -= 20;
+				ki -= 100;
 				agregarAtaqueDistanciaMediano(actual);
 			}
 		}
@@ -478,7 +478,7 @@ public class Personaje implements Atacable{
 			if (ataqueDistancia == null) {
 				ataqueDistancia = new AtaquePequeño(fuerza, direccion, posX + (100 * direccion) , posY);
 			}else if(ki - 10 > 0){
-				ki -= 10;
+				ki -= 25;
 				agregarAtaqueDistanciaPequeño(actual);
 			}
 		}
@@ -505,7 +505,7 @@ public class Personaje implements Atacable{
 			if (ataqueDistancia == null) {
 				ataqueDistancia = new AtaqueGrande(fuerza, direccion, posX + (100 * direccion) , posY);
 			}else if(ki - 10 > 0){
-				ki -= 10;
+				ki -= 200;
 				agregarAtaqueDistanciaGrande(actual);
 			}
 		}

@@ -6,5 +6,4 @@ public class AtaqueMediano extends AtaqueDistancia {
 		super(poder, direccion, posX, posY);
 		cambiarPoder(poder+10);
 	}
-	//aut
 }
