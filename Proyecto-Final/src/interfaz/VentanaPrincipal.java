@@ -38,6 +38,8 @@ public class VentanaPrincipal extends JFrame{
 	private PanelMenuPrincipal menuPrincipal;
 
 	private PanelJuego pJuego;
+	
+	private PanelCreditos pCreditos;
 	/*
 	 * Relacion con la clase principal del modelo
 	 */
@@ -156,9 +158,18 @@ public class VentanaPrincipal extends JFrame{
 			pJuego.updateUI();
 			pJuego.repaint(); pack(); setSize(1280,720);
 		} catch (JugadorNoSeleccionadoException e) {
-			JOptionPane.showMessageDialog(null, "Deja de joder", "Panel no seleccionado", JOptionPane.WARNING_MESSAGE);
+			JOptionPane.showMessageDialog(null, e.getMessage(), "Panel no seleccionado", JOptionPane.WARNING_MESSAGE);
 			add(menuPrincipal);
 		}
+	}
+	
+	public void agregarPanelCreditos() {
+		remove(menuPrincipal);
+		add(pCreditos);
+		pCreditos.updateUI();
+		pCreditos.repaint(); pack(); setSize(1280,720);
+		
+		
 	}
 	
 	public static void main(String args[]) {
