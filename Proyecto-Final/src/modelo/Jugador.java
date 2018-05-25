@@ -54,7 +54,7 @@ public class Jugador {
 	}
 
 	//--------------------------------------
-	// Metodos.
+	// Metodos
 	//--------------------------------------
 
 	public void seleccionarPersonaje(String personaje, int indice) throws NoDesbloqueadoException {
