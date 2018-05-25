@@ -68,6 +68,9 @@ public class Juego {
 	 * Construlle un objeto de tipo Juego
 	 */
 	public Juego() {
+		/*
+		 * Crear Top ten por defecto :v
+		 */
 		topTen = new Jugador[10];
 		topTen[0] = new Jugador("Carlos-Sama");
 		topTen[0].AñadirPuntos(100);
@@ -120,6 +123,17 @@ public class Juego {
 	
 	public String darJugadorActual() {
 		return darJugadorActual();
+	}
+	
+	public void darPuntos() {
+		
+		jugador1.AñadirPuntos(
+				(jugador2.darSaludMaxima() - jugador2.darSaludActual()) // La diferencia entre la salud maxima y la final
+				/5);// Todo esto sobre 5
+		
+		jugador2.AñadirPuntos(
+				(jugador1.darSaludMaxima() - jugador1.darSaludActual())
+				/5);
 	}
 	
 	public Jugador[] darJugadoresEnBatalla() {
