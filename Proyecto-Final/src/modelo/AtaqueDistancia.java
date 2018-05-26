@@ -33,7 +33,7 @@ public class AtaqueDistancia extends Ataque implements Destruible{
 	
 	public AtaqueDistancia (int poder,  int direccion, int posX, int posY) {
 		super(poder, direccion, posX, posY);
-		this.poder = poder;
+		this.poder = poder*100;
 		ImageIcon img = new ImageIcon(this.darSprite());
 		kickBox = new Rectangle(posX, posY, img.getIconWidth(), img.getIconHeight() );
 	}
@@ -64,6 +64,10 @@ public class AtaqueDistancia extends Ataque implements Destruible{
 		return poder;
 	}
 	
+	public void setPoder(int pw) {
+		poder = pw;
+	}
+	
 	public void cambiarPoder(int pod) {
 		poder = pod;
 	}
@@ -84,6 +88,10 @@ public class AtaqueDistancia extends Ataque implements Destruible{
 	@Override
 	public Rectangle darKickBox() {
 		return kickBox;
+	}
+	
+	public void setKickBoxLocation(int x, int y) {
+		kickBox.setLocation(x, y);
 	}
 	
 }	

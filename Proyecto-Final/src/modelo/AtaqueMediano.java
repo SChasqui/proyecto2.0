@@ -6,4 +6,10 @@ public class AtaqueMediano extends AtaqueDistancia {
 		super(poder - 50, direccion, posX, posY);
 //		cambiarPoder(poder-100);
 	}
+	
+	public void moverX() {
+		posX += (super.darDireccion()  == 1) ? 20 * ((double)darDanho()/30): -20 * ((double)darDanho()/30);
+		setKickBoxLocation(super.darPosX(), super.darPosY());
+		this.setPoder(this.darPoder()-1);
+	}
 }

@@ -13,4 +13,10 @@ public class AtaquePequeño extends AtaqueDistancia {
 	public String darSprite() {
 		return "data/Sprites/"  + "AtaquePequeño/"+ (darDireccion() == Personaje.IZQUIERDA? "Izquierda": "Derecha") +".png";
 	}
+	
+	public void moverX() {
+		posX += (super.darDireccion()  == 1) ? 20 * ((double)darDanho()/20): -20 * ((double)darDanho()/20);
+		setKickBoxLocation(super.darPosX(), super.darPosY());
+		this.setPoder(this.darPoder()-1);
+	}
 }

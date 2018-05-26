@@ -664,10 +664,6 @@ public class Personaje implements Atacable{
 		return resistencia;
 	}
 	
-	public void ponerAtaqueNull() {
-		ataqueDistancia = null;
-	}
-	
 	public Rectangle darKickBox() {
 		Image temp = frame;
 		Rectangle rect = new Rectangle();

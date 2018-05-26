@@ -31,9 +31,12 @@ public class HiloAtaqueDistancia extends Thread{
 			while (actualUno != null) {
 				
 				if(actualUno.comprobarAtaque(miJuego.darBatalla().darJugador2().darPersonaje().darKickBox())) {
-					miJuego.darBatalla().darJugador2().darPersonaje().restarVida(actualUno.darDanho());
+					miJuego.darBatalla().darJugador2().darPersonaje().restarVida((actualUno.darDanho())-miJuego.darBatalla().darJugador2().darPersonaje().darResistencia());
 					System.out.println(actualUno.darDanho());
 					actualUno.restarVida();
+					miJuego.darBatalla().darJugador1().darPersonaje().limpiarAtaques();
+					miJuego.darBatalla().darJugador2().darPersonaje().limpiarAtaques();
+					
 				}
 				
 				actualUno.moverX();
@@ -43,8 +46,10 @@ public class HiloAtaqueDistancia extends Thread{
 			while (actualDos != null) {
 				
 				if(actualDos.comprobarAtaque(miJuego.darBatalla().darJugador1().darPersonaje().darKickBox())) {
-					miJuego.darBatalla().darJugador1().darPersonaje().restarVida(actualDos.darDanho());
+					miJuego.darBatalla().darJugador1().darPersonaje().restarVida((actualDos.darDanho())-miJuego.darBatalla().darJugador2().darPersonaje().darResistencia());
 					actualDos.restarVida();
+					miJuego.darBatalla().darJugador1().darPersonaje().limpiarAtaques();
+					miJuego.darBatalla().darJugador2().darPersonaje().limpiarAtaques();
 				}
 				
 				actualDos.moverX();
