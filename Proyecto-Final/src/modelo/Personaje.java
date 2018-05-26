@@ -114,13 +114,15 @@ public class Personaje implements Atacable{
 	 * 	- posSprite[3] ---> Corresponde al sprite del ataque mediano.
 	 * 	- posSprite[4] ---> Corresponde al sprite del ataque pequeño.
 	 *  - posSprite[5] ---> Corresponde al sprite del ataque grande.
-	 *
+	 *	- posSprite[6] ---> Corresponde al sprite de la patada.
+	 *	- posSprite[7] ---> Corresponde al sprite de la recarga de ki.
+	 * 	- posSprite[8] ---> Corresponde al sprite de cubrirse.
 	 */
 
 	/*
 	 * arreglo de frames del sprite
 	 */
-	private int[] posSprite = new int[6];
+	private int[] posSprite = new int[9];
 
 	/*
 	 * boolean que representa si esta atacando o no
@@ -272,8 +274,13 @@ public class Personaje implements Atacable{
 	 * Método encargado de atacar
 	 * @param tecla - Corresponde a la representación Unicode de la tecla pulsada
 	 */
-	public void atacar(int tecla) {
+	public void atacarPuño() {
 		posSprite[1] = 0;
+		quieto = false;
+	}
+	
+	public void atacarPatada() {
+		posSprite[6] = 0;
 		quieto = false;
 	}
 
@@ -289,6 +296,19 @@ public class Personaje implements Atacable{
 	
 	public void lanzarAtaqueDistanteGrande() {
 		posSprite[5] = 0;
+		quieto = false;
+	}
+	
+	public void recargarKi() {
+		posSprite[7] = 0;
+		if((ki+5)<Personaje.KI_BASE*MATRIZ_DE_MULTIPLICADORES[darIndicePersonaje()][1])
+		ki+=5;
+		quieto = false;
+	}
+	
+	public void defender() {
+		posSprite[8] = 0;
+		if(posSprite[8]>=0)resistencia = resistencia*2;
 		quieto = false;
 	}
 
@@ -352,10 +372,16 @@ public class Personaje implements Atacable{
 			aMostrar = spriteMovimiento();
 		}else if(posSprite[3] != -1) {
 			aMostrar = spriteAtaqueMedianoDistancia();
-		}else if(posSprite[4]!= -1) {
+		}else if(posSprite[4] != -1) {
 			aMostrar = spriteAtaquePequeñoDistancia();
-		}else if(posSprite[5]!= -1) {
+		}else if(posSprite[5] != -1) {
 			aMostrar = spriteAtaqueGrandeDistancia();
+		}else if(posSprite[6] != -1) {
+			aMostrar = spritePatada();
+		}else if(posSprite[7] != -1) {
+			aMostrar = spriteRecargarKi();
+		}else if(posSprite[8] !=-1) {
+			aMostrar = spriteDefender();
 		}
 
 		frame = aMostrar;
@@ -391,6 +417,27 @@ public class Personaje implements Atacable{
 
 		return frame;
 	}
+	
+	public Image spritePatada() {
+
+		atacando = true;
+
+		Image frame = sprite.spritePatada(posSprite[6], direccion);
+
+		posSprite[6]++;
+		quieto = false;
+		if (posSprite[6] > sprite.darTamanhos()[Sprite.PATADA]-1) {
+			if (colisionaronHorizontal(direccion * 12)) {
+				int daño = (int) ((fuerza - adversario.darResistencia())+((fuerza - adversario.darResistencia()*0.1)));
+				adversario.restarVida(daño);
+			}
+			posSprite[6] = -1;
+			quieto = true;
+		}
+
+		return frame;
+	}
+	
 
 	public Image spriteMovimiento() {
 
@@ -513,33 +560,41 @@ public class Personaje implements Atacable{
 
 	}
 	
-//	public Image spriteAtaqueMedDistancia() {
-//
-//		atacando = true;
-//
-//		Image frame = sprite.spriteAtaqueMedDistancia(posSprite[3], direccion);
-//
-//		posSprite[3]++;
-//		quieto = false;
-//
-//		if(posSprite[3] == sprite.darTamanhos()[Sprite.ATAQUE_MEDIANO] - 1) {
-//			AtaqueDistancia actual = ataqueDistancia;
-//			if (ataqueDistancia == null) {
-//				ataqueDistancia = new AtaqueDistancia(fuerza, direccion, posX + (100 * direccion) , posY);
-//			}else if(ki - 20 > 0){
-//				ki -= 20;
-//				agregarAtaqueDistancia(actual);
-//			}
-//		}
-//		if (posSprite[3] > sprite.darTamanhos()[Sprite.ATAQUE_MEDIANO] - 1) {
-//			posSprite[3] = -1;
-//			quieto = true;
-//		}
-//
-//		return frame;
-//
-//	}
+	public Image spriteRecargarKi() {
 
+		atacando = true;
+
+		Image frame = sprite.spriteRecargarKi(posSprite[7], direccion);
+
+		posSprite[7]++;
+		quieto = false;
+		if (posSprite[7] > sprite.darTamanhos()[Sprite.RECARGA_KI]-1) {
+			
+			posSprite[7] = -1;
+			quieto = true;
+		}
+
+		return frame;
+	}
+
+	public Image spriteDefender() {
+
+		atacando = true;
+
+		Image frame = sprite.spriteDefensa(posSprite[8], direccion);
+
+		posSprite[8]++;
+		quieto = false;
+		if (posSprite[8] > sprite.darTamanhos()[Sprite.DEFENSA]-1) {
+			
+			posSprite[8] = -1;
+			quieto = true;
+		}
+
+		return frame;
+	}
+	
+	
 	public void eliminarAtaque(AtaqueDistancia actual) {
 
 		if (actual == null) {
@@ -655,7 +710,7 @@ public class Personaje implements Atacable{
 	public void recuperarKi() {
 		ki++;
 	}
-
+	
 	public void restarVida(int daño) {
 		salud -= daño > 0? daño : 10;
 	}
@@ -672,5 +727,6 @@ public class Personaje implements Atacable{
 		}
 		return rect;
 	}
+	
 
 }

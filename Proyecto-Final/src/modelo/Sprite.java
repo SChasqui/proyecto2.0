@@ -115,7 +115,7 @@ public class Sprite {
 			spritesDerecha[ATAQUE_PEQUENHO][i] = (new ImageIcon("data/Sprites/" + nombre + "/ataquePequeñoDerecha/" + (i + 1)+".png")).getImage();
 		}
 		for (int i = 0; i < tamanhos[DEFENSA]; i++) {
-			spritesDerecha[DEFENSA][i] = (new ImageIcon("data/Sprites/" + nombre + "/ataquePequeñoDerecha/" + (i + 1)+".png")).getImage();
+			spritesDerecha[DEFENSA][i] = (new ImageIcon("data/Sprites/" + nombre + "/defensaDerecha/" + (i + 1)+".png")).getImage();
 		}
 		for (int i = 0; i < tamanhos[RECARGA_KI]; i++) {
 			spritesDerecha[RECARGA_KI][i] = (new ImageIcon("data/Sprites/" + nombre + "/recargarKiDerecha/" + (i + 1)+".png")).getImage();
@@ -149,7 +149,7 @@ public class Sprite {
 			spritesIzquierda[ATAQUE_PEQUENHO][i] = (new ImageIcon("data/Sprites/" + nombre + "/ataquePequeñoIzquierda/" + (i + 1)+".png")).getImage();
 		}
 		for (int i = 0; i < tamanhos[DEFENSA]; i++) {
-			spritesIzquierda[DEFENSA][i] = (new ImageIcon("data/Sprites/" + nombre + "/ataquePequeñoIzquierda/" + (i + 1)+".png")).getImage();
+			spritesIzquierda[DEFENSA][i] = (new ImageIcon("data/Sprites/" + nombre + "/defensaIzquierda/" + (i + 1)+".png")).getImage();
 		}
 		for (int i = 0; i < tamanhos[RECARGA_KI]; i++) {
 			spritesIzquierda[RECARGA_KI][i] = (new ImageIcon("data/Sprites/" + nombre + "/recargarKiIzquierda/" + (i + 1)+".png")).getImage();
@@ -186,6 +186,20 @@ public class Sprite {
 
 	public int[] darTamanhos() {
 		return tamanhos;
+	}
+
+	public Image spritePatada(int i, int direccion) {
+		return direccion == Personaje.DERECHA? spritesDerecha[PATADA][i] : spritesIzquierda[PATADA][i];
+	}
+
+	public Image spriteRecargarKi(int i, int direccion) {
+		// TODO Auto-generated method stub
+		return direccion == Personaje.DERECHA? spritesDerecha[RECARGA_KI][i] : spritesIzquierda[RECARGA_KI][i];
+	}
+
+	public Image spriteDefensa(int i, int direccion) {
+		// TODO Auto-generated method stub
+		return direccion == Personaje.DERECHA? spritesDerecha[DEFENSA][i] : spritesIzquierda[DEFENSA][i];
 	}
 
 }
