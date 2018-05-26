@@ -135,9 +135,9 @@ public class Juego implements Comparator<Jugador>{
 			
 			int medio = (inicio + fin)/2;
 			
-			if (compare(j, topTen[medio]) == 0) {
+			if (j.compareTo(topTen[medio]) == 0) {
 				encontrado = true;
-			}else if(compare(j, topTen[medio]) < 0) {
+			}else if(j.compareTo(topTen[medio]) < 0) {
 				fin = medio - 1;
 			}else {
 				inicio = medio + 1;
@@ -196,8 +196,8 @@ public class Juego implements Comparator<Jugador>{
 					indiceMenor = j;
 				}
 			}
-			
-			
+			topTen[indiceMenor] = topTen[i];
+			topTen[i] = menor;
 			
 		}
 	}
