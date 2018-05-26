@@ -12,7 +12,7 @@ public class Personaje implements Atacable{
 
 
 	//--------------------------------------
-	// Constantes
+	// CONSTANTES
 	//--------------------------------------
 
 	//** Constantes de direccion*****//
@@ -27,27 +27,20 @@ public class Personaje implements Atacable{
 	public static final int FUERZA_BASE = 100;
 
 	/*
-	 * Informacion
-	 * [0][j] ----> Bardock --> 800P
-	 * [1][j] ----> Beerus --> 1000P
-	 * [2][j] ----> Broly --> 1000P
-	 * [3][j] ----> Frieza --> 900P
-	 * [4][j] ----> GohanSSJ_Kid --> 1000P
-	 * [5][j] ----> Goku --> 800P
-	 * [6][j] ----> 18 --> 900P
-	 * [7][j] ----> Goku_Red --> 1000P
-	 * [8][j] ----> Kid_Buu --> 1000P
-	 * [9][j] ----> Vegeta --> 900P 
-	 * 
 	 ===============================================================
-	 *
+	 *-----------------------------------------------
+	 *Información de Multiplicadores
+	 *-----------------------------------------------
 	 * [i][0] ----> multiplicador de Vida
 	 * [i][1] ----> multiplicador de Ki
 	 * [i][2] ----> multiplicador de Velocidad
 	 * [i][3] ----> multiplicador de Fuerza
 	 * [i][4] ----> multiplicador de Resistencia
 	 * La suma de los multiplicadores por su respectivo
-	 * atributo base da entre 800 y 1000 puntos de habilidad para cada personaje
+	 */
+	
+	/*
+	 * Matriz constante de personajes
 	 */
 	public static final double[][] MATRIZ_DE_MULTIPLICADORES= {/*Bardock*/{1,1,1.5,2,1.2},
 			/*Beerus*/{1,1.4,1.6,1.6,1.2}, /*Broly*/{1.6,1.1,1,2,1}, /*Frieza*/{1,1.3,1.3,1.2,1.09},
@@ -177,14 +170,24 @@ public class Personaje implements Atacable{
 	 * Adversario del personaje 
 	 */
 	private Personaje adversario;
-
+	
+	/*
+	 * El ataque a dstancia que se encuentra ejecutando el personaje. Es null si no ejecuta ninguno.
+	 */
 	private AtaqueDistancia ataqueDistancia;
-
+	
+	/*
+	 * La hoja de sprites del peronaje
+	 */
 	private Sprite sprite;
 
 	//--------------------------------------
-	// Constructor
+	// CONSTRUCTOR
 	//--------------------------------------
+    /**
+     * Construye al personaje
+     * @param pSprite El nombre del personaje - nombre!=null, nombre!="".
+     */
 	public Personaje(String pSprite, int precio, int indice) {
 
 		indicePersonaje = indice;
@@ -271,34 +274,48 @@ public class Personaje implements Atacable{
 
 
 	/*
-	 * Método encargado de atacar
-	 * @param tecla - Corresponde a la representación Unicode de la tecla pulsada
+	 * Método encargado de atacar con el puño (cambiando el estado de el arreglo de posiciones de -1 a 0)
 	 */
 	public void atacarPuño() {
-		posSprite[1] = posSprite[1] == -1? 0 : posSprite[1];
+		posSprite[1] = 0;
 		quieto = false;
 	}
 	
+	/*
+	 * Método encargado de atacar con la patada 
+	 */
 	public void atacarPatada() {
-		posSprite[6] = posSprite[6] == -1? 0 : posSprite[6];
+		posSprite[6] = 0;
 		quieto = false;
 	}
 
+	/*
+	 * Lanza un ataque mediano 
+	 */
 	public void lanzarAtaqueDistanteMediano() {
-		posSprite[3] = posSprite[3] == -1 ? 0 : posSprite[3];
+		posSprite[3] = 0;
 		quieto = false;
 	}
 	
+	/*
+	 * Lanza un ataque pequeño
+	 */
 	public void lanzarAtaqueDistantePequeño() {
-		posSprite[4] = posSprite[4] == -1? 0 : posSprite[4];
+		posSprite[4] = 0;
 		quieto = false;
 	}
 	
+	/*
+	 * Lanza un ataque grande
+	 */
 	public void lanzarAtaqueDistanteGrande() {
-		posSprite[5] = posSprite[5] == -1 ? 0 : posSprite[5];
+		posSprite[5] = 0;
 		quieto = false;
 	}
 	
+	/*
+	 * Método encargado de cambiar el estado del arreglo de posiciones y aumentar el ki
+	 */
 	public void recargarKi() {
 		posSprite[7] = 0;
 		if((ki+5)<Personaje.KI_BASE*MATRIZ_DE_MULTIPLICADORES[darIndicePersonaje()][1])
@@ -306,21 +323,27 @@ public class Personaje implements Atacable{
 		quieto = false;
 	}
 	
+	/*
+	 * Método encargado de cambiar el estado del arreglo de posiciones y aumentar la resistencia
+	 */
 	public void defender() {
 		posSprite[8] = 0;
 		if(posSprite[8] >-1) resistencia*=2;
-//		aumentarResistencia();
 		quieto = false;
 	}
 	
-//	public void aumentarResistencia() {
-//		resistencia*=2;
-//	}
-	
+	/*
+	 * Método que reestablece la resistencia del pj a la que estaba por defecto.
+	 */
 	public void normalizarResistencia() {
 		resistencia = (int) (RESISTENCIA_BASE * MATRIZ_DE_MULTIPLICADORES[indicePersonaje][4]);
 	}
-
+	
+	/*
+	 * Método que se encarga de mover al pj en eje X.
+	 * Se mueve si el pj está dentro de los límites y no ha colisionado con su adversario.
+	 * @param mover - La cantidad de pixeles a desplazarse. Si mover < 0, la dirección es izquierda, sino es derecha.
+	 */
 	public void moverX(int mover) {
 
 		direccion = mover>0? DERECHA:IZQUIERDA;
@@ -341,6 +364,11 @@ public class Personaje implements Atacable{
 		}
 	}
 
+	/*
+	 * Método que se encarga de mover al pj en eje Y.
+	 * Se mueve si el pj está dentro de los límites y no ha colisionado con su adversario.
+	 * @param mover - La cantidad de pixeles a desplazarse. Si mover < 0, la dirección es izquierda, sino es derecha.
+	 */
 	public void moverY(int mover) {
 
 //		mover *= 30/(double)velocidad;
@@ -737,6 +765,5 @@ public class Personaje implements Atacable{
 		}
 		return rect;
 	}
-	
 
 }
