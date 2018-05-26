@@ -33,7 +33,7 @@ public class PanelCreditos extends JPanel  {
 	
 	public void paint(Graphics g) {
 		
-		Image fondo = new ImageIcon("data/fondo/fondoCreditos.png").getImage();
+		Image fondo = new ImageIcon("data/fondo/fondoDragon.jpg").getImage();
 		g.drawImage(fondo, 0, 0,null);
 		
 		pintarMuñecos(g);
@@ -51,7 +51,7 @@ public class PanelCreditos extends JPanel  {
 	}
 	public void pintarCreditos(Graphics g) {
 		Image creditos = new ImageIcon("data/fondo/creditos.png").getImage();
-		g.drawImage(creditos, 640, 100 + posY--,null);
+		g.drawImage(creditos, 640, 150 + posY--,null);
 		
 	}	
 	

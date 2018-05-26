@@ -6,6 +6,8 @@ public class HiloCreditos extends Thread{
 	
 	private VentanaPrincipal ventana;
 	
+	private int contador;
+	
 	public HiloCreditos(VentanaPrincipal ventana) {
 		this.ventana = ventana;
 		
@@ -14,7 +16,6 @@ public class HiloCreditos extends Thread{
 	public void run(){
 		while(!ventana.darMuere()) {
 			ventana.darPanelCreditos().repaint();
-			System.out.println("Hola");
 			
 		}try {
 			sleep(1000);
