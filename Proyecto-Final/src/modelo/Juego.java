@@ -127,23 +127,55 @@ public class Juego implements Comparator<Jugador>{
 		return darJugadorActual();
 	}
 	
-	public Jugador buscarPorPuntos(Jugador j) {
+	public boolean inTopTen(Jugador j) {
 		int inicio = 0;
+		int fin = topTen.length;
+		boolean encontrado = false;
+		while (inicio < fin) {
+			
+			int medio = (inicio + fin)/2;
+			
+			if (compare(j, topTen[medio]) == 0) {
+				encontrado = true;
+			}else if(compare(j, topTen[medio]) < 0) {
+				fin = medio - 1;
+			}else {
+				inicio = medio + 1;
+			}
+			
+		}
 		
-		return null;
+		return encontrado;
 	}
 	
-	public void darPuntos() {
+	public void darPuntos(int ganador) {
 		
-		jugador1.AñadirPuntos(
-				(jugador2.darSaludMaxima() - jugador2.darSaludActual()) // La diferencia entre la salud maxima y la final
-				/5);// Todo esto sobre 5
-		
-		jugador2.AñadirPuntos(
-				(jugador1.darSaludMaxima() - jugador1.darSaludActual())
-				/5);
-		
-		
+		if (ganador == 1) {
+			jugador1.AñadirPuntos(
+					(jugador2.darSaludMaxima() - jugador2.darSaludActual()) // La diferencia entre la salud maxima y la final
+					/5);// Todo esto sobre 5
+			
+			if (!inTopTen(jugador1)) {
+				topTen[9] = compare(jugador1, topTen[9]) > 0? jugador1 : topTen[9];
+			}
+		}
+		if (ganador == 2) {
+			jugador2.AñadirPuntos(
+					(jugador1.darSaludMaxima() - jugador1.darSaludActual())
+					/5);
+			
+			if (!inTopTen(jugador2)) {
+				topTen[9] = compare(jugador2, topTen[9]) > 0? jugador2 : topTen[9];
+			}
+		}
+	}
+	
+	public void ordenarTopTen() {
+		for (int i = 0; i < personajes.length - 1; i++) {
+			for (int j = 0; j < personajes.length - i - 1; j++) {
+				
+			}
+		}
 	}
 	
 	public Jugador[] darJugadoresEnBatalla() {

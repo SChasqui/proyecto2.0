@@ -122,7 +122,7 @@ public class Jugador {
 	}
 
 	public int darSaludActual() {
-		return (int) (((double)personajeActual.darSalud() / darSaludMaxima()) * 500);
+		return (int) (((double)personajeActual.darSalud() / (double)darSaludMaxima()) * 500);
 	}
 
 	public int darKiMaximo() {
@@ -130,7 +130,7 @@ public class Jugador {
 	}
 
 	public int darKiActual() {
-		return (int) (((double)personajeActual.darKI() / darKiMaximo()) * 500);
+		return (int) ((double)((double)personajeActual.darKI() / (double)darKiMaximo()) * 500);
 	}
 
 	public void AñadirPuntos(int puntos) {
