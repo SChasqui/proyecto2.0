@@ -12,6 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import modelo.Jugador;
 import modelo.NoDesbloqueadoException;
 import modelo.Personaje;
 import modelo.PuntosInsuficientesException;
@@ -67,7 +68,7 @@ public class PanelSeleccionJugador extends JPanel implements MouseListener {
 		g.setColor(Color.RED);
 		g.setFont(new Font("Arial", Font.ITALIC, 30));
 		g.drawString(nombreActual, 30, 60);
-		g.drawString("Puntos: " + ventana.darJuego().darJugador1().darPuntos(), 30, 90);
+		g.drawString("Puntos: " + ventana.darJugadorIndice(numJugador).darPuntos(), 30, 90);
 	}
 
 	public void cambiarJugador(int num) {
@@ -88,12 +89,8 @@ public class PanelSeleccionJugador extends JPanel implements MouseListener {
 			String personaje = ventana.darJuego().daPersonajes()[index];
 			try {
 				System.out.println(numJugador);
-				if (numJugador == 1) {
-					ventana.darJuego().darJugador1().seleccionarPersonaje(personaje, index);
-				}else if (numJugador == 2) {
-					ventana.darJuego().darJugador2().seleccionarPersonaje(personaje, index);
-				}
-
+				
+				ventana.darJugadorIndice(numJugador).seleccionarPersonaje(personaje, index);
 				ventana.agregarPanelMenuPrincipal(this);
 
 			}
@@ -109,13 +106,10 @@ public class PanelSeleccionJugador extends JPanel implements MouseListener {
 						"opcion 1");
 				if (seleccion == 0) {
 					try {
-						if (numJugador == 1) {
-							ventana.darJuego().darJugador1().desbloquearPersonaje(index, personaje);
-							ventana.darJuego().darJugador1().seleccionarPersonaje(personaje, index);
-						}else if(numJugador == 2) {
-							ventana.darJuego().darJugador2().desbloquearPersonaje(index, personaje);
-							ventana.darJuego().darJugador2().seleccionarPersonaje(personaje, index);
-						}
+				
+							ventana.darJugadorIndice(numJugador).desbloquearPersonaje(index, personaje);
+							ventana.darJugadorIndice(numJugador).seleccionarPersonaje(personaje, index);
+						
 					}catch (PuntosInsuficientesException e2) {
 						JOptionPane.showConfirmDialog(this, "Puntos insuficientes",
 								"Error en la compra", JOptionPane.DEFAULT_OPTION,

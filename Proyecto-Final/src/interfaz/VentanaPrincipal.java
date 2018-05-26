@@ -21,6 +21,7 @@ import hilos.HiloCreditos;
 import hilos.HiloJuego;
 import hilos.HiloTiempo;
 import modelo.Juego;
+import modelo.Jugador;
 import modelo.JugadorNoSeleccionadoException;
 
 
@@ -158,13 +159,17 @@ public class VentanaPrincipal extends JFrame{
 		pSeleccionJugador.updateUI();
 		pSeleccionJugador.repaint(); pack(); setSize(1280,720);
 	}
+	
+	public Jugador darJugadorIndice(int indice) {
+		return indice == 1? juego.darJugador1() : juego.darJugador2();
+	}
 
 	public void cambiarAPanelJuego(int escenario) {
 		remove(pSeleccionEscenario);
 		try {
 			juego.iniciarBatalla(escenario);
-			iniciarHilos();
 			pJuego.cambiarAcabo(false);
+			iniciarHilos();
 			add(pJuego);
 			pJuego.updateUI();
 			pJuego.repaint(); pack(); setSize(1280,720);

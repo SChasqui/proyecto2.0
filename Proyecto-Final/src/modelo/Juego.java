@@ -153,7 +153,7 @@ public class Juego implements Comparator<Jugador>{
 		if (ganador == 1) {
 			jugador1.AñadirPuntos(
 					(500 - jugador2.darSaludActual()) // La diferencia entre la salud maxima y la final
-					/5);// Todo esto sobre 5
+					/2);// Todo esto sobre 5
 			ordenarTopTenPorNombre();
 			if (!inTopTen(jugador1)) {
 				topTen[9] = compare(jugador1, topTen[9]) > 0? jugador1 : topTen[9];
@@ -163,7 +163,7 @@ public class Juego implements Comparator<Jugador>{
 		if (ganador == 2) {
 			jugador2.AñadirPuntos(
 					(500 - jugador1.darSaludActual())
-					/5);
+					/2);
 			ordenarTopTenPorNombre();
 			if (!inTopTen(jugador2)) {
 				topTen[9] = compare(jugador2, topTen[9]) > 0? jugador2 : topTen[9];

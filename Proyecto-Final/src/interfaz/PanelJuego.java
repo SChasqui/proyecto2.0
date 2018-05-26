@@ -98,7 +98,7 @@ public class PanelJuego extends JPanel implements KeyListener{
 	
 	}
 	private void pintarReloj(Graphics g) {
-		g.setColor(new Color((int) (Math.random()*256), (int) (Math.random()*256), (int) (Math.random()*256)));
+		g.setColor(new Color((int) (Math.random()*5), (int) (Math.random()*5), (int) (Math.random()*5)));
 		g.setFont(new Font("Arial", Font.BOLD, 40));
 		g.drawString(ventana.darJuego().darBatalla().darTiempoActual() + "", 600, 80);
 	}
