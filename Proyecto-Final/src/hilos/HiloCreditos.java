@@ -18,7 +18,7 @@ public class HiloCreditos extends Thread{
 			ventana.darPanelCreditos().repaint();
 			
 		}try {
-			sleep(1500);
+			sleep(3000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
