@@ -94,7 +94,7 @@ public class Sprite {
 		//***************************************
 		// Creacion de la matriz derecha
 		//***************************************
-		spritesDerecha = new Image[9][12];
+		spritesDerecha = new Image[9][13];
 
 		for (int i = 0; i < tamanhos[PARADO]; i++) {
 			spritesDerecha[PARADO][i] = (new ImageIcon("data/Sprites/" + nombre + "/paradoDerecha/" + (i + 1)+".png")).getImage();
@@ -128,7 +128,7 @@ public class Sprite {
 		//***************************************
 		// Creacion de la matriz izquierda
 		//***************************************
-		spritesIzquierda = new Image[9][12];
+		spritesIzquierda = new Image[9][13];
 
 		for (int i = 0; i < tamanhos[PARADO]; i++) {
 			spritesIzquierda[PARADO][i] = (new ImageIcon("data/Sprites/" + nombre + "/paradoIzquierda/" + (i + 1)+".png")).getImage();
