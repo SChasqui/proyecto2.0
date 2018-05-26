@@ -7,7 +7,7 @@
  */
 package modelo;
 
-public class Jugador {
+public class Jugador implements Comparable<Jugador>{
 
 	//--------------------------------------
 	// Atributos
@@ -139,6 +139,11 @@ public class Jugador {
 
 	public int darPuntos() {
 		return puntos;
+	}
+
+	@Override
+	public int compareTo(Jugador o) {
+		return nickName.compareTo(o.darNickName());
 	}
 
 }
