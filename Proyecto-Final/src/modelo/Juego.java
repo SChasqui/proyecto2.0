@@ -7,6 +7,10 @@
  */
 package modelo;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Comparator;
 
 public class Juego implements Comparator<Jugador>{
@@ -94,7 +98,7 @@ public class Juego implements Comparator<Jugador>{
 		topTen[8].AñadirPuntos(92);
 		topTen[9] = new Jugador("the play boy :v");
 		topTen[9].AñadirPuntos(91);
-		
+		guardarTopTen();
 	}
 	
 	//--------------------------------------
@@ -274,6 +278,21 @@ public class Juego implements Comparator<Jugador>{
 	@Override
 	public int compare(Jugador o1, Jugador o2) {
 		return o1.darPuntos()-o2.darPuntos();
+	}
+	
+	public void guardarTopTen() {
+		File TopTenTex = new File("Saved/Top10.pro");
+		
+		try {
+			BufferedWriter escritor = new BufferedWriter(new FileWriter(TopTenTex,true));
+			for (int i = 0; i < topTen.length; i++) {
+				escritor.write((i+1) + ") " + topTen[i].darNickName() + "           " + topTen[i].darPuntos()+"\n");
+			}
+			escritor.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 
