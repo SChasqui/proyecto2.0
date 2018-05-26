@@ -277,7 +277,7 @@ public class Personaje implements Atacable{
 	 * Método encargado de atacar con el puño (cambiando el estado de el arreglo de posiciones de -1 a 0)
 	 */
 	public void atacarPuño() {
-		posSprite[1] = 0;
+		posSprite[1] = posSprite[1] == -1? 0 : posSprite[1];
 		quieto = false;
 	}
 	
@@ -285,7 +285,7 @@ public class Personaje implements Atacable{
 	 * Método encargado de atacar con la patada 
 	 */
 	public void atacarPatada() {
-		posSprite[6] = 0;
+		posSprite[6] = posSprite[6] == -1 ? 0 : posSprite[6];
 		quieto = false;
 	}
 
@@ -293,7 +293,7 @@ public class Personaje implements Atacable{
 	 * Lanza un ataque mediano 
 	 */
 	public void lanzarAtaqueDistanteMediano() {
-		posSprite[3] = 0;
+		posSprite[3] = posSprite[3] == -1 ? 0 : posSprite[3];
 		quieto = false;
 	}
 	
@@ -301,7 +301,7 @@ public class Personaje implements Atacable{
 	 * Lanza un ataque pequeño
 	 */
 	public void lanzarAtaqueDistantePequeño() {
-		posSprite[4] = 0;
+		posSprite[4] = posSprite[4] == -1 ? 0 : posSprite[4];
 		quieto = false;
 	}
 	
@@ -309,7 +309,7 @@ public class Personaje implements Atacable{
 	 * Lanza un ataque grande
 	 */
 	public void lanzarAtaqueDistanteGrande() {
-		posSprite[5] = 0;
+		posSprite[5] = posSprite[5] == -1? 0 : posSprite[5];
 		quieto = false;
 	}
 	
