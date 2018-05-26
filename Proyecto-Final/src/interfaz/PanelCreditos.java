@@ -51,7 +51,7 @@ public class PanelCreditos extends JPanel  {
 	}
 	public void pintarCreditos(Graphics g) {
 		Image creditos = new ImageIcon("data/fondo/creditos.png").getImage();
-		g.drawImage(creditos, 640, 150 + posY--,null);
+		g.drawImage(creditos, 640, 500 + posY--,null);
 		
 	}	
 	

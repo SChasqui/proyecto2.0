@@ -99,7 +99,7 @@ public class PanelMenuPrincipal extends JPanel implements MouseListener{
 		// Area de opcion de puntajes 
 		//****************************************
 		else if (posX > 45 && posX < 625 && posY > 395 && posY < 490) {
-
+			ventana.agregarPanelPuntajes();
 		}
 
 		//****************************************

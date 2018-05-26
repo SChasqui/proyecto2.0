@@ -41,6 +41,8 @@ public class VentanaPrincipal extends JFrame{
 	private PanelJuego pJuego;
 	
 	private PanelCreditos pCreditos;
+	
+	private PanelPuntajes pPuntajes;
 	/*
 	 * Relacion con la clase principal del modelo
 	 */
@@ -64,6 +66,8 @@ public class VentanaPrincipal extends JFrame{
 		pSeleccionEscenario = new PanelSeleccionEscenario(this);
 		
 		pCreditos = new PanelCreditos();
+		
+		pPuntajes = new PanelPuntajes(this);
 
 		pJuego = new PanelJuego(this);
 		addKeyListener(pJuego);
@@ -183,6 +187,14 @@ public class VentanaPrincipal extends JFrame{
 		pCreditos.updateUI();
 		pCreditos.repaint(); pack(); setSize(1280,720);
 		
+		
+	}
+	
+	public void agregarPanelPuntajes() {
+		remove(menuPrincipal);
+		add(pPuntajes);
+		pPuntajes.updateUI();
+		pPuntajes.repaint(); pack(); setSize(1280,720);
 		
 	}
 	
