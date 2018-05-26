@@ -131,7 +131,7 @@ public class Juego implements Comparator<Jugador>{
 		int inicio = 0;
 		int fin = topTen.length;
 		boolean encontrado = false;
-		while (inicio < fin) {
+		while (inicio < fin && !encontrado) {
 			
 			int medio = (inicio + fin)/2;
 			
@@ -152,27 +152,27 @@ public class Juego implements Comparator<Jugador>{
 		
 		if (ganador == 1) {
 			jugador1.AñadirPuntos(
-					(jugador2.darSaludMaxima() - jugador2.darSaludActual()) // La diferencia entre la salud maxima y la final
+					(500 - jugador2.darSaludActual()) // La diferencia entre la salud maxima y la final
 					/5);// Todo esto sobre 5
 			
 			if (!inTopTen(jugador1)) {
 				topTen[9] = compare(jugador1, topTen[9]) > 0? jugador1 : topTen[9];
-				ordenarTopTen();
+				ordenarTopTenPorPuntos();
 			}
 		}
 		if (ganador == 2) {
 			jugador2.AñadirPuntos(
-					(jugador1.darSaludMaxima() - jugador1.darSaludActual())
+					(500 - jugador1.darSaludActual())
 					/5);
 			
 			if (!inTopTen(jugador2)) {
 				topTen[9] = compare(jugador2, topTen[9]) > 0? jugador2 : topTen[9];
-				ordenarTopTen();
+				ordenarTopTenPorPuntos();
 			}
 		}
 	}
 	
-	public void ordenarTopTen() {
+	public void ordenarTopTenPorPuntos() {
 		for (int i = 0; i < topTen.length - 1; i++) {
 			for (int j = 0; j < topTen.length - i - 1; j++) {
 				if (compare(topTen[j], topTen[j+1]) > 0) {

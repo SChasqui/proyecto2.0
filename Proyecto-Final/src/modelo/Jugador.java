@@ -134,7 +134,7 @@ public class Jugador implements Comparable<Jugador>{
 	}
 
 	public void AñadirPuntos(int puntos) {
-		puntos += puntos;
+		this.puntos += puntos;
 	}
 
 	public int darPuntos() {
