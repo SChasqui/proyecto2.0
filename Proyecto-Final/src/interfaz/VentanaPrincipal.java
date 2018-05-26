@@ -17,6 +17,7 @@ import javax.swing.JPanel;
 
 import hilos.HiloAnimaciones;
 import hilos.HiloAtaqueDistancia;
+import hilos.HiloCreditos;
 import hilos.HiloJuego;
 import hilos.HiloTiempo;
 import modelo.Juego;
@@ -61,6 +62,8 @@ public class VentanaPrincipal extends JFrame{
 		pSeleccionJugador = new PanelSeleccionJugador(this,0);
 
 		pSeleccionEscenario = new PanelSeleccionEscenario(this);
+		
+		pCreditos = new PanelCreditos();
 
 		pJuego = new PanelJuego(this);
 		addKeyListener(pJuego);
@@ -78,13 +81,18 @@ public class VentanaPrincipal extends JFrame{
 		hA2.start();
 		HiloTiempo hT = new HiloTiempo(this, juego);
 		hT.start();
+		HiloCreditos hC = new HiloCreditos(this);
+		hC.start();
 	}
 
 	public PanelJuego darPanelJuego() {
 		return pJuego;
 	}
 
-
+	public PanelCreditos darPanelCreditos() {
+		
+		return pCreditos;
+	}
 
 	public Juego darJuego() {
 		return juego;

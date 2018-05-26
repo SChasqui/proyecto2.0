@@ -103,10 +103,10 @@ public class PanelMenuPrincipal extends JPanel implements MouseListener{
 		}
 
 		//****************************************
-		// Área de pruebas varias
+		// Área de panelCreditos
 		//****************************************
 		else if(posX > 45 && posX < 625 && posY > 495 && posY < 590) {
-			
+			ventana.agregarPanelCreditos();
 		}
 
 
