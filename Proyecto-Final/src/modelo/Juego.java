@@ -244,6 +244,7 @@ public class Juego implements Comparator<Jugador>{
 				agregarJugador(jugador, nodo.darIzquierda());
 			}
 		}
+		guardarListaDeJugadores();
 	}
 	
 	public Jugador buscarJugador(String nickName, Jugador nodo) {
@@ -279,6 +280,7 @@ public class Juego implements Comparator<Jugador>{
 		try {
 			ObjectOutputStream salida = new ObjectOutputStream(new FileOutputStream(jugadores));
 			salida.writeObject(raiz);
+			salida.close();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
