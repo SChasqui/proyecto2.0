@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 
-public class Personaje implements Atacable{
+public class Personaje implements Atacable, Comparable<Personaje>{
 
 
 
@@ -764,6 +764,11 @@ public class Personaje implements Atacable{
 			rect = new Rectangle(posX,posY, temp.getWidth(null), temp.getHeight(null));
 		}
 		return rect;
+	}
+
+	@Override
+	public int compareTo(Personaje o) {
+		return personaje.compareTo(o.darNombre());
 	}
 
 }
