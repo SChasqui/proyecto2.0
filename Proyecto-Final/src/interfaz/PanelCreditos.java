@@ -44,14 +44,14 @@ public class PanelCreditos extends JPanel  {
 		//Image escenario = new ImageIcon("data/vistaPreviaPersonajes/NPE" +i + ".png").getImage();
 		//System.out.println("data/fondoEscenario/escenario" + + ".png");
 		//g.drawImage(escenario, 0, 0,null);
-		Image fondo = new ImageIcon("data/vistaPreviaPersonajes/NPE3.png").getImage();
+		Image fondo = new ImageIcon("data/vistaPreviaPersonajes/NPE10.png").getImage();
 		g.drawImage(fondo, 0, 0,null);
 		//g.getFont().drawString(0, 0, "Lero");
 		
 	}
 	public void pintarCreditos(Graphics g) {
 		Image creditos = new ImageIcon("data/fondo/creditos.png").getImage();
-		g.drawImage(creditos, 640, posY++,null);
+		g.drawImage(creditos, 640, 100 + posY--,null);
 		
 	}	
 	
