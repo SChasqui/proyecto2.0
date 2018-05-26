@@ -184,6 +184,24 @@ public class Juego implements Comparator<Jugador>{
 		}
 	}
 	
+	public void ordenarTopTenPorNombre() {
+		for (int i = 0; i < topTen.length - 1; i++) {
+			
+			Jugador menor = topTen[i];
+			int indiceMenor = i;
+			
+			for (int j = i+1; j < topTen.length; j++) {
+				if (topTen[j].compareTo(menor)<0) {
+					menor = topTen[j];
+					indiceMenor = j;
+				}
+			}
+			
+			
+			
+		}
+	}
+	
 	public Jugador[] darJugadoresEnBatalla() {
 		Jugador[] j = {battle.darJugador1(),battle.darJugador2()};
 		return j;

@@ -6,6 +6,8 @@ import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
+import hilos.HiloCreditos;
+
 public class PanelCreditos extends JPanel  {
 	
 	private boolean muere;
@@ -15,14 +17,18 @@ public class PanelCreditos extends JPanel  {
 	public PanelCreditos() {
 		
 		setVisible(true);
-		muere = true;
+		muere = false;
 		posY = 0;
 		
 	}
 	
 	public boolean darMuere() {
 		
-		return muere = true;
+		return muere;
+	}
+	
+	public void cambiarMuere(boolean mu) {
+		muere = mu;
 	}
 	
 	public void paint(Graphics g) {
@@ -45,7 +51,7 @@ public class PanelCreditos extends JPanel  {
 	}
 	public void pintarCreditos(Graphics g) {
 		Image creditos = new ImageIcon("data/fondo/creditos.png").getImage();
-		g.drawImage(creditos, 640, posY +1,null);
+		g.drawImage(creditos, 640, posY++,null);
 		
 	}	
 	

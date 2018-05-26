@@ -176,6 +176,9 @@ public class VentanaPrincipal extends JFrame{
 	
 	public void agregarPanelCreditos() {
 		remove(menuPrincipal);
+		HiloCreditos h = new HiloCreditos(this);
+		pCreditos.cambiarMuere(false);
+		h.start();
 		add(pCreditos);
 		pCreditos.updateUI();
 		pCreditos.repaint(); pack(); setSize(1280,720);

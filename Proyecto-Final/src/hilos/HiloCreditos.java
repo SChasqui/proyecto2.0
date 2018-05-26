@@ -12,7 +12,7 @@ public class HiloCreditos extends Thread{
 	}
 	
 	public void run(){
-		while(ventana.darMuere()) {
+		while(!ventana.darMuere()) {
 			ventana.darPanelCreditos().repaint();
 			System.out.println("Hola");
 			
