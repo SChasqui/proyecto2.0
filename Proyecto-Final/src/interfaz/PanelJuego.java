@@ -274,7 +274,7 @@ public class PanelJuego extends JPanel implements KeyListener{
 		
 		JOptionPane.showMessageDialog(this, "Felicidades " + nombre + " Has ganado 100 puntos", "Fin de la batalla", JOptionPane.DEFAULT_OPTION);
 		
-//		ventana.darJuego().darPuntos(personaje);
+		ventana.darJuego().darPuntos(personaje);
 		
 		ventana.agregarPanelMenuPrincipal(this);
 		
