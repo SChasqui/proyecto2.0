@@ -9,8 +9,10 @@ package modelo;
 
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.Comparator;
 
 public class Juego implements Comparator<Jugador>{
@@ -45,6 +47,9 @@ public class Juego implements Comparator<Jugador>{
 	private Jugador jugador2;
 	
 	private String fondoActual;
+	
+	public static final String RUTA_TOP_TEN = "Saved/Top10.pro";
+	public static final String RUTA_JUGADORES_REGISTRADOS = "Saved/Jugadores";
 	
 	/*
 	 * Informacion
@@ -160,9 +165,10 @@ public class Juego implements Comparator<Jugador>{
 					/2);// Todo esto sobre 5
 			ordenarTopTenPorNombre();
 			if (!inTopTen(jugador1)) {
+				ordenarTopTenPorPuntos();
 				topTen[9] = compare(jugador1, topTen[9]) > 0? jugador1 : topTen[9];
+				guardarTopTen();
 			}
-			ordenarTopTenPorPuntos();
 		}
 		if (ganador == 2) {
 			jugador2.AñadirPuntos(
@@ -170,16 +176,17 @@ public class Juego implements Comparator<Jugador>{
 					/2);
 			ordenarTopTenPorNombre();
 			if (!inTopTen(jugador2)) {
+				ordenarTopTenPorPuntos();
 				topTen[9] = compare(jugador2, topTen[9]) > 0? jugador2 : topTen[9];
+				guardarTopTen();
 			}
-			ordenarTopTenPorPuntos();
 		}
 	}
 	
 	public void ordenarTopTenPorPuntos() {
 		for (int i = 0; i < topTen.length - 1; i++) {
 			for (int j = 0; j < topTen.length - i - 1; j++) {
-				if (compare(topTen[j], topTen[j+1]) > 0) {
+				if (compare(topTen[j], topTen[j+1]) < 0) {
 					Jugador temp = topTen[j];
 					topTen[j] = topTen[j+1];
 					topTen[j+1] = temp;
@@ -266,6 +273,18 @@ public class Juego implements Comparator<Jugador>{
 		}
 	}
 	
+	public void guardarListaDeJugadores() {
+		File jugadores = new File(RUTA_JUGADORES_REGISTRADOS);
+		
+		try {
+			ObjectOutputStream salida = new ObjectOutputStream(new FileOutputStream(jugadores));
+			salida.writeObject(raiz);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 	
 	public String[] daPersonajes() {
 		return personajes;
@@ -281,13 +300,15 @@ public class Juego implements Comparator<Jugador>{
 	}
 	
 	public void guardarTopTen() {
-		File TopTenTex = new File("Saved/Top10.pro");
+		File TopTenTex = new File(RUTA_TOP_TEN);
 		
 		try {
-			BufferedWriter escritor = new BufferedWriter(new FileWriter(TopTenTex,true));
+			BufferedWriter escritor = new BufferedWriter(new FileWriter(TopTenTex));
+			String top = "";
 			for (int i = 0; i < topTen.length; i++) {
-				escritor.write((i+1) + ") " + topTen[i].darNickName() + "           " + topTen[i].darPuntos()+"\n");
+				top += ((i+1) + ") " + topTen[i].darNickName() + "           " + topTen[i].darPuntos()+"\n");
 			}
+			escritor.write(top);
 			escritor.close();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
