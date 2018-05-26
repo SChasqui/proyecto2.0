@@ -168,7 +168,6 @@ public class PanelJuego extends JPanel implements KeyListener{
 
 			if (temp.size() > 0) {
 				for (int c : temp) {
-					System.out.println(c);
 					if (c == FLECHA_IZQUIERDA) {
 						ventana.darJuego().darBatalla().darJugador1().darPersonaje().moverX(-12);
 					} else if (c == FLECHA_ABAJO) {

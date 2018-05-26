@@ -466,7 +466,7 @@ public class Personaje implements Atacable, Comparable<Personaje>{
 		quieto = false;
 		if (posSprite[6] > sprite.darTamanhos()[Sprite.PATADA]-1) {
 			if (colisionaronHorizontal(direccion * 12)) {
-				int daño = (int) ((fuerza - adversario.darResistencia())+((fuerza - adversario.darResistencia()*0.1)));
+				int daño = (int) ((fuerza - adversario.darResistencia())+((fuerza - adversario.darResistencia()))*0.15);
 				adversario.restarVida(daño);
 			}
 			posSprite[6] = -1;
