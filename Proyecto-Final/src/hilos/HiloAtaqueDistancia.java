@@ -10,7 +10,6 @@ public class HiloAtaqueDistancia extends Thread{
 
 	private Juego miJuego;
 	private VentanaPrincipal interfaz;
-	private boolean colisionaron;
 
 	public HiloAtaqueDistancia(Juego game, VentanaPrincipal v) {
 
@@ -24,7 +23,6 @@ public class HiloAtaqueDistancia extends Thread{
 		PanelJuego panel = interfaz.darPanelJuego();
 
 		while(true && !panel.darAcabo()) {
-			colisionaron = false;
 			
 			Personaje pj1 = miJuego.darBatalla().darJugador1().darPersonaje();
 			Personaje pj2 = miJuego.darBatalla().darJugador2().darPersonaje();
@@ -36,7 +34,6 @@ public class HiloAtaqueDistancia extends Thread{
 				
 				if(actualUno.comprobarAtaque(pj2.darKickBox())) {
 					pj2.restarVida((actualUno.darDanho())-pj2.darResistencia());
-					System.out.println(actualUno.darDanho());
 					actualUno.destruirAtaque();
 					pj1.limpiarAtaques();
 					pj2.limpiarAtaques();
