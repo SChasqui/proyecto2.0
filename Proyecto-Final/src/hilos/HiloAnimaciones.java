@@ -52,7 +52,7 @@ public class HiloAnimaciones extends Thread {
 
 		}
 		
-		if (!!ventana.darPanelJuego().darAcabo()) {
+		if (!ventana.darPanelJuego().darAcabo()) {
 			ventana.darPanelJuego().mostrarMensajeFianal(personaje);
 		}
 

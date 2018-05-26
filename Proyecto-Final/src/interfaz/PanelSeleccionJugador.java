@@ -13,6 +13,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import modelo.NoDesbloqueadoException;
+import modelo.Personaje;
 import modelo.PuntosInsuficientesException;
 
 public class PanelSeleccionJugador extends JPanel implements MouseListener {
@@ -45,6 +46,9 @@ public class PanelSeleccionJugador extends JPanel implements MouseListener {
 
 		Image personaje = new ImageIcon("data/vistaPreviaPersonajes/" +ventana.darJuego().daPersonajes()[index]+ ".png").getImage();
 		g.drawImage(personaje, 500, 250,null);
+		
+		g.setFont(new Font("Arial", Font.ITALIC, 30));
+		g.drawString("Precio: " + Personaje.precios[index], 530, 530);
 
 		Image flecha = new ImageIcon("data/fondo/flechaDerecha.png").getImage();
 		g.drawImage(flecha, 890, 310, null);
