@@ -9,6 +9,7 @@ package modelo;
 
 import java.io.Serializable;
 
+
 public class Jugador implements Comparable<Jugador>, Serializable{
 
 	//--------------------------------------
@@ -16,7 +17,7 @@ public class Jugador implements Comparable<Jugador>, Serializable{
 	//--------------------------------------
 
 	/*
-	 * Nicname del Jugador
+	 * Nickname del Jugador
 	 */
 
 	private String nickName;
@@ -49,6 +50,10 @@ public class Jugador implements Comparable<Jugador>, Serializable{
 	//--------------------------------------
 	// Constructor
 	//--------------------------------------
+    /**
+     * Crea un jugador<br>
+     * @param nombre El nombre del jugador
+     */
 	public Jugador(String nombre) {
 		nickName = nombre;
 		puntos = 0;
@@ -58,7 +63,14 @@ public class Jugador implements Comparable<Jugador>, Serializable{
 	//--------------------------------------
 	// Metodos
 	//--------------------------------------
-
+	
+    /*
+     * Selecciona una personaje <br>
+     * <b>pre:</b> las matrices spritesDerecha y spritesIzquierda están declaradas e inicializadas
+     * @param i - El índice que indica la posición del acción (sprite) en la que va
+     * @param direccion - 1: DERECHA; -1 IZQUIERDA.
+     * @return la imagen de la matriz en la fila MOVERCE, con columna indice en la dirección direccion.
+     */
 	public void seleccionarPersonaje(String personaje, int indice) throws NoDesbloqueadoException {
 		if (desBloqueados == null) {
 			desBloqueados = new Personaje(personaje, Personaje.precios[indice], indice);

@@ -1,8 +1,9 @@
 package modelo;
 
 import java.awt.Rectangle;
+import java.io.Serializable;
 
-public abstract class Ataque {
+public abstract class Ataque implements Serializable{
 	
 	//--------------------------------------
 	// Atributos

@@ -2,11 +2,15 @@ package modelo;
 
 import java.awt.Image;
 import java.io.File;
+import java.io.Serializable;
 
 import javax.swing.ImageIcon;
 
-public class Sprite {
-
+public class Sprite implements Serializable{
+	
+	//---------------------------------------------------------------------------------------------------
+	// Información de los estados de los sprites (Correspondientes a las filas de la matriz de sprites)
+	//---------------------------------------------------------------------------------------------------
 	/*
 	 * 0 - Parado
 	 * 1 - Puño
@@ -18,27 +22,72 @@ public class Sprite {
 	 * 7 - Moverce
 	 * 8 - Recargar ki
 	 */
+	
+	/*
+	 * Corresponde al estado parado
+	 */
 	public static final int PARADO = 0;
+	/*
+	 * Corresponde al estado puño
+	 */
 	public static final int PUNHO = 1;
+	/*
+	 * Corresponde a la acción de patear 
+	 */
 	public static final int PATADA = 2;
+	/*
+	 * Corresponde a la animación de ataque grande
+	 */
 	public static final int ATAQUE_GRANDE = 3;
+	/*
+	 * Corresponde a la animación de ataque mediano
+	 */
 	public static final int ATAQUE_MEDIANO = 4;
+	/*
+	 * Corresponde a la animación de ataque pequeño
+	 */
 	public static final int ATAQUE_PEQUENHO = 5;
+	/*
+	 * Corresponde al estado defensivo
+	 */
 	public static final int DEFENSA = 6;
+	/*
+	 * Corresponde al estado de movimiento
+	 */
 	public static final int MOVERCE = 7;
+	/*
+	 * Corresponde al estado de recargar el ki
+	 */
 	public static final int RECARGA_KI = 8;
 
-
+	/*
+	 * Es el nombre del personaje
+	 */
 	private String personaje;
-
+	
+	/*
+	 * Matriz de los sprites viendo hacia la derecha
+	 */
 	private Image[][] spritesDerecha;
+	
+	/*
+	 * Matriz de los sprites viendo hacia la izquierda
+	 */
 	private Image[][] spritesIzquierda;
 
 	/*
 	 * Arreglo que contiene la cantidad de frames de cada una de las animaciones
 	 */
 	private int[] tamanhos;
-
+	
+	
+	//-------------------------------
+	// CONSTRUCTOR
+	//-------------------------------
+    /**
+     * Crea la hoja de sprites<br>
+     * @param nombre El nombre del personaje
+     */
 	public Sprite(String nombre) {
 		// Inicializo el nombre
 		personaje = nombre;
@@ -158,48 +207,114 @@ public class Sprite {
 			spritesIzquierda[MOVERCE][i] = (new ImageIcon("data/Sprites/" + nombre + "/moverIzquierda/" + (i + 1)+".png")).getImage();
 		}
 	}
-
+	
+    /*
+     * Devuelve la imagen del sprite quieto en la posición que se le indica por parámetro <br>
+     * <b>pre:</b> las matrices spritesDerecha y spritesIzquierda están declaradas e inicializadas
+     * @param i - El índice que indica la posición del acción (sprite) en la que va
+     * @param direccion - 1: DERECHA; -1 IZQUIERDA.
+     * @return la imagen de la matriz en la fila PARADO, con columna indice en la dirección direccion.
+     */
 	public Image spriteQuieto(int i, int direccion) {
 		i = i > 0? i : -i;
 		return direccion == Personaje.DERECHA? spritesDerecha[PARADO][i] : spritesIzquierda[PARADO][i];
 	}
-
+	
+    /*
+     * Devuelve la imagen del sprite puño en la posición que se le indica por parámetro <br>
+     * <b>pre:</b> las matrices spritesDerecha y spritesIzquierda están declaradas e inicializadas
+     * @param i - El índice que indica la posición del acción (sprite) en la que va
+     * @param direccion - 1: DERECHA; -1 IZQUIERDA.
+     * @return la imagen de la matriz en la fila PUNHO, con columna indice en la dirección direccion.
+     */
 	public Image spritePuño(int i, int direccion) {
 		return direccion == Personaje.DERECHA? spritesDerecha[PUNHO][i] : spritesIzquierda[PUNHO][i];
 	}
-
+	
+    /*
+     * Devuelve la imagen del sprite movimiento en la posición que se le indica por parámetro <br>
+     * <b>pre:</b> las matrices spritesDerecha y spritesIzquierda están declaradas e inicializadas
+     * @param i - El índice que indica la posición del acción (sprite) en la que va
+     * @param direccion - 1: DERECHA; -1 IZQUIERDA.
+     * @return la imagen de la matriz en la fila MOVERCE, con columna indice en la dirección direccion.
+     */
 	public Image spriteMovimiento(int i, int direccion) {
 		return direccion == Personaje.DERECHA? spritesDerecha[MOVERCE][i] : spritesIzquierda[MOVERCE][i];
 	}
 	
+    /*
+     * Devuelve la imagen del sprite ataque mediano en la posición que se le indica por parámetro <br>
+     * <b>pre:</b> las matrices spritesDerecha y spritesIzquierda están declaradas e inicializadas
+     * @param i - El índice que indica la posición del acción (sprite) en la que va
+     * @param direccion - 1: DERECHA; -1 IZQUIERDA.
+     * @return la imagen de la matriz en la fila ATAQUE_MEDIANO, con columna indice en la dirección direccion.
+     */
 	public Image spriteAtaqueMedianoDistancia(int i, int direccion) {
 		return direccion == Personaje.DERECHA? spritesDerecha[ATAQUE_MEDIANO][i] : spritesIzquierda[ATAQUE_MEDIANO][i];
 	}
 	
+    /*
+     * Devuelve la imagen del sprite ataque pequeño en la posición que se le indica por parámetro <br>
+     * <b>pre:</b> las matrices spritesDerecha y spritesIzquierda están declaradas e inicializadas
+     * @param i - El índice que indica la posición del acción (sprite) en la que va
+     * @param direccion - 1: DERECHA; -1 IZQUIERDA.
+     * @return la imagen de la matriz en la fila ATAQUE_PEQUENHO, con columna indice en la dirección direccion.
+     */
 	public Image spriteAtaquePequeñoDistancia(int i, int direccion) {
 		return direccion == Personaje.DERECHA? spritesDerecha[ATAQUE_PEQUENHO][i] : spritesIzquierda[ATAQUE_PEQUENHO][i];
 	}
 	
+    /*
+     * Devuelve la imagen del sprite ataque grande en la posición que se le indica por parámetro <br>
+     * <b>pre:</b> las matrices spritesDerecha y spritesIzquierda están declaradas e inicializadas
+     * @param i - El índice que indica la posición del acción (sprite) en la que va
+     * @param direccion - 1: DERECHA; -1 IZQUIERDA.
+     * @return la imagen de la matriz en la fila ATAQUE_GRANDE, con columna indice en la dirección direccion.
+     */
 	public Image spriteAtaqueGrandeDistancia(int i, int direccion) {
 		return direccion == Personaje.DERECHA? spritesDerecha[ATAQUE_GRANDE][i] : spritesIzquierda[ATAQUE_GRANDE][i];
 	}
 
-	public int[] darTamanhos() {
-		return tamanhos;
-	}
-
+    /*
+     * Devuelve la imagen del sprite patada en la posición que se le indica por parámetro <br>
+     * <b>pre:</b> las matrices spritesDerecha y spritesIzquierda están declaradas e inicializadas
+     * @param i - El índice que indica la posición del acción (sprite) en la que va
+     * @param direccion - 1: DERECHA; -1 IZQUIERDA.
+     * @return la imagen de la matriz en la fila PATADA, con columna indice en la dirección direccion.
+     */
 	public Image spritePatada(int i, int direccion) {
 		return direccion == Personaje.DERECHA? spritesDerecha[PATADA][i] : spritesIzquierda[PATADA][i];
 	}
-
+	
+    /*
+     * Devuelve la imagen del sprite recarga de ki en la posición que se le indica por parámetro <br>
+     * <b>pre:</b> las matrices spritesDerecha y spritesIzquierda están declaradas e inicializadas
+     * @param lineaPuntos La línea con la información de los dos puntos
+     * @return la imagen de la matriz en la fila RECARGA_KI, con columna indice en la dirección direccion.
+     */
 	public Image spriteRecargarKi(int i, int direccion) {
 		// TODO Auto-generated method stub
 		return direccion == Personaje.DERECHA? spritesDerecha[RECARGA_KI][i] : spritesIzquierda[RECARGA_KI][i];
 	}
-
+	
+    /*
+     * Devuelve la imagen del sprite defensa en la posición que se le indica por parámetro <br>
+     * <b>pre:</b> las matrices spritesDerecha y spritesIzquierda están declaradas e inicializadas
+     * @param i - El índice que indica la posición del acción (sprite) en la que va
+     * @param direccion - 1: DERECHA; -1 IZQUIERDA.
+     * @return la imagen de la matriz en la fila DEFENSA, con columna indice en la dirección direccion.
+     */
 	public Image spriteDefensa(int i, int direccion) {
 		// TODO Auto-generated method stub
 		return direccion == Personaje.DERECHA? spritesDerecha[DEFENSA][i] : spritesIzquierda[DEFENSA][i];
 	}
-
+	
+    /*
+     * Devuelve la imagen del sprite quieto en la posición que se le indica por parámetro <br>
+     * <b>pre:</b> el arreglo de tamanhos ha sidod declarado e incializado
+     * @return tamanhos - el arreglo de enteros con los tamaños (las posiciones obedecen las posiciones de las constantes)
+     */
+	public int[] darTamanhos() {
+		return tamanhos;
+	}
 }
