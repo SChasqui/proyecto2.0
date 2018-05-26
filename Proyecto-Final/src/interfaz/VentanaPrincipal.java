@@ -122,7 +122,10 @@ public class VentanaPrincipal extends JFrame{
 		this.juego = juego;
 	}
 
-
+	public boolean darMuere() {
+		
+		return pCreditos.darMuere();
+	}
 
 	public PanelMenuPrincipal getMenuPrincipal() {
 		return menuPrincipal;
