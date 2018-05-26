@@ -13,6 +13,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import modelo.NoDesbloqueadoException;
+import modelo.PuntosInsuficientesException;
 
 public class PanelSeleccionJugador extends JPanel implements MouseListener {
 
@@ -88,23 +89,36 @@ public class PanelSeleccionJugador extends JPanel implements MouseListener {
 				}else if (numJugador == 2) {
 					ventana.darJuego().darJugador2().seleccionarPersonaje(personaje, index);
 				}
-				
+
 				ventana.agregarPanelMenuPrincipal(this);
-				
+
 			}
 			catch(NoDesbloqueadoException e1) {
 				int seleccion = JOptionPane.showOptionDialog(
-						   this,
-						   e1.getMessage() + "\n¿ Desea desbloquear a " + e1.darPersonaje() + " ?", 
-						   "Personaje Bloqueado",
-						   JOptionPane.YES_NO_CANCEL_OPTION,
-						   JOptionPane.QUESTION_MESSAGE,
-						   new ImageIcon("data/fondo/icono.png"),    // null para icono por defecto.
-						   new Object[] { "Comprar", "Escojer otro"},   // null para YES, NO y CANCEL
-						   "opcion 1");
+						this,
+						e1.getMessage() + "\n¿ Desea desbloquear a " + e1.darPersonaje() + " ?", 
+						"Personaje Bloqueado",
+						JOptionPane.YES_NO_CANCEL_OPTION,
+						JOptionPane.QUESTION_MESSAGE,
+						new ImageIcon("data/fondo/icono.png"),    // null para icono por defecto.
+						new Object[] { "Comprar", "Escojer otro"},   // null para YES, NO y CANCEL
+						"opcion 1");
 				if (seleccion == 0) {
-					if (numJugador == 1) {
-						ventana.darJuego().darJugador1().desbloquearPersonaje(index, personaje);
+					try {
+						if (numJugador == 1) {
+							ventana.darJuego().darJugador1().desbloquearPersonaje(index, personaje);
+							ventana.darJuego().darJugador1().seleccionarPersonaje(personaje, index);
+						}else if(numJugador == 2) {
+							ventana.darJuego().darJugador2().desbloquearPersonaje(index, personaje);
+							ventana.darJuego().darJugador2().seleccionarPersonaje(personaje, index);
+						}
+					}catch (PuntosInsuficientesException e2) {
+						JOptionPane.showConfirmDialog(this, "Puntos insuficientes",
+								"Error en la compra", JOptionPane.DEFAULT_OPTION,
+								JOptionPane.ERROR_MESSAGE, new ImageIcon("data/fondo/insuficientes.png"));
+					} catch (NoDesbloqueadoException e2) {
+						// TODO Auto-generated catch block
+						e2.printStackTrace();
 					}
 				}
 			}

@@ -86,10 +86,13 @@ public class Jugador implements Comparable<Jugador>{
 		}
 	}
 
-	public void desbloquearPersonaje(int indice, String personaje) {
+	public void desbloquearPersonaje(int indice, String personaje) throws PuntosInsuficientesException {
 		
 		if (Personaje.precios[indice] < puntos) {
-			
+			puntos -= Personaje.precios[indice];
+			añadirADesbloqueados(desBloqueados, new Personaje(personaje, Personaje.precios[indice], indice));
+		}else {
+			throw new PuntosInsuficientesException("");
 		}
 	}
 	

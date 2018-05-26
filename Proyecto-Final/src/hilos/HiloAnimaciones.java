@@ -51,8 +51,12 @@ public class HiloAnimaciones extends Thread {
 			}
 
 		}
+		
+		if (!!ventana.darPanelJuego().darAcabo()) {
+			ventana.darPanelJuego().mostrarMensajeFianal(personaje);
+		}
 
-		ventana.darPanelJuego().mostrarMensajeFianal(personaje);
+		
 
 	}
 
