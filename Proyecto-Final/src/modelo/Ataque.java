@@ -2,7 +2,7 @@ package modelo;
 
 import java.awt.Rectangle;
 
-public class Ataque {
+public abstract class Ataque {
 	
 	//--------------------------------------
 	// Atributos
