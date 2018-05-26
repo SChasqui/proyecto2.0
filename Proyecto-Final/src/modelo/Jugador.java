@@ -65,8 +65,8 @@ public class Jugador implements Comparable<Jugador>, Serializable{
 	//--------------------------------------
 	
     /*
-     * Selecciona una personaje <br>
-     * <b>pre:</b> las matrices spritesDerecha y spritesIzquierda están declaradas e inicializadas
+     * Selecciona un personaje <br>
+     * <b>pre:</b> la lista de 
      * @param i - El índice que indica la posición del acción (sprite) en la que va
      * @param direccion - 1: DERECHA; -1 IZQUIERDA.
      * @return la imagen de la matriz en la fila MOVERCE, con columna indice en la dirección direccion.
