@@ -52,7 +52,7 @@ public class Personaje implements Atacable{
 	public static final double[][] MATRIZ_DE_MULTIPLICADORES= {/*Bardock*/{1,1,1.5,2,1.2},
 			/*Beerus*/{1,1.4,1.6,1.6,1.2}, /*Broly*/{1.6,1.1,1,2,1}, /*Frieza*/{1,1.3,1.3,1.2,1.09},
 			/*GohanSSJ_Kid*/{1.2,1.2,1.4,1.3,1.23}, /*Goku*/{1,1,1.3,1.2,0.99}, 
-			/*18*/{1.1,1.1,1.3,1.4,1.29}, /*Goku_Red*/{1.4,1.2,1.4,1.8,1.5},
+			/*18*/{1.1,1.1,1.3,1.4,1.29}, /*Goku_Red*/{1.4,1.4,1.4,1.8,1.5},
 			/*Kid_Buu*/{1.4,1.2,1.4,1.5,1.23}, /*Vegeta*/{1.2,1.1,1.3,1.3,1.19} };
 	
 	/*
