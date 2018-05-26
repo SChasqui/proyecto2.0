@@ -7,7 +7,9 @@
  */
 package modelo;
 
-public class Jugador implements Comparable<Jugador>{
+import java.io.Serializable;
+
+public class Jugador implements Comparable<Jugador>, Serializable{
 
 	//--------------------------------------
 	// Atributos
@@ -71,26 +73,45 @@ public class Jugador implements Comparable<Jugador>{
 	}
 
 	public Personaje buscarPorPersonaje(String name, Personaje actual) {
+		
 		if(actual == null) {
-
 			return null;
 
 		}else if(actual.darNombre().equals(name)) {
 			return actual;
 
 		}else if(actual.darNombre().compareTo(name) < 0){
-
 			return actual.getDerecha() == null ? null : buscarPorPersonaje(name,actual.getDerecha());
 
 		}else{
-
 			return actual.getIzquierda() == null? null : buscarPorPersonaje(name,actual.getIzquierda());
 		}
 	}
 
-	public void desbloquearPersonaje(int indice) {
-
-
+	public void desbloquearPersonaje(int indice, String personaje) throws PuntosInsuficientesException {
+		
+		if (Personaje.precios[indice] < puntos) {
+			puntos -= Personaje.precios[indice];
+			añadirADesbloqueados(desBloqueados, new Personaje(personaje, Personaje.precios[indice], indice));
+		}else {
+			throw new PuntosInsuficientesException("");
+		}
+	}
+	
+	public void añadirADesbloqueados(Personaje nodo, Personaje agregable) {
+		if (nodo.compareTo(agregable) > 0) {
+			if (nodo.getIzquierda() == null) {
+				nodo.setIzquierda(agregable);
+			}else {
+				añadirADesbloqueados(nodo.getIzquierda(), agregable);
+			}
+		}else {
+			if (nodo.getDerecha() == null) {
+				nodo.setDerecha(agregable);
+			}else {
+				añadirADesbloqueados(nodo.getDerecha(), agregable);
+			}
+		}
 	}
 
 	public String darNickName() {

@@ -98,9 +98,11 @@ public class PanelJuego extends JPanel implements KeyListener{
 	
 	}
 	private void pintarReloj(Graphics g) {
-		g.setColor(new Color((int) (Math.random()*256), (int) (Math.random()*256), (int) (Math.random()*256)));
+		g.setColor(Color.black);
 		g.setFont(new Font("Arial", Font.BOLD, 40));
 		g.drawString(ventana.darJuego().darBatalla().darTiempoActual() + "", 600, 80);
+		g.drawImage(new ImageIcon("data/fondo/rayitos.gif").getImage(), 600, 35,30,30, this);
+		g.drawImage(new ImageIcon("data/fondo/rayitos.gif").getImage(), 640, 50,30,30, this);
 	}
 
 	private void pintarPersonajes(Graphics g) {
@@ -166,7 +168,6 @@ public class PanelJuego extends JPanel implements KeyListener{
 
 			if (temp.size() > 0) {
 				for (int c : temp) {
-					System.out.println(c);
 					if (c == FLECHA_IZQUIERDA) {
 						ventana.darJuego().darBatalla().darJugador1().darPersonaje().moverX(-12);
 					} else if (c == FLECHA_ABAJO) {
@@ -258,6 +259,8 @@ public class PanelJuego extends JPanel implements KeyListener{
 				ventana.darJuego().darBatalla().darJugador2().darPersonaje().quietotrue();
 			} else if (c == D) {
 				ventana.darJuego().darBatalla().darJugador2().darPersonaje().quietotrue();
+			} else if (c == J) {
+//				ventana.darJuego().darBatalla().darJugador2().darPersonaje().normalizarResistencia();
 			}
 		}catch(NullPointerException exception) {
 			JOptionPane.showMessageDialog(null, "Guarde sus ataques para el juego", "Tecla presionado antes de empezar", JOptionPane.INFORMATION_MESSAGE);

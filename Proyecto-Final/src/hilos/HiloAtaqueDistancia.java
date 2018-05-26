@@ -53,7 +53,7 @@ public class HiloAtaqueDistancia extends Thread{
 			while (actualDos != null) {
 				
 				if(actualDos.comprobarAtaque(pj1.darKickBox())) {
-					pj1.restarVida((actualDos.darDanho())-pj2.darResistencia());
+					pj1.restarVida((actualDos.darDanho())-pj1.darResistencia());
 					actualDos.destruirAtaque();
 					pj1.limpiarAtaques();
 					pj2.limpiarAtaques();

@@ -12,7 +12,10 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import modelo.Jugador;
 import modelo.NoDesbloqueadoException;
+import modelo.Personaje;
+import modelo.PuntosInsuficientesException;
 
 public class PanelSeleccionJugador extends JPanel implements MouseListener {
 
@@ -44,6 +47,9 @@ public class PanelSeleccionJugador extends JPanel implements MouseListener {
 
 		Image personaje = new ImageIcon("data/vistaPreviaPersonajes/" +ventana.darJuego().daPersonajes()[index]+ ".png").getImage();
 		g.drawImage(personaje, 500, 250,null);
+		
+		g.setFont(new Font("Arial", Font.ITALIC, 30));
+		g.drawString("Precio: " + Personaje.precios[index], 530, 530);
 
 		Image flecha = new ImageIcon("data/fondo/flechaDerecha.png").getImage();
 		g.drawImage(flecha, 890, 310, null);
@@ -62,7 +68,7 @@ public class PanelSeleccionJugador extends JPanel implements MouseListener {
 		g.setColor(Color.RED);
 		g.setFont(new Font("Arial", Font.ITALIC, 30));
 		g.drawString(nombreActual, 30, 60);
-		g.drawString("Puntos: " + ventana.darJuego().darJugador1().darPuntos(), 30, 90);
+		g.drawString("Puntos: " + ventana.darJugadorIndice(numJugador).darPuntos(), 30, 90);
 	}
 
 	public void cambiarJugador(int num) {
@@ -80,22 +86,40 @@ public class PanelSeleccionJugador extends JPanel implements MouseListener {
 		//Cuando oprima sobre la imagen
 
 		if((posX > 500 && posX < 755 && posY > 250 && posY < 505) || (posX > 986 && posX < 1154 && posY > 582 && posY < 639)) {
-
+			String personaje = ventana.darJuego().daPersonajes()[index];
 			try {
-				String personaje = ventana.darJuego().daPersonajes()[index];
 				System.out.println(numJugador);
-				if (numJugador == 1) {
-					ventana.darJuego().darJugador1().seleccionarPersonaje(personaje, index);
-				}else if (numJugador == 2) {
-					ventana.darJuego().darJugador2().seleccionarPersonaje(personaje, index);
-				}
 				
+				ventana.darJugadorIndice(numJugador).seleccionarPersonaje(personaje, index);
+				ventana.agregarPanelMenuPrincipal(this);
+
 			}
 			catch(NoDesbloqueadoException e1) {
-
+				int seleccion = JOptionPane.showOptionDialog(
+						this,
+						e1.getMessage() + "\n¿ Desea desbloquear a " + e1.darPersonaje() + " ?", 
+						"Personaje Bloqueado",
+						JOptionPane.YES_NO_CANCEL_OPTION,
+						JOptionPane.QUESTION_MESSAGE,
+						new ImageIcon("data/fondo/icono.png"),    // null para icono por defecto.
+						new Object[] { "Comprar", "Escojer otro"},   // null para YES, NO y CANCEL
+						"opcion 1");
+				if (seleccion == 0) {
+					try {
+				
+							ventana.darJugadorIndice(numJugador).desbloquearPersonaje(index, personaje);
+							ventana.darJugadorIndice(numJugador).seleccionarPersonaje(personaje, index);
+						
+					}catch (PuntosInsuficientesException e2) {
+						JOptionPane.showConfirmDialog(this, "Puntos insuficientes",
+								"Error en la compra", JOptionPane.DEFAULT_OPTION,
+								JOptionPane.ERROR_MESSAGE, new ImageIcon("data/fondo/insuficientes.png"));
+					} catch (NoDesbloqueadoException e2) {
+						// TODO Auto-generated catch block
+						e2.printStackTrace();
+					}
+				}
 			}
-
-			ventana.agregarPanelMenuPrincipal(this);
 
 		}
 
