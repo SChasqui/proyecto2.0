@@ -23,7 +23,7 @@ public class AtaqueDistancia extends Ataque implements Destruible{
 	 * Vida del ataque
 	 */
 	private int poder;
-	
+	//
 	/*
 	 * siguiente ataque en la lista
 	 */
