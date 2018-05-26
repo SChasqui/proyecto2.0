@@ -308,8 +308,17 @@ public class Personaje implements Atacable{
 	
 	public void defender() {
 		posSprite[8] = 0;
-		if(posSprite[8]>=0)resistencia = resistencia*2;
+		if(posSprite[8] >-1) resistencia*=2;
+//		aumentarResistencia();
 		quieto = false;
+	}
+	
+//	public void aumentarResistencia() {
+//		resistencia*=2;
+//	}
+	
+	public void normalizarResistencia() {
+		resistencia = (int) (RESISTENCIA_BASE * MATRIZ_DE_MULTIPLICADORES[indicePersonaje][4]);
 	}
 
 	public void moverX(int mover) {
@@ -383,7 +392,8 @@ public class Personaje implements Atacable{
 		}else if(posSprite[8] !=-1) {
 			aMostrar = spriteDefender();
 		}
-
+		
+		normalizarResistencia();
 		frame = aMostrar;
 	}
 

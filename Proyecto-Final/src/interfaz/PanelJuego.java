@@ -258,6 +258,8 @@ public class PanelJuego extends JPanel implements KeyListener{
 				ventana.darJuego().darBatalla().darJugador2().darPersonaje().quietotrue();
 			} else if (c == D) {
 				ventana.darJuego().darBatalla().darJugador2().darPersonaje().quietotrue();
+			} else if (c == J) {
+//				ventana.darJuego().darBatalla().darJugador2().darPersonaje().normalizarResistencia();
 			}
 		}catch(NullPointerException exception) {
 			JOptionPane.showMessageDialog(null, "Guarde sus ataques para el juego", "Tecla presionado antes de empezar", JOptionPane.INFORMATION_MESSAGE);
