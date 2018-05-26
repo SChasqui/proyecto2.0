@@ -157,6 +157,7 @@ public class Juego implements Comparator<Jugador>{
 			
 			if (!inTopTen(jugador1)) {
 				topTen[9] = compare(jugador1, topTen[9]) > 0? jugador1 : topTen[9];
+				ordenarTopTen();
 			}
 		}
 		if (ganador == 2) {
@@ -166,14 +167,19 @@ public class Juego implements Comparator<Jugador>{
 			
 			if (!inTopTen(jugador2)) {
 				topTen[9] = compare(jugador2, topTen[9]) > 0? jugador2 : topTen[9];
+				ordenarTopTen();
 			}
 		}
 	}
 	
 	public void ordenarTopTen() {
-		for (int i = 0; i < personajes.length - 1; i++) {
-			for (int j = 0; j < personajes.length - i - 1; j++) {
-				
+		for (int i = 0; i < topTen.length - 1; i++) {
+			for (int j = 0; j < topTen.length - i - 1; j++) {
+				if (compare(topTen[j], topTen[j+1]) > 0) {
+					Jugador temp = topTen[j];
+					topTen[j] = topTen[j+1];
+					topTen[j+1] = temp;
+				}
 			}
 		}
 	}
@@ -196,7 +202,7 @@ public class Juego implements Comparator<Jugador>{
 	}
 	
 	public void agregarJugador(Jugador jugador, Jugador nodo) {
-		if (nodo.darNickName().compareTo(jugador.darNickName()) < 0) {
+		if (nodo.compareTo(jugador) < 0) {
 			if (nodo.darDerecha() == null) {
 				nodo.cambiarDerecha(jugador);
 			}else {
