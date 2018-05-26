@@ -25,7 +25,7 @@ public class HiloAnimaciones extends Thread {
 
 		Jugador playerDelHilo = mundo.darJugadoresEnBatalla()[personaje-1];
 
-		while (true && playerDelHilo.darSaludActual() > 0) {
+		while (!ventana.darPanelJuego().darAcabo() && playerDelHilo.darSaludActual() > 0) {
 
 			playerDelHilo.darPersonaje().actualizar();
 			if (!ventana.darPanelJuego().modificando()) {

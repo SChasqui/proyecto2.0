@@ -88,9 +88,15 @@ public class Jugador implements Comparable<Jugador>{
 		}
 	}
 
-	public void desbloquearPersonaje(int indice) {
-
-
+	public void desbloquearPersonaje(int indice, String personaje) {
+		
+		if (Personaje.precios[indice] < puntos) {
+			
+		}
+	}
+	
+	public void añadirADesbloqueados(Personaje nodo, Personaje agregable) {
+		
 	}
 
 	public String darNickName() {

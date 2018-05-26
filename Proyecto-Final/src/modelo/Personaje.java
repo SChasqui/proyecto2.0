@@ -373,7 +373,7 @@ public class Personaje implements Atacable{
 
 //		mover *= 30/(double)velocidad;
 
-		if(posY + mover >=0 && posY + mover <= 600  && !colisionaronVertical(mover)) {
+		if(posY + mover >= 0 && posY + mover <= 600  && !colisionaronVertical(mover)) {
 			posY += mover;
 		}else if(posY + mover >=0 && posY + mover <= 600 && !colisionaronVertical(9)) {
 			posY += 9;

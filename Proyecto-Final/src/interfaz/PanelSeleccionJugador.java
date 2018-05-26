@@ -80,9 +80,8 @@ public class PanelSeleccionJugador extends JPanel implements MouseListener {
 		//Cuando oprima sobre la imagen
 
 		if((posX > 500 && posX < 755 && posY > 250 && posY < 505) || (posX > 986 && posX < 1154 && posY > 582 && posY < 639)) {
-
+			String personaje = ventana.darJuego().daPersonajes()[index];
 			try {
-				String personaje = ventana.darJuego().daPersonajes()[index];
 				System.out.println(numJugador);
 				if (numJugador == 1) {
 					ventana.darJuego().darJugador1().seleccionarPersonaje(personaje, index);
@@ -90,12 +89,25 @@ public class PanelSeleccionJugador extends JPanel implements MouseListener {
 					ventana.darJuego().darJugador2().seleccionarPersonaje(personaje, index);
 				}
 				
+				ventana.agregarPanelMenuPrincipal(this);
+				
 			}
 			catch(NoDesbloqueadoException e1) {
-
+				int seleccion = JOptionPane.showOptionDialog(
+						   this,
+						   e1.getMessage() + "\n¿ Desea desbloquear a " + e1.darPersonaje() + " ?", 
+						   "Personaje Bloqueado",
+						   JOptionPane.YES_NO_CANCEL_OPTION,
+						   JOptionPane.QUESTION_MESSAGE,
+						   new ImageIcon("data/fondo/icono.png"),    // null para icono por defecto.
+						   new Object[] { "Comprar", "Escojer otro"},   // null para YES, NO y CANCEL
+						   "opcion 1");
+				if (seleccion == 0) {
+					if (numJugador == 1) {
+						ventana.darJuego().darJugador1().desbloquearPersonaje(index, personaje);
+					}
+				}
 			}
-
-			ventana.agregarPanelMenuPrincipal(this);
 
 		}
 
