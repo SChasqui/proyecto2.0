@@ -72,7 +72,13 @@ public class AtaqueDistancia extends Ataque implements Destruible{
 		poder = pod;
 	}
 	
-	public void restarVida() {
+	public void restarVida(int cuanto){
+		if(poder-cuanto >=1)poder -= cuanto;
+		else destruirAtaque();
+		
+	}
+	
+	public void destruirAtaque(){
 		poder = 1;
 	}
 	
