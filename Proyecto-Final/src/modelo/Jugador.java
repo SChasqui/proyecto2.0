@@ -71,19 +71,17 @@ public class Jugador implements Comparable<Jugador>{
 	}
 
 	public Personaje buscarPorPersonaje(String name, Personaje actual) {
+		
 		if(actual == null) {
-
 			return null;
 
 		}else if(actual.darNombre().equals(name)) {
 			return actual;
 
 		}else if(actual.darNombre().compareTo(name) < 0){
-
 			return actual.getDerecha() == null ? null : buscarPorPersonaje(name,actual.getDerecha());
 
 		}else{
-
 			return actual.getIzquierda() == null? null : buscarPorPersonaje(name,actual.getIzquierda());
 		}
 	}
@@ -96,7 +94,19 @@ public class Jugador implements Comparable<Jugador>{
 	}
 	
 	public void añadirADesbloqueados(Personaje nodo, Personaje agregable) {
-		
+		if (nodo.compareTo(agregable) > 0) {
+			if (nodo.getIzquierda() == null) {
+				nodo.setIzquierda(agregable);
+			}else {
+				añadirADesbloqueados(nodo.getIzquierda(), agregable);
+			}
+		}else {
+			if (nodo.getDerecha() == null) {
+				nodo.setDerecha(agregable);
+			}else {
+				añadirADesbloqueados(nodo.getDerecha(), agregable);
+			}
+		}
 	}
 
 	public String darNickName() {
