@@ -16,10 +16,12 @@ class JuegoTest {
 	}
 
 	@Test
-	void agregarJugadoresTest() {
+	void agregarJugadoresTest1() {
 		setUpEscenario1();
 		j.agregarJugadores("", 1);
-		assertTrue(j.compare(new Jugador("Jugador idiota"), j.darJugador1()) == 0);
+		j.agregarJugadores(null, 2);
+		Jugador p = new Jugador("Jugador idiota");
+		assertTrue(p.compareTo(j.darJugador1()) == 0 && p.compareTo(j.darJugador2()) == 0);
 	}
 
 }
