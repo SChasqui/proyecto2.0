@@ -22,7 +22,7 @@ public class Juego implements Comparator<Jugador>{
 	//--------------------------------------
 	
 	/*
-	 * Top 10
+	 * Top 10.
 	 */
 	private Jugador[] topTen;
 
