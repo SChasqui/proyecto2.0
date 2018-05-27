@@ -13,6 +13,7 @@ import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 import java.util.Comparator;
 
 public class Juego implements Comparator<Jugador>{
@@ -209,8 +210,26 @@ public class Juego implements Comparator<Jugador>{
 			}
 			topTen[indiceMenor] = topTen[i];
 			topTen[i] = menor;
-			
 		}
+	}
+	
+	public String[] darJugadoresActuales() {
+		ArrayList<String> temp = listarJugadores(new ArrayList<String>(), raiz);
+		return null;
+	}
+	
+	public ArrayList<String> listarJugadores(ArrayList<String> lista, Jugador nodo) {
+		lista.add(nodo.darNickName());
+		lista = listarJugadores(lista, nodo.darDerecha());
+		lista = listarJugadores(lista, nodo.darDerecha());
+		return lista;
+	}
+	
+	public String[] ordenarLexicograficamente(String[] arreglo) {
+		
+		
+		
+		return arreglo;
 	}
 	
 	public Jugador[] darJugadoresEnBatalla() {
