@@ -18,16 +18,33 @@ import hilos.HiloCreditos;
 
 
 /*
- * Constructor de la clase PanelCredios
+ * Creacion de una clase PanelCreditos de tipo Panel e implementando el MouseListener
  */
 public class PanelCreditos extends JPanel implements MouseListener {
 	
+	//--------------------------------------
+	// Relaciones
+	//--------------------------------------
+	
+	/*
+	 * Relacion con la ventana principal
+	 */
 	private VentanaPrincipal ventana;
 	
+	/*
+	 * Boolean que indica cuadno muere el hilo
+	 */
 	private boolean muere;
 	
+	/*
+	 * Entero que indica la posicion de los grafics que la implementen
+	 */
 	private int posY; 
 	
+	
+	/*
+	 * Constructor de la clase PanelCredios
+	 */
 	public PanelCreditos(VentanaPrincipal ventana) {
 		this.ventana = ventana;
 		setVisible(true);
@@ -37,15 +54,28 @@ public class PanelCreditos extends JPanel implements MouseListener {
 		
 	}
 	
+	/*
+	 * metodo que da el boolean muere
+	 * <b> Pre: </b> la variable de tipo boolean ya fue inicializado <br>
+	 */
+	
 	public boolean darMuere() {
 		
 		return muere;
 	}
 	
+	/*
+	 * Metodo que cambia el boolean muere
+	 * <b> Pos: </b> La variable de tipo boolean fue cambiada <br>
+	 */ 
 	public void cambiarMuere(boolean mu) {
 		muere = mu;
 	}
 	
+	/*
+	 * Metodo principal paint que permite pintar objetos de tipo graphics
+	 * @param un objeto de tipo Graphics
+	 */
 	public void paint(Graphics g) {
 		
 		Image fondo = new ImageIcon("data/fondo/fondoDragon.jpg").getImage();
@@ -55,6 +85,10 @@ public class PanelCreditos extends JPanel implements MouseListener {
 		pintarCreditos(g);
 	}
 	
+	/*
+	 * Metodo que permite pintar un graphic
+	 * @param un objeto de tipo Graphics
+	 */
 	public void pintarMuñecos(Graphics g) {
 		//Image escenario = new ImageIcon("data/vistaPreviaPersonajes/NPE" +i + ".png").getImage();
 		//System.out.println("data/fondoEscenario/escenario" + + ".png");
@@ -67,11 +101,20 @@ public class PanelCreditos extends JPanel implements MouseListener {
 	
 		
 	}
+	
+	/*
+	 * Metodo que permite pintar un graphic
+	 * @param un objeto de tipo Graphics
+	 */
 	public void pintarCreditos(Graphics g) {
 		Image creditos = new ImageIcon("data/fondo/creditos.png").getImage();
 		g.drawImage(creditos, 615, 500 + posY--,null);
 		
 	}
+	/*
+	 * Metodo que escucha el evento mouseClicked
+	 * @param un objeto de tipo MouseEvent
+	 */
 
 	@Override
 	public void mouseClicked(MouseEvent arg0) {

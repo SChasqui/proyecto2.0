@@ -23,40 +23,68 @@ import modelo.NoDesbloqueadoException;
 import modelo.Personaje;
 import modelo.PuntosInsuficientesException;
 
+/*
+ * Clase que modela el PanelSeleccionJugador
+ */
 public class PanelSeleccionJugador extends JPanel implements MouseListener {
-
+	
+	/*
+	 * Relacion con la ventanaPrincipal
+	 */
 	private VentanaPrincipal ventana;
-
+	
+	/*
+	 * Variable de tipo int que indica el numJugadores disponibles en el juego
+	 */
 	private int numJugador;
-
+	
+	/*
+	 * Variable de tipo int que indica el indice del jugador seleccionado
+	 */
 	private int index;
+	
+	/*
+	 * Variable de tipo String que indica el nombre del Jugador Seleccionado
+	 */
 
 	private String nombreActual;
+	
+	/*
+	 * Constructor de la clase PanelSeleccionJugador
+	 * @param recibe a la ventana
+	 * @param un entero que indica el numero del jugador
+	 */
 
 	public PanelSeleccionJugador(VentanaPrincipal v, int numJugador) {
 
 		this.numJugador = numJugador;
-
+		// Se hace visible la ventana
 		setVisible(true);
 		this.ventana = v;
+		//Se agrega el MouseListener
 		addMouseListener(this);
 
 
 	}
-
+	
+	/*
+	 * Metodo paint que permite pintar objetos de tipo Graphics
+	 * @param un objeto e tipo Graphics
+	 */
 	@Override
 	public void paint(Graphics g) {
 
 		// Cargo la imagen que sera usada como banner para el juego
 		Image fondo = new ImageIcon("data/fondo/escenarioJugador.jpg").getImage();
 		g.drawImage(fondo, 0, 0,null);
-
+		
+		// Cargo la imagen del personaje
 		Image personaje = new ImageIcon("data/vistaPreviaPersonajes/" +ventana.darJuego().daPersonajes()[index]+ ".png").getImage();
 		g.drawImage(personaje, 500, 250,null);
-		
+		// Letra que indica el precio
 		g.setFont(new Font("Arial", Font.ITALIC, 30));
 		g.drawString("Precio: " + Personaje.precios[index], 530, 530);
-
+		
 		Image flecha = new ImageIcon("data/fondo/flechaDerecha.png").getImage();
 		g.drawImage(flecha, 890, 310, null);
 
@@ -69,18 +97,30 @@ public class PanelSeleccionJugador extends JPanel implements MouseListener {
 		pintarNombreyPuntos(g);
 
 	}
-
+	
+	/*
+	 * Metodo que pinta el nombre y los puntos que tiene el jugador Actual
+	 * @param un objeto de tipo Graphics
+	 */
 	public void pintarNombreyPuntos(Graphics g) {
 		g.setColor(Color.RED);
 		g.setFont(new Font("Arial", Font.ITALIC, 30));
 		g.drawString(nombreActual, 30, 60);
 		g.drawString("Puntos: " + ventana.darJugadorIndice(numJugador).darPuntos(), 30, 90);
 	}
-
+	
+	/*
+	 * Metodo que permite cambiar el numero de jugador
+	 * @param entero que indica dicho numero
+	 */
 	public void cambiarJugador(int num) {
 		numJugador = num;
 	}
-
+	
+	/*
+	 * Metodo que escucha el evento mouseClicked
+	 * @param objeto de tipo MouseEvent
+	 */
 	@Override
 	public void mouseClicked(MouseEvent e) {
 

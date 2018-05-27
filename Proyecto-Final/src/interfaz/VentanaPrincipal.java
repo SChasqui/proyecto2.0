@@ -122,9 +122,14 @@ public class VentanaPrincipal extends JFrame{
 		HiloCreditos hC = new HiloCreditos(this);
 		hC.start();
 	}
+
+	//--------------------------------------
+	// Metodos dar
+	//--------------------------------------
 	
 	/*
 	 * Metodo que da el PanelJugador
+	 * <b> Pre: </b> el objeto de tipo PanelJuego ya fue inicilizado <br>
 	 */
 	public PanelJuego darPanelJuego() {
 		return pJuego;
@@ -132,6 +137,7 @@ public class VentanaPrincipal extends JFrame{
 	
 	/*
 	 * Metodo que da el panelCreditos
+	 *  <b> Pre: </b> el objeto de tipo PanelCreditos ya fue inicilizado <br>
 	 */
 
 	public PanelCreditos darPanelCreditos() {
@@ -141,6 +147,7 @@ public class VentanaPrincipal extends JFrame{
 	
 	/*
 	 * Metodo que da el PanelJuego
+	 *  <b> Pre: </b> el objeto de tipo Juego ya fue inicilizado <br>
 	 */
 
 	public Juego darJuego() {
@@ -149,6 +156,7 @@ public class VentanaPrincipal extends JFrame{
 	
 	/*
 	 * Metodo que da el panelSeleccionEscenario
+	 *  <b> Pre: </b> el objeto de tipo PanelJuego ya fue inicilizado <br>
 	 */
 
 	public PanelSeleccionEscenario getpSeleccionEscenario() {
@@ -157,6 +165,7 @@ public class VentanaPrincipal extends JFrame{
 	
 	/*
 	 * Metodo que da el PanelSeleccionJugador
+	 *  <b> Pre: </b> el objeto de tipo PanelSeleccionJugador ya fue inicilizado <br>
 	 */
 	public PanelSeleccionJugador getpSeleccionJugador() {
 		return pSeleccionJugador;
@@ -164,6 +173,7 @@ public class VentanaPrincipal extends JFrame{
 	
 	/*
 	 * Metodo que da el juego (modelo) clase principal del modelo
+	 *  <b> Pre: </b> el objeto de tipo Jugeo ya fue inicilizado <br>
 	 */
 	public Juego getJuego() {
 			return juego;
@@ -171,6 +181,7 @@ public class VentanaPrincipal extends JFrame{
 	
 	/*
 	 * Metodo que da el panelMenuPrincipal
+	 *  <b> Pre: </b> el objeto de tipo PanelMenuPrincipal ya fue inicilizado <br>
 	 */
 	public PanelMenuPrincipal getMenuPrincipal() {
 		return menuPrincipal;
@@ -178,14 +189,20 @@ public class VentanaPrincipal extends JFrame{
 	
 	/*
 	 * Metodo que da el boolean dar Muerte comunicando al panel creditos
+	 *  <b> Pre: </b> La variable muere ya fue inicilizado <br>
 	 */
 	public boolean darMuere() {
 		
 		return pCreditos.darMuere();
 	}
 	
+	//--------------------------------------
+	//Metodos cambiar
+	//--------------------------------------
+	
 	/*
 	 * Metodo que permite cambiar el panelSeleccionEscenario
+	 *  <b> Pos: </b> el objeto de tipo PanelSeleccionEscenario fue cambiado <br>
 	 */
 	public void setpSeleccionEscenario(PanelSeleccionEscenario pSeleccionEscenario) {
 		this.pSeleccionEscenario = pSeleccionEscenario;
@@ -193,6 +210,7 @@ public class VentanaPrincipal extends JFrame{
 	
 	/*
 	 * Metodo que permite cambiar el panelSeleccionJugador
+	 *  <b> Pos: </b> el objeto de tipo PanelSeleccionJugador fue cambiado <br>
 	 */
 
 	public void setpSeleccionJugador(PanelSeleccionJugador pSeleccionJugador) {
@@ -201,13 +219,15 @@ public class VentanaPrincipal extends JFrame{
 	
 	/*
 	 * Metodo que permite cambiar el Juego
+	 *  <b> Pos: </b> el objeto de tipo Juego fue cambiado <br>
 	 */
 
 	public void setJuego(Juego juego) {
 		this.juego = juego;
 	}
 	/*
-	 * Metodo que permite cambiar el panelMenuPrincipal
+	 * Metodo que permite cambiar el panelJuego
+	 *  <b> Pos: </b> el objeto de tipo PanelJuego fue cambiado <br>
 	 */
 
 	public void setMenuPrincipal(PanelMenuPrincipal menuPrincipal) {
@@ -235,6 +255,8 @@ public class VentanaPrincipal extends JFrame{
 	/*
 	 * Metodo que permite agregar o crear el panelSeleccionEscenario 
 	 * Removiendo al panelMenuPrinicipal y añadiendo el panelSeleccionEscenario
+	 * <b> Pre: </b> el objeto de tipo PanelSeleccionEscenario ya fue inicializado <br>
+	 * <b> Pos: </b> el objeto de tipo PanelSeleccionEscenario fue agregado <br>
 	 */
 
 	public void agregarPanelEscenario() {
@@ -248,6 +270,8 @@ public class VentanaPrincipal extends JFrame{
 	 * Metodo que permite agregar o crear el panelSeleccionJugador 
 	 * Removiendo al panelMenuPrinicipal y añadiendo el panelSeleccionJugador
 	 * @param recibe un entero que indica el numero del jugador que se esta agregando ya sea el jugador 1 o 2
+	 * <b> Pre: </b> el objeto de tipo PanelSeleccionJugador ya fue inicializado <br>
+	 * <b> Pos: </b> el objeto de tipo PanelSeleccionJugador fue agregado <br>
 	 */
 
 	public void agregarPanelJugador(int i) {
@@ -264,6 +288,8 @@ public class VentanaPrincipal extends JFrame{
 	 * Metodo que permite agregar o crear el panelMenuPrincipal 
 	 * Removiendo un objeto de tipo JPanel y agregando el panelMenuPrincipal
 	 * @Param un Objeto de tipo JPanel
+	 * <b> Pre: </b> el objeto de tipo PanelMenuPrincipal ya fue inicializado <br>
+	 * <b> Pos: </b> el objeto de tipo PanelMenuPrincipal fue agregado <br>
 	 */
 	public void agregarPanelMenuPrincipal(JPanel a) {
 		remove(a);
@@ -286,6 +312,8 @@ public class VentanaPrincipal extends JFrame{
 	/*
 	 * Metodo que permite agregar el PanelCreditos a la ventana
 	 * removiendo el panelMenuPrincipal y añadiendo el panelCreditos
+	 * <b> Pre: </b> el objeto de tipo PanelCreditos ya fue inicializado <br>
+	 * <b> Pos: </b> el objeto de tipo PanlCreditos fue agregado <br>
 	 */
 	public void agregarPanelCreditos() {
 		remove(menuPrincipal);
@@ -301,6 +329,8 @@ public class VentanaPrincipal extends JFrame{
 	/*
 	 * Metodo que permite agregar el PanelPuntajes a la ventana
 	 * removiendo el panelMenuPrincipal y añadiendo el panelPuntajes
+	 * <b> Pre: </b> el objeto de tipo PanelCreditos ya fue inicializado <br>
+	 * <b> Pos: </b> el objeto de tipo Panelcreditos fue agregado <br>
 	 */
 	
 	public void agregarPanelPuntajes() {

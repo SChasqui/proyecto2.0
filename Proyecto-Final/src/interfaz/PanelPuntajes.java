@@ -8,19 +8,35 @@ package interfaz;
 
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
-public class PanelPuntajes extends JPanel {
+/*
+ * Creacion de la clase PanelPuntajes que extiende de Jpanel e implementa MouseListener
+ */
+public class PanelPuntajes extends JPanel implements MouseListener{
 	
+	/*
+	 * Relacion con la VentanaPrincipal
+	 */
 	private VentanaPrincipal ventana;
 	
+	/*
+	 * Constructor de la clase PanelPuntajes
+	 * @param recibe a la VentanaPrincipal
+	 */
 	public PanelPuntajes(VentanaPrincipal ventana) {
 		this.ventana = ventana;
 		
 	}
 	
+	/*
+	 * metodo que permite pintar objetos de tipo Graphics
+	 * @param objeto de tipo Graphics
+	 */
 	public void paint(Graphics g) {
 		Image fondo = new ImageIcon("data/fondo/diseño.png").getImage();
 		g.drawImage(fondo, 0, 0,null);
@@ -30,6 +46,36 @@ public class PanelPuntajes extends JPanel {
 		
 		Image botonSalir = new ImageIcon("data/fondo/botonSalirNaranja.png").getImage();
 		g.drawImage(botonSalir, 950, 600, null);
+		
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
 		
 	}
 	
