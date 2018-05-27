@@ -325,7 +325,7 @@ public class Personaje implements Atacable, Comparable<Personaje>, Serializable{
 	public void recargarKi() {
 		posSprite[7] = 0;
 		if((ki+5)<Personaje.KI_BASE*MATRIZ_DE_MULTIPLICADORES[darIndicePersonaje()][1])
-		ki+=5;
+		ki+=2.5;
 		quieto = false;
 	}
 	
@@ -565,8 +565,8 @@ public class Personaje implements Atacable, Comparable<Personaje>, Serializable{
 			AtaqueDistancia actual = ataqueDistancia;
 			if (ataqueDistancia == null) {
 				ataqueDistancia = new AtaquePequeño(fuerza, direccion, posX + (100 * direccion) , posY);
-				if(ki-100 > 0)
-				ki-=100;
+				if(ki-25 > 0)
+				ki-=25;
 			}else if(ki - 25 > 0){
 				ki -= 25;
 				agregarAtaqueDistanciaPequeño(actual);
@@ -594,8 +594,7 @@ public class Personaje implements Atacable, Comparable<Personaje>, Serializable{
 			AtaqueDistancia actual = ataqueDistancia;
 			if (ataqueDistancia == null) {
 				ataqueDistancia = new AtaqueGrande(fuerza, direccion, posX + (100 * direccion) , posY);
-				if(ki-100 > 0)
-				ki-=100;
+				ki-=200;
 			}else if(ki - 200 > 0){
 				ki -= 200;
 				agregarAtaqueDistanciaGrande(actual);
