@@ -1,3 +1,9 @@
+/* Dragon battle PCS
+ * @author Carlos Eduardo lizalda valencia
+ * @author Paola Andrea Veloza
+ * @author Santiago Chasqui
+ * @version 0.1B
+ */
 package interfaz;
 
 import java.awt.BorderLayout;
@@ -10,7 +16,9 @@ import java.awt.event.MouseListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
-
+/*
+ * Clase que modela el panelMenuPrincipal extendiendo de JPanel e implementando MouseListener
+ */
 public class PanelMenuPrincipal extends JPanel implements MouseListener{
 
 
@@ -22,16 +30,20 @@ public class PanelMenuPrincipal extends JPanel implements MouseListener{
 	 * Relacion con la ventana principal
 	 */
 	private VentanaPrincipal ventana;
-
-	//--------------------------------------
-	// Atributos
-	//--------------------------------------
-
+	
+	/*
+	 * Constructor del PanelMenuPrincipal 
+	 * @param recibe a la ventanaPrincipal
+	 */
 	public PanelMenuPrincipal(VentanaPrincipal v) {
 		addMouseListener(this);
 		ventana = v;
 	}
-
+	
+	/*
+	 * Metodo que pinta un objeto de tipo Graphics
+	 * @param objeto e tipo Graphics
+	 */
 	@Override
 	public void paint(Graphics g) {
 
@@ -69,7 +81,11 @@ public class PanelMenuPrincipal extends JPanel implements MouseListener{
 	public void mouseExited(MouseEvent e) {
 
 	}
-
+	
+	/*
+	 * Metodo que escucha el evento del Listener
+	 * @param un objeto de tipo MouseEvents
+	 */
 	@Override
 	public void mousePressed(MouseEvent e) {
 
@@ -77,19 +93,19 @@ public class PanelMenuPrincipal extends JPanel implements MouseListener{
 		int posY = e.getY();
 
 		//****************************************//
-		// Area de opcion de selecion jugador 1
+		// Area de opcion de seleccion jugador 1
 		//****************************************//
 		if (posX > 45 && posX < 625 && posY > 110 && posY < 190) {
 			ventana.agregarPanelJugador(1);
 		}
 		//****************************************//
-		// Area de opcion de selecion jugador 2
+		// Area de opcion de seleccion jugador 2
 		//****************************************//
 		else if (posX > 45 && posX < 625 && posY > 195 && posY < 290) {
 			ventana.agregarPanelJugador(2);
 		}
 		//****************************************
-		// Area de opcion de selecion Escenario
+		// Area de opcion de seleccion Escenario
 		//****************************************
 		else if (posX > 45 && posX < 625 && posY > 295 && posY < 390) {
 			ventana.agregarPanelEscenario();

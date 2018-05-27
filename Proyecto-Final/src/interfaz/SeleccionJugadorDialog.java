@@ -1,3 +1,9 @@
+/* Dragon battle PCS
+ * @author Carlos Eduardo lizalda valencia
+ * @author Paola Andrea Veloza
+ * @author Santiago Chasqui
+ * @version 0.1B
+ */
 package interfaz;
 
 import java.awt.BorderLayout;
@@ -13,20 +19,61 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 
+/*
+ * Clase que modela el JDialog SeleccionJugadorDialog e implementa ActionListener
+ */
 public class SeleccionJugadorDialog extends JDialog implements ActionListener{
-
+	
+	/*
+	 * Relacion con la ventana principal
+	 */
 	private VentanaPrincipal ventana;
+	/*
+	 * Declaracion del objeto de tipo JList<String>
+	 */
 	private JList<String> lista;
+	/*
+	 * Declaracion del obeto txtNuevoJugador de tipo JTextField
+	 */
 	private JTextField txtNuevoJugador;
+	/*
+	 * Declaracion del scroll
+	 */
 	private JScrollPane scroll;
+	
+	/*
+	 * Declaracion del boton agregar
+	 */
 	private JButton btAgregar;
+	/*
+	 * Declaracion del boton Seleccionar
+	 */
 	private JButton btSeleccionar;
+	/*
+	 * Declaracion del panelBotones
+	 */
 	private JPanel panelBotones;
+	
+	/*
+	 * Variable de tipo int que indica el numero del jugador
+	 */
 	private int numJugador;
 	//Constantes
+	
+	/*
+	 * Constante del boton Agregar
+	 */
 	public static final String AGREGAR = "agrege";
+	/*
+	 * Constante del boton Seleccionar
+	 */
 	public static final String SELECCIONAR = "seleccione";
 
+	/*
+	 * Constructor de la clase SeleccionJugadorDialog
+	 * @param Objeto de tipo VentanaPrincipal
+	 * @param int que indica el numero del jugador
+	 */
 	public SeleccionJugadorDialog(VentanaPrincipal v, int numJugador) {
 
 		setTitle("Seleccionar Jugador");
@@ -67,7 +114,11 @@ public class SeleccionJugadorDialog extends JDialog implements ActionListener{
 		add(scroll, BorderLayout.CENTER);
 
 	}
-
+	
+	/*
+	 * Metodo que escucha el evento ActionPerformed
+	 * @param objeto de tipo ActionEvent
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 

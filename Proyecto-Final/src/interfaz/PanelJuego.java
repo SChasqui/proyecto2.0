@@ -1,3 +1,9 @@
+/* Dragon battle PCS
+ * @author Carlos Eduardo lizalda valencia
+ * @author Paola Andrea Veloza
+ * @author Santiago Chasqui
+ * @version 0.1B
+ */
 package interfaz;
 
 import java.awt.Color;
@@ -20,43 +26,140 @@ import modelo.AtaqueDistancia;
 import modelo.Jugador;
 import modelo.JugadorNoSeleccionadoException;
 
+/*
+ * Clase que modela el PanelJuego que extiende de JPanel e implementa KeyListener
+ */
 public class PanelJuego extends JPanel implements KeyListener{
 	
 	//Relaciones 
+	
+	/*
+	 * Relacion con la ventana principal
+	 */
 	public VentanaPrincipal ventana;
 	
 	//Constantes
+	
+	/*
+	 * Constante que mueven al jugador 1
+	 */
+	
+	/*
+	 * Constante que mueve al jugador 1 hacia arriba
+	 */
 	public final static int FLECHA_ARRIBA = 40;
+	/*
+	 * Constante que mueve al jugador 1 hacia la derecha
+	 */
 	public final static int FLECHA_DERECHA = 39;
+	/*
+	 * Constante que mueve al jugador 1 hacia abajo
+	 */
 	public final static int FLECHA_ABAJO = 38;
+	
+	/*
+	 * Constante que mueve al jugador 1 hacia la izquierda
+	 */
 	public final static int FLECHA_IZQUIERDA = 37;
+	
+	/*
+	 * Constante que permite dar ki
+	 */
 	public static final int NUMERO_CERO = 96;
+	/*
+	 * Constante que permite dar puño
+	 */
 	public static final int NUMERO_UNO = 97;
+	
+	/*
+	 * Constante que permite dar patada
+	 */
 	public static final int NUMERO_DOS = 98;
+	/*
+	 * Constante que permite defender
+	 */
 	public static final int NUMERO_TRES = 99;
+	/*
+	 * Constante que permite lanzar ataque mediano
+	 */
 	public static final int NUMERO_CUATRO = 100;
+	/*
+	 * Constante que permite lanzar ataque pequeño
+	 */
 	public static final int NUMERO_CINCO = 101;
+	/*
+	 * Constante que permite lanzar ataque grande
+	 */
 	public static final int NUMERO_SEIS = 102;
 	
-	//Teclas para el Jugador 2
+	/*
+	 * Constantes para el Jugador 2
+	 */
+	
+	/*
+	 * Constante que permite mover hacia arriba
+	 */
 	public final static int W = 83;
+	/*
+	 * Constante que permite mover hacia la derecha
+	 */
 	public final static int D = 68;
+	/*
+	 * Constante que permite mover hacia abajo
+	 */
 	public static final int S = 87;
+	/*
+	 * Constante que permite mover hacia la izquierda
+	 */
 	public static final int A = 65;
+	
+	/*
+	 * Constante que permite dar un puño
+	 */
 	public static final int G = 71;
+	/*
+	 * Constante que permite dar patada
+	 */
 	public static final int H = 72;
+	/*
+	 * Constante que permite defender
+	 */
 	public static final int J = 74;
+	/*
+	 * Constante que permite recargar el Ki
+	 */
 	public static final int R = 82;
+	/*
+	 * Constante que permite lanzar ataque mediano
+	 */
 	public static final int T = 84;
+	/*
+	 * Constante que permite lanzar ataque pequeño
+	 */
 	public static final int Y = 89;
+	/*
+	 * Constante que permite lanzar ataque grande
+	 */
 	public static final int U = 85;
 	
+	/*
+	 * Constante que permite 
+	 */
 	public final Set<Integer> pressed = new HashSet<Integer>();
 	
+	/*
+	 * boolean modificado 
+	 */
 	private boolean modificando;
-	
+	/*
+	 * bolean atacado
+	 */
 	private boolean acabo;
 	
+	/*
+	 * Constructor del PanelJuego
+	 * @param objeto de tipo VentanaPrincipal 
+	 */
 	public PanelJuego(VentanaPrincipal ventana) {
 		
 		this.ventana = ventana;
@@ -64,11 +167,17 @@ public class PanelJuego extends JPanel implements KeyListener{
 		setVisible(true);
 
 	}
-	
+	/*
+	 * metodo que da el boolean modificado 
+	 */
 	public boolean modificando(){
 		return modificando;
 	}
 	
+	/*
+	 * Metodo que permite pintar objetos de tipo Graphics 
+	 * @param Objeto de tipo Graphics
+	 */
 	@Override
 	public void paint(Graphics g) {
 
@@ -97,6 +206,11 @@ public class PanelJuego extends JPanel implements KeyListener{
 		pintarBarras(g);
 	
 	}
+	
+	/*
+	 * Metodo que permite pintar el reloj 
+	 * @param objeto de tipo Graphics 
+	 */
 	private void pintarReloj(Graphics g) {
 		g.setColor(Color.black);
 		g.setFont(new Font("Arial", Font.BOLD, 40));
@@ -104,7 +218,10 @@ public class PanelJuego extends JPanel implements KeyListener{
 		g.drawImage(new ImageIcon("data/fondo/rayitos.gif").getImage(), 600, 35,30,30, this);
 		g.drawImage(new ImageIcon("data/fondo/rayitos.gif").getImage(), 640, 50,30,30, this);
 	}
-
+	/*
+	 * Metodo que permite pintar al personaje
+	 * @param objeto de tipo Graphics 
+	 */
 	private void pintarPersonajes(Graphics g) {
 		Jugador temp = ventana.darJuego().darBatalla().darJugador1();
 		
@@ -118,12 +235,20 @@ public class PanelJuego extends JPanel implements KeyListener{
 				temp.darPersonaje().darPosY(), null);
 		
 	}
+	/*
+	 * Metodo que permite pintar el fondo 
+	 * @param objeto de tipo Graphics
+	 */
 
 	public void pintarFondo(Graphics g) {
 		ImageIcon fondo = new ImageIcon("data/fondoEscenario/"+ventana.darJuego().darBatalla().darFondos()+".png");
 		g.drawImage(fondo.getImage(), 0, 0, null);
 	}
-
+	
+	/*
+	 * Metodo que permite pintar las barras
+	 * @param objeto de tipo Graphics 
+	 */
 	public void pintarBarras(Graphics g) {
 
 		g.setColor(Color.red);
@@ -147,14 +272,21 @@ public class PanelJuego extends JPanel implements KeyListener{
 		g.drawString(ventana.darJuego().darBatalla().darJugador2().darNickName(), 730, 150);
 
 	}
-
+	
+	/*
+	 * Metodo que escucha el evento keyPressed
+	 * @param objeto de tipo KeyEvent
+	 */
 	@Override
 	public synchronized void keyPressed(KeyEvent e) {
 		modificando = true;
 		pressed.add(e.getKeyCode());
 		modificando = false;
 	}
-
+	
+	/*
+	 * Metodo que mueve al personaje1
+	 */
 	public void moverPersonaje1() {
 		
 		Jugador temporal = ventana.darJuego().darBatalla().darJugador1();
@@ -197,7 +329,10 @@ public class PanelJuego extends JPanel implements KeyListener{
 		}
 
 	}
-
+	
+	/*
+	 * Metodo que mueve al personaje2
+	 */
 	public void moverPersonaje2() {
 		
 		Jugador temporal = ventana.darJuego().darBatalla().darJugador2();
@@ -268,10 +403,15 @@ public class PanelJuego extends JPanel implements KeyListener{
 
 	}
 	
+	/*
+	 * Metodo que da el boolean acabo
+	 */
 	public boolean darAcabo() {
 		return acabo;
 	}
-	
+	/*
+	 * Metodo que cambia el boolean acabo
+	 */
 	public void cambiarAcabo(boolean parametro) {
 		acabo = parametro;
 	}
@@ -281,7 +421,11 @@ public class PanelJuego extends JPanel implements KeyListener{
 		// TODO Auto-generated method stub
 		
 	}
-
+	
+	/*
+	 * Metodo que permite mostrar el mensaje final de la partida
+	 * @param Entero que indica el numero del personaje ganador 
+	 */
 	public void mostrarMensajeFianal(int personaje) {
 
 		acabo = true;
