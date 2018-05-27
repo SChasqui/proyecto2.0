@@ -2,11 +2,8 @@ package modelo;
 
 import java.awt.Image;
 import java.awt.Rectangle;
-import java.io.File;
 import java.io.Serializable;
-import java.util.ArrayList;
 
-import javax.swing.ImageIcon;
 
 public class Personaje implements Atacable, Comparable<Personaje>, Serializable{
 
@@ -757,7 +754,7 @@ public class Personaje implements Atacable, Comparable<Personaje>, Serializable{
 	}
 
 	public void recuperarKi() {
-		ki++;
+		ki +=10;
 	}
 	
 	public void restarVida(int daño) {
@@ -781,6 +778,10 @@ public class Personaje implements Atacable, Comparable<Personaje>, Serializable{
 		return posSprite;
 	}
 
+	public void prepararParaSerializar() {
+		
+	}
+	
 	@Override
 	public int compareTo(Personaje o) {
 		return personaje.compareTo(o.darNombre());
