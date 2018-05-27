@@ -262,6 +262,11 @@ public class Juego implements Comparator<Jugador>{
 	}
 	
 	public void agregarJugadores(String nickName, int jugador) {
+		
+		if (nickName == null || nickName.equals("")) {
+			nickName = "Jugador idiota";
+		}
+		
 		Jugador aux = buscarJugador(nickName, raiz);
 		if (aux == null) {
 			aux = new Jugador(nickName);
