@@ -86,7 +86,6 @@ public class SeleccionJugadorDialog extends JDialog implements ActionListener{
 			pack();
 			setSize(500, 500);
 		}else {
-			ventana.darJuego().agregarJugadores(lista.getSelectedValue(), numJugador);
 			ventana.cambiarJugador(lista.getSelectedValue());
 		}
 
