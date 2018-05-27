@@ -16,6 +16,10 @@ import javax.swing.JPanel;
 
 import hilos.HiloCreditos;
 
+
+/*
+ * Constructor de la clase PanelCredios
+ */
 public class PanelCreditos extends JPanel implements MouseListener {
 	
 	private VentanaPrincipal ventana;
