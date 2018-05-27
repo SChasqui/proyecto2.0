@@ -42,8 +42,8 @@ public class HiloAtaqueDistancia extends Thread{
 				
 				if(actualDos!=null) {
 					
-					if(actualUno.comprobarAtaque(actualDos.darKickBox())) {actualDos.restarVida(actualUno.darPoder());}
-					if(actualDos.comprobarAtaque(actualUno.darKickBox())) {actualUno.restarVida(actualDos.darPoder());}
+					if(actualUno.comprobarAtaque(actualDos.darKickBox())) {actualDos.restarPoder(actualUno.darPoder());}
+					if(actualDos.comprobarAtaque(actualUno.darKickBox())) {actualUno.restarPoder(actualDos.darPoder());}
 				}
 				
 				actualUno.moverX();
@@ -61,8 +61,8 @@ public class HiloAtaqueDistancia extends Thread{
 				}
 				if(actualUno!=null) {
 					
-					if(actualDos.comprobarAtaque(actualUno.darKickBox())) {actualUno.restarVida(actualDos.darPoder());}
-					if(actualUno.comprobarAtaque(actualDos.darKickBox())) {actualDos.restarVida(actualUno.darPoder());}
+					if(actualDos.comprobarAtaque(actualUno.darKickBox())) {actualUno.restarPoder(actualDos.darPoder());}
+					if(actualUno.comprobarAtaque(actualDos.darKickBox())) {actualDos.restarPoder(actualUno.darPoder());}
 				}
 				
 				actualDos.moverX();

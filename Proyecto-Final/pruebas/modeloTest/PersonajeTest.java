@@ -1,13 +1,11 @@
 package modeloTest;
 
-import static org.junit.jupiter.api.Assertions.*;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 
+import junit.framework.TestCase;
 import modelo.Personaje;
 
-class PersonajeTest {
+class PersonajeTest extends TestCase{
 	
 	/*
 	 * Informacion
@@ -25,14 +23,12 @@ class PersonajeTest {
 	
 	private Personaje aProbar;
 
-	@BeforeEach
-	void setUp() throws Exception {
+	void setupEscenario1() throws Exception {
 		aProbar = new Personaje("Goku_Red", 1000, 7);
 	}
 
-	@Test
-	void test() {
-		fail("Not yet implemented");
+	void testFueGolpeado() {
+		
 	}
 
 }
