@@ -254,6 +254,7 @@ public class VentanaPrincipal extends JFrame{
 		remove(menuPrincipal);
 		setLayout(new BorderLayout());
 		pSeleccionJugador.cambiarJugador(i);
+		SeleccionJugadorDialog s = new SeleccionJugadorDialog(this, i);
 		pSeleccionJugador.cambiarJugadorActual();
 		add(pSeleccionJugador,BorderLayout.CENTER);
 		pSeleccionJugador.updateUI();

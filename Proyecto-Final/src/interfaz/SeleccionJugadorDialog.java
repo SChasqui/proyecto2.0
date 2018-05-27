@@ -28,9 +28,10 @@ public class SeleccionJugadorDialog extends JDialog implements ActionListener{
 	public SeleccionJugadorDialog(VentanaPrincipal v, int numJugador) {
 		
 		setTitle("Seleccionar Jugador");
+		
+		setSize(500, 500);
 
 		setLayout(new BorderLayout());
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		ventana = v;
 		lista = new JList<String>(v.darJuego().darJugadoresActuales());
 		this.numJugador = numJugador;
@@ -44,14 +45,21 @@ public class SeleccionJugadorDialog extends JDialog implements ActionListener{
 		btAgregar.addActionListener(this);
 		
 		btSeleccionar = new JButton("Selecionar");
+		btSeleccionar.addActionListener(this);
+		btSeleccionar.setActionCommand(SELECCIONAR);
 		
 		//***********************************************
 		// Crear Panel de botones
 		//***********************************************
 		panelBotones = new JPanel();
 		panelBotones.setLayout(new BorderLayout());
+		panelBotones.add(btSeleccionar, BorderLayout.SOUTH);
+		panelBotones.add(txtNuevoJugador,BorderLayout.CENTER);
+		panelBotones.add(btAgregar,BorderLayout.EAST);
+		//***********************************************
 		
-		
+		add(panelBotones,BorderLayout.SOUTH);
+		add(scroll, BorderLayout.CENTER);
 		
 	}
 
