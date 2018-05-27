@@ -215,7 +215,10 @@ public class Juego implements Comparator<Jugador>{
 	
 	public String[] darJugadoresActuales() {
 		ArrayList<String> temp = listarJugadores(new ArrayList<String>(), raiz);
-		return null;
+		String[] arreglo = new String[temp.size()];
+		arreglo = temp.toArray(arreglo);
+		arreglo = ordenarLexicograficamente(arreglo);
+		return arreglo;
 	}
 	
 	public ArrayList<String> listarJugadores(ArrayList<String> lista, Jugador nodo) {
@@ -227,8 +230,13 @@ public class Juego implements Comparator<Jugador>{
 	
 	public String[] ordenarLexicograficamente(String[] arreglo) {
 		
-		
-		
+		for (int i = 1; i < arreglo.length; i++) {
+			for (int j = i; j > 0 && arreglo[j].compareTo(arreglo[j-1]) < 0; j--) {
+				String temp = arreglo[j];
+				arreglo[j] = arreglo[j-1];
+				arreglo[j-1] = temp;
+			}
+		}
 		return arreglo;
 	}
 	
