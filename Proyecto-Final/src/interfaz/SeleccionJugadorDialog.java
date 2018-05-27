@@ -23,7 +23,7 @@ public class SeleccionJugadorDialog extends JDialog implements ActionListener{
 	private JButton btSeleccionar;
 	private JPanel panelBotones;
 	private int numJugador;
-
+	//Constantes
 	public static final String AGREGAR = "agrege";
 	public static final String SELECCIONAR = "seleccione";
 
