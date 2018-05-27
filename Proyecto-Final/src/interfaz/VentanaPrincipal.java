@@ -66,7 +66,7 @@ public class VentanaPrincipal extends JFrame{
 
 		pSeleccionEscenario = new PanelSeleccionEscenario(this);
 		
-		pCreditos = new PanelCreditos();
+		pCreditos = new PanelCreditos(this);
 		
 		pPuntajes = new PanelPuntajes(this);
 
