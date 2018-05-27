@@ -229,7 +229,7 @@ public class Juego implements Comparator<Jugador>{
 			lista = listarJugadores(lista, nodo.darDerecha());
 		}
 		if (nodo != null && nodo.darIzquierda() != null) {
-			lista = listarJugadores(lista, nodo.darDerecha());
+			lista = listarJugadores(lista, nodo.darIzquierda());
 		}
 			
 		return lista;
