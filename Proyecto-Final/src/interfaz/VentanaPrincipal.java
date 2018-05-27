@@ -273,11 +273,14 @@ public class VentanaPrincipal extends JFrame{
 	 * <b> Pre: </b> el objeto de tipo PanelSeleccionJugador ya fue inicializado <br>
 	 * <b> Pos: </b> el objeto de tipo PanelSeleccionJugador fue agregado <br>
 	 */
-
 	public void agregarPanelJugador(int i) {
+		pSeleccionJugador.cambiarJugador(i);
+		SeleccionJugadorDialog s = new SeleccionJugadorDialog(this, i);
+	}
+	
+	public void cambiarJugador(String nombre) {
 		remove(menuPrincipal);
 		setLayout(new BorderLayout());
-		pSeleccionJugador.cambiarJugador(i);
 		pSeleccionJugador.cambiarJugadorActual();
 		add(pSeleccionJugador,BorderLayout.CENTER);
 		pSeleccionJugador.updateUI();

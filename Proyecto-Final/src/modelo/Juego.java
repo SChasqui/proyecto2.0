@@ -222,9 +222,16 @@ public class Juego implements Comparator<Jugador>{
 	}
 	
 	public ArrayList<String> listarJugadores(ArrayList<String> lista, Jugador nodo) {
-		lista.add(nodo.darNickName());
-		lista = listarJugadores(lista, nodo.darDerecha());
-		lista = listarJugadores(lista, nodo.darDerecha());
+		if (nodo != null) {
+			lista.add(nodo.darNickName());
+		}
+		if (nodo != null && nodo.darDerecha() != null) {
+			lista = listarJugadores(lista, nodo.darDerecha());
+		}
+		if (nodo != null && nodo.darIzquierda() != null) {
+			lista = listarJugadores(lista, nodo.darDerecha());
+		}
+			
 		return lista;
 	}
 	
