@@ -249,12 +249,14 @@ public class VentanaPrincipal extends JFrame{
 	 * Removiendo al panelMenuPrinicipal y añadiendo el panelSeleccionJugador
 	 * @param recibe un entero que indica el numero del jugador que se esta agregando ya sea el jugador 1 o 2
 	 */
-
 	public void agregarPanelJugador(int i) {
-		remove(menuPrincipal);
-		setLayout(new BorderLayout());
 		pSeleccionJugador.cambiarJugador(i);
 		SeleccionJugadorDialog s = new SeleccionJugadorDialog(this, i);
+	}
+	
+	public void cambiarJugador(String nombre) {
+		remove(menuPrincipal);
+		setLayout(new BorderLayout());
 		pSeleccionJugador.cambiarJugadorActual();
 		add(pSeleccionJugador,BorderLayout.CENTER);
 		pSeleccionJugador.updateUI();
