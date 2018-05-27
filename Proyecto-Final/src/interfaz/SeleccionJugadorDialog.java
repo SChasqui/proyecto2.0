@@ -39,7 +39,7 @@ public class SeleccionJugadorDialog extends JDialog implements ActionListener{
 		scroll = new JScrollPane(lista);
 		
 		txtNuevoJugador = new JTextField("si no ve su nickName incertelo aqui y precione agregar");
-		btAgregar = new JButton("agregar");
+		btAgregar = new JButton("Agregar");
 		btAgregar.setActionCommand(AGREGAR);
 		btAgregar.addActionListener(this);
 		
