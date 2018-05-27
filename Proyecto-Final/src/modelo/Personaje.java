@@ -3,11 +3,12 @@ package modelo;
 import java.awt.Image;
 import java.awt.Rectangle;
 import java.io.File;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 
-public class Personaje implements Atacable, Comparable<Personaje>{
+public class Personaje implements Atacable, Comparable<Personaje>, Serializable{
 
 
 
@@ -296,7 +297,7 @@ public class Personaje implements Atacable, Comparable<Personaje>{
 		posSprite[3] = posSprite[3] == -1 ? 0 : posSprite[3];
 		quieto = false;
 	}
-	
+
 	/*
 	 * Lanza un ataque pequeño
 	 */

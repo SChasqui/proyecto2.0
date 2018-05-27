@@ -103,7 +103,7 @@ public class Juego implements Comparator<Jugador>{
 		topTen[8].AñadirPuntos(92);
 		topTen[9] = new Jugador("the play boy :v");
 		topTen[9].AñadirPuntos(91);
-		guardarTopTen();
+//		guardarTopTen();
 	}
 	
 	//--------------------------------------
@@ -115,7 +115,7 @@ public class Juego implements Comparator<Jugador>{
 		// Comprobar la existencia de Jugadores
 		//**************************************
 		if (jugador1 == null) {
-			throw new JugadorNoSeleccionadoException("No ha selecionado al jugador 1");
+			throw new JugadorNoSeleccionadoException("No ha selecionado al jugador 1"); 
 		}else if(jugador2 == null) {
 			throw new JugadorNoSeleccionadoException("No ha selecionado al jugador 2");
 		}
@@ -167,7 +167,7 @@ public class Juego implements Comparator<Jugador>{
 			if (!inTopTen(jugador1)) {
 				ordenarTopTenPorPuntos();
 				topTen[9] = compare(jugador1, topTen[9]) > 0? jugador1 : topTen[9];
-				guardarTopTen();
+//				guardarTopTen();
 			}
 		}
 		if (ganador == 2) {
@@ -178,7 +178,7 @@ public class Juego implements Comparator<Jugador>{
 			if (!inTopTen(jugador2)) {
 				ordenarTopTenPorPuntos();
 				topTen[9] = compare(jugador2, topTen[9]) > 0? jugador2 : topTen[9];
-				guardarTopTen();
+//				guardarTopTen();
 			}
 		}
 	}
@@ -244,6 +244,7 @@ public class Juego implements Comparator<Jugador>{
 				agregarJugador(jugador, nodo.darIzquierda());
 			}
 		}
+//		guardarListaDeJugadores();
 	}
 	
 	public Jugador buscarJugador(String nickName, Jugador nodo) {
@@ -273,17 +274,18 @@ public class Juego implements Comparator<Jugador>{
 		}
 	}
 	
-	public void guardarListaDeJugadores() {
-		File jugadores = new File(RUTA_JUGADORES_REGISTRADOS);
-		
-		try {
-			ObjectOutputStream salida = new ObjectOutputStream(new FileOutputStream(jugadores));
-			salida.writeObject(raiz);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
+//	public void guardarListaDeJugadores() {
+//		File jugadores = new File(RUTA_JUGADORES_REGISTRADOS);
+//		
+//		try {
+//			ObjectOutputStream salida = new ObjectOutputStream(new FileOutputStream(jugadores));
+//			salida.writeObject(raiz);
+//			salida.close();
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//	}
 	
 	
 	public String[] daPersonajes() {
@@ -299,22 +301,22 @@ public class Juego implements Comparator<Jugador>{
 		return o1.darPuntos()-o2.darPuntos();
 	}
 	
-	public void guardarTopTen() {
-		File TopTenTex = new File(RUTA_TOP_TEN);
-		
-		try {
-			BufferedWriter escritor = new BufferedWriter(new FileWriter(TopTenTex));
-			String top = "";
-			for (int i = 0; i < topTen.length; i++) {
-				top += ((i+1) + ") " + topTen[i].darNickName() + "           " + topTen[i].darPuntos()+"\n");
-			}
-			escritor.write(top);
-			escritor.close();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
+//	public void guardarTopTen() {
+//		File TopTenTex = new File(RUTA_TOP_TEN);
+//		
+//		try {
+//			BufferedWriter escritor = new BufferedWriter(new FileWriter(TopTenTex));
+//			String top = "";
+//			for (int i = 0; i < topTen.length; i++) {
+//				top += ((i+1) + ") " + topTen[i].darNickName() + "           " + topTen[i].darPuntos()+"\n");
+//			}
+//			escritor.write(top);
+//			escritor.close();
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//	}
 	
 
 }

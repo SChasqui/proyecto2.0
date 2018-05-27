@@ -1,8 +1,9 @@
 package modelo;
 
 import java.awt.Rectangle;
+import java.io.Serializable;
 
-public abstract class Ataque {
+public abstract class Ataque implements Serializable{
 	
 	//--------------------------------------
 	// Atributos
@@ -34,14 +35,28 @@ public abstract class Ataque {
 	 */
 	private int danho;
 	
+	/*
+	 * Corresponde a la dirección del ataque
+	 */
 	private int direccion;
 	
+	/*
+	 * Es el rectangulo que define el espacio que ocupa el ataque
+	 */
 	private Rectangle kickBox;
 	
 	
 	//--------------------------------------
 	// Constructor
 	//--------------------------------------
+	
+    /**
+     * Crea el ataque abstracto<br>
+     * @param poder El poder del pj
+     * @param pDireccion la direccion hacia donde se dirige el ataque. -1 izquierda, 1 derecha
+     * @param pX la coordenadas en X del ataque
+     * @param pY la coordenadas en Y del ataque
+     */
 	public Ataque(int poder, int pDireccion, int pX, int pY) {
 		
 		direccion = pDireccion;
@@ -90,6 +105,10 @@ public abstract class Ataque {
 	public int darDireccion() {
 		return direccion;
 	}
+	
+	public abstract void moverX();
+	
+	public abstract String darSprite();
 	
 	public Rectangle darKickBox() {
 		return kickBox;
