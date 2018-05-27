@@ -111,10 +111,10 @@ public class Jugador implements Comparable<Jugador>, Serializable{
 	}
 	
     /**
-     * Desbloquea un personaje de la lista <br>
+     * Desbloquea un personaje de la lista de precios de Personaje, agregandolo al árbol de personajes desbloqueados <br>
+     * Para añadirlo hace uso del méotodo añadirADesbloqueados. <br>
      * <b>pre:</b> la lista de personajes y la de desbloqueados han sido incializadas <br>
      * <b>pre:</b> El arreglo de precios de la clase personaje ha sido inicializado <br>
-     * <b>post:</b> Se ha añadido un nuevo personaje al árbol de personajes desbloqueados
      * @param indice - El indice en el arreglo de precios del personaje
      * @param personaje - el nombre del personaje.
      */
@@ -128,6 +128,14 @@ public class Jugador implements Comparable<Jugador>, Serializable{
 		}
 	}
 	
+    /**
+     * Busca un espacio al final del árbol de personajesDesbloqueados para agregar el nuevo personaje. <br>
+     * El criterio de ordenamiento es el árbol.
+     * <b>pre:</b> El árbol de personajes ha sido inicializado <br>
+     * <b>post:</b> Se ha añadido un nuevo personaje al árbol de personajes desbloqueados
+     * @param nodo - El nodo en el que se intenta poner en alguno de sus hijos el nuevo personaje.
+     * @param agregable - El nuevo personaje a agregar.
+     */
 	public void añadirADesbloqueados(Personaje nodo, Personaje agregable) {
 		if (nodo.compareTo(agregable) > 0) {
 			if (nodo.getIzquierda() == null) {
@@ -167,19 +175,33 @@ public class Jugador implements Comparable<Jugador>, Serializable{
 	public void cambiarIzquierda(Jugador izquierda) {
 		this.izquierda = izquierda;
 	}
-
+	
+    /**
+     * Retorna la salud máxima del personaje. <br>
+     * Se calcula por medio de la Matriz de multiplicadores de personaje.
+     */
 	public int darSaludMaxima() {
 		return (int) (Personaje.VIDA_BASE*Personaje.MATRIZ_DE_MULTIPLICADORES[personajeActual.darIndicePersonaje()][0]);
 	}
-
+	
+    /**
+     * Retorna la salud actual del personaje. <br>
+     */
 	public int darSaludActual() {
 		return (int) (((double)personajeActual.darSalud() / (double)darSaludMaxima()) * 500);
 	}
-
+	
+    /**
+     * Retorna el ki máximo del personaje. <br>
+     * Se calcula por medio del ki base y la Matriz de multiplicadores de personaje.
+     */
 	public int darKiMaximo() {
 		return (int) (Personaje.KI_BASE*Personaje.MATRIZ_DE_MULTIPLICADORES[personajeActual.darIndicePersonaje()][1]);
 	}
-
+	
+    /**
+     * Retorna la el ki actual del personaje. <br>
+     */
 	public int darKiActual() {
 		return (int) ((double)((double)personajeActual.darKI() / (double)darKiMaximo()) * 500);
 	}
@@ -191,7 +213,10 @@ public class Jugador implements Comparable<Jugador>, Serializable{
 	public int darPuntos() {
 		return puntos;
 	}
-
+	
+    /**
+     * Cambia el criterio de comparación para los objetos de esta clase. <br>
+     */
 	@Override
 	public int compareTo(Jugador o) {
 		return nickName.compareTo(o.darNickName());
