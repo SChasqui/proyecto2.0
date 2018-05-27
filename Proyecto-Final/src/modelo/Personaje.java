@@ -116,7 +116,7 @@ public class Personaje implements Atacable, Comparable<Personaje>, Serializable{
 	/*
 	 * arreglo de frames del sprite
 	 */
-	private int[] posSprite = new int[9];
+	private int[] posSprite = {0,-1,-1,-1,-1,-1,-1,-1,-1};
 
 	/*
 	 * boolean que representa si esta atacando o no
@@ -197,7 +197,6 @@ public class Personaje implements Atacable, Comparable<Personaje>, Serializable{
 		 * se inicializa el arreglo de imagenes de las posibles posiciones del personaje
 		 */
 		personaje = pSprite;
-
 		sprite = new Sprite(pSprite);
 
 		/*
@@ -219,7 +218,7 @@ public class Personaje implements Atacable, Comparable<Personaje>, Serializable{
 		fuerza = (int) (FUERZA_BASE * MATRIZ_DE_MULTIPLICADORES[indicePersonaje][3]);
 
 		resistencia = (int) (RESISTENCIA_BASE * MATRIZ_DE_MULTIPLICADORES[indicePersonaje][4]);
-
+		
 	}
 
 	//--------------------------------------
@@ -248,6 +247,10 @@ public class Personaje implements Atacable, Comparable<Personaje>, Serializable{
 	public void setIzquierda(Personaje izquierda) {
 		Izquierda = izquierda;
 	}
+	
+	public void restarKi(int cuanto) {
+		ki -= cuanto;
+	}
 
 	public int darPosY() {
 		return posY;
@@ -261,17 +264,18 @@ public class Personaje implements Atacable, Comparable<Personaje>, Serializable{
 		posX = newPosX;
 	}
 	public void cambiarPosY(int newPosY) {
-		posX = newPosY;
+		posY = newPosY;
 	}
 
-	/*
-	 * Método que informa sposSprite[0] el ataque que recibe como parámetro lo afecto
-	 * @param x - La posición en el eje X del ataque
-	 * @param y - La posición en el eje Y del ataque
-	 */
-	public boolean fueGolpeado(int x, int y) {
-		return posX< x && x < posX+30 && posY< y && y < posY+50;
-	}
+	//MÉTODO INÚTIL
+//	/*
+//	 * Método que informa sposSprite[0] el ataque que recibe como parámetro lo afecto
+//	 * @param x - La posición en el eje X del ataque
+//	 * @param y - La posición en el eje Y del ataque
+//	 */
+//	public boolean fueGolpeado(int x, int y) {
+//		return posX< x && x < posX+30 && posY< y && y < posY+50;
+//	}
 
 
 	/*
@@ -286,6 +290,7 @@ public class Personaje implements Atacable, Comparable<Personaje>, Serializable{
 	 * Método encargado de atacar con la patada 
 	 */
 	public void atacarPatada() {
+		
 		posSprite[6] = posSprite[6] == -1 ? 0 : posSprite[6];
 		quieto = false;
 	}
@@ -329,7 +334,7 @@ public class Personaje implements Atacable, Comparable<Personaje>, Serializable{
 	 */
 	public void defender() {
 		posSprite[8] = 0;
-		if(posSprite[8] >-1) resistencia*=2;
+		resistencia*=2;
 		quieto = false;
 	}
 	
@@ -531,6 +536,8 @@ public class Personaje implements Atacable, Comparable<Personaje>, Serializable{
 			AtaqueDistancia actual = ataqueDistancia;
 			if (ataqueDistancia == null) {
 				ataqueDistancia = new AtaqueMediano(fuerza, direccion, posX + (100 * direccion) , posY);
+				if(ki-100 > 0)
+				ki-=100;
 			}else if(ki - 100 > 0){
 				ki -= 100;
 				agregarAtaqueDistanciaMediano(actual);
@@ -558,6 +565,8 @@ public class Personaje implements Atacable, Comparable<Personaje>, Serializable{
 			AtaqueDistancia actual = ataqueDistancia;
 			if (ataqueDistancia == null) {
 				ataqueDistancia = new AtaquePequeño(fuerza, direccion, posX + (100 * direccion) , posY);
+				if(ki-100 > 0)
+				ki-=100;
 			}else if(ki - 25 > 0){
 				ki -= 25;
 				agregarAtaqueDistanciaPequeño(actual);
@@ -585,6 +594,8 @@ public class Personaje implements Atacable, Comparable<Personaje>, Serializable{
 			AtaqueDistancia actual = ataqueDistancia;
 			if (ataqueDistancia == null) {
 				ataqueDistancia = new AtaqueGrande(fuerza, direccion, posX + (100 * direccion) , posY);
+				if(ki-100 > 0)
+				ki-=100;
 			}else if(ki - 200 > 0){
 				ki -= 200;
 				agregarAtaqueDistanciaGrande(actual);
@@ -765,6 +776,10 @@ public class Personaje implements Atacable, Comparable<Personaje>, Serializable{
 			rect = new Rectangle(posX,posY, temp.getWidth(null), temp.getHeight(null));
 		}
 		return rect;
+	}
+	
+	public int[] darArregloPosiciones() {
+		return posSprite;
 	}
 
 	@Override
