@@ -281,7 +281,7 @@ public class VentanaPrincipal extends JFrame{
 	public void cambiarJugador(String nombre) {
 		remove(menuPrincipal);
 		setLayout(new BorderLayout());
-		pSeleccionJugador.cambiarJugadorActual();
+		pSeleccionJugador.cambiarJugadorActual(nombre);
 		add(pSeleccionJugador,BorderLayout.CENTER);
 		pSeleccionJugador.updateUI();
 		pSeleccionJugador.repaint(); pack(); setSize(1280,720);

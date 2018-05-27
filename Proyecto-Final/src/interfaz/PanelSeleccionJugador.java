@@ -183,8 +183,8 @@ public class PanelSeleccionJugador extends JPanel implements MouseListener {
 
 	}
 
-	public void cambiarJugadorActual() {
-		nombreActual = JOptionPane.showInputDialog("Inserte Su NickName");
+	public void cambiarJugadorActual(String actual) {
+		nombreActual = actual;
 		ventana.darJuego().agregarJugadores(nombreActual, numJugador);
 		nombreActual = ventana.darJugadorIndice(numJugador).darNickName();
 	}
