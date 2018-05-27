@@ -64,12 +64,13 @@ public class Jugador implements Comparable<Jugador>, Serializable{
 	// Metodos
 	//--------------------------------------
 	
-    /*
-     * Selecciona un personaje <br>
-     * <b>pre:</b> la lista de 
-     * @param i - El índice que indica la posición del acción (sprite) en la que va
-     * @param direccion - 1: DERECHA; -1 IZQUIERDA.
-     * @return la imagen de la matriz en la fila MOVERCE, con columna indice en la dirección direccion.
+    /**
+     * Selecciona un personaje. Si el jugador se está iniciandp, se le regala su primer PJ, <br>
+     * de lo contrario lo busca en su árbol de personajes desbloqueados <br>
+     * <b>pre:</b> El árbol de personajes desbloqueados ha sido inicializado <br>
+     * <b>post:</b> se seleccionó un personaje, asignándolo a la variable personajeActual <br>
+     * @param personaje - El nombre del personaje que el usuario pretende seleccionar.
+     * @param indice - El indice de la posición del arreglo de personajes.
      */
 	public void seleccionarPersonaje(String personaje, int indice) throws NoDesbloqueadoException {
 		if (desBloqueados == null) {
@@ -83,7 +84,16 @@ public class Jugador implements Comparable<Jugador>, Serializable{
 		}
 
 	}
-
+	
+    /**
+     * Busca un personaje por medio del nombre del pj <br>
+     * Para ello usa la recursión: si el personaje tiene el mismo nombre, lo retorna; <br>
+     * de lo contrario se llama a sí mismo (el método) dependiendo de la comparación lexicográfica <br>
+     * <b>pre:</b> el árbol de personajes ha sido inicializado
+     * @param name - El nombre que se va buscar en la lista.
+     * @param actual - El personaje actual de la recursión.
+     * @return el personaje encontrado. Si no lo encuentra retorna null
+     */
 	public Personaje buscarPorPersonaje(String name, Personaje actual) {
 		
 		if(actual == null) {
@@ -99,7 +109,15 @@ public class Jugador implements Comparable<Jugador>, Serializable{
 			return actual.getIzquierda() == null? null : buscarPorPersonaje(name,actual.getIzquierda());
 		}
 	}
-
+	
+    /**
+     * Desbloquea un personaje de la lista <br>
+     * <b>pre:</b> la lista de personajes y la de desbloqueados han sido incializadas <br>
+     * <b>pre:</b> El arreglo de precios de la clase personaje ha sido inicializado <br>
+     * <b>post:</b> Se ha añadido un nuevo personaje al árbol de personajes desbloqueados
+     * @param indice - El indice en el arreglo de precios del personaje
+     * @param personaje - el nombre del personaje.
+     */
 	public void desbloquearPersonaje(int indice, String personaje) throws PuntosInsuficientesException {
 		
 		if (Personaje.precios[indice] < puntos) {
