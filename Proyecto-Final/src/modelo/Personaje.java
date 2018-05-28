@@ -387,11 +387,17 @@ public class Personaje implements Atacable, Comparable<Personaje>, Serializable{
 	//--------------------------------------
 	// Metodos Graficos
 	//--------------------------------------
-
+	
+	/*
+	 * Método que se encarga de dar el Sprite.
+	 * @return objeto de tipo Image
+	 */
 	public Image darSprite() {
 		return frame;
 	}
-
+	/*
+	 * Método que se encarga de actualizar al Sprite
+	 */
 	public void actualizar() {
 
 		Image aMostrar = frame;
@@ -427,7 +433,11 @@ public class Personaje implements Atacable, Comparable<Personaje>, Serializable{
 		normalizarResistencia();
 		frame = aMostrar;
 	}
-
+	
+	/*
+	 * Método que se encarga de visualizar al Sprite quieto
+	 * @return Objeto de tipo Image
+	 */
 	public Image spriteQuieto() {
 
 		if(posSprite[0] < sprite.darTamanhos()[Sprite.PARADO] - 1) {
@@ -438,7 +448,11 @@ public class Personaje implements Atacable, Comparable<Personaje>, Serializable{
 
 		return sprite.spriteQuieto(posSprite[0], direccion);
 	}
-
+	
+	/*
+	 * Método que se encarga de visualizar al Sprite dando un puño
+	 * @return objeto de tipo Image
+	 */
 	public Image spritePuño() {
 
 		atacando = true;
@@ -459,6 +473,10 @@ public class Personaje implements Atacable, Comparable<Personaje>, Serializable{
 		return frame;
 	}
 	
+	/*
+	 * Método que se encarga de visualizar el Sprite dando una patada.
+	 * @return objeto de tipo Image
+	 */
 	public Image spritePatada() {
 
 		atacando = true;
@@ -479,6 +497,10 @@ public class Personaje implements Atacable, Comparable<Personaje>, Serializable{
 		return frame;
 	}
 	
+	/*
+	 * Método que se encarga de visualizar al Sprite o personaje en movimiento 
+	 * @return objeto de tipo Image
+	 */
 
 	public Image spriteMovimiento() {
 
@@ -495,7 +517,9 @@ public class Personaje implements Atacable, Comparable<Personaje>, Serializable{
 		return frame;
 
 	}
-
+	/*
+	 * Método que permite crear un ataque a distancia mediano y agregarlo a la lista de ataques
+	 */
 	public void agregarAtaqueDistanciaMediano(AtaqueDistancia actual) {
 		if (actual.darSiguiente() == null) {
 			actual.seleccionarSiguiente( new AtaqueMediano(fuerza, direccion, posX + (100 * direccion) , posY));
@@ -503,7 +527,9 @@ public class Personaje implements Atacable, Comparable<Personaje>, Serializable{
 			agregarAtaqueDistanciaMediano(actual.darSiguiente());
 		}
 	}
-	
+	/*
+	 * Método que permite crear un ataque a distancia pequeño y agregarlo a la lista de ataques
+	 */
 	public void agregarAtaqueDistanciaPequeño(AtaqueDistancia actual) {
 		if (actual.darSiguiente() == null) {
 			actual.seleccionarSiguiente( new AtaquePequeño(fuerza, direccion, posX + (100 * direccion) , posY));
@@ -511,7 +537,9 @@ public class Personaje implements Atacable, Comparable<Personaje>, Serializable{
 			agregarAtaqueDistanciaPequeño(actual.darSiguiente());
 		}
 	}
-	
+	/*
+	 * Método que permite crear un ataque a distancia grande y agregarlo a la lista de ataques
+	 */
 	public void agregarAtaqueDistanciaGrande(AtaqueDistancia actual) {
 		if (actual.darSiguiente() == null) {
 			actual.seleccionarSiguiente( new AtaqueGrande(fuerza, direccion, posX + (100 * direccion) , posY));
@@ -519,7 +547,11 @@ public class Personaje implements Atacable, Comparable<Personaje>, Serializable{
 			agregarAtaqueDistanciaGrande(actual.darSiguiente());
 		}
 	}
-
+	
+	/*
+	 * Método que se encarga de mostrar al personaje lanzando un ataque a distancia mediano
+	 * @return objeto de tipo Image
+	 */
 	public Image spriteAtaqueMedianoDistancia() {
 
 		atacando = true;
@@ -549,6 +581,10 @@ public class Personaje implements Atacable, Comparable<Personaje>, Serializable{
 
 	}
 	
+	/*
+	 * Método que se encarga de mostrar al personaje lanzando un ataque a distancia pequeño
+	 * @return objeto de tipo Image
+	 */
 	public Image spriteAtaquePequeñoDistancia() {
 
 		atacando = true;
@@ -578,6 +614,10 @@ public class Personaje implements Atacable, Comparable<Personaje>, Serializable{
 
 	}
 	
+	/*
+	 * Método que se encarga de mostrar al personaje lanzando un ataque a distancia grande
+	 * @return objeto de tipo Image
+	 */
 	public Image spriteAtaqueGrandeDistancia() {
 
 		atacando = true;
@@ -606,6 +646,10 @@ public class Personaje implements Atacable, Comparable<Personaje>, Serializable{
 
 	}
 	
+	/*
+	 * Método que se encarga de mostrar al personaje recargando el Ki :3
+	 * @return objeto de tipo Image
+	 */
 	public Image spriteRecargarKi() {
 
 		atacando = true;
@@ -622,7 +666,11 @@ public class Personaje implements Atacable, Comparable<Personaje>, Serializable{
 
 		return frame;
 	}
-
+	
+	/*
+	 * Método que se encarga de mostrar al personaje defendiendose
+	 * @return objeto de tipo Image
+	 */
 	public Image spriteDefender() {
 
 		atacando = true;
@@ -640,7 +688,9 @@ public class Personaje implements Atacable, Comparable<Personaje>, Serializable{
 		return frame;
 	}
 	
-	
+	/*
+	 * Método que elimina los ataques de la lista de ataques desde un nodo especifico
+	 */
 	public void eliminarAtaque(AtaqueDistancia actual) {
 
 		if (actual == null) {
@@ -661,27 +711,45 @@ public class Personaje implements Atacable, Comparable<Personaje>, Serializable{
 		}
 
 	}
-
+	/*
+	 * Método que limpia ataques eliminalos ataques cuya vida haya acabado desde la raiz
+	 */
 	public void limpiarAtaques() {
 		eliminarAtaque(ataqueDistancia);
 	}
-
+	
+	/*
+	 * Método que inicializa la variable de tipo boolean quieto
+	 */
 	public void quietotrue() {
 		quieto = true;
 	}
-
+	/*
+	 * Método que da el ataque a distancia
+	 */
 	public AtaqueDistancia darAtaqueDistancia() {
 		return ataqueDistancia;
 	}
-
+	
+	/*
+	 * Método que da el boolean atacando
+	 */
 	public boolean atacando() {
 		return atacando;
 	}
-	
+	/*
+	 * Método que da las imagenes o los Sprites
+	 * @return objeto de tipo Sprite
+	 */
 	public Sprite imagenes() {
 		return sprite;
 	}
-
+	
+	/*
+	 * Método que permite la colision horizontal entre los personajes
+	 * @param recibe un entero que indica el indice del  movimiento en el arreglo
+	 * @return un boolean que indica si esta colisionado o no 
+	 */
 	public boolean colisionaronHorizontal(int movimiento) {
 
 		boolean buleano	= false;
@@ -706,7 +774,12 @@ public class Personaje implements Atacable, Comparable<Personaje>, Serializable{
 
 		return buleano;
 	}
-
+	
+	/*
+	 * Método que permite la colision vertical entre los personajes
+	 * @param recibe un entero que indica el indice del  movimiento en el arreglo
+	 * @return un boolean que indica si esta colisionado o no 
+	 */
 	public boolean colisionaronVertical(int movimiento) {
 
 		boolean buleano	= false;
@@ -732,39 +805,68 @@ public class Personaje implements Atacable, Comparable<Personaje>, Serializable{
 		return buleano;
 
 	}
-
+	
+	/*
+	 * Método que permite cambiar el adversario
+	 * @param recibe un objeto de tipo Personaje que vendria siendo el personaje
+	 */
 	public void setAdversario(Personaje adversario) {
 		this.adversario = adversario;
 	}
-
+	/*
+	 * Método que permite dar la salud del personaje
+	 * @return un entero que indica la salud
+	 */
 	public int darSalud() {
 		return salud;
 	}
-
+	/*
+	 * Método que permite dar el ki del personaje
+	 * @return un entero que indica el ki
+	 */
 	public int darKI() {
 		return ki;
 	}
-
+	/*
+	 * Método que permite dar la velocidad del personaje
+	 * @return un entero que indica la velocidad
+	 */
 	public int darVelocidad() {
 		return velocidad;
 	}
-
+	
+	/*
+	 * Método que permite dar el indice del personaje
+	 * @return un entero que indica el indice
+	 */
 	public int darIndicePersonaje() {
 		return indicePersonaje;
 	}
-
+	/*
+	 * Método que permite recuperar el ki sumando de 10 en 10 al entero ki
+	 */
 	public void recuperarKi() {
 		ki +=10;
 	}
-	
+	/*
+	 * Método que permite dar el ki del personaje
+	 * @return un entero que indica el ki
+	 */
 	public void restarVida(int daño) {
 		salud -= daño > 0? daño : 10;
 	}
-
+	
+	/*
+	 * Método que permite dar la resistencia del personaje
+	 * @return un entero que indica la resistencia
+	 */
 	public int darResistencia() {
 		return resistencia;
 	}
-	
+	/*
+	 * Método que permite hacer un rectangulo que permite saber si dos objetos colisionan
+	 * @return objeto de tipo Rectangle
+	 */
 	public Rectangle darKickBox() {
 		Image temp = frame;
 		Rectangle rect = new Rectangle();
@@ -773,7 +875,10 @@ public class Personaje implements Atacable, Comparable<Personaje>, Serializable{
 		}
 		return rect;
 	}
-	
+	/*
+	 * Método que permite dar el arreglo de las posiciones
+	 * @return un arreglo de enteros
+	 */
 	public int[] darArregloPosiciones() {
 		return posSprite;
 	}
@@ -781,7 +886,9 @@ public class Personaje implements Atacable, Comparable<Personaje>, Serializable{
 	public void prepararParaSerializar() {
 		
 	}
-	
+	/*
+	 * Metodo que permite comparar dos objetos de esta misma clase
+	 */
 	@Override
 	public int compareTo(Personaje o) {
 		return personaje.compareTo(o.darNombre());
