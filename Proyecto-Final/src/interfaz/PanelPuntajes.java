@@ -6,6 +6,7 @@
  */
 package interfaz;
 
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.MouseEvent;
@@ -46,7 +47,15 @@ public class PanelPuntajes extends JPanel implements MouseListener{
 		
 		Image botonSalir = new ImageIcon("data/fondo/botonSalirNaranja.png").getImage();
 		g.drawImage(botonSalir, 950, 600, null);
-		
+		pintarTop10(g);
+	}
+	
+	public void pintarTop10(Graphics g) {
+		g.setFont(new Font("Arial", Font.ITALIC, 30));
+		String[] s = ventana.darJuego().darTopTen();
+		for (int i = 0; i < s.length; i++) {
+			g.drawString(s[i], 210, 130 + i * 45);
+		}
 	}
 
 	@Override

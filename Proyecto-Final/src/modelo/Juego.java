@@ -7,9 +7,12 @@
  */
 package modelo;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
@@ -135,6 +138,27 @@ public class Juego implements Comparator<Jugador>{
 	
 	public String darJugadorActual() {
 		return darJugadorActual();
+	}
+	
+	public String[] darTopTen() {
+		
+		File TopTenTex = new File(RUTA_TOP_TEN);
+		String[] top = new String[10];
+		
+		try {
+			BufferedReader lector = new BufferedReader(new FileReader(TopTenTex));
+			for (int i = 0; i < top.length; i++) {
+				top[i] = lector.readLine();
+			}
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return top;
 	}
 	
 	public boolean inTopTen(Jugador j) {
