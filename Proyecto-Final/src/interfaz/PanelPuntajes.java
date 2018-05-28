@@ -51,7 +51,7 @@ public class PanelPuntajes extends JPanel implements MouseListener{
 	}
 	
 	public void pintarTop10(Graphics g) {
-		g.setFont(new Font("Arial", Font.ITALIC, 30));
+		g.setFont(new Font("Arial", Font.BOLD, 30));
 		String[] s = ventana.darJuego().darTopTen();
 		for (int i = 0; i < s.length; i++) {
 			g.drawString(s[i], 210, 130 + i * 45);
