@@ -10,11 +10,13 @@ package modelo;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -54,8 +56,8 @@ public class Juego implements Comparator<Jugador>{
 	
 	private String fondoActual;
 	
-	public static final String RUTA_TOP_TEN = "Top10.pro";
-	public static final String RUTA_JUGADORES_REGISTRADOS ="C" + File.pathSeparator + "Saved" + File.pathSeparator + "Jugadores.CPS";
+	public static final String RUTA_TOP_TEN = "Saved/Top10.pro";
+	public static final String RUTA_JUGADORES_REGISTRADOS ="Saved/Jugadores.CPS";
 	
 	/*
 	 * Informacion
@@ -110,7 +112,7 @@ public class Juego implements Comparator<Jugador>{
 		topTen[9] = new Jugador("the play boy :v");
 		topTen[9].AñadirPuntos(91);
 //		guardarTopTen();
-		System.out.println(RUTA_TOP_TEN);
+		
 	}
 	
 	//--------------------------------------
