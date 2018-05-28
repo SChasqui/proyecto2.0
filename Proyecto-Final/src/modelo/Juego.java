@@ -121,7 +121,7 @@ public class Juego implements Comparator<Jugador>{
 	
 	public void iniciarBatalla(int numFondo) throws JugadorNoSeleccionadoException {
 		//**************************************
-		// Comprobar la existencia de Jugadores
+		// Comprobar la existencia de Jugadores.
 		//**************************************
 		if (jugador1 == null) {
 			throw new JugadorNoSeleccionadoException("No ha selecionado al jugador 1"); 
