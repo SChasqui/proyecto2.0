@@ -69,6 +69,8 @@ public class PanelSeleccionEscenario extends JPanel implements MouseListener{
 		Image botonDerecha = new ImageIcon("data/fondo/flechaDerecha.png").getImage();
 		g.drawImage(botonDerecha, 420, 420, null);
 		
+		Image botonRegresar = new ImageIcon("data/fondo/botonRegresar.png").getImage();
+		g.drawImage(botonRegresar, 920, 550, null);
 	
 	}
 	
@@ -93,7 +95,7 @@ public class PanelSeleccionEscenario extends JPanel implements MouseListener{
 		
 		int posX = e.getX();
 		int posY = e.getY();
-		
+		System.out.println("pos x " + posX + "posY" + posY);
 		//****************************************//
 		// Area de opcion de selecion jugador 1
 		//****************************************//		
@@ -102,7 +104,12 @@ public class PanelSeleccionEscenario extends JPanel implements MouseListener{
 			else { escenarioActual = NUM_ESCENARIOS;}
 			
 			repaint();
-		}else if(posX > 420 && posX < 540 && posY > 480 && posY < 564) {
+		}
+		else if(posX > 919 && posX < 935 && posY > 551 && posY < 562) {
+			setVisible(false);
+			ventana.agregarPanelMenuPrincipal(this);
+			
+		} else if(posX > 420 && posX < 540 && posY > 480 && posY < 564) {
 			
 			escenarioActual++;
 			if(escenarioActual  > NUM_ESCENARIOS) {escenarioActual = 1;}
