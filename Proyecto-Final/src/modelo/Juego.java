@@ -19,6 +19,8 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Comparator;
 
+import javax.swing.JFileChooser;
+
 public class Juego implements Comparator<Jugador>{
 
 	//--------------------------------------
@@ -52,8 +54,8 @@ public class Juego implements Comparator<Jugador>{
 	
 	private String fondoActual;
 	
-	public static final String RUTA_TOP_TEN = "Saved/Top10.pro";
-	public static final String RUTA_JUGADORES_REGISTRADOS = "Saved/Jugadores";
+	public static final String RUTA_TOP_TEN = "Top10.pro";
+	public static final String RUTA_JUGADORES_REGISTRADOS ="C" + File.pathSeparator + "Saved" + File.pathSeparator + "Jugadores.CPS";
 	
 	/*
 	 * Informacion
@@ -108,6 +110,7 @@ public class Juego implements Comparator<Jugador>{
 		topTen[9] = new Jugador("the play boy :v");
 		topTen[9].AñadirPuntos(91);
 //		guardarTopTen();
+		System.out.println(RUTA_TOP_TEN);
 	}
 	
 	//--------------------------------------
@@ -150,6 +153,7 @@ public class Juego implements Comparator<Jugador>{
 			for (int i = 0; i < top.length; i++) {
 				top[i] = lector.readLine();
 			}
+			lector.close();
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -341,8 +345,8 @@ public class Juego implements Comparator<Jugador>{
 //		File jugadores = new File(RUTA_JUGADORES_REGISTRADOS);
 //		
 //		try {
-//			ObjectOutputStream salida = new ObjectOutputStream(new FileOutputStream(jugadores));
-//			salida.writeObject(raiz);
+//			BufferedWriter salida = new BufferedWriter(new FileWriter(jugadores));
+//			
 //			salida.close();
 //		} catch (IOException e) {
 //			// TODO Auto-generated catch block
